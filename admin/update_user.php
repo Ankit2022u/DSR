@@ -1,6 +1,9 @@
 <?php
 session_start();
 require "../api/dbcon.php";
+require "../api/functions.php";
+
+$police_stations = police_stations();
 
 if (isset($_POST['update_user'])) {
 
