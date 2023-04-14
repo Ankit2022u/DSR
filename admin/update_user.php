@@ -16,10 +16,11 @@ if (isset($_POST['update_user'])) {
     $password = mysqli_real_escape_string($con, $_POST['password']);
     $confirm_password = mysqli_real_escape_string($con, $_POST['confirm_password']);
     $uid = mysqli_real_escape_string($con, $_POST['uid']);
+    $updated_at = date('Y-m-d H:i:s', time());
 
     if ($password == $confirm_password) {
 
-        $query = "UPDATE users SET officer_name = '$officer_name', officer_rank = '$officer_rank', user_id = '$user_id', user_type = '$user_type', district = '$district', status = 0, police_station = '$police_station', password = '$password' WHERE uid = '$uid'";
+        $query = "UPDATE users SET officer_name = '$officer_name', officer_rank = '$officer_rank', user_id = '$user_id', user_type = '$user_type', district = '$district', status = 0, police_station = '$police_station', password = '$password', updated_at = '$updated_at'  WHERE uid = '$uid'";
 
         $query_run = mysqli_query($con, $query);
 
@@ -166,7 +167,6 @@ if (isset($_POST['update_user'])) {
                                                                 ?><option value="<?= $option['police_station']; ?>"><?= $option['police_station']; ?></option>
                                                                 <?php
                                                             } ?>
-                                                            <option value="">Later</option>
                                                         </select>
                                                     </div>
                                                 </div>

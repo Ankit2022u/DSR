@@ -91,7 +91,7 @@ $total_users = count_users();
 
         <div class="card text-white mb-3 col-md-4 col-sm-6" style="max-width: 18rem;">
           <div class="card-header">
-            <a href="manage_user.php" class="btn btn-outline-info add-icon"><i class="fas fa-plus-square"></i></i>
+            <a href="create_user.php" class="btn btn-outline-info add-icon"><i class="fas fa-plus-square"></i></i>
               <span>Add user</span></a>
           </div>
           <div class="card-body bg-info">
