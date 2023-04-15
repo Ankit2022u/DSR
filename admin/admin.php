@@ -26,7 +26,7 @@ $total_users = count_users();
       <div class="row">
         <div class="card text-white mb-3 col-md-4 col-sm-6" style="max-width: 18rem;">
           <div class="card-header">
-            <a href="" class="btn btn-outline-danger add-icon"><i class="fas fa-plus-square"></i></i>
+            <a href="mcf.php" class="btn btn-outline-danger add-icon"><i class="fas fa-plus-square"></i></i>
               <span>Add major crime</span></a>
           </div>
           <div class="card-body bg-danger">
@@ -39,7 +39,7 @@ $total_users = count_users();
 
         <div class="card text-white mb-3 col-md-4 col-sm-6" style="max-width: 18rem;">
           <div class="card-header">
-            <a href="" class="btn btn-outline-success add-icon"><i class="fas fa-plus-square"></i></i>
+            <a href="micf.php" class="btn btn-outline-success add-icon"><i class="fas fa-plus-square"></i></i>
               <span>Add minor crime</span></a>
           </div>
           <div class="card-body bg-success">
@@ -52,7 +52,7 @@ $total_users = count_users();
 
         <div class="card text-white mb-3 col-md-4 col-sm-6" style="max-width: 18rem;">
           <div class="card-header">
-            <a href="" class="btn btn-outline-primary add-icon"><i class="fas fa-plus-square"></i></i>
+            <a href="ocf.php" class="btn btn-outline-primary add-icon"><i class="fas fa-plus-square"></i></i>
               <span>Add ongoing case</span></a>
           </div>
           <div class="card-body bg-primary">
@@ -65,7 +65,7 @@ $total_users = count_users();
 
         <div class="card text-white mb-3 col-md-4 col-sm-6" style="max-width: 18rem;">
           <div class="card-header">
-            <a href="" class="btn btn-outline-dark add-icon"><i class="fas fa-plus-square"></i></i>
+            <a href="dbf.php" class="btn btn-outline-dark add-icon"><i class="fas fa-plus-square"></i></i>
               <span>Add deadbody details</span></a>
           </div>
           <div class="card-body bg-dark">

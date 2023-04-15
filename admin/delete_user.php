@@ -10,11 +10,13 @@ require '../api/dbcon.php';
 
     if($query_run){
         $_SESSION['message'] = "User deleted successfully";
+        $_SESSION['type'] = "success";
         header("Location: manage_user.php");
         exit(0);
     }
     else{
         $_SESSION['message'] = "User deletion failed due to some error.";
+        $_SESSION['type'] = "danger";
         header("Location: maange_user.php");
         exit(0);
     }

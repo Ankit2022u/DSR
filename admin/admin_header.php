@@ -1,3 +1,14 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!(isset($_SESSION['user-data']))) {
+  header("Location: ../index.php");
+}
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -24,18 +35,13 @@
     <header class="mb-2">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="admin.php"></a>
+                <a class="navbar-brand active" href="admin.php">Dashboard</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <img src="../assets/img/logo.jpeg" alt="Logo" width="50" height="50"
-                        class="d-inline-block align-text-top mr-3">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="admin.php">Dashboard</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="manage_user.php">Manage Users</a>
                         </li>
@@ -46,10 +52,15 @@
                             <a class="nav-link" href="view_data.php">View Data</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="profile.php">View Profile</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="change_password.php">Change Password</a>
                         </li>
                     </ul>
-                    <div class="float-end"><a href="../auth/logout.php" class="btn btn-outline-danger">Log Out</a></div>
+                    <img src="../assets/img/logo.jpeg" alt="Logo for Admin Dashboard" width="50" height="50"
+                        class="d-inline-block align-text-top mr-3">
+                    <div class="float-end"><a href="../auth/logout.php" class="btn btn-outline-danger" name="logout">Log Out</a></div>
                 </div>
             </div>
         </nav>

@@ -70,14 +70,14 @@ if (isset($_POST['view'])) {
                 <div class="col-6">
                     <div class="card">
                         <div class="card-header">
-                            <div class="alert alert-success" role="alert">
+                            <div class="alert alert-light" role="alert">
                                 <!-- Database Table Name -->
                                 <strong>Ongoing Cases</strong>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="table-container" style="height: 400px; overflow: scroll;">
-                                <table class="table table-bordered table-success">
+                                <table class="table table-bordered table-primary">
                                     <thead>
                                         <!-- Database Columns -->
                                         <th>Id</th>
@@ -94,12 +94,13 @@ if (isset($_POST['view'])) {
                                         <th>Judgement Of Court</th>
                                     </thead>
 
-                                    <?php foreach ($output_ongoing_cases as $ongoingcase) {
+                                    <?php $i = 1;
+                                    foreach ($output_ongoing_cases as $ongoingcase) {
                                         foreach ($ongoingcase as $row) {
                                             ?>
                                             <tbody>
                                                 <td>
-                                                    <?= $row['ocid']; ?>
+                                                    <?= $i++; ?>
                                                 </td>
                                                 <td>
                                                     <?= $row['district']; ?>
@@ -147,14 +148,14 @@ if (isset($_POST['view'])) {
                 <div class="col-6">
                     <div class="card">
                         <div class="card-header">
-                            <div class="alert alert-success" role="alert">
+                            <div class="alert alert-light" role="alert">
                                 <!-- Database Table Name -->
                                 <strong>Dead body</strong>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="table-container" style="height: 400px; overflow: scroll;">
-                                <table class="table table-bordered table-success">
+                                <table class="table table-bordered table-warning">
                                     <thead>
                                         <!-- Database Columns -->
                                         <th>Id</th>
@@ -173,12 +174,13 @@ if (isset($_POST['view'])) {
                                         <th>Cause Of Death</th>
                                     </thead>
 
-                                    <?php foreach ($output_dead_bodies as $deadbody) {
+                                    <?php $i = 1;
+                                    foreach ($output_dead_bodies as $deadbody) {
                                         foreach ($deadbody as $row) {
                                             ?>
                                             <tbody>
                                                 <td>
-                                                    <?= $row['dbid']; ?>
+                                                    <?= $i++; ?>
                                                 </td>
                                                 <td>
                                                     <?= $row['district']; ?>
@@ -236,7 +238,7 @@ if (isset($_POST['view'])) {
                 <div class="col-6">
                     <div class="card">
                         <div class="card-header">
-                            <div class="alert alert-success" role="alert">
+                            <div class="alert alert-light" role="alert">
                                 <!-- Database Table Name -->
                                 <strong>Minor Crime</strong>
                             </div>
@@ -254,12 +256,13 @@ if (isset($_POST['view'])) {
                                         <th>FIR Writer</th>
                                     </thead>
 
-                                    <?php foreach ($output_minor_crimes as $minorcrime) {
+                                    <?php $i = 1;
+                                    foreach ($output_minor_crimes as $minorcrime) {
                                         foreach ($minorcrime as $row) {
                                             ?>
                                             <tbody>
                                                 <td>
-                                                    <?= $row['mcid']; ?>
+                                                    <?= $i++; ?>
                                                 </td>
                                                 <td>
                                                     <?= $row['time_date']; ?>
@@ -290,14 +293,14 @@ if (isset($_POST['view'])) {
                 <div class="col-6">
                     <div class="card">
                         <div class="card-header">
-                            <div class="alert alert-success" role="alert">
+                            <div class="alert alert-light" role="alert">
                                 <!-- Database Table Name -->
                                 <strong>Major Crime</strong>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="table-container" style="height: 400px; overflow: scroll;">
-                                <table class="table table-bordered table-success">
+                                <table class="table table-bordered table-danger">
                                     <thead>
                                         <!-- Database Columns -->
                                         <th>Id</th>
@@ -322,12 +325,13 @@ if (isset($_POST['view'])) {
                                         <th>Major Crime</th>
                                         <th>FIR Writer</th>
                                     </thead>
-                                    <?php foreach ($output_major_crimes as $majorcrime) {
+                                    <?php $i = 1;
+                                    foreach ($output_major_crimes as $majorcrime) {
                                         foreach ($majorcrime as $row) {
                                             ?>
                                             <tbody>
                                                 <td>
-                                                    <?= $row['cid']; ?>
+                                                    <?= $i++; ?>
                                                 </td>
                                                 <td>
                                                     <?= $row['district']; ?>

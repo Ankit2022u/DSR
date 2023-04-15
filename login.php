@@ -53,30 +53,45 @@ if (isset($_POST['login'])) {
                 </div>
                 <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
                     <div class="card p-lg-3">
-                        <form method="POST" action="auth/auth.php" class="form">
-                            <input type="hidden" name="user_type" value=<?= $user_type; ?>>
-                            <!-- User ID input -->
-                            <div class="form-outline mb-4">
-                                <input type="text" name="user_id" id="user_id" class="form-control form-control-lg" />
-                                <label class="form-label" for="user_id">User ID</label>
+                        <?php session_start();
+                        if (isset($_SESSION['message'])) {
+                            ?>
+                            <div class="alert alert-<?= $_SESSION['type'] ?>" role="alert">
+                                <strong><?= $_SESSION['message']; ?></strong>
                             </div>
-
-                            <!-- Password input -->
-                            <div class="form-outline mb-4">
-                                <input type="password" name="password" id="password"
-                                    class="form-control form-control-lg" />
-                                <label class="form-label" for="password">Password</label>
-                            </div>
-
-                            <!-- Forget Password Link -->
-                            <div class="d-flex justify-content-around align-items-center mb-4">
-                                <a href="forget-password.php">Forgot password?</a>
-                            </div>
-
-                            <!-- Submit button -->
-                            <button type="submit" name="login"
-                                class="btn btn-success btn-lg btn-block float-end">Login</button>
-                        </form>
+                            <?php
+                        }
+                        session_destroy(); ?>
+                        <div class="card-header">
+                            <h4 class="text-center"><?=ucfirst($user_type);?> Login</h4>
+                        </div>
+                        <div class="card-body">
+                            
+                            <form method="POST" action="auth/auth.php" class="form">
+                                <input type="hidden" name="user_type" value=<?= $user_type; ?>>
+                                <!-- User ID input -->
+                                <div class="form-outline mb-4">
+                                    <input type="text" name="user_id" id="user_id" class="form-control form-control-lg" />
+                                    <label class="form-label" for="user_id">User ID</label>
+                                </div>
+    
+                                <!-- Password input -->
+                                <div class="form-outline mb-4">
+                                    <input type="password" name="password" id="password"
+                                        class="form-control form-control-lg" />
+                                    <label class="form-label" for="password">Password</label>
+                                </div>
+    
+                                <!-- Forget Password Link -->
+                                <div class="d-flex justify-content-around align-items-center mb-4">
+                                    <a href="forget-password.php">Forgot password?</a>
+                                </div>
+    
+                                <!-- Submit button -->
+                                <button type="submit" name="login"
+                                    class="btn btn-success btn-lg btn-block float-end">Login</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

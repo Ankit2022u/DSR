@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 require '../api/dbcon.php';
 session_start();
 
-if(isset($_POST['login'])){
+if (isset($_POST['login'])) {
 
     $user_type = mysqli_real_escape_string($con, $_POST['user_type']);
     $user_id = mysqli_real_escape_string($con, $_POST['user_id']);
@@ -11,16 +11,30 @@ if(isset($_POST['login'])){
 
     $query = "SELECT * FROM users WHERE `user_type` = '$user_type' and `user_id` = '$user_id' and `password` = '$password'";
     $result = mysqli_query($con, $query);
+    echo $query;
 
-    if( mysqli_num_rows($result) > 0){
+    if (mysqli_num_rows($result) > 0) {
         $_SESSION['user-data'] = mysqli_fetch_array($result);
 
-        if($user_type == "admin"){
+        if ($user_type == "admin") {
             header("Location: ../admin/admin.php");
-        }
-        else{
+        } else {
             header("Location: ../user/user.php");
         }
+    } else {
+        header("Location: ../login.php");
+        $query = "SELECT * FROM users WHERE `user_id` = '$user_id' and `password` = '$password'";
+        $query_run = mysqli_query($con, $query);
+        $result = mysqli_fetch_all($query_run, MYSQLI_ASSOC);
+
+        if (count($result) > 0) {
+            $_SESSION['message'] = "UNAUTHORIZED ACCESS. TRY LOGIN IN WITH CORRECT DETAILS !!!";
+            $_SESSION['type'] = "danger";
+        } else {
+            $_SESSION['message'] = "WRONG USER_ID OR PASSWORD. TRY LOGIN IN WITH CORRECT DETAILS !!!";
+            $_SESSION['type'] = "warning";
+        }
+
     }
 }
 

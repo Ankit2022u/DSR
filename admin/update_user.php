@@ -27,15 +27,18 @@ if (isset($_POST['update_user'])) {
         if ($query_run) {
 
             $_SESSION['message'] = "User updated successfully";
+            $_SESSION['type'] = "success";
             header("Location: manage_user.php");
             exit(0);
         } else {
             $_SESSION['message'] = "User creation failed due to some error.";
+            $_SESSION['type'] = "danger";
             header("Location: manage_user.php");
             exit(0);
         }
     } else {
         $_SESSION['message'] = "Password does not match.";
+        $_SESSION['type'] = "danger";
         header("Location: manage_user.php");
         exit(0);
     }

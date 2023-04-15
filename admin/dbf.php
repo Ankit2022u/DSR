@@ -3,12 +3,11 @@ session_start();
 require "../api/dbcon.php";
 require "../api/functions.php";
 $police_stations = police_stations();
-
 ?>
 
 <header>
     <!-- place navbar here -->
-    <?php include('user_header.php'); ?>
+    <?php include('admin_header.php'); ?>
 </header>
 
 <main>
@@ -39,7 +38,8 @@ $police_stations = police_stations();
                                     <option value="Surguja">Surguja</option>
                                     <option value="Balrampur">Balrampur</option>
                                     <option value="Surajpur">Surajpur</option>
-                                    <option value="Manendragarh-Chirmiri-Bharatpur">Manendragarh-Chirmiri-Bharatpur</option>
+                                    <option value="Manendragarh-Chirmiri-Bharatpur">Manendragarh-Chirmiri-Bharatpur
+                                    </option>
                                     <option value="Jashpur">Jashpur</option>
                                     <option value="Korea">Korea</option>
                                 </select>
@@ -70,27 +70,60 @@ $police_stations = police_stations();
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number"
-                                    name="crime_number" />
-                                <label for="crimeNumber">Crime Number</label>
+                                <input class="form-control" id="diedBodyNumber" type="text"
+                                    placeholder="Died Body Number" name="dead_body_number" />
+                                <label for="diedBodyNumber">Dead Body Number</label>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="section" type="text" placeholder="Section"
                                     name="penal_code" />
                                 <label for="section">Section</label>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="accidentDate" type="date" placeholder="Accident Date"
+                                    name="accident_date" />
+                                <label for="accidentDate">Accident Date</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="accidentPlace" type="text" placeholder="Accident Place"
+                                    name="accident_place" />
+                                <label for="accidentPlace">Accident Place</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-4">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="firDate" type="date" placeholder="FIR Date"
-                                    name="fir_date" />
-                                <label for="firDate">FIR Date</label>
+                                <input class="form-control" id="informationDate" type="date"
+                                    placeholder="Information Date" name="information_date" />
+                                <label for="informationDate">Information Date</label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="informationTime" type="time"
+                                    placeholder="Information Time" name="information_time" />
+                                <label for="informationTime">Information Time</label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="applicant" type="text" placeholder="Applicant Name"
+                                    name="applicant_name" />
+                                <label for="applicantName">Applicant Name</label>
                             </div>
                         </div>
                     </div>
@@ -98,36 +131,16 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="nameOfCourt" type="text" placeholder="Name Of Court"
-                                    name="name_of_court" />
-                                <label for="nameOfCourt">Name Of Court</label>
+                                <input class="form-control" id="deceased" type="text" placeholder="Deceased"
+                                    name="deceased_name" />
+                                <label for="deceasedName">Deceased Name</label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name"
-                                    name="culprit_name" />
-                                <label for="culpritName">Culprit Name</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="culpritAddress" type="text"
-                                    placeholder="Culprit Address" name="culprit_address" />
-                                <label for="culpritAddress">Culprit Address </label>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="form-floating mb-3">
-                                <select class="form-select" id="caseStatus" aria-label="Case Status" name="case_status">
-                                    <option value="Option1">Option1</option>
-                                    <option value="Option2">Option2</option>
-                                    <option value="Option3">Option3</option>
-                                </select>
-                                <label for="caseStatus">Case status</label>
+                                <input class="form-control" id="firWritter" type="text" placeholder="FIR Writter"
+                                    name="fir_writer"/>
+                                <label for="firWriter">FIR Writer</label>
                             </div>
                         </div>
                     </div>
@@ -135,20 +148,21 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-12">
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" id="judgementOfCourt" type="text"
-                                    placeholder="Judgement Of Court" style="height: 10rem;"
-                                    name="judgement_of_court"></textarea>
-                                <label for="judgementOfCourt">Judgement Of Court</label>
+                                <textarea class="form-control" id="causeOfDeath" type="text"
+                                    placeholder="Cause Of Death" style="height: 10rem;"
+                                    name="cause_of_death"></textarea>
+                                <label for="causeOfDeath">Cause Of Death</label>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-6">
-                            <button class="btn btn-primary" type="submit" name="save_ongoing_case">Save Ongoing Case</button>
+                        <div class="col-6 float-end">
+                            <button type="submit" name="save_deadbody" class="btn btn-primary">Save Deadbody</button>
                         </div>
                     </div>
                 </div>
+
             </form>
         </div>
     </div>

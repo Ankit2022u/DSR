@@ -25,16 +25,19 @@ if (isset($_POST['save_user'])) {
         if ($query_run) {
 
             $_SESSION['message'] = "User created successfully";
+            $_SESSION['type'] = "success";
             header("Location: create_user.php");
             exit(0);
         } else {
             $_SESSION['message'] = "User creation failed due to some error.";
+            $_SESSION['type'] = "danger";
             header("Location: create_user.php");
             exit(0);
         }
     }
     else{
         $_SESSION['message'] = "Password does not match.";
+        $_SESSION['type'] = "danger";
         header("Location: create_user.php");
         exit(0);
     }
@@ -57,7 +60,7 @@ if (isset($_POST['save_user'])) {
                 <?php
                 if (isset($_SESSION['message'])):
                     ?>
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <div class="alert alert-<?= $_SESSION['type'];?> alert-dismissible fade show" role="alert">
                         <strong>Hye!</strong>
                         <?= $_SESSION['message']; ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

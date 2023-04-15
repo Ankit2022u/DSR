@@ -1,39 +1,58 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        <span class="fs-4">Daily Station Report (Admin Panel)</span>
+        <span class="fs-4">Daily Station Report (User Panel)</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-            <a href="admin.php" class="nav-link active" aria-current="page">
-                Dashboard
+       
+    <li class="nav-item">
+            <a href="user.php" class="nav-link active" aria-current="page">
+               User Dashboard
             </a>
         </li>
+       
         <li>
-            <a href="manage_user.php" class="nav-link link-dark">
-                Manage Users
+            <a href="dead_body_form.php" class="nav-link link-dark">
+                Dead Body
             </a>
         </li>
+       
         <li>
-            <a href="view_logs.php" class="nav-link link-dark">
-                View Logs
+            <a href="major_crime_form.php" class="nav-link link-dark">
+                Major Crime
             </a>
         </li>
+       
         <li>
-            <a href="view_data.php" class="nav-link link-dark">
-                View Data
+            <a href="ongoing_case_form.php" class="nav-link link-dark">
+                Ongoing Case
             </a>
         </li>
+
+        <li>
+            <a href="minor_crime_form.php" class="nav-link link-dark">
+                Minor Crime
+            </a>
+        </li>
+
+        <li>
+            <a class="nav-link link-dark" href="feedback.php">
+                Feedback
+            </a>
+        </li>   
+       
+        <li>
+            <a href="profile.php" class="nav-link link-dark">
+                Profile
+            </a>
+        </li>
+       
         <li>
             <a href="change_password.php" class="nav-link link-dark">
                 Change Password
             </a>
         </li>
-        <li>
-            <a href="profile.php" class="nav-link link-dark">
-                View Profile
-            </a>
-        </li>
+       
         
     </ul>
     <hr>

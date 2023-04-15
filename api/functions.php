@@ -63,6 +63,9 @@ function find_minor_crimes($district, $start, $end)
     }
 
     $query_run = mysqli_query($con, $query);
+
+    // echo "MINOR: ";
+    // echo $query;
     
     if (!$query_run) {
         // Query Failed
@@ -87,6 +90,9 @@ function find_major_crimes($district, $start, $end)
     }
     $query_run = mysqli_query($con, $query);
 
+    // echo "MAJOR: ";
+    // echo $query;
+
     if (!$query_run) {
         // Query Failed
         echo "Error: " . mysqli_error($con);
@@ -107,6 +113,9 @@ function find_ongoing_cases($district, $start, $end)
         $query = "SELECT * from ongoing_cases where updated_at > '$start' and updated_at < '$end'";
     }
     $query_run = mysqli_query($con, $query);
+    
+    // echo "ONGOING: ";
+    // echo $query;
 
     if (!$query_run) {
         // Query Failed
@@ -134,6 +143,9 @@ function find_dead_bodies($district, $start, $end)
         echo "Error: " . mysqli_error($con);
         return 0;
     }
+
+    // echo "DEAD BODY: ";
+    // echo $query;
 
     // Query Success
     $result = mysqli_fetch_all($query_run, MYSQLI_ASSOC);

@@ -8,7 +8,7 @@ $police_stations = police_stations();
 
 <header>
     <!-- place navbar here -->
-    <?php include('user_header.php'); ?>
+    <?php include('admin_header.php'); ?>
 </header>
 
 <main>
