@@ -12,45 +12,64 @@ if (isset($_POST['view'])) {
     $police_station = mysqli_real_escape_string($con, $_POST['police_station']);
     $start_date = mysqli_real_escape_string($con, $_POST['start_date']);
     $end_date = mysqli_real_escape_string($con, $_POST['end_date']);
-    $dead_bodies = isset($_POST['dead_bodies']) ? mysqli_real_escape_string($con, $_POST['dead_bodies']) : 0;
-    $ongoing_cases = isset($_POST['ongoing_cases']) ? mysqli_real_escape_string($con, $_POST['ongoing_cases']) : 0;
-    $minor_crimes = isset($_POST['minor_crimes']) ? mysqli_real_escape_string($con, $_POST['minor_crimes']) : 0;
-    $major_crimes = isset($_POST['major_crimes']) ? mysqli_real_escape_string($con, $_POST['major_crimes']) : 0;
+    $dead_bodies = isset($_POST['dead_bodies']) ? 1 : 0;
+    $ongoing_cases = isset($_POST['ongoing_cases']) ? 1 : 0;
+    $minor_crimes = isset($_POST['minor_crimes']) ? 1 : 0;
+    $major_crimes = isset($_POST['major_crimes']) ? 1 : 0;
     $districts = districts();
 
-    $output_dead_bodies = array();
-    $output_minor_crimes = array();
-    $output_major_crimes = array();
-    $output_ongoing_cases = array();
+    $errors = array();
+    // Validate input fields
+    $errors = array();
+    if (empty($start_date)) {
+        $errors[] = "Start Date is required";
+    }
+    if (empty($end_date)) {
+        $errors[] = "End Date is required.";
+    }
+    if(!($dead_bodies and $ongoing_cases and $minor_crimes and $major_crimes)){
+        $errors[] = "Select Atleast One Information You Want";
+    }
+    
+    if (empty($errors)) {
+        $output_dead_bodies = array();
+        $output_minor_crimes = array();
+        $output_major_crimes = array();
+        $output_ongoing_cases = array();
 
-    if ($district == 'All') {
-        foreach ($districts as $row) {
-            if ($dead_bodies == 'on') {
-                $output_dead_bodies[] = find_dead_bodies($row['district'], $start_date, $end_date);
+        if ($district == 'All') {
+            foreach ($districts as $row) {
+                if ($dead_bodies) {
+                    $output_dead_bodies[] = find_dead_bodies($row['district'], $start_date, $end_date);
+                }
+                if ($minor_crimes) {
+                    $output_minor_crimes[] = find_minor_crimes($row['district'], $start_date, $end_date);
+                }
+                if ($major_crimes) {
+                    $output_major_crimes[] = find_major_crimes($row['district'], $start_date, $end_date);
+                }
+                if ($ongoing_cases) {
+                    $output_ongoing_cases[] = find_ongoing_cases($row['district'], $start_date, $end_date);
+                }
             }
-            if ($minor_crimes == 'on') {
-                $output_minor_crimes[] = find_minor_crimes($row['district'], $start_date, $end_date);
+        } else {
+            if ($dead_bodies) {
+                $output_dead_bodies[] = find_dead_bodies($district, $start_date, $end_date);
             }
-            if ($major_crimes == 'on') {
-                $output_major_crimes[] = find_major_crimes($row['district'], $start_date, $end_date);
+            if ($minor_crimes) {
+                $output_minor_crimes[] = find_minor_crimes($district, $start_date, $end_date);
             }
-            if ($ongoing_cases == 'on') {
-                $output_ongoing_cases[] = find_ongoing_cases($row['district'], $start_date, $end_date);
+            if ($major_crimes) {
+                $output_major_crimes[] = find_major_crimes($district, $start_date, $end_date);
+            }
+            if ($ongoing_cases) {
+                $output_ongoing_cases[] = find_ongoing_cases($district, $start_date, $end_date);
             }
         }
     } else {
-        if ($dead_bodies == 'on') {
-            $output_dead_bodies[] = find_dead_bodies($district, $start_date, $end_date);
-        }
-        if ($minor_crimes == 'on') {
-            $output_minor_crimes[] = find_minor_crimes($district, $start_date, $end_date);
-        }
-        if ($major_crimes == 'on') {
-            $output_major_crimes[] = find_major_crimes($district, $start_date, $end_date);
-        }
-        if ($ongoing_cases == 'on') {
-            $output_ongoing_cases[] = find_ongoing_cases($district, $start_date, $end_date);
-        }
+        $_SESSION['message'] = $errors[0];
+        $_SESSION['type'] = "warning";
+        header('Location: view_data.php');
     }
 
 }

@@ -44,7 +44,7 @@ $police_stations = police_stations();
                                     <option value="Jashpur">Jashpur</option>
                                     <option value="Korea">Korea</option>
                                 </select>
-                                <label for="district">District</label>
+                                <label for="district">District<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-4">
@@ -55,7 +55,7 @@ $police_stations = police_stations();
                                     <option value="Option2">Option2</option>
                                     <option value="Option3">Option3</option>
                                 </select>
-                                <label for="subDivision">Sub Division</label>
+                                <label for="subDivision">Sub Division<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-4">
@@ -67,7 +67,7 @@ $police_stations = police_stations();
                                         <?php
                                     } ?>
                                 </select>
-                                <label for="policeStation">Police Station</label>
+                                <label for="policeStation">Police Station<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -77,14 +77,14 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number"
                                     name="crime_number" />
-                                <label for="crimeNumber">Crime Number</label>
+                                <label for="crimeNumber">Crime Number<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="section" type="text" placeholder="Section"
                                     name="penal_code" />
-                                <label for="section">Section</label>
+                                <label for="section">Section<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -94,14 +94,14 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name"
                                     name="culprit_name" />
-                                <label for="culpritName">Culprit Name</label>
+                                <label for="culpritName">Culprit Name<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="firWriter" type="text" placeholder="FIR Writer"
                                     name="fir_writer" />
-                                <label for="firWriter">FIR Writer</label>
+                                <label for="firWriter">FIR Writer<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -111,7 +111,7 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="reportDate" type="date" placeholder="Report Date"
                                     name="reporting_date" />
-                                <label for="reportDate">Report Date</label>
+                                <label for="reportDate">Report Date<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-6">

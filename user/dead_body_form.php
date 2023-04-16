@@ -43,7 +43,7 @@ $police_stations = police_stations();
                                     <option value="Jashpur">Jashpur</option>
                                     <option value="Korea">Korea</option>
                                 </select>
-                                <label for="district">District</label>
+                                <label for="district">District<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-4">
@@ -54,7 +54,7 @@ $police_stations = police_stations();
                                     <option value="Option2">Option2</option>
                                     <option value="Option3">Option3</option>
                                 </select>
-                                <label for="subDivision">Sub Division</label>
+                                <label for="subDivision">Sub Division<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-4">
@@ -66,7 +66,7 @@ $police_stations = police_stations();
                                         <?php
                                     } ?>
                                 </select>
-                                <label for="policeStation">Police Station</label>
+                                <label for="policeStation">Police Station<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -75,14 +75,14 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="diedBodyNumber" type="text"
                                     placeholder="Died Body Number" name="dead_body_number" />
-                                <label for="diedBodyNumber">Dead Body Number</label>
+                                <label for="diedBodyNumber">Dead Body Number<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="section" type="text" placeholder="Section"
                                     name="penal_code" />
-                                <label for="section">Section</label>
+                                <label for="section">Section<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -92,14 +92,14 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="accidentDate" type="date" placeholder="Accident Date"
                                     name="accident_date" />
-                                <label for="accidentDate">Accident Date</label>
+                                <label for="accidentDate">Accident Date<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="accidentPlace" type="text" placeholder="Accident Place"
                                     name="accident_place" />
-                                <label for="accidentPlace">Accident Place</label>
+                                <label for="accidentPlace">Accident Place<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -109,7 +109,7 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="informationDate" type="date"
                                     placeholder="Information Date" name="information_date" />
-                                <label for="informationDate">Information Date</label>
+                                <label for="informationDate">Information Date<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-4">
@@ -123,7 +123,7 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="applicant" type="text" placeholder="Applicant Name"
                                     name="applicant_name" />
-                                <label for="applicantName">Applicant Name</label>
+                                <label for="applicantName">Applicant Name<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -133,14 +133,14 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="deceased" type="text" placeholder="Deceased"
                                     name="deceased_name" />
-                                <label for="deceasedName">Deceased Name</label>
+                                <label for="deceasedName">Deceased Name<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="firWritter" type="text" placeholder="FIR Writter"
                                     name="fir_writer"/>
-                                <label for="firWriter">FIR Writer</label>
+                                <label for="firWriter">FIR Writer<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>

@@ -21,27 +21,16 @@ if (!(isset($_SESSION['user-data']))) {
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-8">
                         <div class="card shadow-sm">
-                            <?php if (isset($_SESSION['error'])) {
+                            <?php if (isset($_SESSION['message'])) {
                                 ?>
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
                                     <span>
-                                        <?= $_SESSION['error']; ?>
+                                        <?= $_SESSION['message']; ?>
                                     </span>
                                     <button type="button" class="btn-close" data-bs-dismiss="alert"
                                         aria-label="Close"></button>
                                 </div>
-                                <?php unset($_SESSION['error']);
-                            } ?>
-                            <?php if (isset($_SESSION['success'])) {
-                                ?>
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <span>
-                                        <?= $_SESSION['success']; ?>
-                                    </span>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                </div>
-                                <?php unset($_SESSION['success']);
+                                <?php unset($_SESSION['message']);
                             } ?>
 
                             <div class="card-body">

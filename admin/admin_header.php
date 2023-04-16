@@ -2,10 +2,10 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-unset($_SESSION['message']);
+// unset($_SESSION['message']);
 
 if (!(isset($_SESSION['user-data']))) {
-  header("Location: ../index.php");
+    header("Location: ../index.php");
 }
 
 ?>
@@ -28,6 +28,11 @@ if (!(isset($_SESSION['user-data']))) {
         footer {
             background-color: rgba(0, 0, 0, 0.05);
             padding: 20px;
+        }
+
+        .required-star {
+            color: red;
+            margin-left: 5px;
         }
     </style>
 </head>
@@ -61,7 +66,8 @@ if (!(isset($_SESSION['user-data']))) {
                     </ul>
                     <img src="../assets/img/logo.jpeg" alt="Logo for Admin Dashboard" width="50" height="50"
                         class="d-inline-block align-text-top mr-3">
-                    <div class="float-end"><a href="../auth/logout.php" class="btn btn-outline-danger" name="logout">Log Out</a></div>
+                    <div class="float-end"><a href="../auth/logout.php" class="btn btn-outline-danger" name="logout">Log
+                            Out</a></div>
                 </div>
             </div>
         </nav>

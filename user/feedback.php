@@ -7,17 +7,30 @@ $police_stations = police_stations();
 if (isset($_POST['save_feedback'])) {
     $feedback = $_POST['feedback'];
     $updated_by = $_SESSION['user-data']['user_id'];
-    $query = "INSERT INTO `feedbacks`(`feedback`, `created_by`) VALUES ('$feedback','$updated_by')";
-    $query_run = mysqli_query($con, $query);
 
-    if ($query) {
-        $_SESSION['message'] == "Successfully submitted feedback.";
-        $_SESSION['type'] == "success";
+    // Validate input fields
 
-    } else {
-        $_SESSION['message'] == "Failed to submit Feedback";
-        $_SESSION['type'] == "danger";
+    if (!(empty($feedback))) {
+        $query = "INSERT INTO `feedbacks`(`feedback`, `created_by`) VALUES ('$feedback','$updated_by')";
+        $query_run = mysqli_query($con, $query);
+
+
+        if ($query) {
+            $_SESSION['message'] == "Successfully submitted feedback.";
+            $_SESSION['type'] == "success";
+
+        } else {
+            $_SESSION['message'] == "Failed to submit Feedback";
+            $_SESSION['type'] == "danger";
+        }
     }
+    else{
+        $_SESSION['message'] == "Feedback Field can't be empty.";
+        $_SESSION['type'] == "warning";
+    }
+
+
+
 }
 
 

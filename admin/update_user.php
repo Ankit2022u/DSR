@@ -17,28 +17,81 @@ if (isset($_POST['update_user'])) {
     $confirm_password = mysqli_real_escape_string($con, $_POST['confirm_password']);
     $uid = mysqli_real_escape_string($con, $_POST['uid']);
     $updated_at = date('Y-m-d H:i:s', time());
+    // Validate input fields
+    $errors = array();
+    if (empty($officer_name)) {
+        $errors[] = "Officer name is required.";
+    }
+    if (empty($officer_rank)) {
+        $errors[] = "Officer rank is required.";
+    }
+    if (empty($password)) {
+        $errors[] = "Password is required.";
+    } elseif (strlen($password) < 6) {
+        $errors[] = "Password must be at least 6 characters.";
+    }
+    if ($password != $confirm_password) {
+        $errors[] = "Passwords do not match.";
+    }
+    // Minimum password length of 8 characters
+    if (strlen($password) < 8) {
+        $error[] = "Password must be at least 8 characters long.";
+    }
 
-    if ($password == $confirm_password) {
+    // Maximum password length of 20 characters
+    if (strlen($password) > 20) {
+        $error[] = "Password cannot be longer than 20 characters.";
+    }
 
-        $query = "UPDATE users SET officer_name = '$officer_name', officer_rank = '$officer_rank', user_id = '$user_id', user_type = '$user_type', district = '$district', status = 0, police_station = '$police_station', password = '$password', updated_at = '$updated_at'  WHERE uid = '$uid'";
+    // Password must contain at least one uppercase letter
+    if (!preg_match('/[A-Z]/', $password)) {
+        $error[] = "Password must contain at least one uppercase letter.";
+    }
 
-        $query_run = mysqli_query($con, $query);
+    // Password must contain at least one lowercase letter
+    if (!preg_match('/[a-z]/', $password)) {
+        $error[] = "Password must contain at least one lowercase letter.";
+    }
 
-        if ($query_run) {
+    // Password must contain at least one number
+    if (!preg_match('/[0-9]/', $password)) {
+        $error[] = "Password must contain at least one number.";
+    }
 
-            $_SESSION['message'] = "User updated successfully";
-            $_SESSION['type'] = "success";
-            header("Location: manage_user.php");
-            exit(0);
+    // Password must contain at least one special character
+    if (!preg_match('/[!@#$%^&*()\-_=+{};:,<.>]/', $password)) {
+        $error[] = "Password must contain at least one special character.";
+    }
+
+    if (empty($errors)) {
+
+        if ($password == $confirm_password) {
+
+            $query = "UPDATE users SET officer_name = '$officer_name', officer_rank = '$officer_rank', user_id = '$user_id', user_type = '$user_type', district = '$district', status = 0, police_station = '$police_station', password = '$password', updated_at = '$updated_at'  WHERE uid = '$uid'";
+
+            $query_run = mysqli_query($con, $query);
+
+            if ($query_run) {
+
+                $_SESSION['message'] = "User updated successfully";
+                $_SESSION['type'] = "success";
+                header("Location: manage_user.php");
+                exit(0);
+            } else {
+                $_SESSION['message'] = "User creation failed due to some error.";
+                $_SESSION['type'] = "danger";
+                header("Location: manage_user.php");
+                exit(0);
+            }
         } else {
-            $_SESSION['message'] = "User creation failed due to some error.";
+            $_SESSION['message'] = "Password does not match.";
             $_SESSION['type'] = "danger";
             header("Location: manage_user.php");
             exit(0);
         }
     } else {
-        $_SESSION['message'] = "Password does not match.";
-        $_SESSION['type'] = "danger";
+        $_SESSION['message'] = $errors[0];
+        $_SESSION['type'] = "warning";
         header("Location: manage_user.php");
         exit(0);
     }

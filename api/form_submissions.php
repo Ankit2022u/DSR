@@ -20,34 +20,72 @@ if (isset($_POST['save_deadbody'])) {
     $cause_of_death = mysqli_real_escape_string($con, $_POST['cause_of_death']);
     $updated_by = $_SESSION['user-data']['user_id'];
 
-    $query = "INSERT into dead_bodies (district, sub_division, police_station, dead_body_number, penal_code, accident_date, accident_place, information_date, information_time, applicant_name, deceased_name, fir_writer, cause_of_death, updated_by) VALUES ('$district', '$sub_division', '$police_station', '$dead_body_number', '$penal_code', '$accident_date', '$accident_place', '$information_date', '$information_time', '$applicant_name', '$deceased_name', '$fir_writer', '$cause_of_death', '$updated_by')";
-    // echo $query;
-
-    $query_run = mysqli_query($con, $query);
-    if ($query_run) {
-        $_SESSION['message'] = "Deadbody data Submitted successfully";
-        // $_SESSION['message'] = $usertype ;
-        $_SESSION['type'] = "success";
-        if($usertype === "admin"){
-            header("Location: ../admin/dbf.php");
-        }
-        else{
-            header("Location: ../user/dead_body_form.php");
-        }
-        exit(0);
-    } else {
-        $_SESSION['message'] = "Deadbody data submission failed";
-        // $_SESSION['message'] = $usertype ;
-        $_SESSION['type'] = "danger";
-        if($usertype == "admin"){
-            header("Location: ../admin/dbf.php");
-        }
-        else{
-            header("Location: ../user/dead_body_form.php");
-        }
-        
-        exit(0);
+    // Validate input fields
+    $errors = array();
+    if (empty($dead_body_number)) {
+        $errors[] = "Dead Body Number is required.";
     }
+    if (empty($penal_code)) {
+        $errors[] = "Section Number is required.";
+    }
+    if (empty($accident_date)) {
+        $errors[] = "Accident Date is required.";
+    }
+    if (empty($accident_place)) {
+        $errors[] = "Accident Place is required.";
+    }
+    if (empty($information_date)) {
+        $errors[] = "Information Date is required.";
+    }
+    if (empty($applicant_name)) {
+        $errors[] = "Applicant Name is required.";
+    }
+    if (empty($deceased_name)) {
+        $errors[] = "Deceased Name is required.";
+    }
+    if (empty($fir_writer)) {
+        $errors[] = "Fir Writer Name is required.";
+    }
+
+
+    if (empty($errors)) {
+        $query = "INSERT into dead_bodies (district, sub_division, police_station, dead_body_number, penal_code, accident_date, accident_place, information_date, information_time, applicant_name, deceased_name, fir_writer, cause_of_death, updated_by) VALUES ('$district', '$sub_division', '$police_station', '$dead_body_number', '$penal_code', '$accident_date', '$accident_place', '$information_date', '$information_time', '$applicant_name', '$deceased_name', '$fir_writer', '$cause_of_death', '$updated_by')";
+        // echo $query;
+
+        $query_run = mysqli_query($con, $query);
+        if ($query_run) {
+            $_SESSION['message'] = "Deadbody data Submitted successfully";
+            // $_SESSION['message'] = $usertype ;
+            $_SESSION['type'] = "success";
+            if ($usertype === "admin") {
+                header("Location: ../admin/dbf.php");
+            } else {
+                header("Location: ../user/dead_body_form.php");
+            }
+            exit(0);
+        } else {
+            $_SESSION['message'] = "Deadbody data submission failed";
+            // $_SESSION['message'] = $usertype ;
+            $_SESSION['type'] = "danger";
+            if ($usertype == "admin") {
+                header("Location: ../admin/dbf.php");
+            } else {
+                header("Location: ../user/dead_body_form.php");
+            }
+
+            exit(0);
+        }
+    } else {
+        $_SESSION['message'] = $errors[0];
+        $_SESSION['type'] = "warning";
+        if ($usertype == "admin") {
+            header("Location: ../admin/dbf.php");
+        } else {
+            header("Location: ../user/dead_body_form.php");
+        }
+    }
+
+
 }
 
 if (isset($_POST['save_major_crime'])) {
@@ -74,31 +112,79 @@ if (isset($_POST['save_major_crime'])) {
     $is_major_crime = isset($_POST['is_major_crime']) ? 1 : 0;
     $updated_by = $_SESSION['user-data']['user_id'];
 
-    $query = "INSERT into major_crimes (district, sub_division, police_station, crime_number, penal_code, incident_date, incident_time, incident_place, reporting_date, reporting_time, arrest_date, arrest_time, applicant_name, applicant_address, culprit_name, culprit_address, description_of_crime, is_major_crime, updated_by,  fir_writer, victim_name) VALUES ('$district', '$sub_division', '$police_station', '$crime_number', '$penal_code', '$incident_date', '$incident_time', '$incident_place', '$reporting_date', '$reporting_time', '$arrest_date', '$arrest_time', '$applicant_name', '$applicant_address', '$culprit_name', '$culprit_address', '$description_of_crime', '$is_major_crime', '$updated_by', '$fir_writer', '$victim_name')";
+    // Validate input fields
+    $errors = array();
+    if (empty($crime_number)) {
+        $errors[] = "Crime Number is required.";
+    }
+    if (empty($penal_code)) {
+        $errors[] = "Section Number is required.";
+    }
+    if (empty($reporting_date)) {
+        $errors[] = "Report Date is required.";
+    }
+    if (empty($applicant_name)) {
+        $errors[] = "Applicant Name is required.";
+    }
+    if (empty($applicant_address)) {
+        $errors[] = "Applicant Address is required.";
+    }
+    if (empty($incident_place)) {
+        $errors[] = "Incident Place is required.";
+    }
+    if (empty($incident_date)) {
+        $errors[] = "Incident Date is required.";
+    }
+    if (empty($culprit_name)) {
+        $errors[] = "Culprit Name is required.";
+    }
+    if (empty($culprit_address)) {
+        $errors[] = "Culprit Address is required.";
+    }
+    if (empty($fir_writer)) {
+        $errors[] = "Fir Writer Name is required.";
+    }
+    if (empty($arrest_date)) {
+        $errors[] = "Arrest Date is required.";
+    }
+    if (empty($description_of_crime)) {
+        $errors[] = "Description of Crime is required.";
+    }
+    if (empty($errors)) {
+        $query = "INSERT into major_crimes (district, sub_division, police_station, crime_number, penal_code, incident_date, incident_time, incident_place, reporting_date, reporting_time, arrest_date, arrest_time, applicant_name, applicant_address, culprit_name, culprit_address, description_of_crime, is_major_crime, updated_by,  fir_writer, victim_name) VALUES ('$district', '$sub_division', '$police_station', '$crime_number', '$penal_code', '$incident_date', '$incident_time', '$incident_place', '$reporting_date', '$reporting_time', '$arrest_date', '$arrest_time', '$applicant_name', '$applicant_address', '$culprit_name', '$culprit_address', '$description_of_crime', '$is_major_crime', '$updated_by', '$fir_writer', '$victim_name')";
 
-    echo $query;
+        // echo $query;
 
-    $query_run = mysqli_query($con, $query);
-    if ($query_run) {
-        $_SESSION['message'] = "Major Crime data Submitted successfully";
-        $_SESSION['type'] = "success";
-        if ($usertype == "admin") {
-            header("Location: ../admin/mcf.php");
+        $query_run = mysqli_query($con, $query);
+        if ($query_run) {
+            $_SESSION['message'] = "Major Crime data Submitted successfully";
+            $_SESSION['type'] = "success";
+            if ($usertype == "admin") {
+                header("Location: ../admin/mcf.php");
+            } else {
+                header("Location: ../user/major_crime_form.php");
+            }
+
+            exit(0);
         } else {
-            header("Location: ../user/major_crime_form.php");
-        }
+            $_SESSION['message'] = "Major Crime data submission failed";
+            $_SESSION['type'] = "danger";
+            if ($usertype == "admin") {
+                header("Location: ../admin/mcf.php");
+            } else {
+                header("Location: ../user/major_crime_form.php");
+            }
 
-        exit(0);
+            exit(0);
+        }
     } else {
-        $_SESSION['message'] = "Major Crime data submission failed";
-        $_SESSION['type'] = "danger";
+        $_SESSION['message'] = $errors[0];
+        $_SESSION['type'] = "warning";
         if ($usertype == "admin") {
             header("Location: ../admin/mcf.php");
         } else {
             header("Location: ../user/major_crime_form.php");
         }
-
-        exit(0);
     }
 }
 if (isset($_POST['save_minor_crime'])) {
@@ -115,24 +201,55 @@ if (isset($_POST['save_minor_crime'])) {
     $updated_by = $_SESSION['user-data']['user_id'];
     $time_date = date('Y-m-d H:i:s', strtotime($_POST['reporting_date'] . ' ' . $_POST['reporting_time']));
 
-    $query = "INSERT into minor_crimes (district, sub_division, police_station, crime_number, penal_code, culprit_name, updated_by, fir_writer, time_date) VALUES ('$district', '$sub_division', '$police_station', '$crime_number', '$penal_code', '$culprit_name', '$updated_by', '$fir_writer', '$time_date')";
+    // Validate input fields
+    $errors = array();
+    if (empty($crime_number)) {
+        $errors[] = "Crime Number is required.";
+    }
+    if (empty($penal_code)) {
+        $errors[] = "Section Number is required.";
+    }
+    if (empty($report_date)) {
+        $errors[] = "Report Date is required.";
+    }
+    if (empty($culprit_name)) {
+        $errors[] = "Culprit Name is required.";
+    }
+    if (empty($fir_writer)) {
+        $errors[] = "Fir Writer Name is required.";
+    }
 
-    echo $query;
+    if (empty($errors)) {
 
-    $query_run = mysqli_query($con, $query);
-    if ($query_run) {
-        $_SESSION['message'] = "Minor Crime data Submitted successfully";
-        $_SESSION['type'] = "success";
-        if ($usertype == "admin") {
-            header("Location: ../admin/micf.php");
+        $query = "INSERT into minor_crimes (district, sub_division, police_station, crime_number, penal_code, culprit_name, updated_by, fir_writer, time_date) VALUES ('$district', '$sub_division', '$police_station', '$crime_number', '$penal_code', '$culprit_name', '$updated_by', '$fir_writer', '$time_date')";
+
+        // echo $query;
+
+        $query_run = mysqli_query($con, $query);
+        if ($query_run) {
+            $_SESSION['message'] = "Minor Crime data Submitted successfully";
+            $_SESSION['type'] = "success";
+            if ($usertype == "admin") {
+                header("Location: ../admin/micf.php");
+            } else {
+                header("Location: ../user/minor_crime_form.php");
+            }
+
+            exit(0);
         } else {
-            header("Location: ../user/minor_crime_form.php");
-        }
+            $_SESSION['message'] = "Minor Crime data submission failed";
+            $_SESSION['type'] = "danger";
+            if ($usertype == "admin") {
+                header("Location: ../admin/micf.php");
+            } else {
+                header("Location: ../user/minor_crime_form.php");
+            }
 
-        exit(0);
+            exit(0);
+        }
     } else {
-        $_SESSION['message'] = "Minor Crime data submission failed";
-        $_SESSION['type'] = "danger";
+        $_SESSION['message'] = $errors[0];
+        $_SESSION['type'] = "warning";
         if ($usertype == "admin") {
             header("Location: ../admin/micf.php");
         } else {
@@ -158,23 +275,56 @@ if (isset($_POST['save_ongoing_case'])) {
     $judgement_of_court = mysqli_real_escape_string($con, $_POST['judgement_of_court']);
     $updated_by = $_SESSION['user-data']['user_id'];
 
-    $query = "INSERT into ongoing_cases ( `updated_by`,`district`, `sub_division`, `police_station`, `crime_number`, `penal_code`, `fir_date`, `culprit_name`, `case_status`, `name_of_court`, `culprit_address`, `judgement_of_court`) VALUES ('$updated_by','$district', '$sub_division', '$police_station', '$crime_number', '$penal_code', '$fir_date', '$culprit_name', '$case_status', '$name_of_court', '$culprit_address', '$judgement_of_court')";
+    // Validate input fields
+    $errors = array();
+    if (empty($crime_number)) {
+        $errors[] = "Crime Number is required.";
+    }
+    if (empty($penal_code)) {
+        $errors[] = "Section Number is required.";
+    }
+    if (empty($name_of_court)) {
+        $errors[] = "Court's Name is required.";
+    }
+    if (empty($culprit_name)) {
+        $errors[] = "Culprit Name is required.";
+    }
+    if (empty($culprit_address)) {
+        $errors[] = "Culprit Address is required.";
+    }
+    if (empty($fir_date)) {
+        $errors[] = "FIR Date is required.";
+    }
 
-    echo $query;
+    if (empty($errors)) {
 
-    $query_run = mysqli_query($con, $query);
-    if ($query_run) {
-        $_SESSION['message'] = "Ongoing Case data Submitted successfully";
-        $_SESSION['type'] = "success";
-        if ($usertype == "admin") {
-            header("Location: ../admin/ocf.php");
+        $query = "INSERT into ongoing_cases ( `updated_by`,`district`, `sub_division`, `police_station`, `crime_number`, `penal_code`, `fir_date`, `culprit_name`, `case_status`, `name_of_court`, `culprit_address`, `judgement_of_court`) VALUES ('$updated_by','$district', '$sub_division', '$police_station', '$crime_number', '$penal_code', '$fir_date', '$culprit_name', '$case_status', '$name_of_court', '$culprit_address', '$judgement_of_court')";
+
+        // echo $query;
+
+        $query_run = mysqli_query($con, $query);
+        if ($query_run) {
+            $_SESSION['message'] = "Ongoing Case data Submitted successfully";
+            $_SESSION['type'] = "success";
+            if ($usertype == "admin") {
+                header("Location: ../admin/ocf.php");
+            } else {
+                header("Location: ../user/ongoing_case_form.php");
+            }
+            exit(0);
         } else {
-            header("Location: ../user/ongoing_case_form.php");
+            $_SESSION['message'] = "Ongoing Case data submission failed";
+            $_SESSION['type'] = "danger";
+            if ($usertype == "admin") {
+                header("Location: ../admin/ocf.php");
+            } else {
+                header("Location: ../user/ongoing_case_form.php");
+            }
+            exit(0);
         }
-        exit(0);
     } else {
-        $_SESSION['message'] = "Ongoing Case data submission failed";
-        $_SESSION['type'] = "danger";
+        $_SESSION['message'] = $errors[0];
+        $_SESSION['type'] = "warning";
         if ($usertype == "admin") {
             header("Location: ../admin/ocf.php");
         } else {
