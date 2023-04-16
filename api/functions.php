@@ -56,7 +56,7 @@ function find_minor_crimes($district, $start, $end)
 {
     global $con;
     if ($district != "All") {
-        $query = "SELECT * from minor_crimes where updated_at > '$start' and updated_at < '$end' and updated_by in (SELECT user_id from users where district = '$district')";
+        $query = "SELECT * from minor_crimes where updated_at > '$start' and updated_at < '$end' and updated_by in (SELECT user_id from users) and district = '$district'";
     }
     else{
         $query = "SELECT * from minor_crimes where updated_at > '$start' and updated_at < '$end'";
@@ -83,7 +83,7 @@ function find_major_crimes($district, $start, $end)
 {
     global $con;
     if ($district != "All") {
-        $query = "SELECT * from major_crimes where updated_at > '$start' and updated_at < '$end' and updated_by in (SELECT user_id from users where district = '$district')";
+        $query = "SELECT * from major_crimes where updated_at > '$start' and updated_at < '$end' and updated_by in (SELECT user_id from users) and district = '$district'";
     }
     else{
         $query = "SELECT * from major_crimes where updated_at > '$start' and updated_at < '$end'";
@@ -107,7 +107,7 @@ function find_ongoing_cases($district, $start, $end)
 {
     global $con;
     if ($district != "All") {
-        $query = "SELECT * from ongoing_cases where updated_at > '$start' and updated_at < '$end' and updated_by in (SELECT user_id from users where district = '$district')";
+        $query = "SELECT * from ongoing_cases where updated_at > '$start' and updated_at < '$end' and updated_by in (SELECT user_id from users) and district = '$district'";
     }
     else{
         $query = "SELECT * from ongoing_cases where updated_at > '$start' and updated_at < '$end'";
@@ -131,7 +131,7 @@ function find_dead_bodies($district, $start, $end)
 {
     global $con;
     if ($district != "All") {
-        $query = "SELECT * from dead_bodies where updated_at > '$start' and updated_at < '$end' and updated_by in (SELECT user_id from users where district = '$district')";
+        $query = "SELECT * from dead_bodies where updated_at > '$start' and updated_at < '$end' and updated_by in (SELECT user_id from users) and district = '$district'";
     }
     else{
         $query = "SELECT * from dead_bodies where updated_at > '$start' and updated_at < '$end'";

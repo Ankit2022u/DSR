@@ -2,6 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+unset($_SESSION['message']);
 
 if (!(isset($_SESSION['user-data']))) {
   header("Location: ../index.php");

@@ -69,7 +69,7 @@ if (!(isset($_SESSION['user-data']))) {
 
                         <li class="nav-item">
                             <a class="nav-link" href="feedback.php">
-                                feedback
+                                Feedback
                             </a>
                         </li>
 

@@ -4,7 +4,6 @@ require "../api/dbcon.php";
 require "../api/functions.php";
 
 $police_stations = police_stations();
-
 if (isset($_POST['save_user'])) {
 
     $officer_name = mysqli_real_escape_string($con, $_POST['officer_name']);
@@ -16,31 +15,43 @@ if (isset($_POST['save_user'])) {
     $password = mysqli_real_escape_string($con, $_POST['password']);
     $confirm_password = mysqli_real_escape_string($con, $_POST['confirm_password']);
 
+    $file = $_FILES['profile_photo'];
+    $profile_photo_path = $file['name'];
+    move_uploaded_file($file['tmp_name'], "../uploads/".$user_type."/".$profile_photo_path);
+
     if ($password == $confirm_password) {
-        $query = "INSERT INTO users(officer_name, officer_rank, user_id, user_type, district, status, police_station, password) VALUES ('$officer_name', '$officer_rank', '$user_id', '$user_type', '$district', 0, '$police_station', '$password')";
-        echo $query;
+        $query = "INSERT INTO users(officer_name, officer_rank, user_id, user_type, district, status, police_station, password, profile_photo_path) VALUES ('$officer_name', '$officer_rank', '$user_id', '$user_type', '$district', 0, '$police_station', '$password', '$profile_photo_path')";
+        
+        try {
+            $query_run = mysqli_query($con, $query);
+    
+            if ($query_run) {
 
-        $query_run = mysqli_query($con, $query);
+                $_SESSION['message'] = "User created successfully";
+                $_SESSION['type'] = "success"; 
+                header("Location: create_user.php");
+            } else {
+                $_SESSION['message'] = "User creation failed due to some error.";
+                $_SESSION['type'] = "danger";
+                header("Location: create_user.php");
+            }
+        } catch (mysqli_sql_exception $e) {
+            if ($e->getCode() === 1062) {
 
-        if ($query_run) {
-
-            $_SESSION['message'] = "User created successfully";
-            $_SESSION['type'] = "success";
-            header("Location: create_user.php");
-            exit(0);
-        } else {
-            $_SESSION['message'] = "User creation failed due to some error.";
-            $_SESSION['type'] = "danger";
-            header("Location: create_user.php");
-            exit(0);
+                $_SESSION['message'] = "User already exists. Try a different user ID.";
+                $_SESSION['type'] = "danger";
+                header("Location: create_user.php");
+            }
         }
-    }
-    else{
+            
+    } else {
+
         $_SESSION['message'] = "Password does not match.";
         $_SESSION['type'] = "danger";
         header("Location: create_user.php");
         exit(0);
     }
+    
 }
 ?>
 
@@ -58,7 +69,7 @@ if (isset($_POST['save_user'])) {
             <div class="container p-1">
 
                 <?php
-                if (isset($_SESSION['message'])):
+                if (isset($_SESSION['message'])){
                     ?>
                     <div class="alert alert-<?= $_SESSION['type'];?> alert-dismissible fade show" role="alert">
                         <strong>Hye!</strong>
@@ -66,8 +77,7 @@ if (isset($_POST['save_user'])) {
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     <?php
-                    unset($_SESSION['message']);
-                endif;
+                }
                 ?>
 
                 <div class="row">
@@ -80,7 +90,7 @@ if (isset($_POST['save_user'])) {
                             </div>
 
                             <div class="card-body">
-                                <form action="create_user.php" method="POST">
+                                <form action="create_user.php" method="POST" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="mb-3">
@@ -143,6 +153,12 @@ if (isset($_POST['save_user'])) {
                                                     
                                                 </select>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="mb-3">
+                                            <label for="">Profile Photo</label>
+                                            <input type="file" name="profile_photo" class="form-control">
                                         </div>
                                     </div>
 

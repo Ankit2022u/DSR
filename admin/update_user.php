@@ -113,7 +113,7 @@ if (isset($_POST['update_user'])) {
                                                     <div class="mb-3">
                                                         <label for="">User ID</label>
                                                         <input type="text" name="user_id" class="form-control"
-                                                            value="<?= $user['user_id']; ?>">
+                                                            value="<?= $user['user_id']; ?>" disabled>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">

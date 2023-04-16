@@ -57,7 +57,7 @@
     </ul>
     <hr>
     <div class="profile">
-        <img src="<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32"
+        <img src="../uploads/<?=$_SESSION['user-data']['user_type'];?>/<?=$_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32"
             class="rounded-circle me-2">
         <strong>
             <?= $_SESSION['user-data']['officer_name']; ?>

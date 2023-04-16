@@ -21,16 +21,16 @@ require "../api/dbcon.php";
             <div class="card">
               <div class="card-header">
                 <?php
-                if (isset($_SESSION['message'])):
+                if (isset($_SESSION['message'])){
                   ?>
                   <div class="alert alert-<?= $_SESSION['type'];?> alert-dismissible fade show" role="alert">
                     <strong>Hye!</strong>
                     <?= $_SESSION['message']; ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
-                  <?php
-                  unset($_SESSION['message']);
-                endif;
+                  <?php  
+                  }
+                unset($_SESSION['message']);
                 ?>
                 <h4>User details
                   <a href="create_user.php" class="btn btn-primary float-end">Add User</a>
