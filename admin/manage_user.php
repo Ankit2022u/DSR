@@ -21,15 +21,15 @@ require "../api/dbcon.php";
             <div class="card">
               <div class="card-header">
                 <?php
-                if (isset($_SESSION['message'])){
+                if (isset($_SESSION['message'])) {
                   ?>
-                  <div class="alert alert-<?= $_SESSION['type'];?> alert-dismissible fade show" role="alert">
+                  <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
                     <strong>Hye!</strong>
                     <?= $_SESSION['message']; ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
-                  <?php  
-                  }
+                  <?php
+                }
                 unset($_SESSION['message']);
                 ?>
                 <h4>User details
@@ -47,6 +47,7 @@ require "../api/dbcon.php";
                       <th>Police Station</th>
                       <th>Password</th>
                       <th>User Type</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -85,10 +86,24 @@ require "../api/dbcon.php";
                             } ?>
                           </td>
                           <td>
+                            <?php if ($user['status']) {
+                              echo '<span class="badge text-bg-success">Activated</span>';
+                              $color = "danger";
+                            } else {
+                              echo '<span class="badge text-bg-danger">Deactivated</span>';
+                              $color = "success";
+                            } ?>
+                          </td>
+                          <td>
                             <a href="update_user.php?uid=<?= $user['uid']; ?>" class="btn btn-primary">Edit</a>
-                            <form action="delete_user.php" method="post" class="d-inline">
-                              <button type="submit" name="delete_user" value=<?= $user['uid']; ?>
-                                class="btn btn-danger">Delete</a>
+                            <form action="change_user_status.php" method="post" class="d-inline">
+                              <button type="submit" name="change_status" value=<?= $user['uid']; ?> class="btn btn-<?=$color;?>">
+                                <?php if ($user['status']) {
+                                  echo 'Deactivate';
+                                } else {
+                                  echo 'Activate';
+                                } ?>
+                              </button>
                             </form>
                           </td>
                         </tr>
