@@ -1,7 +1,7 @@
 <?php
-// session_start();
-// require "dbcon.php";
-// require "functions.php";
+session_start();
+require "dbcon.php";
+require "functions.php";
 
 // use PhpOffice\PhpSpreadsheet\Spreadsheet;
 // use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
