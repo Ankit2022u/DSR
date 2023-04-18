@@ -66,6 +66,12 @@ if (isset($_POST['view'])) {
                 $output_ongoing_cases[] = find_ongoing_cases($district, $start_date, $end_date);
             }
         }
+
+        $_SESSION['ongoing_cases'] = $output_ongoing_cases;
+        $_SESSION['major_crimes'] = $output_major_crimes;
+        $_SESSION['minor_crimes'] = $output_minor_crimes;
+        $_SESSION['dead_bodies'] = $output_dead_bodies;
+
     } else {
         $_SESSION['message'] = $errors[0];
         $_SESSION['type'] = "warning";
@@ -160,6 +166,17 @@ if (isset($_POST['view'])) {
                                 <!-- Database Table Name -->
                                 <strong>Ongoing Cases</strong>
                             </div>
+                            <!-- Ongoing case download -->
+                            <div class="row justify-content-center align-items-center g-2">
+                                <div class="col-12">
+                                    <form action="../api/download.php" method="post" class="d-flex justify-content-end">
+                                        <div class="p-2">
+                                            <button type="submit" class="btn btn-primary"
+                                                name="ongoing_case_download">Download</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-container" style="height: 400px; overflow: scroll;">
@@ -237,6 +254,17 @@ if (isset($_POST['view'])) {
                             <div class="alert alert-light" role="alert">
                                 <!-- Database Table Name -->
                                 <strong>Dead body</strong>
+                            </div>
+                            <!-- Deadbody download -->
+                            <div class="row justify-content-center align-items-center g-2">
+                                <div class="col-12">
+                                    <form action="../api/download.php" method="post" class="d-flex justify-content-end">
+                                        <div class="p-2">
+                                            <button type="submit" class="btn btn-primary"
+                                                name="dead_body_download">Download</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body">
@@ -328,6 +356,17 @@ if (isset($_POST['view'])) {
                                 <!-- Database Table Name -->
                                 <strong>Minor Crime</strong>
                             </div>
+                            <!-- Minor crime donload -->
+                            <div class="row justify-content-center align-items-center g-2">
+                                <div class="col-12">
+                                    <form action="../api/download.php" method="post" class="d-flex justify-content-end">
+                                        <div class="p-2">
+                                            <button type="submit" class="btn btn-primary"
+                                                name="minor_crime_download">Download</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-container" style="height: 400px; overflow: scroll;">
@@ -351,10 +390,10 @@ if (isset($_POST['view'])) {
                                                     <?= $i++; ?>
                                                 </td>
                                                 <td>
-                                                    <?= $row['time_date']; ?>
+                                                    <?= (new DateTime($row['time_date']))->format('H:i:s'); ?>
                                                 </td>
                                                 <td>
-                                                    <?= $row['time_date']; ?>
+                                                    <?= (new DateTime($row['time_date']))->format('Y-m-d'); ?>
                                                 </td>
                                                 <td>
                                                     <?= $row['culprit_name']; ?>
@@ -382,6 +421,17 @@ if (isset($_POST['view'])) {
                             <div class="alert alert-light" role="alert">
                                 <!-- Database Table Name -->
                                 <strong>Major Crime</strong>
+                            </div>
+                            <!-- Major crime download -->
+                            <div class="row justify-content-center align-items-center g-2">
+                                <div class="col-12">
+                                    <form action="../api/download.php" method="post" class="d-flex justify-content-end">
+                                        <div class="p-2">
+                                            <button type="submit" class="btn btn-primary"
+                                                name="major_crime_download">Download</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body">
@@ -474,7 +524,11 @@ if (isset($_POST['view'])) {
                                                     <?= $row['description_of_crime']; ?>
                                                 </td>
                                                 <td>
-                                                    <?= $row['is_major_crime']; ?>
+                                                    <?php if ($row['is_major_crime']) {
+                                                        echo "<span class='text-danger'>Yes</span>";
+                                                    } else {
+                                                        echo "<span class='text-success'>No</span>";
+                                                    } ?>
                                                 </td>
                                                 <td>
                                                     <?= $row['fir_writer']; ?>
@@ -488,16 +542,6 @@ if (isset($_POST['view'])) {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="row justify-content-center align-items-center g-2">
-                <div class="col-12">
-                    <form action="../api/download.php" method="post" class="d-flex justify-content-end">
-                        <div class="p-2">
-                            <button type="submit" class="btn btn-primary" name="download">Download</button>
-                        </div>
-                    </form>
                 </div>
             </div>
 

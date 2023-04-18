@@ -1,141 +1,306 @@
 <?php
 session_start();
 require "dbcon.php";
-require "functions.php";
 
-// use PhpOffice\PhpSpreadsheet\Spreadsheet;
-// use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+if (isset($_POST['major_crime_download'])) {
+    $output_major_crimes = $_SESSION['major_crimes'];
+    $html = "<table>
+                <tr>
+                    <th>Id</th>
+                    <th>District</th>
+                    <th>Sub-Division</th>
+                    <th>Police Station</th>
+                    <th>Crime Number</th>
+                    <th>Penal-Code</th>
+                    <th>Applicant Name</th>
+                    <th>Applicant Address</th>
+                    <th>Incident Date</th>
+                    <th>Incident Time</th>
+                    <th>Incident Place</th>
+                    <th>Reporting Date</th>
+                    <th>Reporting Time</th>
+                    <th>Culprit Name</th>
+                    <th>Culprit Address</th>
+                    <th>Arrest Date</th>
+                    <th>Arrest Time</th>
+                    <th>Victim Name</th>
+                    <th>Description Of Crime</th>
+                    <th>Major Crime</th>
+                    <th>FIR Writer</th>
+                </tr>";
+    $i = 1;
+    foreach ($output_major_crimes as $majorcrime) {
+        foreach ($majorcrime as $row) {
+            if ($row['is_major_crime']) {
+                $row_val = "Yes";
+            } else {
+                $row_val = "No";
+            }
+            $html .= "<tr>
+                        <td>
+                            " . $i++ . "
+                        </td>
+                        <td>
+                            " . $row['district'] . " 
+                        </td>
+                        <td>
+                            " . $row['sub_division'] . " 
+                        </td>
+                        <td>
+                            " . $row['police_station'] . " 
+                        </td>
+                        <td>
+                            " . $row['crime_number'] . " 
+                        </td>
+                        <td>
+                            " . $row['penal_code'] . " 
+                        </td>
+                        <td>
+                            " . $row['applicant_name'] . " 
+                        </td>
+                        <td>
+                            " . $row['applicant_address'] . " 
+                        </td>
+                        <td>
+                            " . $row['incident_date'] . " 
+                        </td>
+                        <td>
+                            " . $row['incident_time'] . " 
+                        </td>
+                        <td>
+                            " . $row['incident_place'] . " 
+                        </td>
+                        <td>
+                            " . $row['reporting_date'] . " 
+                        </td>
+                        <td>
+                            " . $row['reporting_time'] . " 
+                        </td>
+                        <td>
+                            " . $row['culprit_name'] . " 
+                        </td>
+                        <td>
+                            " . $row['culprit_address'] . " 
+                        </td>
+                        <td>
+                            " . $row['arrest_date'] . " 
+                        </td>
+                        <td>
+                            " . $row['arrest_time'] . " 
+                        </td>
+                        <td>
+                            " . $row['victim_name'] . " 
+                        </td>
+                        <td>
+                            " . $row['description_of_crime'] . " 
+                        </td>
+                        <td>
+                            " . $row_val . " 
+                        </td>
+                        <td>
+                            " . $row['fir_writer'] . " 
+                        </td>
+                        
+                    </tr>";
 
-// if (!(isset($_SESSION['user-data']))) {
-//     header("Location: ../index.php");
-// }
+        }
+    }
 
-// if (isset($_POST['view'])) {
-//     $district = mysqli_real_escape_string($con, $_POST['district']);
-//     $police_station = mysqli_real_escape_string($con, $_POST['police_station']);
-//     $start_date = mysqli_real_escape_string($con, $_POST['start_date']);
-//     $end_date = mysqli_real_escape_string($con, $_POST['end_date']);
-//     $dead_bodies = isset($_POST['dead_bodies']) ? mysqli_real_escape_string($con, $_POST['dead_bodies']) : 0;
-//     $ongoing_cases = isset($_POST['ongoing_cases']) ? mysqli_real_escape_string($con, $_POST['ongoing_cases']) : 0;
-//     $minor_crimes = isset($_POST['minor_crimes']) ? mysqli_real_escape_string($con, $_POST['minor_crimes']) : 0;
-//     $major_crimes = isset($_POST['major_crimes']) ? mysqli_real_escape_string($con, $_POST['major_crimes']) : 0;
-//     $districts = districts();
+    $html .= "</table>";
+    header('Content-Type: application/xls');
+    header('Content-Disposition: attachment; filename=major_crimes.xls');
+    echo $html;
+}
+if (isset($_POST['minor_crime_download'])) {
+    $output_minor_crimes = $_SESSION['minor_crimes'];
 
-//     $output_dead_bodies = array();
-//     $output_minor_crimes = array();
-//     $output_major_crimes = array();
-//     $output_ongoing_cases = array();
+    $html = "<table>
+                <tr>
+                <th>ID</th>
+                <th>Time</th>
+                <th>Date</th>
+                <th>Culprit Name</th>
+                <th>Penal Code</th>
+                <th>FIR Writer</th>
+                </tr>";
+    $i = 1;
+    foreach ($output_minor_crimes as $minorcrime) {
+        foreach ($minorcrime as $row) {
+            $html .= "<tr>
+                        <td>
+                            " . $i++ . "
+                        </td>
+                        <td>
+                            " . (new DateTime($row['time_date']))->format('H:i:s') . " 
+                        </td>
+                        <td>
+                            " . (new DateTime($row['time_date']))->format('Y-m-d') . " 
+                        </td>
+                        <td>
+                            " . $row['culprit_name'] . " 
+                        </td>
+                        <td>
+                            " . $row['penal_code'] . " 
+                        </td>
+                        <td>
+                            " . $row['fir_writer'] . " 
+                        </td>
+                        
+                    </tr>";
 
-//     if ($district == 'All') {
-//         foreach ($districts as $row) {
-//             if ($dead_bodies == 'on') {
-//                 $output_dead_bodies[] = find_dead_bodies($row['district'], $start_date, $end_date);
-//             }
-//             if ($minor_crimes == 'on') {
-//                 $output_minor_crimes[] = find_minor_crimes($row['district'], $start_date, $end_date);
-//             }
-//             if ($major_crimes == 'on') {
-//                 $output_major_crimes[] = find_major_crimes($row['district'], $start_date, $end_date);
-//             }
-//             if ($ongoing_cases == 'on') {
-//                 $output_ongoing_cases[] = find_ongoing_cases($row['district'], $start_date, $end_date);
-//             }
-//         }
-//     } else {
-//         if ($dead_bodies == 'on') {
-//             $output_dead_bodies[] = find_dead_bodies($district, $start_date, $end_date);
-//         }
-//         if ($minor_crimes == 'on') {
-//             $output_minor_crimes[] = find_minor_crimes($district, $start_date, $end_date);
-//         }
-//         if ($major_crimes == 'on') {
-//             $output_major_crimes[] = find_major_crimes($district, $start_date, $end_date);
-//         }
-//         if ($ongoing_cases == 'on') {
-//             $output_ongoing_cases[] = find_ongoing_cases($district, $start_date, $end_date);
-//         }
-//     }
+        }
+    }
 
-//     // create a new PhpSpreadsheet object
-//     $spreadsheet = new Spreadsheet();
+    $html .= "</table>";
+    header('Content-Type: application/xls');
+    header('Content-Disposition: attachment; filename=minor_crimes.xls');
+    echo $html;
+}
+if (isset($_POST['ongoing_case_download'])) {
+    $output_ongoing_cases = $_SESSION['ongoing_cases'];
+    $html = "<table>
+                <tr>
+                    <th>Id</th>
+                    <th>District</th>
+                    <th>Sub-Division</th>
+                    <th>Police Station</th>
+                    <th>Crime Number</th>
+                    <th>Penal-Code</th>
+                    <th>FIR Date</th>
+                    <th>Culprit Name</th>
+                    <th>Case Status </th>
+                    <th>Name Of Court</th>
+                    <th>Culprit Address</th>
+                    <th>Judgement Of Court</th>
+                </tr>";
+    $i = 1;
+    foreach ($output_ongoing_cases as $ongoingcase) {
+        foreach ($ongoingcase as $row) {
+            $html .= "<tr>
+                        <td>
+                            " . $i++ . "
+                        </td>
+                        <td>
+                            " . $row['district'] . " 
+                        </td>
+                        <td>
+                            " . $row['sub_division'] . " 
+                        </td>
+                        <td>
+                            " . $row['police_station'] . " 
+                        </td>
+                        <td>
+                            " . $row['crime_number'] . " 
+                        </td>
+                        <td>
+                            " . $row['penal_code'] . " 
+                        </td>
+                        <td>
+                            " . $row['fir_date'] . " 
+                        </td>
+                        <td>
+                            " . $row['culprit_name'] . " 
+                        </td>
+                        <td>
+                            " . $row['case_status'] . " 
+                        </td>
+                        <td>
+                            " . $row['name_of_court'] . " 
+                        </td>
+                        <td>
+                            " . $row['culprit_address'] . " 
+                        </td>
+                        <td>
+                            " . $row['judgement_of_court'] . " 
+                        </td>
+                    </tr>";
 
-//     if (!empty($output_dead_bodies)) {
-//         $worksheet1 = $spreadsheet->getActiveSheet(); // get the active sheet
-//         $worksheet1->setTitle('Dead Bodies'); // set the
-//         // Populate the first worksheet with data
-//         $row = 1;
-//         foreach ($output_dead_bodies as $data) {
-//             foreach ($data as $val) {
-//                 $col = 1;
-//                 foreach ($val as $cell) {
-//                     $worksheet1->setCellValueByColumnAndRow($col, $row, $cell);
-//                     $col++;
-//                 }
-//                 $row++;
-//             }
-//         }
-//     }
+        }
+    }
 
-//     // Create a new worksheet for minor crimes
-//     $worksheet2 = $spreadsheet->createSheet();
-//     $worksheet2->setTitle('Minor Crimes');
+    $html .= "</table>";
+    header('Content-Type: application/xls');
+    header('Content-Disposition: attachment; filename=ongoing_cases.xls');
+    echo $html;
 
-//     // Populate the second worksheet with data
-//     $row = 1;
-//     foreach ($output_minor_crimes as $data) {
-//         foreach ($data as $val) {
-//             $col = 1;
-//             foreach ($val as $cell) {
-//                 $worksheet2->setCellValueByColumnAndRow($col, $row, $cell);
-//                 $col++;
-//             }
-//             $row++;
-//         }
-//     }
+}
+if (isset($_POST['dead_body_download'])) {
+    $output_dead_bodies = $_SESSION['dead_bodies'];
 
-//     // Create a new worksheet for major crimes
-//     $worksheet3 = $spreadsheet->createSheet();
-//     $worksheet3->setTitle('Major Crimes');
+    $html = "<table>
+                <tr>
+                <th>Id</th>
+                <th>District</th>
+                <th>Sub-Division</th>
+                <th>Police Station</th>
+                <th>Dead Body No.</th>
+                <th>Penal-Code</th>
+                <th>Accident Date</th>
+                <th>Accident Place</th>
+                <th>Information Date</th>
+                <th>Information Time</th>
+                <th>Applicant Name</th>
+                <th>Deceased Name</th>
+                <th>FIR Writer</th>
+                <th>Cause Of Death</th>
+                </tr>";
+    $i = 1;
+    foreach ($output_dead_bodies as $deadbody) {
+        foreach ($deadbody as $row) {
+            $html .= "<tr>
+                        <td>
+                            " . $i++ . "
+                        </td>
+                        <td>
+                            " . $row['district'] . " 
+                        </td>
+                        <td>
+                            " . $row['sub_division'] . " 
+                        </td>
+                        <td>
+                            " . $row['police_station'] . " 
+                        </td>
+                        <td>
+                            " . $row['dead_body_number'] . " 
+                        </td>
+                        <td>
+                            " . $row['penal_code'] . " 
+                        </td>
+                        <td>
+                            " . $row['accident_date'] . " 
+                        </td>
+                        <td>
+                            " . $row['accident_place'] . " 
+                        </td>
+                        <td>
+                            " . $row['information_date'] . " 
+                        </td>
+                        <td>
+                            " . $row['information_time'] . " 
+                        </td>
+                        <td>
+                            " . $row['applicant_name'] . " 
+                        </td>
+                        <td>
+                            " . $row['deceased_name'] . " 
+                        </td>
+                        <td>
+                            " . $row['fir_writer'] . " 
+                        </td>
+                        <td>
+                            " . $row['cause_of_death'] . " 
+                        </td>
+                    </tr>";
 
-//     // Populate the third worksheet with data
-//     $row = 1;
-//     foreach ($output_major_crimes as $data) {
-//         foreach ($data as $val) {
-//             $col = 1;
-//             foreach ($val as $cell) {
-//                 $worksheet3->setCellValueByColumnAndRow($col, $row, $cell);
-//                 $col++;
-//             }
-//             $row++;
-//         }
-//     }
+        }
+    }
 
-//     // Create a new worksheet for ongoing cases
-//     $worksheet4 = $spreadsheet->createSheet();
-//     $worksheet4->setTitle('Ongoing Cases');
+    $html .= "</table>";
+    header('Content-Type: application/xls');
+    header('Content-Disposition: attachment; filename=dead_bodies.xls');
+    echo $html;
+}
 
-//     // Populate the fourth worksheet with data
-//     $row = 1;
-//     foreach ($output_ongoing_cases as $data) {
-//         foreach ($data as $val) {
-//             $col = 1;
-//             foreach ($val as $cell) {
-//                 $worksheet4->setCellValueByColumnAndRow($col, $row, $cell);
-//                 $col++;
-//             }
-//             $row++;
-//         }
-//     }
-
-//     // Set the active worksheet index to the first sheet
-//     $spreadsheet->setActiveSheetIndex(0);
-
-//     // Save the Excel file
-//     $writer = new Xlsx($spreadsheet);
-//     $filename = 'crime_data.xlsx';
-//     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-//     header('Content-Disposition: attachment; filename="' . $filename . '"');
-//     $writer->save('php://output');
-
-// }
 ?>
+
+<!-- à¤¹à¥‡à¤²à¥‹ à¤†à¤ª à¤•à¥ˆà¤¸à¥‡ -->
