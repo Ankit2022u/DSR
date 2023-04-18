@@ -36,6 +36,10 @@ if (isset($_POST['login'])) {
             background-color: rgba(0, 0, 0, 0.05);
             padding: 20px;
         }
+        /* .required-star {
+            color: red;
+            margin-left: 5px;
+        } */
     </style>
 </head>
 
