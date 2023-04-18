@@ -14,7 +14,8 @@ $police_stations = police_stations();
 <main>
     <div class="row">
         <div class="side-bar col-md-3 col-sm-5">
-            <?php //include('side-bar.php'); ?>
+            <?php //include('side-bar.php'); 
+            ?>
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (Admin Panel)</span>
@@ -47,6 +48,11 @@ $police_stations = police_stations();
                         </a>
                     </li>
                     <li>
+                        <a href="police_station.php" class="nav-link link-dark">
+                            Police Stations
+                        </a>
+                    </li>
+                    <li>
                         <a href="profile.php" class="nav-link link-dark">
                             View Profile
                         </a>
@@ -75,8 +81,7 @@ $police_stations = police_stations();
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
-                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>
@@ -87,14 +92,14 @@ $police_stations = police_stations();
 
         <div class="main-content col-md-9 col-sm-7">
             <?php
-            if (isset($_SESSION['message'])):
-                ?>
+            if (isset($_SESSION['message'])) :
+            ?>
                 <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
                     <strong>Hye!</strong>
                     <?= $_SESSION['message']; ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-                <?php
+            <?php
                 unset($_SESSION['message']);
             endif;
             ?>
@@ -131,8 +136,9 @@ $police_stations = police_stations();
                                 <select class="form-select" id="policeStation" aria-label="Police Station"
                                     name="police_station" required>
                                     <?php foreach ($police_stations as $option) {
-                                        ?><option value="<?= $option['police_station']; ?>"><?= $option['police_station']; ?></option>
-                                        <?php
+                                    ?><option value="<?= $option['police_station']; ?>">
+                                            <?= $option['police_station']; ?></option>
+                                    <?php
                                     } ?>
                                 </select>
                                 <label for="policeStation">Police Station<span class="required-star">*</span></label>
@@ -204,9 +210,7 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-12">
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" id="judgementOfCourt" type="text"
-                                    placeholder="Judgement Of Court" style="height: 10rem;"
-                                    name="judgement_of_court"></textarea>
+                                <textarea class="form-control" id="judgementOfCourt" type="text" placeholder="Judgement Of Court" style="height: 10rem;" name="judgement_of_court"></textarea>
                                 <label for="judgementOfCourt">Judgement Of Court</label>
                             </div>
                         </div>

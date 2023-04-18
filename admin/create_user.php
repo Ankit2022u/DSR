@@ -5,18 +5,18 @@ require "../api/functions.php";
 
 if (isset($_POST['save_user'])) {
 
-$officer_name = mysqli_real_escape_string($con, $_POST['officer_name']);
-$officer_rank = mysqli_real_escape_string($con, $_POST['officer_rank']);
-$user_id = mysqli_real_escape_string($con, $_POST['user_id']);
-$user_type = mysqli_real_escape_string($con, $_POST['user_type']);
-$district = mysqli_real_escape_string($con, $_POST['district']);
-$police_station = mysqli_real_escape_string($con, $_POST['police_station']);
-$password = mysqli_real_escape_string($con, $_POST['password']);
-$confirm_password = mysqli_real_escape_string($con, $_POST['confirm_password']);
+    $officer_name = mysqli_real_escape_string($con, $_POST['officer_name']);
+    $officer_rank = mysqli_real_escape_string($con, $_POST['officer_rank']);
+    $user_id = mysqli_real_escape_string($con, $_POST['user_id']);
+    $user_type = mysqli_real_escape_string($con, $_POST['user_type']);
+    $district = mysqli_real_escape_string($con, $_POST['district']);
+    $police_station = mysqli_real_escape_string($con, $_POST['police_station']);
+    $password = mysqli_real_escape_string($con, $_POST['password']);
+    $confirm_password = mysqli_real_escape_string($con, $_POST['confirm_password']);
 
-$file = $_FILES['profile_photo'];
-$profile_photo_path = $file['name'];
-move_uploaded_file($file['tmp_name'], "../uploads/".$user_type."/".$profile_photo_path);
+    $file = $_FILES['profile_photo'];
+    $profile_photo_path = $file['name'];
+    move_uploaded_file($file['tmp_name'], "../uploads/" . $user_type . "/" . $profile_photo_path);
 
     // Validate input fields
     $errors = array();
@@ -71,14 +71,14 @@ move_uploaded_file($file['tmp_name'], "../uploads/".$user_type."/".$profile_phot
 
         if ($password == $confirm_password) {
             $query = "INSERT INTO users(officer_name, officer_rank, user_id, user_type, district, status, police_station, password, profile_photo_path) VALUES ('$officer_name', '$officer_rank', '$user_id', '$user_type', '$district', 0, '$police_station', '$password', '$profile_photo_path')";
-            
+
             try {
                 $query_run = mysqli_query($con, $query);
-        
+
                 if ($query_run) {
 
                     $_SESSION['message'] = "User created successfully";
-                    $_SESSION['type'] = "success"; 
+                    $_SESSION['type'] = "success";
                     header("Location: create_user.php");
                 } else {
                     $_SESSION['message'] = "User creation failed due to some error.";
@@ -93,7 +93,6 @@ move_uploaded_file($file['tmp_name'], "../uploads/".$user_type."/".$profile_phot
                     header("Location: create_user.php");
                 }
             }
-                
         } else {
 
             $_SESSION['message'] = "Password does not match.";
@@ -101,12 +100,10 @@ move_uploaded_file($file['tmp_name'], "../uploads/".$user_type."/".$profile_phot
             header("Location: create_user.php");
             exit(0);
         }
-    }
-    else{
+    } else {
         $_SESSION['message'] = $errors[0];
         $_SESSION['type'] = "warning";
     }
-
 }
 
 $police_stations = police_stations();
@@ -120,7 +117,8 @@ $police_stations = police_stations();
 <main>
     <div class="row">
         <div class="side-bar col-md-3 col-sm-5">
-            <?php //include('side-bar.php'); ?>
+            <?php //include('side-bar.php'); 
+            ?>
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (Admin Panel)</span>
@@ -153,36 +151,40 @@ $police_stations = police_stations();
                         </a>
                     </li>
                     <li>
+                        <a href="police_station.php" class="nav-link link-dark">
+                            Police Stations
+                        </a>
+                    </li>
+                    <li>
                         <a href="profile.php" class="nav-link link-dark">
                             View Profile
                         </a>
                     </li>
                     <li>
                         <a href="dbf.php" class="nav-link link-dark">
-                        Dead Body Form
+                            Dead Body Form
                         </a>
                     </li>
                     <li>
                         <a href="mcf.php" class="nav-link link-dark">
-                        Major Crime Form
+                            Major Crime Form
                         </a>
                     </li>
                     <li>
                         <a href="micf.php" class="nav-link link-dark">
-                        Minor Crime Form
+                            Minor Crime Form
                         </a>
                     </li>
                     <li>
                         <a href="ocf.php" class="nav-link link-dark">
-                        Ongoing Case Form
+                            Ongoing Case Form
                         </a>
                     </li>
 
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?=$_SESSION['user-data']['user_type'];?>/<?=$_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32"
-                        height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>
@@ -195,14 +197,14 @@ $police_stations = police_stations();
             <div class="container p-1">
 
                 <?php
-                if (isset($_SESSION['message'])){
-                    ?>
-                    <div class="alert alert-<?= $_SESSION['type'];?> alert-dismissible fade show" role="alert">
+                if (isset($_SESSION['message'])) {
+                ?>
+                    <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
                         <strong>Hye!</strong>
                         <?= $_SESSION['message']; ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                    <?php
+                <?php
                     unset($_SESSION['message']);
                 }
                 ?>
@@ -247,6 +249,7 @@ $police_stations = police_stations();
                                             <div class="mb-3">
                                                 <label for="">User Type</label>
                                                 <span class="required-star">*</span>
+
                                                 <select class="form-select form-select-lg" name="user_type"
                                                     id="user_type" required>
                                                     <option selected value="user">User</option>
@@ -261,8 +264,10 @@ $police_stations = police_stations();
                                             <div class="mb-3">
                                                 <label for="district" class="form-label">District</label>
                                                 <span class="required-star">*</span>
+
                                                 <select class="form-select form-select-lg" name="district"
                                                     id="district" required>
+
                                                     <option value="Surguja">Surguja</option>
                                                     <option value="Balrampur">Balrampur</option>
                                                     <option value="Surajpur">Surajpur</option>
@@ -280,10 +285,12 @@ $police_stations = police_stations();
                                                 <span class="required-star">*</span>
                                                 <select class="form-select form-select-lg" name="police_station"
                                                     id="police_station" required>
+
                                                     <?php foreach ($police_stations as $option) {
-                                                        ?><option value="<?= $option['police_station']; ?>"><?= $option['police_station']; ?></option><?php
-                                                    } ?>
-                                                    
+                                                    ?><option value="<?= $option['police_station']; ?>">
+                                                            <?= $option['police_station']; ?></option><?php
+                                                                                                    } ?>
+
                                                 </select>
                                             </div>
                                         </div>
