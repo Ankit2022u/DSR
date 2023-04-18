@@ -217,14 +217,14 @@ if (isset($_POST['update_user'])) {
                                                     <div class="mb-3">
                                                         <label for="">Officer Name</label>
                                                         <input type="text" name="officer_name" class="form-control"
-                                                            value="<?= $user['officer_name']; ?>">
+                                                            value="<?= $user['officer_name']; ?>" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="mb-3">
                                                         <label for="">Officer Rank</label>
                                                         <input type="text" name="officer_rank" class="form-control"
-                                                            value="<?= $user['officer_rank']; ?>">
+                                                            value="<?= $user['officer_rank']; ?>" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -241,7 +241,7 @@ if (isset($_POST['update_user'])) {
                                                     <div class="mb-3">
                                                         <label for="">User Type</label>
                                                         <select class="form-select form-select-lg" name="user_type"
-                                                            id="user_type" value="<?= $user['user_type']; ?>">
+                                                            id="user_type" value="<?= $user['user_type']; ?>" required>
                                                             <option <?php if ($user['user_type'] == "user") {
                                                                 echo 'selected';
                                                             } ?> value="user">User</option>
@@ -258,7 +258,7 @@ if (isset($_POST['update_user'])) {
                                                     <div class="mb-3">
                                                         <label for="district" class="form-label">District</label>
                                                         <select class="form-select form-select-lg" name="district"
-                                                            id="district">
+                                                            id="district" required>
                                                             <option value="Surguja" <?php if ($user['district'] == "Surguja") {
                                                                 echo 'selected';
                                                             } ?>>Surguja</option>
@@ -286,7 +286,7 @@ if (isset($_POST['update_user'])) {
                                                     <div class="mb-3">
                                                         <label for="" class="form-label">Police Station</label>
                                                         <select class="form-select form-select-lg" name="police_station"
-                                                            id="police_station" value="<?= $user['police_station']; ?>">
+                                                            id="police_station" value="<?= $user['police_station']; ?>" required>
                                                             <?php foreach ($police_stations as $option) {
                                                                 ?><option value="<?= $option['police_station']; ?>"><?= $option['police_station']; ?></option>
                                                                 <?php

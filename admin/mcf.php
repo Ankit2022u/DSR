@@ -103,7 +103,7 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-4">
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="district" aria-label="District" name="district">
+                                <select class="form-select" id="district" aria-label="District" name="district" required>
                                     <option value="Surguja">Surguja</option>
                                     <option value="Balrampur">Balrampur</option>
                                     <option value="Surajpur">Surajpur</option>
@@ -118,7 +118,7 @@ $police_stations = police_stations();
                         <div class="col-4">
                             <div class="form-floating mb-3">
                                 <select class="form-select" id="subDivision" aria-label="Sub Division"
-                                    name="sub_division">
+                                    name="sub_division" required>
                                     <option value="Option1">Option1</option>
                                     <option value="Option2">Option2</option>
                                     <option value="Option3">Option3</option>
@@ -129,7 +129,7 @@ $police_stations = police_stations();
                         <div class="col-4">
                             <div class="form-floating mb-3">
                                 <select class="form-select" id="policeStation" aria-label="Police Station"
-                                    name="police_station">
+                                    name="police_station" required>
                                     <?php foreach ($police_stations as $option) {
                                         ?><option value="<?= $option['police_station']; ?>"><?= $option['police_station']; ?></option>
                                         <?php
@@ -144,14 +144,14 @@ $police_stations = police_stations();
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number"
-                                    name="crime_number" />
+                                    name="crime_number" required/>
                                 <label for="crimeNumber">Crime Number<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="section" type="text" placeholder="Section"
-                                    name="penal_code" />
+                                    name="penal_code" required/>
                                 <label for="section">Section<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -161,14 +161,14 @@ $police_stations = police_stations();
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="applicantName" type="text" placeholder="Applicant Name"
-                                    name="applicant_name" />
+                                    name="applicant_name" required/>
                                 <label for="applicantName">Applicant Name<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="applicantAddress" type="text"
-                                    placeholder="Applicant Address" name="applicant_address" />
+                                    placeholder="Applicant Address" name="applicant_address" required/>
                                 <label for="applicantAddress">Applicant Address<span
                                         class="required-star">*</span></label>
                             </div>
@@ -179,7 +179,7 @@ $police_stations = police_stations();
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="incidentDate" type="date" placeholder="Incident Date"
-                                    name="incident_date" />
+                                    name="incident_date" required/>
                                 <label for="incidentDate">Incident Date<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -196,7 +196,7 @@ $police_stations = police_stations();
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="incidentPlace" type="text" placeholder="Incident Place"
-                                    name="incident_place" />
+                                    name="incident_place" required/>
                                 <label for="incidentPlace">Incident Place<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -213,14 +213,14 @@ $police_stations = police_stations();
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="reportDate" type="date" placeholder="Report Date"
-                                    name="reporting_date" />
+                                    name="reporting_date" required/>
                                 <label for="reportDate">Report Date<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="firWriter" type="text" placeholder="FIR Writer"
-                                    name="fir_writer" />
+                                    name="fir_writer" required/>
                                 <label for="firWriter">FIR Writer<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -230,14 +230,14 @@ $police_stations = police_stations();
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name"
-                                    name="culprit_name" />
+                                    name="culprit_name" required/>
                                 <label for="culpritName">Culprit Name<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="culpritAddress" type="text"
-                                    placeholder="Culprit Address" name="culprit_address" />
+                                    placeholder="Culprit Address" name="culprit_address" required/>
                                 <label for="culpritAddress">Culprit Address<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -247,7 +247,7 @@ $police_stations = police_stations();
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="arrestDate" type="date" placeholder="Arrest Date"
-                                    name="arrest_date" />
+                                    name="arrest_date" required/>
                                 <label for="arrestDate">Arrest Date<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -283,7 +283,7 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <textarea class="form-control" id="descriptionOfCrime" type="text"
                                     placeholder="Description of Crime" style="height: 10rem;"
-                                    name="description_of_crime"></textarea>
+                                    name="description_of_crime" required></textarea>
                                 <label for="descriptionOfCrime">Description of Crime<span
                                         class="required-star">*</span></label>
                             </div>

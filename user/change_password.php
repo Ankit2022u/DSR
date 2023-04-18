@@ -105,18 +105,18 @@ if (!(isset($_SESSION['user-data']))) {
                                     <input type="hidden" id="user_id" class="form-control" name="user_id"
                                         value="<?= $_SESSION['user-data']['user_id']; ?>">
                                     <div class="mb-3">
-                                        <label for="old_password" class="form-label">Old Password</label>
+                                        <label for="old_password" class="form-label">Old Password<span class="required-star">*</span></label>
                                         <input type="password" id="old_password" class="form-control"
                                             name="old_password" placeholder="Enter Current Password" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="new_password" class="form-label">New Password</label>
+                                        <label for="new_password" class="form-label">New Password<span class="required-star">*</span></label>
                                         <input type="password" id="new_password" class="form-control"
                                             name="new_password" placeholder="Enter New Password" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="confirm_new_password" class="form-label">Confirm New
-                                            Password</label>
+                                            Password<span class="required-star">*</span></label>
                                         <input type="password" id="confirm_new_password" class="form-control"
                                             name="confirm_new_password" placeholder="Confirm New Password" required>
                                     </div>

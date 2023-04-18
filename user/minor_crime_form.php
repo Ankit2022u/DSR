@@ -74,8 +74,8 @@ $police_stations = police_stations();
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?=$_SESSION['user-data']['user_type'];?>/<?=$_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32"
-                        height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
+                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>
@@ -97,12 +97,13 @@ $police_stations = police_stations();
                 unset($_SESSION['message']);
             endif;
             ?>
+            <!-- <form action="../api/form_submissions.php" method="post" id="majorCrimeForm"> -->
             <form action="../api/form_submissions.php" method="post">
                 <div class="container px-5 my-5">
                     <div class="row">
                         <div class="col-4">
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="district" aria-label="District" name="district">
+                                <select class="form-select" id="district" aria-label="District" name="district" required>
                                     <option value="Surguja">Surguja</option>
                                     <option value="Balrampur">Balrampur</option>
                                     <option value="Surajpur">Surajpur</option>
@@ -117,7 +118,7 @@ $police_stations = police_stations();
                         <div class="col-4">
                             <div class="form-floating mb-3">
                                 <select class="form-select" id="subDivision" aria-label="Sub Division"
-                                    name="sub_division">
+                                    name="sub_division" required>
                                     <option value="Option1">Option1</option>
                                     <option value="Option2">Option2</option>
                                     <option value="Option3">Option3</option>
@@ -128,7 +129,7 @@ $police_stations = police_stations();
                         <div class="col-4">
                             <div class="form-floating mb-3">
                                 <select class="form-select" id="policeStation" aria-label="Police Station"
-                                    name="police_station">
+                                    name="police_station" required>
                                     <?php foreach ($police_stations as $option) {
                                         ?><option value="<?= $option['police_station']; ?>"><?= $option['police_station']; ?></option>
                                         <?php
@@ -143,14 +144,14 @@ $police_stations = police_stations();
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number"
-                                    name="crime_number" />
+                                    name="crime_number" required/>
                                 <label for="crimeNumber">Crime Number<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="section" type="text" placeholder="Section"
-                                    name="penal_code" />
+                                    name="penal_code" required/>
                                 <label for="section">Section<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -160,14 +161,14 @@ $police_stations = police_stations();
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name"
-                                    name="culprit_name" />
+                                    name="culprit_name" required/>
                                 <label for="culpritName">Culprit Name<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="firWriter" type="text" placeholder="FIR Writer"
-                                    name="fir_writer" />
+                                    name="fir_writer" required/>
                                 <label for="firWriter">FIR Writer<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -177,7 +178,7 @@ $police_stations = police_stations();
                         <div class="col-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="reportDate" type="date" placeholder="Report Date"
-                                    name="reporting_date" />
+                                    name="reporting_date" required/>
                                 <label for="reportDate">Report Date<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -194,6 +195,7 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-6">
                             <button class="btn btn-primary" type="submit" name="save_minor_crime">Save Crime</button>
+                            <!-- <button class="btn btn-primary" type="button" id="saveMajorCrime">Save Crime</button> -->
                         </div>
                     </div>
                 </div>
@@ -206,6 +208,27 @@ $police_stations = police_stations();
 
 <!-- place footer here -->
 <?php include('../footer.php'); ?>
+
+<!-- <script>
+    $(document).ready(function () {
+        // Add click event listener to the Save Crime button
+        $("#saveMajorCrime").click(function () {
+            // Serialize the form data
+            var formData = $("#majorCrimeForm").serialize();
+            // Send an AJAX request to form_submissions.php to submit the form
+            jQuery.ajax({
+                url: "../api/form_submissions.php",
+                type: "post",
+                data: formData,
+                success: function (response) {
+                    // Handle the response from form_submissions.php
+                    console.log("Form Clicked");
+                    console.log(response); // You can change this to display a success message or redirect to another page
+                }
+            });
+        });
+    });
+</script> -->
 
 </body>
 

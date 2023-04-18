@@ -120,7 +120,7 @@ if (isset($_POST['save_feedback'])) {
                         <div class="col-12">
                             <div class="form-floating mb-3">
                                 <textarea name="feedback" id="feedback" class="form-control" type="text"
-                                    placeholder="Feedback" style="height: 10rem;" name="feedback"></textarea>
+                                    placeholder="Feedback" style="height: 10rem;" name="feedback" required></textarea>
                                 <label for="feedback">Feedback</label>
                             </div>
                         </div>
