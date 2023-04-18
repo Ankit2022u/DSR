@@ -36,6 +36,10 @@ if (isset($_POST['login'])) {
             background-color: rgba(0, 0, 0, 0.05);
             padding: 20px;
         }
+        /* .required-star {
+            color: red;
+            margin-left: 5px;
+        } */
     </style>
 </head>
 
@@ -71,14 +75,14 @@ if (isset($_POST['login'])) {
                                 <input type="hidden" name="user_type" value=<?= $user_type; ?>>
                                 <!-- User ID input -->
                                 <div class="form-outline mb-4">
-                                    <input type="text" name="user_id" id="user_id" class="form-control form-control-lg" />
+                                    <input type="text" name="user_id" id="user_id" class="form-control form-control-lg" required/>
                                     <label class="form-label" for="user_id">User ID</label>
                                 </div>
     
                                 <!-- Password input -->
                                 <div class="form-outline mb-4">
                                     <input type="password" name="password" id="password"
-                                        class="form-control form-control-lg" />
+                                        class="form-control form-control-lg" required/>
                                     <label class="form-label" for="password">Password</label>
                                 </div>
     

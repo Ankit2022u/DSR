@@ -225,14 +225,14 @@ $police_stations = police_stations();
                                             <div class="mb-3">
                                                 <label for="">Officer Name</label>
                                                 <span class="required-star">*</span>
-                                                <input type="text" name="officer_name" class="form-control">
+                                                <input type="text" name="officer_name" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label for="">Officer Rank</label>
                                                 <span class="required-star">*</span>
-                                                <input type="text" name="officer_rank" class="form-control">
+                                                <input type="text" name="officer_rank" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
@@ -242,14 +242,16 @@ $police_stations = police_stations();
                                             <div class="mb-3">
                                                 <label for="">User ID</label>
                                                 <span class="required-star">*</span>
-                                                <input type="text" name="user_id" class="form-control">
+                                                <input type="text" name="user_id" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label for="">User Type</label>
                                                 <span class="required-star">*</span>
-                                                <select class="form-select form-select-lg" name="user_type" id="user_type">
+
+                                                <select class="form-select form-select-lg" name="user_type"
+                                                    id="user_type" required>
                                                     <option selected value="user">User</option>
                                                     <option value="admin">Administration</option>
                                                 </select>
@@ -262,7 +264,10 @@ $police_stations = police_stations();
                                             <div class="mb-3">
                                                 <label for="district" class="form-label">District</label>
                                                 <span class="required-star">*</span>
-                                                <select class="form-select form-select-lg" name="district" id="district">
+
+                                                <select class="form-select form-select-lg" name="district"
+                                                    id="district" required>
+
                                                     <option value="Surguja">Surguja</option>
                                                     <option value="Balrampur">Balrampur</option>
                                                     <option value="Surajpur">Surajpur</option>
@@ -278,7 +283,9 @@ $police_stations = police_stations();
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Police Station</label>
                                                 <span class="required-star">*</span>
-                                                <select class="form-select form-select-lg" name="police_station" id="police_station">
+                                                <select class="form-select form-select-lg" name="police_station"
+                                                    id="police_station" required>
+
                                                     <?php foreach ($police_stations as $option) {
                                                     ?><option value="<?= $option['police_station']; ?>">
                                                             <?= $option['police_station']; ?></option><?php
@@ -300,14 +307,14 @@ $police_stations = police_stations();
                                             <div class="mb-3">
                                                 <label for="">Password</label>
                                                 <span class="required-star">*</span>
-                                                <input type="text" name="password" class="form-control">
+                                                <input type="text" name="password" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label for="">Confirm Password</label>
                                                 <span class="required-star">*</span>
-                                                <input type="text" name="confirm_password" class="form-control">
+                                                <input type="text" name="confirm_password" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>

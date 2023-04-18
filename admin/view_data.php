@@ -109,7 +109,7 @@ if (!(isset($_SESSION['user-data']))) {
                     <div class="row">
                         <div class="col-6">
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="district" aria-label="District" name="district">
+                                <select class="form-select" id="district" aria-label="District" name="district" required>
                                     <option value="All">All</option>
                                     <option value="Surguja">Surguja</option>
                                     <option value="Balrampur">Balrampur</option>
@@ -124,7 +124,8 @@ if (!(isset($_SESSION['user-data']))) {
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="policeStation" aria-label="Police Station" name="police_station">
+                                <select class="form-select" id="policeStation" aria-label="Police Station"
+                                    name="police_station" required>
                                     <option value="All">All</option>
                                     <?php foreach ($police_stations as $option) {
                                     ?>
@@ -141,13 +142,16 @@ if (!(isset($_SESSION['user-data']))) {
                     <div class="row">
                         <div class="col-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="startDate" type="date" placeholder="Start Date" name="start_date" />
+                                <input class="form-control" id="startDate" type="date" placeholder="Start Date"
+                                    name="start_date" required/>
+
                                 <label for="startDate">Starting Date<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="endDate" type="date" placeholder="End Date" name="end_date" />
+                                <input class="form-control" id="endDate" type="date" placeholder="End Date"
+                                    name="end_date" required/>
                                 <label for="endDate">Ending Date<span class="required-star">*</span></label>
                             </div>
                         </div>
