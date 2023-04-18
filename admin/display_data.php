@@ -27,10 +27,10 @@ if (isset($_POST['view'])) {
     if (empty($end_date)) {
         $errors[] = "End Date is required.";
     }
-    if(!($dead_bodies and $ongoing_cases and $minor_crimes and $major_crimes)){
+    if (!($dead_bodies and $ongoing_cases and $minor_crimes and $major_crimes)) {
         $errors[] = "Select Atleast One Information You Want";
     }
-    
+
     if (empty($errors)) {
         $output_dead_bodies = array();
         $output_minor_crimes = array();
@@ -115,17 +115,12 @@ if (isset($_POST['view'])) {
                             View Profile
                         </a>
                     </li>
-                    <li>
-                        <a href="dbf.php" class="nav-link link-dark">
-                            Dead Body Form
-                        </a>
-                    </li>
 
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
-                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?=$_SESSION['user-data']['user_type'];?>/<?=$_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32"
+                        height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>

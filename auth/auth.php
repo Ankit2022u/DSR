@@ -37,9 +37,11 @@ if (isset($_POST['login'])) {
         if (count($result) > 0) {
             $_SESSION['message'] = "UNAUTHORIZED ACCESS. TRY LOGIN IN WITH CORRECT DETAILS !!!";
             $_SESSION['type'] = "danger";
+            header("Location: ../login.php");
         } else {
             $_SESSION['message'] = "WRONG USER_ID OR PASSWORD. TRY LOGIN IN WITH CORRECT DETAILS !!!";
             $_SESSION['type'] = "warning";
+            header("Location: ../login.php");
         }
         
 
