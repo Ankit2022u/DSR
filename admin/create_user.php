@@ -157,6 +157,26 @@ $police_stations = police_stations();
                             View Profile
                         </a>
                     </li>
+                    <li>
+                        <a href="dbf.php" class="nav-link link-dark">
+                        Dead Body Form
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mcf.php" class="nav-link link-dark">
+                        Major Crime Form
+                        </a>
+                    </li>
+                    <li>
+                        <a href="micf.php" class="nav-link link-dark">
+                        Minor Crime Form
+                        </a>
+                    </li>
+                    <li>
+                        <a href="ocf.php" class="nav-link link-dark">
+                        Ongoing Case Form
+                        </a>
+                    </li>
 
                 </ul>
                 <hr>
