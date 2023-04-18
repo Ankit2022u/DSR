@@ -14,7 +14,8 @@ $police_stations = police_stations();
 <main>
     <div class="row">
         <div class="side-bar col-md-3 col-sm-5">
-        <?php //include('side-bar.php'); ?>
+            <?php //include('side-bar.php'); 
+            ?>
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (Admin Panel)</span>
@@ -47,6 +48,11 @@ $police_stations = police_stations();
                         </a>
                     </li>
                     <li>
+                        <a href="police_station.php" class="nav-link link-dark">
+                            Police Stations
+                        </a>
+                    </li>
+                    <li>
                         <a href="profile.php" class="nav-link link-dark">
                             View Profile
                         </a>
@@ -75,8 +81,7 @@ $police_stations = police_stations();
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
-                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>
@@ -87,14 +92,14 @@ $police_stations = police_stations();
 
         <div class="main-content col-md-9 col-sm-7">
             <?php
-            if (isset($_SESSION['message'])):
-                ?>
+            if (isset($_SESSION['message'])) :
+            ?>
                 <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
                     <strong>Hye!</strong>
                     <?= $_SESSION['message']; ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-                <?php
+            <?php
                 unset($_SESSION['message']);
             endif;
             ?>
@@ -117,8 +122,7 @@ $police_stations = police_stations();
                         </div>
                         <div class="col-4">
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="subDivision" aria-label="Sub Division"
-                                    name="sub_division">
+                                <select class="form-select" id="subDivision" aria-label="Sub Division" name="sub_division">
                                     <option value="Option1">Option1</option>
                                     <option value="Option2">Option2</option>
                                     <option value="Option3">Option3</option>
@@ -128,11 +132,11 @@ $police_stations = police_stations();
                         </div>
                         <div class="col-4">
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="policeStation" aria-label="Police Station"
-                                    name="police_station">
+                                <select class="form-select" id="policeStation" aria-label="Police Station" name="police_station">
                                     <?php foreach ($police_stations as $option) {
-                                        ?><option value="<?= $option['police_station']; ?>"><?= $option['police_station']; ?></option>
-                                        <?php
+                                    ?><option value="<?= $option['police_station']; ?>">
+                                            <?= $option['police_station']; ?></option>
+                                    <?php
                                     } ?>
                                 </select>
                                 <label for="policeStation">Police Station<span class="required-star">*</span></label>
@@ -143,15 +147,13 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number"
-                                    name="crime_number" />
+                                <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number" name="crime_number" />
                                 <label for="crimeNumber">Crime Number<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="section" type="text" placeholder="Section"
-                                    name="penal_code" />
+                                <input class="form-control" id="section" type="text" placeholder="Section" name="penal_code" />
                                 <label for="section">Section<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -160,15 +162,13 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name"
-                                    name="culprit_name" />
+                                <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name" name="culprit_name" />
                                 <label for="culpritName">Culprit Name<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="firWriter" type="text" placeholder="FIR Writer"
-                                    name="fir_writer" />
+                                <input class="form-control" id="firWriter" type="text" placeholder="FIR Writer" name="fir_writer" />
                                 <label for="firWriter">FIR Writer<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -177,15 +177,13 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="reportDate" type="date" placeholder="Report Date"
-                                    name="reporting_date" />
+                                <input class="form-control" id="reportDate" type="date" placeholder="Report Date" name="reporting_date" />
                                 <label for="reportDate">Report Date<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="reportTime" type="time" placeholder="Report Time"
-                                    name="reporting_time" />
+                                <input class="form-control" id="reportTime" type="time" placeholder="Report Time" name="reporting_time" />
                                 <label for="reportTime">Report Time</label>
                             </div>
                         </div>
