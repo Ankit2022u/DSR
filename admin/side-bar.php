@@ -39,12 +39,28 @@
                 Dead Body Form
             </a>
         </li>
-        
+        <li>
+            <a href="mcf.php" class="nav-link link-dark">
+                Major Crime Form
+            </a>
+        </li>
+        <li>
+            <a href="micf.php" class="nav-link link-dark">
+                Minor Crime Form
+            </a>
+        </li>
+        <li>
+            <a href="ocf.php" class="nav-link link-dark">
+                Ongoing Case Form
+            </a>
+        </li>
+
+
     </ul>
     <hr>
     <div class="profile">
-        <img src="../uploads/<?=$_SESSION['user-data']['user_type'];?>/<?=$_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32"
-            class="rounded-circle me-2">
+        <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
+            alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
         <strong>
             <?= $_SESSION['user-data']['officer_name']; ?>
         </strong>
