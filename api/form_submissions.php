@@ -84,8 +84,6 @@ if (isset($_POST['save_deadbody'])) {
             header("Location: ../user/dead_body_form.php");
         }
     }
-
-
 }
 
 if (isset($_POST['save_major_crime'])) {
@@ -334,6 +332,49 @@ if (isset($_POST['save_ongoing_case'])) {
     }
 }
 
+if (isset($_POST['add_police_station'])) {
+    $district = mysqli_real_escape_string($con, $_POST['district']);
+    $sub_division = mysqli_real_escape_string($con, $_POST['sub_division']);
+    $police_station = mysqli_real_escape_string($con, $_POST['police_station']);
 
 
-?>
+    // Validate input fields
+    $errors = array();
+    if (empty($district)) {
+        $errors[] = "District Name is required.";
+    }
+
+    if (empty($sub_division)) {
+        $errors[] = "Sub-Divisions Name is required.";
+    }
+
+    if (empty($police_station)) {
+        $errors[] = "Police Station Name is required.";
+    }
+
+    if (empty($errors)) {
+        $query = "INSERT into police_stations (`police_station` ,`sub_division`,`district` ) VALUES ('$police_station','$sub_division', '$district')";
+
+        $query_run = mysqli_query($con, $query);
+        if ($query_run) {
+            $_SESSION['message'] = "Police Station Data Submitted successfully";
+            // $_SESSION['message'] = $usertype ;
+            $_SESSION['type'] = "success";
+
+            header("Location: ../admin/police_station.php");
+
+            exit(0);
+        } else {
+            $_SESSION['message'] = "Police Station data submission failed";
+            // $_SESSION['message'] = $usertype ;
+            $_SESSION['type'] = "danger";
+            header("Location: ../admin/police_station.php");
+            exit(0);
+        }
+    } else {
+        $_SESSION['message'] = $errors[0];
+        $_SESSION['type'] = "warning";
+
+        header("Location: ../admin/police_station.php");
+    }
+}

@@ -12,7 +12,8 @@ if (!(isset($_SESSION['user-data']))) {
     <div class="row">
 
         <div class="side-bar col-md-3 col-sm-5">
-            <?php //include('side-bar.php'); ?>
+            <?php //include('side-bar.php'); 
+            ?>
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (Admin Panel)</span>
@@ -45,6 +46,11 @@ if (!(isset($_SESSION['user-data']))) {
                         </a>
                     </li>
                     <li>
+                        <a href="police_station.php" class="nav-link link-dark">
+                            Police Stations
+                        </a>
+                    </li>
+                    <li>
                         <a href="profile.php" class="nav-link link-dark">
                             View Profile
                         </a>
@@ -74,8 +80,7 @@ if (!(isset($_SESSION['user-data']))) {
             </div>
             <hr>
             <div class="profile">
-                <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
-                    alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                 <strong>
                     <?= $_SESSION['user-data']['officer_name']; ?>
                 </strong>
@@ -90,39 +95,34 @@ if (!(isset($_SESSION['user-data']))) {
                     <div class="col-12 col-md-8">
                         <div class="card shadow-sm">
                             <?php if (isset($_SESSION['message'])) {
-                                ?>
+                            ?>
                                 <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
                                     <span>
                                         <?= $_SESSION['message']; ?>
                                     </span>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
-                                <?php unset($_SESSION['message']);
+                            <?php unset($_SESSION['message']);
                             } ?>
 
                             <div class="card-body">
                                 <form method="POST" action="../auth/change_password.php">
-                                    <input type="hidden" id="user_id" class="form-control" name="user_id"
-                                        value="<?= $_SESSION['user-data']['user_id']; ?>">
+                                    <input type="hidden" id="user_id" class="form-control" name="user_id" value="<?= $_SESSION['user-data']['user_id']; ?>">
                                     <div class="mb-3">
                                         <label for="old_password" class="form-label">Old Password</label>
                                         <span class="required-star">*</span>
-                                        <input type="password" id="old_password" class="form-control"
-                                            name="old_password" placeholder="Enter Current Password" required>
+                                        <input type="password" id="old_password" class="form-control" name="old_password" placeholder="Enter Current Password" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="new_password" class="form-label">New Password</label>
                                         <span class="required-star">*</span>
-                                        <input type="password" id="new_password" class="form-control"
-                                            name="new_password" placeholder="Enter New Password" required>
+                                        <input type="password" id="new_password" class="form-control" name="new_password" placeholder="Enter New Password" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="confirm_new_password" class="form-label">Confirm New
                                             Password</label>
                                         <span class="required-star">*</span>
-                                        <input type="password" id="confirm_new_password" class="form-control"
-                                            name="confirm_new_password" placeholder="Confirm New Password" required>
+                                        <input type="password" id="confirm_new_password" class="form-control" name="confirm_new_password" placeholder="Confirm New Password" required>
                                     </div>
                                     <div class="mb-3 d-grid">
                                         <button type="submit" class="btn btn-primary" name="change_password_admin">
