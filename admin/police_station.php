@@ -111,14 +111,14 @@ require "../api/dbcon.php";
                                     <label for="police_station" class="form-label">Police Station</label>
                                     <span class="required-star">*</span>
                                     <input type="text" id="police_station" class="form-control" name="police_station"
-                                        placeholder="Enter Police Station Name" required>
+                                        placeholder="Enter Police Station" required>
                                 </div>
                                 <div class="mb-3">
 
                                     <label for="sub_division" class="form-label">Sub-Divisions</label>
                                     <span class="required-star">*</span>
                                     <input type="text" id="sub_division" class="form-control" name="sub_division"
-                                        placeholder="Enter Sub-Division Name" required>
+                                        placeholder="Enter Sub Division" required>
 
                                 </div>
                                 <div class="mb-3">
@@ -126,7 +126,7 @@ require "../api/dbcon.php";
                                     <label for="district" class="form-label">District</label>
                                     <span class="required-star">*</span>
                                     <input type="text" id="district" class="form-control" name="district"
-                                        placeholder="Enter District Name" required>
+                                        placeholder="Enter District" required>
                                 </div>
 
                                 <div class="mb-3 d-grid">
