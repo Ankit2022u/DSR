@@ -15,7 +15,14 @@ if (isset($_POST['save_feedback'])) {
         $query_run = mysqli_query($con, $query);
 
 
-        if ($query) {
+        if ($query_run) {
+
+            $inserted_id = mysqli_insert_id($con);
+            $user = $_SESSION['user-data']['user_id'];
+            $user_name = $_SESSION['user-data']['officer_name'];
+            $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1,'$user','feedbacks','$inserted_id','insert', 'Feedback given by $user_name.')";
+            $log_query_run = mysqli_query($con, $log_query);
+
             $_SESSION['message'] == "Successfully submitted feedback.";
             $_SESSION['type'] == "success";
 
@@ -104,8 +111,8 @@ if (isset($_POST['save_feedback'])) {
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?=$_SESSION['user-data']['user_type'];?>/<?=$_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32"
-                        height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
+                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>

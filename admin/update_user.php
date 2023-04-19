@@ -73,6 +73,10 @@ if (isset($_POST['update_user'])) {
 
             if ($query_run) {
 
+                $user = $_SESSION['user-data']['user_id'];
+                $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1,'$user','users','$uid','update', 'User Data Updated.')";
+                $log_query_run = mysqli_query($con, $log_query);
+
                 $_SESSION['message'] = "User updated successfully";
                 $_SESSION['type'] = "success";
                 header("Location: manage_user.php");
@@ -187,12 +191,12 @@ if (isset($_POST['update_user'])) {
                 <?php
                 if (isset($_SESSION['message'])):
                     ?>
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Hye!</strong>
-                    <?= $_SESSION['message']; ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                <?php
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Hye!</strong>
+                        <?= $_SESSION['message']; ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <?php
                     unset($_SESSION['message']);
                 endif;
                 ?>
@@ -235,115 +239,114 @@ if (isset($_POST['update_user'])) {
                                                 </div>
 
                                             </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="">User ID</label>
+                                            <input type="text" name="user_id" class="form-control"
+                                                value="<?= $user['user_id']; ?>" disabled>
                                         </div>
                                     </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="">User Type</label>
+                                            <select class="form-select form-select-lg" name="user_type" id="user_type"
+                                                value="<?= $user['user_type']; ?>" required>
+                                                <option <?php if ($user['user_type'] == "user") {
 
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="mb-3">
-                                                        <label for="">User ID</label>
-                                                        <input type="text" name="user_id" class="form-control"
-                                                            value="<?= $user['user_id']; ?>" disabled>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="mb-3">
-                                                        <label for="">User Type</label>
-                                                        <select class="form-select form-select-lg" name="user_type"
-                                                            id="user_type" value="<?= $user['user_type']; ?>" required>
-                                                            <option <?php if ($user['user_type'] == "user") {
-
-                                                                echo 'selected';
-                                                            } ?> value="user">User</option>
-                                                    <option <?php if ($user['user_type'] == "admin") {
-                                                                echo 'selected';
-                                                            } ?> value="admin">Administration</option>
-                                                </select>
-                                            </div>
+                                                    echo 'selected';
+                                                } ?> value="user">User</option>
+                                                <option <?php if ($user['user_type'] == "admin") {
+                                                    echo 'selected';
+                                                } ?> value="admin">Administration</option>
+                                            </select>
                                         </div>
                                     </div>
+                                </div>
 
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="mb-3">
-                                                        <label for="district" class="form-label">District</label>
-                                                        <select class="form-select form-select-lg" name="district"
-                                                            id="district" required>
-                                                            <option value="Surguja" <?php if ($user['district'] == "Surguja") {
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="district" class="form-label">District</label>
+                                            <select class="form-select form-select-lg" name="district" id="district" required>
+                                                <option value="Surguja" <?php if ($user['district'] == "Surguja") {
 
-                                                                echo 'selected';
-                                                            } ?>>Surguja</option>
-                                                    <option value="Balrampur" <?php if ($user['district'] == "Balrampur") {
-                                                                echo 'selected';
-                                                            } ?>>Balrampur</option>
-                                                    <option value="Surajpur" <?php if ($user['district'] == "Surajpur") {
-                                                                echo 'selected';
-                                                            } ?>>Surajpur</option>
-                                                    <option value="Jashpur" <?php if ($user['district'] == "Jashpur") {
-                                                                echo 'selected';
-                                                            } ?>>Jashpur</option>
-                                                    <option value="Manendragarh-Chirmiri-Bharatpur" <?php if ($user['district'] == "Manendragarh-Chirmiri-Bharatpur") {
-                                                                echo 'selected';
-                                                            } ?>>
-                                                        Manendragarh-Chirmiri-Bharatpur
-                                                    </option>
-                                                    <option value="Korea" <?php if ($user['district'] == "Korea") {
-                                                                echo 'selected';
-                                                            } ?>>Korea</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="mb-3">
-                                                        <label for="" class="form-label">Police Station</label>
-                                                        <select class="form-select form-select-lg" name="police_station"
-                                                            id="police_station" value="<?= $user['police_station']; ?>" required>
-                                                            <?php foreach ($police_stations as $option) {
-                                                                ?><option value="<?= $option['police_station']; ?>"><?= $option['police_station']; ?></option>
-                                                                <?php
-                                                            } ?>
-                                                </select>
-                                            </div>
+                                                    echo 'selected';
+                                                } ?>>Surguja</option>
+                                                <option value="Balrampur" <?php if ($user['district'] == "Balrampur") {
+                                                    echo 'selected';
+                                                } ?>>Balrampur</option>
+                                                <option value="Surajpur" <?php if ($user['district'] == "Surajpur") {
+                                                    echo 'selected';
+                                                } ?>>Surajpur</option>
+                                                <option value="Jashpur" <?php if ($user['district'] == "Jashpur") {
+                                                    echo 'selected';
+                                                } ?>>Jashpur</option>
+                                                <option value="Manendragarh-Chirmiri-Bharatpur" <?php if ($user['district'] == "Manendragarh-Chirmiri-Bharatpur") {
+                                                    echo 'selected';
+                                                } ?>>
+                                                    Manendragarh-Chirmiri-Bharatpur
+                                                </option>
+                                                <option value="Korea" <?php if ($user['district'] == "Korea") {
+                                                    echo 'selected';
+                                                } ?>>Korea</option>
+                                            </select>
                                         </div>
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="mb-3">
-                                                <label for="">Password</label>
-                                                <input type="text" name="password" class="form-control"
-                                                    value="<?= $user['password']; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="mb-3">
-                                                <label for="">Confirm Password</label>
-                                                <input type="text" name="confirm_password" class="form-control"
-                                                    value="<?= $user['password']; ?>">
-                                            </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Police Station</label>
+                                            <select class="form-select form-select-lg" name="police_station" id="police_station"
+                                                value="<?= $user['police_station']; ?>" required>
+                                                <?php foreach ($police_stations as $option) {
+                                                    ?><option value="<?= $option['police_station']; ?>"><?= $option['police_station']; ?></option>
+                                                    <?php
+                                                } ?>
+                                            </select>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="mb-3">
-                                                <button class="btn btn-primary" type="submit" name="update_user">Save
-                                                    User
-                                                </button>
-                                            </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="">Password</label>
+                                            <input type="text" name="password" class="form-control"
+                                                value="<?= $user['password']; ?>">
                                         </div>
                                     </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="">Confirm Password</label>
+                                            <input type="text" name="confirm_password" class="form-control"
+                                                value="<?= $user['password']; ?>">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <button class="btn btn-primary" type="submit" name="update_user">Save
+                                                User
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 </form>
                                 <?php
                                     }
                                 } ?>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 </main>
 

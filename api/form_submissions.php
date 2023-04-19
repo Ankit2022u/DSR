@@ -54,6 +54,12 @@ if (isset($_POST['save_deadbody'])) {
 
         $query_run = mysqli_query($con, $query);
         if ($query_run) {
+
+            $inserted_id = mysqli_insert_id($con);
+            $user = $_SESSION['user-data']['user_id'];
+            $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1,'$user','dead_bodies','$inserted_id','insert', 'Dead Body Data Filled.')";
+            $log_query_run = mysqli_query($con, $log_query);
+
             $_SESSION['message'] = "Deadbody data Submitted successfully";
             // $_SESSION['message'] = $usertype ;
             $_SESSION['type'] = "success";
@@ -155,6 +161,12 @@ if (isset($_POST['save_major_crime'])) {
 
         $query_run = mysqli_query($con, $query);
         if ($query_run) {
+
+            $inserted_id = mysqli_insert_id($con);
+            $user = $_SESSION['user-data']['user_id'];
+            $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1,'$user','major_crimes','$inserted_id','insert', 'Major Crime  Data Filled.')";
+            $log_query_run = mysqli_query($con, $log_query);
+
             $_SESSION['message'] = "Major Crime data Submitted successfully";
             $_SESSION['type'] = "success";
             if ($usertype == "admin") {
@@ -225,6 +237,12 @@ if (isset($_POST['save_minor_crime'])) {
 
         $query_run = mysqli_query($con, $query);
         if ($query_run) {
+
+            $inserted_id = mysqli_insert_id($con);
+            $user = $_SESSION['user-data']['user_id'];
+            $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1,'$user','minor_crimes','$inserted_id','insert', 'Minor Crime Data Filled.')";
+            $log_query_run = mysqli_query($con, $log_query);
+
             $_SESSION['message'] = "Minor Crime data Submitted successfully";
             $_SESSION['type'] = "success";
             if ($usertype == "admin") {
@@ -302,6 +320,12 @@ if (isset($_POST['save_ongoing_case'])) {
 
         $query_run = mysqli_query($con, $query);
         if ($query_run) {
+
+            $inserted_id = mysqli_insert_id($con);
+            $user = $_SESSION['user-data']['user_id'];
+            $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1,'$user','ongoing_cases','$inserted_id','insert', 'Ongoing Case Data Filled.')";
+            $log_query_run = mysqli_query($con, $log_query);
+
             $_SESSION['message'] = "Ongoing Case data Submitted successfully";
             $_SESSION['type'] = "success";
             if ($usertype == "admin") {
@@ -357,6 +381,12 @@ if (isset($_POST['add_police_station'])) {
 
         $query_run = mysqli_query($con, $query);
         if ($query_run) {
+
+            $inserted_id = mysqli_insert_id($con);
+            $user = $_SESSION['user-data']['user_id'];
+            $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1,'$user','police_stations','$inserted_id','insert', 'Police Station Added.')";
+            $log_query_run = mysqli_query($con, $log_query);
+
             $_SESSION['message'] = "Police Station Data Submitted successfully";
             // $_SESSION['message'] = $usertype ;
             $_SESSION['type'] = "success";

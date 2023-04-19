@@ -49,11 +49,18 @@ if (isset($_POST['change_password_admin'])) {
 
                 $query = "UPDATE users SET password = '$new_password' WHERE user_id = '$user_id'";
                 $query_run = mysqli_query($con, $query);
-                $_SESSION['message'] = "Password changed successfully.";
-                $_SESSION['type'] = "success";
 
                 // Update User Data
                 if ($query_run) {
+
+                    $user = $_SESSION['user-data']['user_id'];
+                    $uid = $_SESSION['user-data']['uid'];
+                    $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1,'$user','users','$uid','update', 'User Password Changed.')";
+                    $log_query_run = mysqli_query($con, $log_query);
+
+                    $_SESSION['message'] = "Password changed successfully.";
+                    $_SESSION['type'] = "success";
+
                     $query = "SELECT * FROM users WHERE `user_type` = 'admin' and `user_id` = '$user_id'";
                     $result = mysqli_query($con, $query);
                     $_SESSION['user-data'] = mysqli_fetch_array($result);

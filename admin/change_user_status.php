@@ -21,15 +21,18 @@ if (isset($_POST['change_status'])) {
     $query_run = mysqli_query($con, $query);
 
     if ($query_run) {
+        $user = $_SESSION['user-data']['user_id'];
+        $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1,'$user','users','$uid','update', 'User Activated/Deactivated.')";
+        $log_query_run = mysqli_query($con, $log_query);
         // if(!empty($profile_photo_path) && file_exists('../uploads/'.$user_type."/".$profile_photo_path)){
         //     unlink('../uploads/'.$user_type."/".$profile_photo_path);
         // }
-        $_SESSION['message'] = "User "."$msg"." successfully";
+        $_SESSION['message'] = "User " . "$msg" . " successfully";
         $_SESSION['type'] = "success";
         header("Location: manage_user.php");
         exit(0);
     } else {
-        $_SESSION['message'] = "Not "."$msg"." successfully.";
+        $_SESSION['message'] = "Not " . "$msg" . " successfully.";
         $_SESSION['type'] = "danger";
         header("Location: maange_user.php");
         exit(0);
