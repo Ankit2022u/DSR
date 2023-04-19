@@ -176,10 +176,10 @@ require "../api/dbcon.php";
                                                     <button type="submit" name="change_status"
                                                         value=<?= $user['uid']; ?> class="btn btn-<?= $color; ?>">
                                                         <?php if ($user['status']) {
-                                  echo 'Deactivate';
-                                } else {
-                                  echo 'Activate';
-                                } ?>
+                                echo 'Deactivate';
+                            } else {
+                                echo 'Activate';
+                            } ?>
                                                     </button>
                                                 </form>
                                             </td>

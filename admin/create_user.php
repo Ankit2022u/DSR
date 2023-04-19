@@ -76,14 +76,20 @@ if (isset($_POST['save_user'])) {
                 $query_run = mysqli_query($con, $query);
 
                 if ($query_run) {
+                    $inserted_id = mysqli_insert_id($con);
+                    $user = $_SESSION['user-data']['user_id'];
+                    $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1,'$user','users','$inserted_id','insert', 'User Created.')";
+                    $log_query_run = mysqli_query($con, $log_query);
 
                     $_SESSION['message'] = "User created successfully";
                     $_SESSION['type'] = "success";
                     header("Location: create_user.php");
+                    exit;
                 } else {
                     $_SESSION['message'] = "User creation failed due to some error.";
                     $_SESSION['type'] = "danger";
                     header("Location: create_user.php");
+                    exit;
                 }
             } catch (mysqli_sql_exception $e) {
                 if ($e->getCode() === 1062) {
@@ -91,6 +97,7 @@ if (isset($_POST['save_user'])) {
                     $_SESSION['message'] = "User already exists. Try a different user ID.";
                     $_SESSION['type'] = "danger";
                     header("Location: create_user.php");
+                    exit;
                 }
             }
         } else {
@@ -184,7 +191,8 @@ $police_stations = police_stations();
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
+                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>
@@ -198,13 +206,13 @@ $police_stations = police_stations();
 
                 <?php
                 if (isset($_SESSION['message'])) {
-                ?>
+                    ?>
                     <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
                         <strong>Hye!</strong>
                         <?= $_SESSION['message']; ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                <?php
+                    <?php
                     unset($_SESSION['message']);
                 }
                 ?>
@@ -265,8 +273,8 @@ $police_stations = police_stations();
                                                 <label for="district" class="form-label">District</label>
                                                 <span class="required-star">*</span>
 
-                                                <select class="form-select form-select-lg" name="district"
-                                                    id="district" required>
+                                                <select class="form-select form-select-lg" name="district" id="district"
+                                                    required>
 
                                                     <option value="Surguja">Surguja</option>
                                                     <option value="Balrampur">Balrampur</option>
@@ -287,9 +295,10 @@ $police_stations = police_stations();
                                                     id="police_station" required>
 
                                                     <?php foreach ($police_stations as $option) {
-                                                    ?><option value="<?= $option['police_station']; ?>">
-                                                            <?= $option['police_station']; ?></option><?php
-                                                                                                    } ?>
+                                                        ?><option value="<?= $option['police_station']; ?>">
+                                                            <?= $option['police_station']; ?></option>
+                                                        <?php
+                                                    } ?>
 
                                                 </select>
                                             </div>
@@ -314,7 +323,8 @@ $police_stations = police_stations();
                                             <div class="mb-3">
                                                 <label for="">Confirm Password</label>
                                                 <span class="required-star">*</span>
-                                                <input type="text" name="confirm_password" class="form-control" required>
+                                                <input type="text" name="confirm_password" class="form-control"
+                                                    required>
                                             </div>
                                         </div>
                                     </div>

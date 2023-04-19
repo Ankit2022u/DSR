@@ -1,12 +1,12 @@
 <footer>
     <ul type="None">
         <h3>Website official websites of police department of Surguja range: </h3>
-        <li><a href="#">Surguja</a></li>
-        <li><a href="#">Balrampur</a></li>
-        <li><a href="#">Jashpur</a></li>
-        <li><a href="#">Surajpur</a></li>
-        <li><a href="#">Manendragarh-Chirmiri-Bharatpur</a></li>
-        <li><a href="#">Korea</a></li>
+        <li><a href="https://surguja.gov.in/police/">Surguja</a></li>
+        <li><a href="https://balrampur.gov.in/police/">Balrampur</a></li>
+        <li><a href="https://jashpur.nic.in/en/">Jashpur</a></li>
+        <li><a href="https://surajpur.nic.in/en/">Surajpur</a></li>
+        <li><a href="https://mahendragarh.gov.in/department/police-department/">Manendragarh-Chirmiri-Bharatpur</a></li>
+        <li><a href="https://korea.gov.in/police/">Korea</a></li>
     </ul>
 </footer>
 <!-- Bootstrap JS -->
