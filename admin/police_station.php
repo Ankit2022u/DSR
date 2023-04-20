@@ -14,10 +14,10 @@ require "../api/dbcon.php";
             <?php //include('side-bar.php'); 
             ?>
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (Admin Panel)</span>
                 </a>
-                <hr>
+                <hr> -->
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
                         <a href="admin.php" class="nav-link link-dark" aria-current="page">
@@ -96,7 +96,7 @@ require "../api/dbcon.php";
                         if (isset($_SESSION['message'])) :
                         ?>
                         <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
-                            <strong>Hye!</strong>
+                            <strong>Hey!</strong>
                             <?= $_SESSION['message']; ?>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>

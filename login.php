@@ -2,7 +2,12 @@
 if (isset($_POST['login'])) {
     $user_type = $_POST['login'];
 } else {
-    $user_type = 'user';
+    session_start();
+    if (isset($_SESSION['login_type'])) {
+        $user_type = $_SESSION['login_type'];
+    } else {
+        $user_type = 'user';
+    }
 }
 ?>
 
@@ -22,6 +27,7 @@ if (isset($_POST['login'])) {
 
     <script src="./assets/js/password.js"></script>
     <style>
+
     .divider:after,
     .divider:before {
         content: "";
@@ -66,17 +72,24 @@ if (isset($_POST['login'])) {
                 </div>
                 <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
                     <div class="card p-lg-3">
-                        <?php session_start();
+                        <?php if (session_status() === PHP_SESSION_NONE) {
+                            session_start();
+                        }
                         if (isset($_SESSION['message'])) {
-                        ?>
-                        <div class="alert alert-<?= $_SESSION['type'] ?>" role="alert">
-                            <strong><?= $_SESSION['message']; ?></strong>
-                        </div>
-                        <?php
+
+                            ?>
+                            <div class="alert alert-<?= $_SESSION['type'] ?>" role="alert">
+                                <strong>
+                                    <?= $_SESSION['message']; ?>
+                                </strong>
+                            </div>
+                            <?php
                         }
                         session_destroy(); ?>
                         <div class="card-header">
-                            <h4 class="text-center"><?= ucfirst($user_type); ?> Login</h4>
+                            <h4 class="text-center">
+                                <?= ucfirst($user_type); ?> Login
+                            </h4>
                         </div>
                         <div class="card-body">
 
@@ -93,9 +106,9 @@ if (isset($_POST['login'])) {
                                 <div class="form-outline mb-4">
                                     <input type="password" name="password" id="password"
                                         class="form-control form-control-lg" required />
+
                                     <span class="pass_icon" onclick="changeIcon(4)"><i id="icon4"
                                             class="bi bi-eye-fill"></i></span>
-
                                     <label class="form-label" for="password">Password</label>
                                 </div>
 

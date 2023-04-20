@@ -20,7 +20,25 @@ function get_sub_divisions($district){
 }
 function get_police_stations($district, $sub_division){
     global $con;
-    $query = "SELECT police_stations FROM `police_stations` WHERE `district` = '$district' and `sub_division` ='$sub_division'";
+    $query = "SELECT police_station FROM `police_stations` WHERE `district` = '$district' and `sub_division` ='$sub_division'";
+    $query_run = mysqli_query($con, $query);
+
+    if (!$query_run) {
+        // Query Failed
+        echo "Error: " . mysqli_error($con);
+        return 0;
+    }
+
+    // Query Success
+    $result = mysqli_fetch_all($query_run, MYSQLI_ASSOC);
+    return $result;
+
+}
+
+// Temporary function
+function get_police_station($district){
+    global $con;
+    $query = "SELECT police_station FROM `police_stations` WHERE `district` = '$district'";
     $query_run = mysqli_query($con, $query);
 
     if (!$query_run) {
