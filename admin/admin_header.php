@@ -41,16 +41,20 @@ if (!(isset($_SESSION['user-data']))) {
     <header class="mb-2">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand active" href="admin.php">Dashboard</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                <img src="../assets/img/logo.jpeg" alt="Logo for Admin Dashboard" width="50" height="50"
+                    class="d-inline-block align-text-top mr-3">
+                <a href="admin.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                    <span class="fs-4">Daily Station Report (Admin Panel)</span>
+                </a>
+                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button> -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="manage_user.php">Manage Users</a>
-                        </li>
+                        </li> 
                         <li class="nav-item">
                             <a class="nav-link" href="view_logs.php">View Logs</a>
                         </li>
@@ -62,12 +66,17 @@ if (!(isset($_SESSION['user-data']))) {
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="change_password.php">Change Password</a>
-                        </li>
-                    </ul>
-                    <img src="../assets/img/logo.jpeg" alt="Logo for Admin Dashboard" width="50" height="50"
-                        class="d-inline-block align-text-top mr-3">
-                    <div class="float-end"><a href="../auth/logout.php" class="btn btn-outline-danger" name="logout">Log
-                            Out</a></div>
+                        </li> -->
+                    </ul> 
+                    <div class="float-end">
+                        <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
+                            alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                        <strong>
+                            <?= $_SESSION['user-data']['officer_name']; ?>
+                        </strong>
+                        <a href="../auth/logout.php" class="btn btn-outline-danger" name="logout">Log
+                            Out</a>
+                    </div>
                 </div>
             </div>
         </nav>

@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!(isset($_SESSION['user-data']))) {
-  header("Location: ../index.php");
+    header("Location: ../index.php");
 }
 
 ?>
@@ -27,6 +27,7 @@ if (!(isset($_SESSION['user-data']))) {
             background-color: rgba(0, 0, 0, 0.05);
             padding: 20px;
         }
+
         .required-star {
             color: red;
             margin-left: 5px;
@@ -38,16 +39,21 @@ if (!(isset($_SESSION['user-data']))) {
     <header class="mb-2">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand active" href="user.php">User Dashboard</a>
+                <img src="../assets/img/logo.jpeg" alt="Logo for User Dashboard" width="50" height="50"
+                    class="d-inline-block align-text-top mr-3">
+                <a href="user.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                    <span class="fs-4">Daily Station Report (User Panel)</span>
+                </a>
+                <!-- <a class="navbar-brand active" href="user.php">User Dashboard</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button> -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
 
-                        <li>
+                        <!-- <li>
                             <a href="dead_body_form.php" class="nav-link link-dark">
                                 Dead Body
                             </a>
@@ -83,11 +89,9 @@ if (!(isset($_SESSION['user-data']))) {
 
                         <li class="nav-item">
                             <a class="nav-link" href="change_password.php">Change Password</a>
-                        </li>
+                        </li> -->
 
                     </ul>
-                    <img src="../assets/img/logo.jpeg" alt="Logo for Admin Dashboard" width="50" height="50"
-                        class="d-inline-block align-text-top mr-3">
                     <div class="float-end"><a href="../auth/logout.php" class="btn btn-outline-danger" name="logout">Log
                             Out</a></div>
                 </div>
