@@ -274,7 +274,7 @@ $police_stations = police_stations();
                                                 <span class="required-star">*</span>
 
                                                 <select class="form-select form-select-lg" name="district" id="district"
-                                                onchange="update_police_stations()" required>
+                                                    required>
 
                                                     <option value="Surguja">Surguja</option>
                                                     <option value="Balrampur">Balrampur</option>
@@ -294,7 +294,11 @@ $police_stations = police_stations();
                                                 <select class="form-select form-select-lg" name="police_station"
                                                     id="police_station" required>
 
-                                                    <option value="">Select Option</option>
+                                                    <?php foreach ($police_stations as $option) {
+                                                        ?><option value="<?= $option['police_station']; ?>">
+                                                            <?= $option['police_station']; ?></option>
+                                                        <?php
+                                                    } ?>
 
                                                 </select>
                                             </div>
@@ -372,7 +376,6 @@ $police_stations = police_stations();
 
 <!-- place footer here -->
 <?php include('../footer.php'); ?>
-<script src="../assets/js/police_station.js"></script>
 
 </body>
 
