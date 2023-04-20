@@ -106,8 +106,8 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-4">
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="district" aria-label="District" name="district"
-                                    required>
+                                <select class="form-select" name="district" id="district"
+                                    onchange="update_police_stations()" required>
                                     <option value="Surguja">Surguja</option>
                                     <option value="Balrampur">Balrampur</option>
                                     <option value="Surajpur">Surajpur</option>
@@ -133,14 +133,11 @@ $police_stations = police_stations();
                         </div>
                         <div class="col-4">
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="policeStation" aria-label="Police Station"
-                                    name="police_station" required>
+                                <select class="form-select" name="police_station" id="police_station"
+                                    required>
 
-                                    <?php foreach ($police_stations as $option) {
-                                        ?><option value="<?= $option['police_station']; ?>">
-                                            <?= $option['police_station']; ?></option>
-                                        <?php
-                                    } ?>
+                                    <option value="">Select Option</option>
+
                                 </select>
                                 <label for="policeStation">Police Station<span class="required-star">*</span></label>
                             </div>
@@ -258,6 +255,7 @@ $police_stations = police_stations();
 
 <!-- place footer here -->
 <?php include('../footer.php'); ?>
+<script src="../assets/js/police_station.js"></script>
 
 </body>
 

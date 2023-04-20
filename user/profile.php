@@ -2,7 +2,6 @@
 session_start();
 require "../api/dbcon.php";
 require "../api/functions.php";
-$police_stations = police_stations();
 
 ?>
 

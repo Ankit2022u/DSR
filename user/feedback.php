@@ -2,7 +2,6 @@
 session_start();
 require "../api/dbcon.php";
 require "../api/functions.php";
-$police_stations = police_stations();
 
 if (isset($_POST['save_feedback'])) {
     $feedback = $_POST['feedback'];
