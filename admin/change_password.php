@@ -112,18 +112,28 @@ if (!(isset($_SESSION['user-data']))) {
                                         <label for="old_password" class="form-label">Old Password</label>
                                         <span class="required-star">*</span>
                                         <input type="password" id="old_password" class="form-control" name="old_password" placeholder="Enter Current Password" required>
+                                        <span class="pass_icon" onclick="changeIcon(1)"><i id="icon1" class="bi bi-eye-fill"></i></span>
+
                                     </div>
                                     <div class="mb-3">
                                         <label for="new_password" class="form-label">New Password</label>
                                         <span class="required-star">*</span>
                                         <input type="password" id="new_password" class="form-control" name="new_password" placeholder="Enter New Password" required>
+                                        <span class="pass_icon" onclick="changeIcon(2)"><i id="icon2" class="bi bi-eye-fill"></i></span>
+
                                     </div>
                                     <div class="mb-3">
                                         <label for="confirm_new_password" class="form-label">Confirm New
                                             Password</label>
                                         <span class="required-star">*</span>
                                         <input type="password" id="confirm_new_password" class="form-control" name="confirm_new_password" placeholder="Confirm New Password" required>
+                                        <span class="pass_icon" onclick="changeIcon(3)"><i id="icon3" class="bi bi-eye-fill"></i></span>
                                     </div>
+
+
+
+
+
                                     <div class="mb-3 d-grid">
                                         <button type="submit" class="btn btn-primary" name="change_password_admin">
                                             Reset Password

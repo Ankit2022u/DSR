@@ -18,10 +18,11 @@ if (!(isset($_SESSION['user-data']))) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 
     <script src="https://kit.fontawesome.com/aa2f2c478b.js" crossorigin="anonymous"></script>
+    <script src="../assets/js//password.js"></script>
     <style>
         footer {
             background-color: rgba(0, 0, 0, 0.05);
@@ -31,6 +32,12 @@ if (!(isset($_SESSION['user-data']))) {
         .required-star {
             color: red;
             margin-left: 5px;
+        }
+
+        .pass_icon {
+            float: right;
+            margin-top: -30px;
+            margin-right: 15px;
         }
     </style>
 </head>
@@ -47,6 +54,7 @@ if (!(isset($_SESSION['user-data']))) {
                 <!-- <a class="navbar-brand active" href="user.php">User Dashboard</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
                     <span class="navbar-toggler-icon"></span>
                 </button> -->
                 <div class="collapse navbar-collapse" id="navbarNav">
