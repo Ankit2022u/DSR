@@ -17,7 +17,7 @@ if (!(isset($_SESSION['user-data']))) {
         <div class="side-bar col-md-3 col-sm-5">
             <?php //include('side-bar.php'); 
             ?>
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
                 <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (Admin Panel)</span>
                 </a>
@@ -108,7 +108,7 @@ if (!(isset($_SESSION['user-data']))) {
             <form action="display_data.php" method="post">
                 <div class="container px-5 my-5">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="district" id="district"
                                     onchange="update_police_stations()" required>
@@ -124,7 +124,7 @@ if (!(isset($_SESSION['user-data']))) {
                                 <label for="district">District<span class="required-star">*</span></label>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                             <select class="form-select" name="police_station" id="police_station"
                                     required>
@@ -138,7 +138,7 @@ if (!(isset($_SESSION['user-data']))) {
                     </div>
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="startDate" type="date" placeholder="Start Date"
                                     name="start_date" required />
@@ -146,7 +146,7 @@ if (!(isset($_SESSION['user-data']))) {
                                 <label for="startDate">Starting Date<span class="required-star">*</span></label>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="endDate" type="date" placeholder="End Date"
                                     name="end_date" required />
@@ -159,7 +159,7 @@ if (!(isset($_SESSION['user-data']))) {
                         <fieldset class="border p-2">
                             <legend class="float-none w-auto p-2">Information You Want<span
                                     class="required-star">*</span></legend>
-                            <div class="col-6">
+                            <div class="col-md-6 col-lg-6 col-sm-12">
                                 <div class="mb-3">
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" id="deadBodiesDetails" type="checkbox"
@@ -168,7 +168,7 @@ if (!(isset($_SESSION['user-data']))) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-6 col-lg-6 col-sm-12">
                                 <div class="mb-3">
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" id="ongoingCasesDetails" type="checkbox"
@@ -178,7 +178,7 @@ if (!(isset($_SESSION['user-data']))) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-6 col-lg-6 col-sm-12">
                                 <div class="mb-3">
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" id="majorCrimesDetails" type="checkbox"
@@ -188,7 +188,7 @@ if (!(isset($_SESSION['user-data']))) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-6 col-lg-6 col-sm-12">
                                 <div class="mb-3">
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" id="minorCrimesDetails" type="checkbox"

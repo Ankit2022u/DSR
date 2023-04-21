@@ -27,7 +27,7 @@ if (isset($_POST['view'])) {
     if (empty($end_date)) {
         $errors[] = "End Date is required.";
     }
-    if (!($dead_bodies and $ongoing_cases and $minor_crimes and $major_crimes)) {
+    if (!($dead_bodies or $ongoing_cases or $minor_crimes or $major_crimes)) {
         $errors[] = "Select Atleast One Information You Want";
     }
 
@@ -85,7 +85,7 @@ if (isset($_POST['view'])) {
     <div class="row">
 
         <div class="side-bar col-md-3 col-sm-5">
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
                 <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (Admin Panel)</span>
                 </a>

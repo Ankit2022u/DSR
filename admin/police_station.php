@@ -13,7 +13,7 @@ require "../api/dbcon.php";
         <div class="side-bar col-md-3 col-sm-5">
             <?php //include('side-bar.php'); 
             ?>
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
                 <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (Admin Panel)</span>
                 </a>
@@ -108,14 +108,14 @@ require "../api/dbcon.php";
                             <div class="mb-3 mt-5">
                                 <div class="mb-3">
 
-                                    <label for="police_station" class="form-label">Police Station</label>
+                                    <label for="district" class="form-label">District</label>
                                     <span class="required-star">*</span>
-                                    <input type="text" id="police_station" class="form-control" name="police_station"
-                                        placeholder="Enter Police Station" required>
+                                    <input type="text" id="district" class="form-control" name="district"
+                                        placeholder="Enter District" required>
                                 </div>
                                 <div class="mb-3">
 
-                                    <label for="sub_division" class="form-label">Sub-Divisions</label>
+                                    <label for="sub_division" class="form-label">Sub Division</label>
                                     <span class="required-star">*</span>
                                     <input type="text" id="sub_division" class="form-control" name="sub_division"
                                         placeholder="Enter Sub Division" required>
@@ -123,10 +123,10 @@ require "../api/dbcon.php";
                                 </div>
                                 <div class="mb-3">
 
-                                    <label for="district" class="form-label">District</label>
+                                    <label for="police_station" class="form-label">Police Station</label>
                                     <span class="required-star">*</span>
-                                    <input type="text" id="district" class="form-control" name="district"
-                                        placeholder="Enter District" required>
+                                    <input type="text" id="police_station" class="form-control" name="police_station"
+                                        placeholder="Enter Police Station" required>
                                 </div>
 
                                 <div class="mb-3 d-grid">

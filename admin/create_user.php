@@ -126,7 +126,7 @@ $police_stations = police_stations();
         <div class="side-bar col-md-3 col-sm-5">
             <?php //include('side-bar.php'); 
             ?>
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
                 <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (Admin Panel)</span>
                 </a>
@@ -229,14 +229,14 @@ $police_stations = police_stations();
                             <div class="card-body">
                                 <form action="create_user.php" method="POST" enctype="multipart/form-data">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-md-6 col-lg-6 col-sm-12">
                                             <div class="mb-3">
                                                 <label for="">Officer Name</label>
                                                 <span class="required-star">*</span>
                                                 <input type="text" name="officer_name" class="form-control" required>
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-md-6 col-lg-6 col-sm-12">
                                             <div class="mb-3">
                                                 <label for="">Officer Rank</label>
                                                 <span class="required-star">*</span>
@@ -246,14 +246,14 @@ $police_stations = police_stations();
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-md-6 col-lg-6 col-sm-12">
                                             <div class="mb-3">
                                                 <label for="">User ID</label>
                                                 <span class="required-star">*</span>
                                                 <input type="text" name="user_id" class="form-control" required>
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-md-6 col-lg-6 col-sm-12">
                                             <div class="mb-3">
                                                 <label for="">User Type</label>
                                                 <span class="required-star">*</span>
@@ -268,7 +268,7 @@ $police_stations = police_stations();
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-md-6 col-lg-6 col-sm-12">
                                             <div class="mb-3">
                                                 <label for="district" class="form-label">District</label>
                                                 <span class="required-star">*</span>
@@ -287,7 +287,7 @@ $police_stations = police_stations();
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-md-6 col-lg-6 col-sm-12">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Police Station</label>
                                                 <span class="required-star">*</span>
@@ -308,14 +308,14 @@ $police_stations = police_stations();
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-md-6 col-lg-6 col-sm-12">
                                             <div class="mb-3">
                                                 <label for="">Password</label>
                                                 <span class="required-star">*</span>
                                                 <input type="text" name="password" class="form-control" required>
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-md-6 col-lg-6 col-sm-12">
                                             <div class="mb-3">
                                                 <label for="">Confirm Password</label>
                                                 <span class="required-star">*</span>
