@@ -14,7 +14,7 @@ require "../api/functions.php";
     <div class="row">
         <div class="side-bar col-md-3 col-sm-5">
             <?php //include('side-bar.php'); ?>
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
                 <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (User Panel)</span>
                 </a>
@@ -106,10 +106,10 @@ require "../api/functions.php";
                                         <div class="card mb-4">
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <div class="col-sm-3">
+                                                    <div class="col-md-3">
                                                         <p class="mb-0">Officer Name:</p>
                                                     </div>
-                                                    <div class="col-sm-9">
+                                                    <div class="col-md-9">
                                                         <p class="text-muted mb-0">
                                                             <?= $user['officer_name']; ?>
                                                         </p>
@@ -117,10 +117,10 @@ require "../api/functions.php";
                                                 </div>
                                                 <hr>
                                                 <div class="row">
-                                                    <div class="col-sm-3">
+                                                    <div class="col-md-3">
                                                         <p class="mb-0">User ID:</p>
                                                     </div>
-                                                    <div class="col-sm-9">
+                                                    <div class="col-md-9">
                                                         <p class="text-muted mb-0">
                                                             <?= $user['user_id']; ?>
                                                         </p>
@@ -128,10 +128,10 @@ require "../api/functions.php";
                                                 </div>
                                                 <hr>
                                                 <div class="row">
-                                                    <div class="col-sm-3">
+                                                    <div class="col-md-3">
                                                         <p class="mb-0">Officer Rank:</p>
                                                     </div>
-                                                    <div class="col-sm-9">
+                                                    <div class="col-md-9">
                                                         <p class="text-muted mb-0">
                                                             <?= $user['officer_rank']; ?>
                                                         </p>
@@ -139,10 +139,10 @@ require "../api/functions.php";
                                                 </div>
                                                 <hr>
                                                 <div class="row">
-                                                    <div class="col-sm-3">
+                                                    <div class="col-md-3">
                                                         <p class="mb-0">Assigned Police Station:</p>
                                                     </div>
-                                                    <div class="col-sm-9">
+                                                    <div class="col-md-9">
                                                         <p class="text-muted mb-0">
                                                             <?= $user['police_station']; ?>
                                                         </p>
@@ -150,10 +150,10 @@ require "../api/functions.php";
                                                 </div>
                                                 <hr>
                                                 <div class="row">
-                                                    <div class="col-sm-3">
+                                                    <div class="col-md-3">
                                                         <p class="mb-0">User Type:</p>
                                                     </div>
-                                                    <div class="col-sm-9">
+                                                    <div class="col-md-9">
                                                         <p class="text-muted mb-0">
                                                             <?php if ($user['user_type'] == "admin") {
                                                                         echo "Administration";
@@ -166,7 +166,7 @@ require "../api/functions.php";
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-md-6 col-lg-6">
                                         <img src="../uploads/user/<?= $user['profile_photo_path']; ?>" />
                                     </div>
                                 </div>
