@@ -16,7 +16,7 @@ $police_stations = police_stations();
         <div class="side-bar col-md-3 col-sm-5">
             <?php //include('side-bar.php'); 
             ?>
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
                 <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (Admin Panel)</span>
                 </a>
@@ -107,7 +107,7 @@ $police_stations = police_stations();
             <form action="../api/form_submissions.php" method="post">
                 <div class="container px-5 my-5">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="district" id="district"
                                     onchange="update_police_stations()" required>
@@ -122,7 +122,7 @@ $police_stations = police_stations();
                                 <label for="district">District<span class="required-star">*</span></label>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
 
                                 <select class="form-select" id="subDivision" aria-label="Sub Division"
@@ -135,7 +135,7 @@ $police_stations = police_stations();
                                 <label for="subDivision">Sub Division<span class="required-star">*</span></label>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
 
                                 <select class="form-select" name="police_station" id="police_station" required>
@@ -149,7 +149,7 @@ $police_stations = police_stations();
                     </div>
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
 
                                 <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number"
@@ -158,7 +158,7 @@ $police_stations = police_stations();
                                 <label for="crimeNumber">Crime Number<span class="required-star">*</span></label>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="section" type="text" placeholder="Section"
                                     name="penal_code" required />
@@ -169,7 +169,7 @@ $police_stations = police_stations();
                     </div>
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
 
                                 <input class="form-control" id="applicantName" type="text" placeholder="Applicant Name"
@@ -178,7 +178,7 @@ $police_stations = police_stations();
                                 <label for="applicantName">Applicant Name<span class="required-star">*</span></label>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="applicantAddress" type="text"
                                     placeholder="Applicant Address" name="applicant_address" required />
@@ -189,7 +189,7 @@ $police_stations = police_stations();
                     </div>
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="incidentDate" type="date" placeholder="Incident Date"
                                     name="incident_date" required />
@@ -197,7 +197,7 @@ $police_stations = police_stations();
                                 <label for="incidentDate">Incident Date<span class="required-star">*</span></label>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="incidentTime" type="time" placeholder="Incident Time"
                                     name="incident_time" />
@@ -207,14 +207,14 @@ $police_stations = police_stations();
                     </div>
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="incidentPlace" type="text" placeholder="Incident Place"
                                     name="incident_place" required />
                                 <label for="incidentPlace">Incident Place<span class="required-star">*</span></label>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="reportTime" type="time" placeholder="Report Time"
                                     name="reporting_time" />
@@ -224,14 +224,14 @@ $police_stations = police_stations();
                     </div>
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="reportDate" type="date" placeholder="Report Date"
                                     name="reporting_date" required />
                                 <label for="reportDate">Report Date<span class="required-star">*</span></label>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="firWriter" type="text" placeholder="FIR Writer"
                                     name="fir_writer" required />
@@ -241,14 +241,14 @@ $police_stations = police_stations();
                     </div>
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name"
                                     name="culprit_name" required />
                                 <label for="culpritName">Culprit Name<span class="required-star">*</span></label>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="culpritAddress" type="text"
                                     placeholder="Culprit Address" name="culprit_address" required />
@@ -258,14 +258,14 @@ $police_stations = police_stations();
                     </div>
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="arrestDate" type="date" placeholder="Arrest Date"
                                     name="arrest_date" required />
                                 <label for="arrestDate">Arrest Date<span class="required-star">*</span></label>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="arrestTime" type="time" placeholder="Arrest Time"
                                     name="arrest_time" />
@@ -275,14 +275,14 @@ $police_stations = police_stations();
                     </div>
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="victimName" type="text" placeholder="Victim Name"
                                     name="victim_name" />
                                 <label for="victimName">Victim Name</label>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="mb-3">
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" id="isItAMajorCrime" type="checkbox"
@@ -304,7 +304,7 @@ $police_stations = police_stations();
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <button class="btn btn-primary" type="submit" name="save_major_crime">Save Crime</button>
                         </div>
                     </div>

@@ -15,15 +15,21 @@ if (isset($_POST['login'])) {
 
     if (mysqli_num_rows($result) > 0) {
         $user = mysqli_fetch_array($result);
-        if($user['status']){
+        if ($user['status']) {
             $_SESSION['user-data'] = $user;
+
+            $uid = $user['uid'];
+            $userid = $user['user_id'];
+            $user_name = $_SESSION['user-data']['officer_name'];
+            $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1,'$userid','No table','$uid','login', '$user_name logged in the system.')";
+            $log_query_run = mysqli_query($con, $log_query);
+
             if ($user_type == "admin") {
                 header("Location: ../admin/admin.php");
             } else {
                 header("Location: ../user/user.php");
             }
-        }
-        else{
+        } else {
             $_SESSION['message'] = "USER ID IS NOT ACTIVE.";
             $_SESSION['type'] = "info";
             $_SESSION['login_type'] = $user_type;
