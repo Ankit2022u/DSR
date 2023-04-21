@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require '../api/dbcon.php';
 
 if (isset($_POST['change_status'])) {

@@ -16,10 +16,10 @@ $police_stations = police_stations();
             <?php //include('side-bar.php'); 
             ?>
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (User Panel)</span>
                 </a>
-                <hr>
+                <hr> -->
                 <ul class="nav nav-pills flex-column mb-auto">
 
                     <li class="nav-item">
@@ -74,6 +74,7 @@ $police_stations = police_stations();
                 </ul>
                 <hr>
                 <div class="profile">
+
                     <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
@@ -88,7 +89,7 @@ $police_stations = police_stations();
             if (isset($_SESSION['message'])) :
             ?>
                 <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
-                    <strong>Hye!</strong>
+                    <strong>Hey!</strong>
                     <?= $_SESSION['message']; ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
@@ -101,7 +102,8 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="district" aria-label="District" name="district" required>
+                                <select class="form-select" name="district" id="district"
+                                    onchange="update_police_stations()" required>
                                     <option value="Surguja">Surguja</option>
                                     <option value="Balrampur">Balrampur</option>
                                     <option value="Surajpur">Surajpur</option>
@@ -125,12 +127,11 @@ $police_stations = police_stations();
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="policeStation" aria-label="Police Station" name="police_station" required>
-                                    <?php foreach ($police_stations as $option) {
-                                    ?><option value="<?= $option['police_station']; ?>">
-                                            <?= $option['police_station']; ?></option>
-                                    <?php
-                                    } ?>
+
+                                <select class="form-select" name="police_station" id="police_station" required>
+
+                                    <option value="">Select Option</option>
+
                                 </select>
                                 <label for="policeStation">Police Station<span class="required-star">*</span></label>
                             </div>
@@ -139,7 +140,9 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="diedBodyNumber" type="text" placeholder="Died Body Number" name="dead_body_number" required />
+
+                                <input class="form-control" id="diedBodyNumber" type="text"
+                                    placeholder="Died Body Number" name="dead_body_number" required />
                                 <label for="diedBodyNumber">Dead Body Number<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -171,6 +174,7 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="informationDate" type="date" placeholder="Information Date" name="information_date" required />
                                 <label for="informationDate">Information Date<span class="required-star">*</span></label>
+
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
@@ -181,7 +185,9 @@ $police_stations = police_stations();
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
+
                                 <input class="form-control" id="applicant" type="text" placeholder="Applicant Name" name="applicant_name" required />
+
                                 <label for="applicantName">Applicant Name<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -190,13 +196,18 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
+
                                 <input class="form-control" id="deceased" type="text" placeholder="Deceased" name="deceased_name" required />
+
                                 <label for="deceasedName">Deceased Name<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
+
                                 <input class="form-control" id="firWritter" type="text" placeholder="FIR Writter" name="fir_writer" required />
+
+
                                 <label for="firWriter">FIR Writer<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -226,6 +237,7 @@ $police_stations = police_stations();
 
 <!-- place footer here -->
 <?php include('../footer.php'); ?>
+<script src="../assets/js/police_station.js"></script>
 
 </body>
 

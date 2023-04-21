@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://kit.fontawesome.com/fa23d55e17.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function togglemenu() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>toggle menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+
+        }
+
+        #sidebar {
+
+            position: fixed;
+            width: 10%;
+            height: 50%;
+            right: -10%;
+            background-color: black;
+        }
+
+        #sidebar li a {
+
+            color: white;
+            font-size: 20px;
+        }
+
+        #sidebar li {
+            color: white;
+            font-size: 20px;
+            padding: 30px;
+            border-bottom: 1px solid gray;
+            text-align: center;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            right: 125px;
+            top: 15px;
+        }
+
+        .toggle-btn span {
+            display: block;
+            background-color: black;
+            width: 30px;
+            height: 5px;
+            margin: 3px;
+
+        }
+
+        #sidebar.active {
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="sidebar" onclick="togglemenu()">
+        <div class="toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul>
+            <li><a href="http://"><i class="fa-solid fa-square-user"></i> My Profile</a></li><br>
+            <li><a href="logout.php">Logout</a></li>
+        </ul>
+    </div>
+</body>
+
+</html>
