@@ -40,6 +40,7 @@ $total_users = count_users();
                             Dead Body
                         </a>
                     </li>
+                    
 
                     <li>
                         <a href="major_crime_form.php" class="nav-link link-dark">
@@ -56,6 +57,12 @@ $total_users = count_users();
                     <li>
                         <a href="minor_crime_form.php" class="nav-link link-dark">
                             Minor Crime
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link link-dark" href="edit.php">
+                            Edit
                         </a>
                     </li>
 
@@ -150,6 +157,7 @@ $total_users = count_users();
             </div>
         </div>
 </main>
+
 
 
 <!-- place footer here -->

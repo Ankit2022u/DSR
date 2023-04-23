@@ -467,7 +467,7 @@ function count_users()
  *
  * @param string $created_at The created date in string format.
  *
- * @return string|DateTime The time ago description.
+ * @return string The time ago description.
  */
 function getTimeAgo($created_at)
 {
@@ -492,6 +492,48 @@ function getTimeAgo($created_at)
         return "a few seconds ago";
     }
 }
+
+
+/**
+ * Get the data uploaded by the user as provided in the input.
+ *
+ * @param string $user_id The created date in string format.
+ *
+ * @return array|bool The time ago description.
+ */
+function get_user_uploads($user_id)
+{
+    global $con; // Note: Consider passing $con as a parameter instead of using global
+
+    $upload_results = array();
+    $stmts = array(
+        $con->prepare("SELECT * from dead_bodies where `updated_by` = ?"),
+        $con->prepare("SELECT * from minor_crimes where `updated_by` = ?"),
+        $con->prepare("SELECT * from major_crimes where `updated_by` = ?"),
+        $con->prepare("SELECT * from ongoing_cases where `updated_by` = ?")
+    );
+
+    // Bind and execute each statement in a loop
+    foreach ($stmts as $stmt) {
+        $stmt->bind_param('s', $user_id);
+        $stmt->execute();
+        $query_run = $stmt->get_result();
+
+        if (!$query_run) {
+            // Query Failed
+            // Note: Consider logging the error instead of echoing it to prevent exposing sensitive information
+            echo "Error: " . $stmt->error;
+            return false;
+        }
+
+        // Query Success
+        $result = $query_run->fetch_assoc();
+        $upload_results[] = $result;
+    }
+
+    return $upload_results;
+}
+
 
 
 ?>
