@@ -15,7 +15,7 @@ $police_stations = police_stations();
     <div class="row">
         <div class="side-bar col-md-3 col-sm-5">
             <?php //include('side-bar.php'); ?>
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" >
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
                 <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (User Panel)</span>
                 </a>
@@ -75,8 +75,7 @@ $police_stations = police_stations();
                 <hr>
                 <div class="profile">
 
-                    <img src="../uploads/<?=$_SESSION['user-data']['user_type'];?>/<?=$_SESSION['user-data']['profile_photo_path']; ?>"
-
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
                         alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
@@ -88,23 +87,24 @@ $police_stations = police_stations();
 
         <div class="main-content col-md-9 col-sm-7">
             <?php
-            if (isset($_SESSION['message'])):
+            if (isset($_SESSION['message'])) {
+                $type = htmlspecialchars($_SESSION['type']);
+                $message = htmlspecialchars($_SESSION['message']);
                 ?>
-            <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
-                <strong>Hye!</strong>
-                <?= $_SESSION['message']; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <?php
+                <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
+                    <strong>Hye!</strong>
+                    <?= $message; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php
                 unset($_SESSION['message']);
-            endif;
+            }
             ?>
             <form action="../api/form_submissions.php" method="post">
                 <div class="container px-5 my-5">
                     <div class="row">
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
-
                                 <select class="form-select" name="district" id="district"
                                     onchange="update_police_stations()" required>
                                     <option value="Surguja">Surguja</option>
@@ -120,8 +120,10 @@ $police_stations = police_stations();
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
+
                                 <select class="form-select" id="subDivision" aria-label="Sub Division"
                                     name="sub_division" required>
+
                                     <option value="Option1">Option1</option>
                                     <option value="Option2">Option2</option>
                                     <option value="Option3">Option3</option>
@@ -145,15 +147,18 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
+
                                 <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number"
                                     name="crime_number" required />
+
                                 <label for="crimeNumber">Crime Number<span class="required-star">*</span></label>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="section" type="text" placeholder="Section"
                                     name="penal_code" required />
+
                                 <label for="section">Section<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -162,8 +167,10 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
+
                                 <input class="form-control" id="applicantName" type="text" placeholder="Applicant Name"
                                     name="applicant_name" required />
+
                                 <label for="applicantName">Applicant Name<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -182,13 +189,14 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="incidentDate" type="date" placeholder="Incident Date"
                                     name="incident_date" required />
+
                                 <label for="incidentDate">Incident Date<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="incidentTime" type="time" placeholder="Incident Time"
-                                    name="incident_time" required />
+                                    name="incident_time" />
                                 <label for="incidentTime">Incident Time</label>
                             </div>
                         </div>
@@ -292,7 +300,7 @@ $police_stations = police_stations();
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <button class="btn btn-primary" type="submit" name="save_major_crime">Save Crime</button>
                         </div>
                     </div>

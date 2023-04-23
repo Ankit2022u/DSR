@@ -1,6 +1,7 @@
 <?php
 session_start();
 require "../api/dbcon.php";
+require "../api/functions.php";
 ?>
 
 <header>
@@ -112,20 +113,22 @@ require "../api/dbcon.php";
                             <tbody>
                                 <?php
                                 $query1 = "SELECT * FROM logs ORDER BY created_at";
-                                $query_run1 = mysqli_query($con, $query1);
-            
+                                $stmt1 = mysqli_prepare($con, $query1);
+                                mysqli_stmt_execute($stmt1);
+                                $query_run1 = mysqli_stmt_get_result($stmt1);
+
                                 if (mysqli_num_rows($query_run1) > 0) {
-                                    foreach ($query_run1 as $log) {
+                                    while ($log = mysqli_fetch_assoc($query_run1)) {
                                         ?>
                                         <tr>
                                             <td>
-                                                <?= $log['lid']; ?>
+                                                <?= htmlspecialchars($log['lid']); ?>
                                             </td>
                                             <td>
-                                                <?= ucfirst($log['table_name']); ?>
+                                                <?= htmlspecialchars(ucfirst($log['table_name'])); ?>
                                             </td>
                                             <td>
-                                                <?= $log['table_id']; ?>
+                                                <?= htmlspecialchars($log['table_id']); ?>
                                             </td>
                                             <td class="text-<?php
                                             if ($log['operation'] == "insert") {
@@ -134,35 +137,38 @@ require "../api/dbcon.php";
                                                 echo "primary";
                                             } else if ($log['operation'] == "delete") {
                                                 echo "danger";
-                                            } else if ($log['operation'] == "login"){
+                                            } else if ($log['operation'] == "login") {
                                                 echo "warning";
-                                            } else{
+                                            } else {
                                                 echo "dark";
                                             }
                                             ?>">
-                                                <?= ucfirst($log['operation']); ?>
+                                                <?= htmlspecialchars(ucfirst($log['operation'])); ?>
                                             </td>
                                             <td>
-                                                <?= $log['log_desc']; ?>
+                                                <?= htmlspecialchars($log['log_desc']); ?>
                                             </td>
                                             <td>
                                                 <?php
                                                 $user = $log['created_by'];
-                                                $query2 = "SELECT * FROM users WHERE user_id = '$user'";
-                                                $query_run2 = mysqli_query($con, $query2);
+                                                $query2 = "SELECT * FROM users WHERE user_id = ?";
+                                                $stmt2 = mysqli_prepare($con, $query2);
+                                                mysqli_stmt_bind_param($stmt2, "s", $user);
+                                                mysqli_stmt_execute($stmt2);
+                                                $query_run2 = mysqli_stmt_get_result($stmt2);
                                                 $officer = mysqli_fetch_array($query_run2)['officer_name']; ?>
-                                                <?= $officer; ?>
+                                                <?= htmlspecialchars($officer); ?>
                                             </td>
                                             <td>
-                                                <?= (new DateTime($log['created_at']))->format('Y-m-d'); ?>
+                                                <?= htmlspecialchars((new DateTime($log['created_at']))->format('Y-m-d')); ?>
                                             </td>
                                             <td>
-                                                <?= (new DateTime($log['created_at']))->format('H:i:s'); ?>
+                                                <?= htmlspecialchars((new DateTime($log['created_at']))->format('H:i:s')); ?>
                                             </td>
                                             <td>
-                                                Skip For Now
+                                                <?= htmlspecialchars(getTimeAgo($log['created_at'])); ?>
                                             </td>
-            
+
                                         </tr>
                                         <?php
                                     }

@@ -70,17 +70,22 @@ if (isset($_POST['save_user'])) {
     if (empty($errors)) {
 
         if ($password == $confirm_password) {
-            $query = "INSERT INTO users(officer_name, officer_rank, user_id, user_type, district, status, police_station, password, profile_photo_path) VALUES ('$officer_name', '$officer_rank', '$user_id', '$user_type', '$district', 0, '$police_station', '$password', '$profile_photo_path')";
-
+            $query = "INSERT INTO users(officer_name, officer_rank, user_id, user_type, district, status, police_station, password, profile_photo_path) VALUES (?, ?, ?, ?, ?, 0, ?, ?, ?)";
+    
             try {
-                $query_run = mysqli_query($con, $query);
-
-                if ($query_run) {
+                $stmt = mysqli_prepare($con, $query);
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                mysqli_stmt_bind_param($stmt, "ssssssss", $officer_name, $officer_rank, $user_id, $user_type, $district, $police_station, $hashed_password, $profile_photo_path);                
+                mysqli_stmt_execute($stmt);
+    
+                if (mysqli_stmt_affected_rows($stmt) > 0) {
                     $inserted_id = mysqli_insert_id($con);
                     $user = $_SESSION['user-data']['user_id'];
-                    $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1,'$user','users','$inserted_id','insert', 'User Created.')";
-                    $log_query_run = mysqli_query($con, $log_query);
-
+                    $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1, ?, 'users', ?, 'insert', 'User Created.')";
+                    $log_stmt = mysqli_prepare($con, $log_query);
+                    mysqli_stmt_bind_param($log_stmt, "ss", $user, $inserted_id);
+                    mysqli_stmt_execute($log_stmt);
+    
                     $_SESSION['message'] = "User created successfully";
                     $_SESSION['type'] = "success";
                     header("Location: create_user.php");
@@ -93,7 +98,6 @@ if (isset($_POST['save_user'])) {
                 }
             } catch (mysqli_sql_exception $e) {
                 if ($e->getCode() === 1062) {
-
                     $_SESSION['message'] = "User already exists. Try a different user ID.";
                     $_SESSION['type'] = "danger";
                     header("Location: create_user.php");
@@ -101,7 +105,6 @@ if (isset($_POST['save_user'])) {
                 }
             }
         } else {
-
             $_SESSION['message'] = "Password does not match.";
             $_SESSION['type'] = "danger";
             header("Location: create_user.php");
@@ -111,6 +114,7 @@ if (isset($_POST['save_user'])) {
         $_SESSION['message'] = $errors[0];
         $_SESSION['type'] = "warning";
     }
+    
 }
 
 $police_stations = police_stations();

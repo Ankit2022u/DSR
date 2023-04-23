@@ -212,9 +212,11 @@ if (isset($_POST['update_user'])) {
 
                             <div class="card-body">
                                 <?php if (isset($_GET['uid'])) {
-                                    $uid = mysqli_real_escape_string($con, $_GET['uid']);
-                                    $query = "SELECT * FROM users WHERE uid='$uid'";
-                                    $query_run = mysqli_query($con, $query);
+                                    $uid = $_GET['uid'];
+                                    $stmt = mysqli_prepare($con, "SELECT * FROM users WHERE uid=?");
+                                    mysqli_stmt_bind_param($stmt, "s", $uid);
+                                    mysqli_stmt_execute($stmt);
+                                    $query_run = mysqli_stmt_get_result($stmt);
                                     if (mysqli_num_rows($query_run) > 0) {
                                         $user = mysqli_fetch_array($query_run);
                                         ?>

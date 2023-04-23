@@ -3,6 +3,7 @@ session_start();
 require "dbcon.php";
 $usertype = $_SESSION['user-data']['user_type'];
 
+// Save Deadbody
 if (isset($_POST['save_deadbody'])) {
     $district = mysqli_real_escape_string($con, $_POST['district']);
     $sub_division = mysqli_real_escape_string($con, $_POST['sub_division']);
@@ -49,19 +50,24 @@ if (isset($_POST['save_deadbody'])) {
 
 
     if (empty($errors)) {
-        $query = "INSERT into dead_bodies (district, sub_division, police_station, dead_body_number, penal_code, accident_date, accident_place, information_date, information_time, applicant_name, deceased_name, fir_writer, cause_of_death, updated_by) VALUES ('$district', '$sub_division', '$police_station', '$dead_body_number', '$penal_code', '$accident_date', '$accident_place', '$information_date', '$information_time', '$applicant_name', '$deceased_name', '$fir_writer', '$cause_of_death', '$updated_by')";
-        // echo $query;
+        // Prepare and bind parameters to prevent SQL injection
+        $stmt = $con->prepare("INSERT INTO dead_bodies (district, sub_division, police_station, dead_body_number, penal_code, accident_date, accident_place, information_date, information_time, applicant_name, deceased_name, fir_writer, cause_of_death, updated_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssssssssssss", $district, $sub_division, $police_station, $dead_body_number, $penal_code, $accident_date, $accident_place, $information_date, $information_time, $applicant_name, $deceased_name, $fir_writer, $cause_of_death, $updated_by);
+        $stmt->execute();
 
-        $query_run = mysqli_query($con, $query);
-        if ($query_run) {
-
-            $inserted_id = mysqli_insert_id($con);
+        if ($stmt->affected_rows > 0) {
+            $inserted_id = $stmt->insert_id;
             $user = $_SESSION['user-data']['user_id'];
-            $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1,'$user','dead_bodies','$inserted_id','insert', 'Dead Body Data Filled.')";
-            $log_query_run = mysqli_query($con, $log_query);
+            // Prepare and bind parameters for log query
+            $log_query = $con->prepare("INSERT INTO logs (status, created_by, table_name, table_id, operation, log_desc) VALUES (?, ?, ?, ?, ?, ?)");
+            $status = 1;
+            $operation = 'insert';
+            $log_desc = 'Dead Body Data Filled.';
+            $table_name = 'dead_bodies';
+            $log_query->bind_param("ssssss", $status, $user, $table_name, $inserted_id, $operation, $log_desc);
+            $log_query->execute();
 
-            $_SESSION['message'] = "Deadbody data Submitted successfully";
-            // $_SESSION['message'] = $usertype ;
+            $_SESSION['message'] = "Deadbody data submitted successfully";
             $_SESSION['type'] = "success";
             if ($usertype === "admin") {
                 header("Location: ../admin/dbf.php");
@@ -71,14 +77,12 @@ if (isset($_POST['save_deadbody'])) {
             exit(0);
         } else {
             $_SESSION['message'] = "Deadbody data submission failed";
-            // $_SESSION['message'] = $usertype ;
             $_SESSION['type'] = "danger";
             if ($usertype == "admin") {
                 header("Location: ../admin/dbf.php");
             } else {
                 header("Location: ../user/dead_body_form.php");
             }
-
             exit(0);
         }
     } else {
@@ -90,8 +94,10 @@ if (isset($_POST['save_deadbody'])) {
             header("Location: ../user/dead_body_form.php");
         }
     }
+
 }
 
+// Save major crime
 if (isset($_POST['save_major_crime'])) {
     $district = mysqli_real_escape_string($con, $_POST['district']);
     $sub_division = mysqli_real_escape_string($con, $_POST['sub_division']);
@@ -155,17 +161,19 @@ if (isset($_POST['save_major_crime'])) {
         $errors[] = "Description of Crime is required.";
     }
     if (empty($errors)) {
-        $query = "INSERT into major_crimes (district, sub_division, police_station, crime_number, penal_code, incident_date, incident_time, incident_place, reporting_date, reporting_time, arrest_date, arrest_time, applicant_name, applicant_address, culprit_name, culprit_address, description_of_crime, is_major_crime, updated_by,  fir_writer, victim_name) VALUES ('$district', '$sub_division', '$police_station', '$crime_number', '$penal_code', '$incident_date', '$incident_time', '$incident_place', '$reporting_date', '$reporting_time', '$arrest_date', '$arrest_time', '$applicant_name', '$applicant_address', '$culprit_name', '$culprit_address', '$description_of_crime', '$is_major_crime', '$updated_by', '$fir_writer', '$victim_name')";
+        $query = "INSERT into major_crimes (district, sub_division, police_station, crime_number, penal_code, incident_date, incident_time, incident_place, reporting_date, reporting_time, arrest_date, arrest_time, applicant_name, applicant_address, culprit_name, culprit_address, description_of_crime, is_major_crime, updated_by,  fir_writer, victim_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        // echo $query;
+        $stmt = mysqli_prepare($con, $query);
+        mysqli_stmt_bind_param($stmt, "sssssssssssssssssssss", $district, $sub_division, $police_station, $crime_number, $penal_code, $incident_date, $incident_time, $incident_place, $reporting_date, $reporting_time, $arrest_date, $arrest_time, $applicant_name, $applicant_address, $culprit_name, $culprit_address, $description_of_crime, $is_major_crime, $updated_by, $fir_writer, $victim_name);
+        $query_run = mysqli_stmt_execute($stmt);
 
-        $query_run = mysqli_query($con, $query);
         if ($query_run) {
-
             $inserted_id = mysqli_insert_id($con);
             $user = $_SESSION['user-data']['user_id'];
-            $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1,'$user','major_crimes','$inserted_id','insert', 'Major Crime  Data Filled.')";
-            $log_query_run = mysqli_query($con, $log_query);
+            $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1, ?, 'major_crimes', ?, 'insert', 'Major Crime  Data Filled.')";
+            $log_stmt = mysqli_prepare($con, $log_query);
+            mysqli_stmt_bind_param($log_stmt, "ss", $user, $inserted_id);
+            mysqli_stmt_execute($log_stmt);
 
             $_SESSION['message'] = "Major Crime data Submitted successfully";
             $_SESSION['type'] = "success";
@@ -174,7 +182,6 @@ if (isset($_POST['save_major_crime'])) {
             } else {
                 header("Location: ../user/major_crime_form.php");
             }
-
             exit(0);
         } else {
             $_SESSION['message'] = "Major Crime data submission failed";
@@ -184,7 +191,6 @@ if (isset($_POST['save_major_crime'])) {
             } else {
                 header("Location: ../user/major_crime_form.php");
             }
-
             exit(0);
         }
     } else {
@@ -196,7 +202,10 @@ if (isset($_POST['save_major_crime'])) {
             header("Location: ../user/major_crime_form.php");
         }
     }
+
 }
+
+// Save Minor crime
 if (isset($_POST['save_minor_crime'])) {
     $district = mysqli_real_escape_string($con, $_POST['district']);
     $sub_division = mysqli_real_escape_string($con, $_POST['sub_division']);
@@ -230,18 +239,20 @@ if (isset($_POST['save_minor_crime'])) {
     }
 
     if (empty($errors)) {
+        // Prepare the SQL statement to avoid SQL injection
+        $stmt = $con->prepare("INSERT INTO minor_crimes (district, sub_division, police_station, crime_number, penal_code, culprit_name, updated_by, fir_writer, time_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssssss", $district, $sub_division, $police_station, $crime_number, $penal_code, $culprit_name, $updated_by, $fir_writer, $time_date);
+        $stmt->execute();
 
-        $query = "INSERT into minor_crimes (district, sub_division, police_station, crime_number, penal_code, culprit_name, updated_by, fir_writer, time_date) VALUES ('$district', '$sub_division', '$police_station', '$crime_number', '$penal_code', '$culprit_name', '$updated_by', '$fir_writer', '$time_date')";
-
-        // echo $query;
-
-        $query_run = mysqli_query($con, $query);
-        if ($query_run) {
-
-            $inserted_id = mysqli_insert_id($con);
+        if ($stmt->affected_rows > 0) {
+            $inserted_id = $stmt->insert_id;
             $user = $_SESSION['user-data']['user_id'];
-            $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1,'$user','minor_crimes','$inserted_id','insert', 'Minor Crime Data Filled.')";
-            $log_query_run = mysqli_query($con, $log_query);
+            $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1, ?, 'minor_crimes', ?, 'insert', 'Minor Crime Data Filled.')";
+
+            // Prepare and execute the log query
+            $log_stmt = $con->prepare($log_query);
+            $log_stmt->bind_param("si", $user, $inserted_id);
+            $log_stmt->execute();
 
             $_SESSION['message'] = "Minor Crime data Submitted successfully";
             $_SESSION['type'] = "success";
@@ -274,8 +285,10 @@ if (isset($_POST['save_minor_crime'])) {
 
         exit(0);
     }
+
 }
 
+// Save ongoing case
 if (isset($_POST['save_ongoing_case'])) {
     $district = mysqli_real_escape_string($con, $_POST['district']);
     $sub_division = mysqli_real_escape_string($con, $_POST['sub_division']);
@@ -313,18 +326,19 @@ if (isset($_POST['save_ongoing_case'])) {
     }
 
     if (empty($errors)) {
+        // Prepare and bind the query with placeholders
+        $query = "INSERT into ongoing_cases (`updated_by`,`district`, `sub_division`, `police_station`, `crime_number`, `penal_code`, `fir_date`, `culprit_name`, `case_status`, `name_of_court`, `culprit_address`, `judgement_of_court`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($con, $query);
+        mysqli_stmt_bind_param($stmt, "ssssssssssss", $updated_by, $district, $sub_division, $police_station, $crime_number, $penal_code, $fir_date, $culprit_name, $case_status, $name_of_court, $culprit_address, $judgement_of_court);
+        $result = mysqli_stmt_execute($stmt);
 
-        $query = "INSERT into ongoing_cases ( `updated_by`,`district`, `sub_division`, `police_station`, `crime_number`, `penal_code`, `fir_date`, `culprit_name`, `case_status`, `name_of_court`, `culprit_address`, `judgement_of_court`) VALUES ('$updated_by','$district', '$sub_division', '$police_station', '$crime_number', '$penal_code', '$fir_date', '$culprit_name', '$case_status', '$name_of_court', '$culprit_address', '$judgement_of_court')";
-
-        // echo $query;
-
-        $query_run = mysqli_query($con, $query);
-        if ($query_run) {
-
+        if ($result) {
             $inserted_id = mysqli_insert_id($con);
             $user = $_SESSION['user-data']['user_id'];
-            $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1,'$user','ongoing_cases','$inserted_id','insert', 'Ongoing Case Data Filled.')";
-            $log_query_run = mysqli_query($con, $log_query);
+            $log_query = "INSERT INTO `logs`(`status`, `created_by`, `table_name`, `table_id`, `operation`, `log_desc`) VALUES (1, ?, 'ongoing_cases', ?, 'insert', 'Ongoing Case Data Filled.')";
+            $log_stmt = mysqli_prepare($con, $log_query);
+            mysqli_stmt_bind_param($log_stmt, "si", $user, $inserted_id);
+            mysqli_stmt_execute($log_stmt);
 
             $_SESSION['message'] = "Ongoing Case data Submitted successfully";
             $_SESSION['type'] = "success";
@@ -354,8 +368,10 @@ if (isset($_POST['save_ongoing_case'])) {
         }
         exit(0);
     }
+
 }
 
+// Add police station
 if (isset($_POST['add_police_station'])) {
     $district = mysqli_real_escape_string($con, $_POST['district']);
     $sub_division = mysqli_real_escape_string($con, $_POST['sub_division']);
@@ -377,26 +393,29 @@ if (isset($_POST['add_police_station'])) {
     }
 
     if (empty($errors)) {
-        $query = "INSERT into police_stations (`police_station` ,`sub_division`,`district` ) VALUES ('$police_station','$sub_division', '$district')";
-
-        $query_run = mysqli_query($con, $query);
-        if ($query_run) {
-
+        // Prepare the query using prepared statements to prevent SQL injection
+        $query = "INSERT into police_stations (`police_station` ,`sub_division`,`district` ) VALUES (?, ?, ?)";
+        $stmt = mysqli_prepare($con, $query);
+        mysqli_stmt_bind_param($stmt, "sss", $police_station, $sub_division, $district);
+        mysqli_stmt_execute($stmt);
+        $affected_rows = mysqli_stmt_affected_rows($stmt);
+        mysqli_stmt_close($stmt);
+    
+        if ($affected_rows > 0) {
             $inserted_id = mysqli_insert_id($con);
             $user = $_SESSION['user-data']['user_id'];
-            $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1,'$user','police_stations','$inserted_id','insert', 'Police Station Added.')";
-            $log_query_run = mysqli_query($con, $log_query);
-
+            $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1, ?, 'police_stations', ?, 'insert', 'Police Station Added.')";
+            $stmt_log = mysqli_prepare($con, $log_query);
+            mysqli_stmt_bind_param($stmt_log, "ss", $user, $inserted_id);
+            mysqli_stmt_execute($stmt_log);
+            mysqli_stmt_close($stmt_log);
+    
             $_SESSION['message'] = "Police Station Data Submitted successfully";
-            // $_SESSION['message'] = $usertype ;
             $_SESSION['type'] = "success";
-
             header("Location: ../admin/police_station.php");
-
             exit(0);
         } else {
             $_SESSION['message'] = "Police Station data submission failed";
-            // $_SESSION['message'] = $usertype ;
             $_SESSION['type'] = "danger";
             header("Location: ../admin/police_station.php");
             exit(0);
@@ -404,7 +423,7 @@ if (isset($_POST['add_police_station'])) {
     } else {
         $_SESSION['message'] = $errors[0];
         $_SESSION['type'] = "warning";
-
         header("Location: ../admin/police_station.php");
     }
+    
 }

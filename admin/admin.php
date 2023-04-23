@@ -3,7 +3,7 @@ session_start();
 require '../api/functions.php';
 
 if (!(isset($_SESSION['user-data']))) {
-  header("Location: ../index.php");
+    header("Location: ../index.php");
 }
 
 $total_major_crimes = count_major_crimes();
@@ -12,17 +12,17 @@ $total_minor_crimes = count_minor_crimes();
 $total_ongoing_cases = count_ongoing_cases();
 $total_police_stations = count_police_stations();
 $total_users = count_users();
-
 ?>
+
 <?php include('admin_header.php'); ?>
 <main>
     <div class="row">
 
         <div class="side-bar col-md-3 col-sm-5">
             <?php //include('side-bar.php'); 
-      ?>
+            ?>
 
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
                 <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (Admin Panel)</span>
                 </a>
@@ -99,7 +99,7 @@ $total_users = count_users();
 
         <div class="main-content container col-md-9 col-sm-7">
             <div class="row">
-                <div class="card text-white mb-3 col-md-4 col-sm-6" style="max-width: 18rem;">
+                <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6" >
                     <div class="card-header">
                         <a href="mcf.php" class="btn btn-outline-danger add-icon"><i class="fas fa-plus-square"></i></i>
                             <span>Add major crime</span></a>
@@ -112,7 +112,7 @@ $total_users = count_users();
                     </div>
                 </div>
 
-                <div class="card text-white mb-3 col-md-4 col-sm-6" style="max-width: 18rem;">
+                <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6" >
                     <div class="card-header">
                         <a href="micf.php" class="btn btn-outline-success add-icon"><i
                                 class="fas fa-plus-square"></i></i>
@@ -126,7 +126,7 @@ $total_users = count_users();
                     </div>
                 </div>
 
-                <div class="card text-white mb-3 col-md-4 col-sm-6" style="max-width: 18rem;">
+                <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6" >
                     <div class="card-header">
                         <a href="ocf.php" class="btn btn-outline-primary add-icon"><i
                                 class="fas fa-plus-square"></i></i>
@@ -140,7 +140,7 @@ $total_users = count_users();
                     </div>
                 </div>
 
-                <div class="card text-white mb-3 col-md-4 col-sm-6" style="max-width: 18rem;">
+                <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6" >
                     <div class="card-header">
                         <a href="dbf.php" class="btn btn-outline-dark add-icon"><i class="fas fa-plus-square"></i></i>
                             <span>Add deadbody details</span></a>
@@ -153,9 +153,9 @@ $total_users = count_users();
                     </div>
                 </div>
 
-                <div class="card text-white mb-3 col-md-4 col-sm-6" style="max-width: 18rem;">
+                <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6">
                     <div class="card-header">
-                        <a href="" class="btn btn-outline-warning add-icon"><i class="fas fa-plus-square"></i></i>
+                        <a href="police_station.php" class="btn btn-outline-warning add-icon"><i class="fas fa-plus-square"></i></i>
                             <span>Add police station</span></a>
                     </div>
                     <div class="card-body bg-warning">
@@ -166,7 +166,7 @@ $total_users = count_users();
                     </div>
                 </div>
 
-                <div class="card text-white mb-3 col-md-4 col-sm-6" style="max-width: 18rem;">
+                <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6">
                     <div class="card-header">
                         <a href="create_user.php" class="btn btn-outline-info add-icon"><i
                                 class="fas fa-plus-square"></i></i>

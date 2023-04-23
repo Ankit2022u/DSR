@@ -106,7 +106,7 @@ require "../api/dbcon.php";
                                     <div class="card-body">
                                         <!-- Start Details -->
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-md-6 col-sm-12">
                                                 <div class="card mb-4">
                                                     <div class="card-body">
                                                         <div class="row">
@@ -170,8 +170,8 @@ require "../api/dbcon.php";
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <img src="../uploads/admin/<?= $user['profile_photo_path']; ?>" id="profile_photo" />
+                                            <div class="col-md-6 col-sm-12">
+                                                <img src="../uploads/admin/<?= $user['profile_photo_path']; ?>" id="profile_photo" class="img-fluid" />
                                             </div>
                                         </div>
 

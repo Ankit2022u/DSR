@@ -95,18 +95,20 @@ require "../api/dbcon.php";
                             <div class="card-header">
                                 <?php
                                 if (isset($_SESSION['message'])) {
+                                    $type = htmlspecialchars($_SESSION['type'], ENT_QUOTES, 'UTF-8');
+                                    $message = htmlspecialchars($_SESSION['message'], ENT_QUOTES, 'UTF-8');
                                     ?>
-                                    <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show"
-                                        role="alert">
-                                        <strong>Hye!</strong>
-                                        <?= $_SESSION['message']; ?>
+                                    <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
+                                        <strong>Information: </strong>
+                                        <?= $message; ?>
                                         <button type="button" class="btn-close" data-bs-dismiss="alert"
                                             aria-label="Close"></button>
                                     </div>
                                     <?php
+                                    unset($_SESSION['message']);
                                 }
-                                unset($_SESSION['message']);
                                 ?>
+
                                 <h4>User details
                                     <a href="create_user.php" class="btn btn-primary float-end">Add User</a>
                                 </h4>
@@ -131,29 +133,32 @@ require "../api/dbcon.php";
                                         <tbody>
                                             <?php
                                             $query = "SELECT * FROM users";
-                                            $query_run = mysqli_query($con, $query);
+                                            $query_run = mysqli_prepare($con, $query);
+                                            mysqli_stmt_execute($query_run);
+                                            $result = mysqli_stmt_get_result($query_run);
 
-                                            if (mysqli_num_rows($query_run) > 0) {
-                                                foreach ($query_run as $user) {
+                                            if (mysqli_num_rows($result) > 0) {
+                                                while ($user = mysqli_fetch_assoc($result)) {
                                                     ?>
+                                                    <!-- Display user data in table rows with proper output encoding -->
                                                     <tr>
                                                         <td>
-                                                            <?= $user['uid']; ?>
+                                                            <?= htmlspecialchars($user['uid']); ?>
                                                         </td>
                                                         <td>
-                                                            <?= $user['user_id']; ?>
+                                                            <?= htmlspecialchars($user['user_id']); ?>
                                                         </td>
                                                         <td>
-                                                            <?= $user['officer_name']; ?>
+                                                            <?= htmlspecialchars($user['officer_name']); ?>
                                                         </td>
                                                         <td>
-                                                            <?= $user['officer_rank']; ?>
+                                                            <?= htmlspecialchars($user['officer_rank']); ?>
                                                         </td>
                                                         <td>
-                                                            <?= $user['police_station']; ?>
+                                                            <?= htmlspecialchars($user['police_station']); ?>
                                                         </td>
                                                         <td>
-                                                            <?= $user['password']; ?>
+                                                            <?= htmlspecialchars($user['password']); ?>
                                                         </td>
                                                         <td>
                                                             <?php if ($user['user_type'] == "admin") {
@@ -172,12 +177,13 @@ require "../api/dbcon.php";
                                                             } ?>
                                                         </td>
                                                         <td>
-                                                            <a href="update_user.php?uid=<?= $user['uid']; ?>"
+                                                            <a href="update_user.php?uid=<?= htmlspecialchars($user['uid']); ?>"
                                                                 class="btn btn-primary">Edit</a>
                                                             <form action="change_user_status.php" method="post"
                                                                 class="d-inline">
                                                                 <button type="submit" name="change_status"
-                                                                    value=<?= $user['uid']; ?> class="btn btn-<?= $color; ?>">
+                                                                    value=<?= htmlspecialchars($user['uid']); ?>
+                                                                    class="btn btn-<?= $color; ?>">
                                                                     <?php if ($user['status']) {
                                                                         echo 'Deactivate';
                                                                     } else {
@@ -187,12 +193,14 @@ require "../api/dbcon.php";
                                                             </form>
                                                         </td>
                                                     </tr>
+
                                                     <?php
                                                 }
                                             } else {
                                                 echo "No Records Found";
                                             }
                                             ?>
+
                                         </tbody>
                                     </table>
                                 </div>
