@@ -89,6 +89,13 @@ if (isset($_POST['save_feedback'])) {
                     </li>
 
                     <li>
+                        <a class="nav-link link-dark" href="edit.php">
+                            Edit
+                        </a>
+                    </li>
+
+
+                    <li>
                         <a class="nav-link active" href="feedback.php">
                             Feedback
                         </a>

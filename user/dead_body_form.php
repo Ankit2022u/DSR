@@ -51,6 +51,12 @@ $police_stations = police_stations();
                             Minor Crime
                         </a>
                     </li>
+                    <li>
+                        <a class="nav-link link-dark" href="edit.php">
+                            Edit
+                        </a>
+                    </li>
+
 
                     <li>
                         <a class="nav-link link-dark" href="feedback.php">
