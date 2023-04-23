@@ -41,46 +41,59 @@ if (isset($_POST['change_password_admin'])) {
         $errors[] = "Password must contain at least one special character.";
     }
 
-    print_r($errors);
+    // print_r($errors);
 
     if (empty($errors)) {
-        if ($old_password == $user['password']) {
+        if (password_verify($old_password, $user['password'])) {
             if ($new_password == $confirm_new_password) {
+                // Update user password using prepared statement
+                $query = "UPDATE users SET password = ? WHERE user_id = ?";
+                $stmt = mysqli_prepare($con, $query);
+                $passx = password_hash($new_password, PASSWORD_DEFAULT);
+                mysqli_stmt_bind_param($stmt, "si", $passx, $user_id);
+                $query_run = mysqli_stmt_execute($stmt);
 
-                $query = "UPDATE users SET password = '$new_password' WHERE user_id = '$user_id'";
-                $query_run = mysqli_query($con, $query);
-
-                // Update User Data
+                // Update user log
                 if ($query_run) {
-
-                    $user = $_SESSION['user-data']['user_id'];
+                    $user_id = $_SESSION['user-data']['user_id'];
                     $uid = $_SESSION['user-data']['uid'];
-                    $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1,'$user','users','$uid','update', 'User Password Changed.')";
-                    $log_query_run = mysqli_query($con, $log_query);
+                    $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`, `log_desc`) VALUES (1,?,?,?,?,?)";
+                    $stmt = mysqli_prepare($con, $log_query);
+                    $log_desc = "User Password Changed.";
+                    $userx = 'users';
+                    $operation = 'update';
+                    mysqli_stmt_bind_param($stmt, "isssss", $user_id, $userx, $uid, $operation, $log_desc);
+                    mysqli_stmt_execute($stmt);
 
                     $_SESSION['message'] = "Password changed successfully.";
                     $_SESSION['type'] = "success";
 
-                    $query = "SELECT * FROM users WHERE `user_type` = 'admin' and `user_id` = '$user_id'";
-                    $result = mysqli_query($con, $query);
+                    // Fetch updated user data
+                    $query = "SELECT * FROM users WHERE `user_type` = 'admin' and `user_id` = ?";
+                    $stmt = mysqli_prepare($con, $query);
+                    mysqli_stmt_bind_param($stmt, "i", $user_id);
+                    mysqli_stmt_execute($stmt);
+                    $result = mysqli_stmt_get_result($stmt);
                     $_SESSION['user-data'] = mysqli_fetch_array($result);
+                } else {
+                    $_SESSION['message'] = "Failed to update password.";
+                    $_SESSION['type'] = "danger";
                 }
-
             } else {
-                $_SESSION['message'] = "Password do not match.";
+                $_SESSION['message'] = "Passwords do not match.";
                 $_SESSION['type'] = "danger";
-
             }
         } else {
-            $_SESSION['message'] = "Does not match with your old password.";
+            $_SESSION['message'] = "Incorrect old password.";
             $_SESSION['type'] = "danger";
         }
         header("Location: ../admin/change_password.php");
     } else {
         $_SESSION['message'] = $errors[0];
         $_SESSION['type'] = "warning";
-        header("Location: ../user/change_password.php");
+        header("Location: ../admin/change_password.php");
     }
+
 }
 
 if (isset($_POST['change_password_user'])) {
@@ -122,28 +135,38 @@ if (isset($_POST['change_password_user'])) {
     }
 
     if (empty($errors)) {
-        if ($old_password == $user['password']) {
+        if (password_verify($old_password, $user['password'])) {
             if ($new_password == $confirm_new_password) {
 
-                $query = "UPDATE users SET password = '$new_password' WHERE user_id = '$user_id'";
-                $query_run = mysqli_query($con, $query);
-                $_SESSION['message'] = "Password changed successfully.";
-                $_SESSION['type'] = "success";
+                // Use prepared statement to prevent SQL injection
+                $query = "UPDATE users SET password = ? WHERE user_id = ?";
+                $stmt = mysqli_prepare($con, $query);
+                mysqli_stmt_bind_param($stmt, "si", $new_password, $user_id);
+                $query_run = mysqli_stmt_execute($stmt);
 
-                // Update User Data
                 if ($query_run) {
-                    $query = "SELECT * FROM users WHERE `user_type` = 'user' and `user_id` = '$user_id'";
-                    $result = mysqli_query($con, $query);
+                    $_SESSION['message'] = "Password changed successfully.";
+                    $_SESSION['type'] = "success";
+
+                    // Update User Data
+                    $query = "SELECT * FROM users WHERE `user_type` = 'user' and `user_id` = ?";
+                    $stmt = mysqli_prepare($con, $query);
+                    mysqli_stmt_bind_param($stmt, "i", $user_id);
+                    mysqli_stmt_execute($stmt);
+                    $result = mysqli_stmt_get_result($stmt);
                     $_SESSION['user-data'] = mysqli_fetch_array($result);
+
+                } else {
+                    $_SESSION['message'] = "Failed to update password.";
+                    $_SESSION['type'] = "danger";
                 }
 
             } else {
-                $_SESSION['message'] = "Password do not match.";
+                $_SESSION['message'] = "Passwords do not match.";
                 $_SESSION['type'] = "danger";
-
             }
         } else {
-            $_SESSION['message'] = "Does not match with your old password.";
+            $_SESSION['message'] = "Old password does not match.";
             $_SESSION['type'] = "danger";
         }
         header("Location: ../user/change_password.php");
@@ -152,6 +175,7 @@ if (isset($_POST['change_password_user'])) {
         $_SESSION['type'] = "warning";
         header("Location: ../user/change_password.php");
     }
+
 
 }
 

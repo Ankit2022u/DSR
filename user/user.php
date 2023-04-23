@@ -22,7 +22,7 @@ $total_users = count_users();
     <div class="row">
         <div class="side-bar col-md-3 col-sm-5">
             <?php //include('side-bar.php'); ?>
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
                 <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (User Panel)</span>
                 </a>
@@ -93,7 +93,7 @@ $total_users = count_users();
 
         <div class="main-content col-md-9 col-sm-7">
             <div class="row">
-                <div class="card text-white mb-3 col-md-4 col-sm-6" style="max-width: 18rem;">
+                <div class="card text-white mb-3 col-md-4 col-sm-6">
                     <div class="card-body bg-danger">
                         <h5 class="card-title">Total Crimes: </h5>
                         <p class="card-text">
@@ -102,7 +102,7 @@ $total_users = count_users();
                     </div>
                 </div>
 
-                <div class="card text-white mb-3 col-md-4 col-sm-6" style="max-width: 18rem;">
+                <div class="card text-white mb-3 col-md-4 col-sm-6">
                     <div class="card-body bg-success">
                         <h5 class="card-title">Total Minor Crimes: </h5>
                         <p class="card-text">
@@ -111,7 +111,7 @@ $total_users = count_users();
                     </div>
                 </div>
 
-                <div class="card text-white mb-3 col-md-4 col-sm-6" style="max-width: 18rem;">
+                <div class="card text-white mb-3 col-md-4 col-sm-6">
                     <div class="card-body bg-primary">
                         <h5 class="card-title">Total Ongoing Cases: </h5>
                         <p class="card-text">
@@ -120,7 +120,7 @@ $total_users = count_users();
                     </div>
                 </div>
 
-                <div class="card text-white mb-3 col-md-4 col-sm-6" style="max-width: 18rem;">
+                <div class="card text-white mb-3 col-md-4 col-sm-6">
                     <div class="card-body bg-dark">
                         <h5 class="card-title">Total Dead Bodies: </h5>
                         <p class="card-text">
@@ -129,7 +129,7 @@ $total_users = count_users();
                     </div>
                 </div>
 
-                <div class="card text-white mb-3 col-md-4 col-sm-6" style="max-width: 18rem;">
+                <div class="card text-white mb-3 col-md-4 col-sm-6">
                     <div class="card-body bg-warning">
                         <h5 class="card-title">Total Police Stations: </h5>
                         <p class="card-text">
@@ -138,7 +138,7 @@ $total_users = count_users();
                     </div>
                 </div>
 
-                <div class="card text-white mb-3 col-md-4 col-sm-6" style="max-width: 18rem;">
+                <div class="card text-white mb-3 col-md-4 col-sm-6">
                     <div class="card-body bg-info">
                         <h5 class="card-title">Total Users: </h5>
                         <p class="card-text">

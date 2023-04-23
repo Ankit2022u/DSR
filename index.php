@@ -46,9 +46,9 @@
 
 	<!-- Main Body -->
 	<main class="mb-4">
-		<div class="container">
-			<div class="button-container">
-				<div class="container mt-2">
+		<div class="container py-5 h-100">
+			<div class="row button-container">
+				<div class="container mt-2 col-12">
 					<div class="card card-outer">
 						<div class="card-header">
 							<img src="assets/img/login-image.jpg" alt="Logo" class="logo-image card-img-top">

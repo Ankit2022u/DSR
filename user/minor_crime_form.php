@@ -15,7 +15,7 @@ $police_stations = police_stations();
     <div class="row">
         <div class="side-bar col-md-3 col-sm-5">
             <?php //include('side-bar.php'); ?>
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
                 <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (User Panel)</span>
                 </a>
@@ -86,25 +86,27 @@ $police_stations = police_stations();
 
         <div class="main-content col-md-9 col-sm-7">
             <?php
-            if (isset($_SESSION['message'])):
+            if (isset($_SESSION['message']) && isset($_SESSION['type'])) {
+                $type = htmlspecialchars($_SESSION['type'], ENT_QUOTES, 'UTF-8'); // Sanitize the 'type' value
+                $message = htmlspecialchars($_SESSION['message'], ENT_QUOTES, 'UTF-8'); // Sanitize the 'message' value
                 ?>
-            <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
-                <strong>Hye!</strong>
-                <?= $_SESSION['message']; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <?php
+                <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
+                    <strong>Hey!</strong>
+                    <?= $message; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php
                 unset($_SESSION['message']);
-            endif;
+                unset($_SESSION['type']);
+            }
             ?>
-            <!-- <form action="../api/form_submissions.php" method="post" id="majorCrimeForm"> -->
+
             <form action="../api/form_submissions.php" method="post">
                 <div class="container px-5 my-5">
                     <div class="row">
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
-
-                            <select class="form-select" name="district" id="district"
+                                <select class="form-select" name="district" id="district"
                                     onchange="update_police_stations()" required>
                                     <option value="Surguja">Surguja</option>
                                     <option value="Balrampur">Balrampur</option>
@@ -130,9 +132,7 @@ $police_stations = police_stations();
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
-
-                            <select class="form-select" name="police_station" id="police_station"
-                                    required>
+                                <select class="form-select" name="police_station" id="police_station" required>
 
                                     <option value="">Select Option</option>
 
@@ -147,6 +147,7 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number"
                                     name="crime_number" required />
+
                                 <label for="crimeNumber">Crime Number<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -162,6 +163,7 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
+
                                 <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name"
                                     name="culprit_name" required />
                                 <label for="culpritName">Culprit Name<span class="required-star">*</span></label>
@@ -195,9 +197,8 @@ $police_stations = police_stations();
                     </div>
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <button class="btn btn-primary" type="submit" name="save_minor_crime">Save Crime</button>
-                            <!-- <button class="btn btn-primary" type="button" id="saveMajorCrime">Save Crime</button> -->
                         </div>
                     </div>
                 </div>

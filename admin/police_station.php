@@ -93,17 +93,21 @@ require "../api/dbcon.php";
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-8">
                         <?php
-                        if (isset($_SESSION['message'])) :
-                        ?>
-                        <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
-                            <strong>Hey!</strong>
-                            <?= $_SESSION['message']; ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        <?php
+                        if (isset($_SESSION['message']) && isset($_SESSION['type'])) {
+                            $type = htmlspecialchars($_SESSION['type'], ENT_QUOTES, 'UTF-8'); // Sanitize the 'type' value
+                            $message = htmlspecialchars($_SESSION['message'], ENT_QUOTES, 'UTF-8'); // Sanitize the 'message' value
+                            ?>
+                            <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
+                                <strong>Hey!</strong>
+                                <?= $message; ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            <?php
                             unset($_SESSION['message']);
-                        endif;
+                            unset($_SESSION['type']);
+                        }
                         ?>
+
                         <form action="../api/form_submissions.php" method="post">
                             <div class="mb-3 mt-5">
                                 <div class="mb-3">

@@ -90,16 +90,24 @@ $police_stations = police_stations();
 
         <div class="main-content col-md-9 col-sm-7">
             <?php
-            if (isset($_SESSION['message'])):
+            if (isset($_SESSION['message']) && isset($_SESSION['type'])) {
+                $message = $_SESSION['message'];
+                $type = $_SESSION['type'];
+
+                // Sanitize message and type to prevent XSS attacks
+                $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+                $type = htmlspecialchars($type, ENT_QUOTES, 'UTF-8');
+
                 ?>
-                <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
+                <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
                     <strong>Hey!</strong>
-                    <?= $_SESSION['message']; ?>
+                    <?= $message; ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 <?php
                 unset($_SESSION['message']);
-            endif;
+                unset($_SESSION['type']);
+            }
             ?>
             <form action="../api/form_submissions.php" method="post">
                 <div class="container px-5 my-5">

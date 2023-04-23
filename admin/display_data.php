@@ -5,6 +5,7 @@ require "../api/functions.php";
 
 if (!(isset($_SESSION['user-data']))) {
     header("Location: ../index.php");
+    exit; // added exit to prevent further code execution
 }
 
 if (isset($_POST['view'])) {
@@ -150,13 +151,14 @@ if (isset($_POST['view'])) {
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
+                    <img src="../uploads/<?= htmlspecialchars($_SESSION['user-data']['user_type'], ENT_QUOTES, 'UTF-8'); ?>/<?= htmlspecialchars($_SESSION['user-data']['profile_photo_path'], ENT_QUOTES, 'UTF-8'); ?>"
                         alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
-                        <?= $_SESSION['user-data']['officer_name']; ?>
+                        <?= htmlspecialchars($_SESSION['user-data']['officer_name'], ENT_QUOTES, 'UTF-8'); ?>
                     </strong>
                     <a href="../auth/logout.php" class="btn btn-outline-danger m-2" name="logout">Log Out</a>
                 </div>
+
             </div>
         </div>
 
@@ -206,45 +208,45 @@ if (isset($_POST['view'])) {
                                     foreach ($output_ongoing_cases as $ongoingcase) {
                                         foreach ($ongoingcase as $row) {
                                             ?>
-                                    <tbody>
-                                        <td>
-                                            <?= $i++; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['district']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['sub_division']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['police_station']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['crime_number']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['penal_code']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['fir_date']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['culprit_name']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['case_status']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['name_of_court']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['culprit_address']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['judgement_of_court']; ?>
-                                        </td>
-                                    </tbody>
-                                    <?php }
+                                            <tbody>
+                                                <td>
+                                                    <?= $i++; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['district']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['sub_division']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['police_station']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['crime_number']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['penal_code']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['fir_date']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['culprit_name']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['case_status']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['name_of_court']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['culprit_address']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['judgement_of_court']; ?>
+                                                </td>
+                                            </tbody>
+                                        <?php }
                                     } ?>
 
                                 </table>
@@ -297,51 +299,51 @@ if (isset($_POST['view'])) {
                                     foreach ($output_dead_bodies as $deadbody) {
                                         foreach ($deadbody as $row) {
                                             ?>
-                                    <tbody>
-                                        <td>
-                                            <?= $i++; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['district']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['sub_division']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['police_station']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['dead_body_number']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['penal_code']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['accident_date']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['accident_place']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['information_date']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['information_time']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['applicant_name']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['deceased_name']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['fir_writer']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['cause_of_death']; ?>
-                                        </td>
-                                    </tbody>
-                                    <?php
+                                            <tbody>
+                                                <td>
+                                                    <?= $i++; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['district']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['sub_division']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['police_station']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['dead_body_number']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['penal_code']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['accident_date']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['accident_place']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['information_date']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['information_time']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['applicant_name']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['deceased_name']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['fir_writer']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['cause_of_death']; ?>
+                                                </td>
+                                            </tbody>
+                                            <?php
                                         }
                                     } ?>
 
@@ -390,27 +392,27 @@ if (isset($_POST['view'])) {
                                     foreach ($output_minor_crimes as $minorcrime) {
                                         foreach ($minorcrime as $row) {
                                             ?>
-                                    <tbody>
-                                        <td>
-                                            <?= $i++; ?>
-                                        </td>
-                                        <td>
-                                            <?= (new DateTime($row['time_date']))->format('H:i:s'); ?>
-                                        </td>
-                                        <td>
-                                            <?= (new DateTime($row['time_date']))->format('Y-m-d'); ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['culprit_name']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['penal_code']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['fir_writer']; ?>
-                                        </td>
-                                    </tbody>
-                                    <?php
+                                            <tbody>
+                                                <td>
+                                                    <?= $i++; ?>
+                                                </td>
+                                                <td>
+                                                    <?= (new DateTime($row['time_date']))->format('H:i:s'); ?>
+                                                </td>
+                                                <td>
+                                                    <?= (new DateTime($row['time_date']))->format('Y-m-d'); ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['culprit_name']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['penal_code']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['fir_writer']; ?>
+                                                </td>
+                                            </tbody>
+                                            <?php
                                         }
                                     } ?>
 
@@ -470,76 +472,76 @@ if (isset($_POST['view'])) {
                                     foreach ($output_major_crimes as $majorcrime) {
                                         foreach ($majorcrime as $row) {
                                             ?>
-                                    <tbody>
-                                        <td>
-                                            <?= $i++; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['district']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['sub_division']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['police_station']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['crime_number']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['penal_code']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['applicant_name']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['applicant_address']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['incident_date']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['incident_time']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['incident_place']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['reporting_date']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['reporting_time']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['culprit_name']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['culprit_address']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['arrest_date']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['arrest_time']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['victim_name']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['description_of_crime']; ?>
-                                        </td>
-                                        <td>
-                                            <?php if ($row['is_major_crime']) {
+                                            <tbody>
+                                                <td>
+                                                    <?= $i++; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['district']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['sub_division']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['police_station']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['crime_number']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['penal_code']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['applicant_name']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['applicant_address']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['incident_date']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['incident_time']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['incident_place']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['reporting_date']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['reporting_time']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['culprit_name']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['culprit_address']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['arrest_date']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['arrest_time']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['victim_name']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['description_of_crime']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php if ($row['is_major_crime']) {
                                                         echo "<span class='text-danger'>Yes</span>";
                                                     } else {
                                                         echo "<span class='text-success'>No</span>";
                                                     } ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['fir_writer']; ?>
-                                        </td>
-                                    </tbody>
-                                    <?php
+                                                </td>
+                                                <td>
+                                                    <?= $row['fir_writer']; ?>
+                                                </td>
+                                            </tbody>
+                                            <?php
                                         }
                                     } ?>
 
