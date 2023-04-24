@@ -4,6 +4,15 @@ require "../api/dbcon.php";
 require "../api/functions.php";
 $police_stations = police_stations();
 
+$mcid = mysqli_real_escape_string($con, $_GET['mcid']);
+$stmt = mysqli_prepare($con, "SELECT * FROM minor_crimes WHERE mcid=?");
+mysqli_stmt_bind_param($stmt, "i", $mcid);
+mysqli_stmt_execute($stmt);
+$query_run = mysqli_stmt_get_result($stmt);
+$data = mysqli_fetch_array($query_run);
+
+
+
 ?>
 
 <header>
@@ -48,13 +57,13 @@ $police_stations = police_stations();
                     </li>
 
                     <li>
-                        <a href="minor_crime_form.php" class="nav-link active">
+                        <a href="minor_crime_form.php" class="nav-link link-dark">
                             Minor Crime
                         </a>
                     </li>
 
                     <li>
-                        <a class="nav-link link-dark" href="edit.php">
+                        <a class="nav-link active" href="edit.php">
                             Edit
                         </a>
                     </li>
@@ -107,56 +116,20 @@ $police_stations = police_stations();
             }
             ?>
 
-            <form action="../api/form_submissions.php" method="post">
+            <form action="minorcrimeupdate.php" method="post">
                 <div class="container px-5 my-5">
-                    <div class="row">
-                        <div class="col-md-4 col-lg-4 col-sm-12">
-                            <div class="form-floating mb-3">
-                                <select class="form-select" name="district" id="district" onchange="update_police_stations()" required>
-                                    <option value="Surguja">Surguja</option>
-                                    <option value="Balrampur">Balrampur</option>
-                                    <option value="Surajpur">Surajpur</option>
-                                    <option value="Manendragarh-Chirmiri-Bharatpur">Manendragarh-Chirmiri-Bharatpur
-                                    </option>
-                                    <option value="Jashpur">Jashpur</option>
-                                    <option value="Korea">Korea</option>
-                                </select>
-                                <label for="district">District<span class="required-star">*</span></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-4 col-sm-12">
-                            <div class="form-floating mb-3">
-                                <select class="form-select" id="subDivision" aria-label="Sub Division" name="sub_division" required>
-                                    <option value="Option1">Option1</option>
-                                    <option value="Option2">Option2</option>
-                                    <option value="Option3">Option3</option>
-                                </select>
-                                <label for="subDivision">Sub Division<span class="required-star">*</span></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-4 col-sm-12">
-                            <div class="form-floating mb-3">
-                                <select class="form-select" name="police_station" id="police_station" required>
-
-                                    <option value="">Select Option</option>
-
-                                </select>
-                                <label for="policeStation">Police Station<span class="required-star">*</span></label>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number" name="crime_number" required />
+                                <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number" name="crime_number" value="<?= $data['crime_number'] ?>" required />
 
                                 <label for="crimeNumber">Crime Number<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="section" type="text" placeholder="Section" name="penal_code" required />
+                                <input class="form-control" id="section" type="text" placeholder="Section" name="penal_code" value="<?= $data['penal_code'] ?>" required />
                                 <label for="section">Section<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -166,13 +139,13 @@ $police_stations = police_stations();
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
 
-                                <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name" name="culprit_name" required />
+                                <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name" name="culprit_name" value="<?= $data['culprit_name'] ?>" required />
                                 <label for="culpritName">Culprit Name<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="firWriter" type="text" placeholder="FIR Writer" name="fir_writer" required />
+                                <input class="form-control" id="firWriter" type="text" placeholder="FIR Writer" name="fir_writer" value="<?= $data['fir_writer'] ?>" required />
                                 <label for="firWriter">FIR Writer<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -196,7 +169,8 @@ $police_stations = police_stations();
 
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12">
-                            <button class="btn btn-primary" type="submit" name="save_minor_crime">Save Crime</button>
+                            <button class="btn btn-primary" type="submit" name="update_minorcrime">Update Minor
+                                Crime</button>
                         </div>
                     </div>
                 </div>

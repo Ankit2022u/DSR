@@ -22,7 +22,8 @@ $data = get_user_uploads($_SESSION['user-data']['user_id']);
 <main>
     <div class="row">
         <div class="side-bar col-md-3 col-sm-5">
-            <?php //include('side-bar.php'); ?>
+            <?php //include('side-bar.php'); 
+            ?>
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
                 <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (User Panel)</span>
@@ -87,8 +88,7 @@ $data = get_user_uploads($_SESSION['user-data']['user_id']);
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
-                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>
@@ -108,14 +108,13 @@ $data = get_user_uploads($_SESSION['user-data']['user_id']);
                                 if (isset($_SESSION['message'])) {
                                     $type = htmlspecialchars($_SESSION['type'], ENT_QUOTES, 'UTF-8');
                                     $message = htmlspecialchars($_SESSION['message'], ENT_QUOTES, 'UTF-8');
-                                    ?>
+                                ?>
                                     <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
                                         <strong>Information: </strong>
                                         <?= $message; ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>
-                                    <?php
+                                <?php
                                     unset($_SESSION['message']);
                                 }
                                 ?>
@@ -177,19 +176,19 @@ $data = get_user_uploads($_SESSION['user-data']['user_id']);
                                                         } ?>
                                                     </td>
                                                     <td>
-                                                    <a href="<?php
-                                                        if (isset($table_array['dbid'])) {
-                                                            echo "deadbodyupdate.php?dbid=" . $table_array['dbid'];
-                                                        } else if (isset($table_array['mcid'])) {
-                                                            echo "minorcrimeupdate.php?cid=" . $table_array['mcid'];
-                                                        } else if (isset($table_array['cid'])) {
-                                                            echo "majorcrimeupdate.php?cid=" . $table_array['cid'];
-                                                        } else if (isset($table_array['ocid'])) {
-                                                            echo "ongoingcaseupdate.php?ocid=" . $table_array['ocid'];
-                                                        } ?>" class="btn btn-primary">Edit</a>
+                                                        <a href="<?php
+                                                                    if (isset($table_array['dbid'])) {
+                                                                        echo "deadbodyupdate.php?dbid=" . $table_array['dbid'];
+                                                                    } else if (isset($table_array['mcid'])) {
+                                                                        echo "minorcrimeupdate.php?mcid=" . $table_array['mcid'];
+                                                                    } else if (isset($table_array['cid'])) {
+                                                                        echo "majorcrimeupdate.php?cid=" . $table_array['cid'];
+                                                                    } else if (isset($table_array['ocid'])) {
+                                                                        echo "ongoingcaseupdate.php?ocid=" . $table_array['ocid'];
+                                                                    } ?>" class="btn btn-primary">Edit</a>
                                                     </td>
                                                 </tbody>
-                                            <?php }
+                                        <?php }
                                         }
                                         ?>
                                     </table>
