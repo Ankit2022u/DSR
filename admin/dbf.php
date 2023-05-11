@@ -116,7 +116,7 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="district" id="district"
                                     onchange="update_police_stations()" required>
-                                    <option value="Surguja">Surguja</option>
+                                    <option value="Surguja">सरगुजा</option>
                                     <option value="Balrampur">Balrampur</option>
                                     <option value="Surajpur">Surajpur</option>
                                     <option value="Manendragarh-Chirmiri-Bharatpur">Manendragarh-Chirmiri-Bharatpur
@@ -124,7 +124,7 @@ $police_stations = police_stations();
                                     <option value="Jashpur">Jashpur</option>
                                     <option value="Korea">Korea</option>
                                 </select>
-                                <label for="district">District<span class="required-star">*</span></label>
+                                <label for="district">District / जिला<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
@@ -136,7 +136,7 @@ $police_stations = police_stations();
                                     <option value="Option2">Option2</option>
                                     <option value="Option3">Option3</option>
                                 </select>
-                                <label for="subDivision">Sub Division<span class="required-star">*</span></label>
+                                <label for="subDivision">अनुभाग<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
@@ -146,7 +146,7 @@ $police_stations = police_stations();
                                     <option value="">Select Option</option>
 
                                 </select>
-                                <label for="policeStation">Police Station<span class="required-star">*</span></label>
+                                <label for="policeStation">Police Station / पुलिस थाना<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -157,14 +157,14 @@ $police_stations = police_stations();
                                 <input class="form-control" id="diedBodyNumber" type="text"
                                     placeholder="Died Body Number" name="dead_body_number" required />
 
-                                <label for="diedBodyNumber">Dead Body Number<span class="required-star">*</span></label>
+                                <label for="diedBodyNumber">Dead Body Number / मर्ग क्रमांक<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="section" type="text" placeholder="Section"
                                     name="penal_code" required />
-                                <label for="section">Section<span class="required-star">*</span></label>
+                                <label for="section">Section / धारा<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -175,7 +175,7 @@ $police_stations = police_stations();
                                 <input class="form-control" id="accidentDate" type="date" placeholder="Accident Date"
                                     name="accident_date" required />
 
-                                <label for="accidentDate">Accident Date<span class="required-star">*</span></label>
+                                <label for="accidentDate">Accident Date / घटना दिनांक<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
@@ -183,7 +183,7 @@ $police_stations = police_stations();
                                 <input class="form-control" id="accidentTime" type="time" placeholder="Accident Time"
                                     name="accident_time" />
 
-                                <label for="accidentDate">Accident Time</label>
+                                <label for="accidentDate">Accident Time / घटना का समय</label>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
@@ -192,7 +192,7 @@ $police_stations = police_stations();
                                 <input class="form-control" id="accidentPlace" type="text" placeholder="Accident Place"
                                     name="accident_place" required />
 
-                                <label for="accidentPlace">Accident Place<span class="required-star">*</span></label>
+                                <label for="accidentPlace">Accident Place / घटना स्थल<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -203,7 +203,7 @@ $police_stations = police_stations();
 
                                 <input class="form-control" id="informationDate" type="date"
                                     placeholder="Information Date" name="information_date" required />
-                                <label for="informationDate">Information Date<span
+                                <label for="informationDate">Information Date / सूचना दिनांक<span
                                         class="required-star">*</span></label>
 
                             </div>
@@ -212,7 +212,7 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="informationTime" type="time"
                                     placeholder="Information Time" name="information_time" />
-                                <label for="informationTime">Information Time</label>
+                                <label for="informationTime">Information Time / सूचना का समय</label>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
@@ -220,7 +220,7 @@ $police_stations = police_stations();
 
                                 <input class="form-control" id="applicant" type="text" placeholder="Applicant Name"
                                     name="applicant_name" required />
-                                <label for="applicantName">Applicant Name<span class="required-star">*</span></label>
+                                <label for="applicantName">Applicant Name / सूचक का नाम<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -231,7 +231,7 @@ $police_stations = police_stations();
                                 <input class="form-control" id="deceased" type="text" placeholder="Deceased"
                                     name="deceased_name" required />
 
-                                <label for="deceasedName">Deceased Name<span class="required-star">*</span></label>
+                                <label for="deceasedName">Deceased Name / मृतक का नाम<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
@@ -239,7 +239,7 @@ $police_stations = police_stations();
                                 <input class="form-control" id="firWriter" type="text" placeholder="FIR Writer"
                                     name="fir_writer" required lang="hi" dir="auto" />
 
-                                <label for="firWriter">FIR Writer<span class="required-star">*</span></label>
+                                <label for="firWriter">FIR Writer / कायमीकर्ता<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -250,7 +250,7 @@ $police_stations = police_stations();
                                 <textarea class="form-control" id="causeOfDeath" type="text"
                                     placeholder="Cause Of Death" style="height: 10rem;"
                                     name="cause_of_death"></textarea>
-                                <label for="causeOfDeath">Cause Of Death</label>
+                                <label for="causeOfDeath">Cause Of Death / मृत्यु का कारण</label>
                             </div>
                         </div>
                     </div>

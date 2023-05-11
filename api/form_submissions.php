@@ -215,12 +215,12 @@ if (isset($_POST['save_minor_crime'])) {
 
     $crime_number = mysqli_real_escape_string($con, $_POST['crime_number']);
     $penal_code = mysqli_real_escape_string($con, $_POST['penal_code']);
-    $report_date = mysqli_real_escape_string($con, $_POST['reporting_date']);
-    $report_time = mysqli_real_escape_string($con, $_POST['reporting_time']);
-    $culprit_name = mysqli_real_escape_string($con, $_POST['culprit_name']);
+    $incident_date = mysqli_real_escape_string($con, $_POST['incident_date']);
+    $incident_time = mysqli_real_escape_string($con, $_POST['incident_time']);
+    $culprit_number = mysqli_real_escape_string($con, $_POST['culprit_number']);
     $fir_writer = mysqli_real_escape_string($con, $_POST['fir_writer']);
     $updated_by = $_SESSION['user-data']['user_id'];
-    $time_date = date('Y-m-d H:i:s', strtotime($_POST['reporting_date'] . ' ' . $_POST['reporting_time']));
+    $time_date = date('Y-m-d H:i:s', strtotime($_POST['incident_date'] . ' ' . $_POST['incident_time']));
 
     // Validate input fields
     $errors = array();
@@ -230,11 +230,11 @@ if (isset($_POST['save_minor_crime'])) {
     if (empty($penal_code)) {
         $errors[] = "Section Number is required.";
     }
-    if (empty($report_date)) {
-        $errors[] = "Report Date is required.";
+    if (empty($incident_date)) {
+        $errors[] = "Incident Date is required.";
     }
-    if (empty($culprit_name)) {
-        $errors[] = "Culprit Name is required.";
+    if (empty($culprit_number)) {
+        $errors[] = "Number of Culprits is required.";
     }
     if (empty($fir_writer)) {
         $errors[] = "Fir Writer Name is required.";
@@ -242,8 +242,8 @@ if (isset($_POST['save_minor_crime'])) {
 
     if (empty($errors)) {
         // Prepare the SQL statement to avoid SQL injection
-        $stmt = $con->prepare("INSERT INTO minor_crimes (district, sub_division, police_station, crime_number, penal_code, culprit_name, updated_by, fir_writer, time_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssssss", $district, $sub_division, $police_station, $crime_number, $penal_code, $culprit_name, $updated_by, $fir_writer, $time_date);
+        $stmt = $con->prepare("INSERT INTO minor_crimes (district, sub_division, police_station, crime_number, penal_code, culprit_number, updated_by, fir_writer, time_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssisss", $district, $sub_division, $police_station, $crime_number, $penal_code, $culprit_number, $updated_by, $fir_writer, $time_date);
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {

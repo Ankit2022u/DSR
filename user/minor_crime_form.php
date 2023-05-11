@@ -159,8 +159,23 @@ $police_stations = police_stations();
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="section" type="text" placeholder="Section"
-                                    name="penal_code" required />
+                                <select class="form-select" name="penal_code" id="section" required>
+
+                                    <option value="41(1)">41(1)</option>
+                                    <option value="102">102</option>
+                                    <option value="109">109</option>
+                                    <option value="110">110</option>
+                                    <option value="145">145</option>
+                                    <option value="151">151</option>
+                                    <option value="107/116">107/116</option>
+                                    <option value="Jua Act">Jua Act</option>
+                                    <option value="Satta">Satta</option>
+                                    <option value="AB Act">AB Act</option>
+                                    <option value="Narcotics">Narcotics</option>
+                                    <option value="Arms Act">Arms Act</option>
+                                    <option value="MV Act">MV Act</option>
+
+                                </select>
                                 <label for="section">Section<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -170,16 +185,18 @@ $police_stations = police_stations();
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
 
-                                <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name"
-                                    name="culprit_name" required />
-                                <label for="culpritName">Culprit Name<span class="required-star">*</span></label>
+                                <input class="form-control" id="culpritNumber" type="number" placeholder="Culprit Name"
+                                    name="culprit_number" required />
+                                <label for="culpritNumber">No of Peoples / व्यक्तियों की संख्या<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="firWriter" type="text" placeholder="FIR Writer"
                                     name="fir_writer" required />
-                                <label for="firWriter">FIR Writer<span class="required-star">*</span></label>
+                                <label for="firWriter">FIR Writer / कायमीकर्ता<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -187,16 +204,17 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="reportDate" type="date" placeholder="Report Date"
-                                    name="reporting_date" required />
-                                <label for="reportDate">Report Date<span class="required-star">*</span></label>
+                                <input class="form-control" id="incidentDate" type="date" placeholder="Incident Date"
+                                    name="incident_date" required />
+                                <label for="incidentDate">Incident Date / घटना दिनांक<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="reportTime" type="time" placeholder="Report Time"
-                                    name="reporting_time" />
-                                <label for="reportTime">Report Time</label>
+                                <input class="form-control" id="incidentTime" type="time" placeholder="Incident Time"
+                                    name="incident_time" />
+                                <label for="incidentTime">Incident Time / घटना समय</label>
                             </div>
                         </div>
 
