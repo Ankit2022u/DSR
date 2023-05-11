@@ -50,11 +50,11 @@ if (!(isset($_SESSION['user-data']))) {
                             Minor Crime
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a class="nav-link link-dark" href="edit.php">
                             Edit
                         </a>
-                    </li>
+                    </li> -->
 
 
                     <li>

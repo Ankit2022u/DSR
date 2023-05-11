@@ -130,6 +130,7 @@ if (!(isset($_SESSION['user-data']))) {
                                     required>
 
                                     <option value="">Select Option</option>
+                                    <option value="All">All</option>
 
                                 </select>
                                 <label for="policeStation">Police Station<span class="required-star">*</span></label>

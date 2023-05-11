@@ -30,57 +30,57 @@ $total_users = count_users();
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
                         <a href="admin.php" class="nav-link active" aria-current="page">
-                            Dashboard
+                            Dashboard / डैशबोर्ड
                         </a>
                     </li>
                     <li>
                         <a href="manage_user.php" class="nav-link link-dark">
-                            Manage Users
+                            Manage Users / उपयोगकर्ताओं का प्रबंधन
                         </a>
                     </li>
                     <li>
                         <a href="view_logs.php" class="nav-link link-dark">
-                            View Logs
+                            View Logs / लॉग्स को देखें
                         </a>
                     </li>
                     <li>
                         <a href="view_data.php" class="nav-link link-dark">
-                            View Data
+                            View Data / डेटा का हिसाब
                         </a>
                     </li>
                     <li>
                         <a href="change_password.php" class="nav-link link-dark">
-                            Change Password
+                            Change Password / पासवर्ड को बदले
                         </a>
                     </li>
                     <li>
                         <a href="police_station.php" class="nav-link link-dark">
-                            Police Station
+                            Police Station / थाना
                         </a>
                     </li>
                     <li>
                         <a href="profile.php" class="nav-link link-dark">
-                            View Profile
+                            View Profile / प्रोफाइल
                         </a>
                     </li>
                     <li>
                         <a href="dbf.php" class="nav-link link-dark">
-                            Dead Body Form
+                            Dead Body Form / मर्ग प्रपत्र
                         </a>
                     </li>
                     <li>
                         <a href="mcf.php" class="nav-link link-dark">
-                            Major Crime Form
+                            Major Crime Form / गंभीर अपराध प्रपत्र
                         </a>
                     </li>
                     <li>
                         <a href="micf.php" class="nav-link link-dark">
-                            Minor Crime Form
+                            Minor Crime Form / अपराध प्रपत्र
                         </a>
                     </li>
                     <li>
                         <a href="ocf.php" class="nav-link link-dark">
-                            Ongoing Case Form
+                            Active Case Form / सक्रिय मामला प्रपत्र
                         </a>
                     </li>
 
@@ -88,8 +88,7 @@ $total_users = count_users();
             </div>
             <hr>
             <div class="profile">
-                <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
-                    alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                 <strong>
                     <?= $_SESSION['user-data']['officer_name']; ?>
                 </strong>
@@ -99,7 +98,7 @@ $total_users = count_users();
 
         <div class="main-content container col-md-9 col-sm-7">
             <div class="row">
-                <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6" >
+                <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6">
                     <div class="card-header">
                         <a href="mcf.php" class="btn btn-outline-danger add-icon"><i class="fas fa-plus-square"></i></i>
                             <span>Add major crime</span></a>
@@ -112,10 +111,9 @@ $total_users = count_users();
                     </div>
                 </div>
 
-                <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6" >
+                <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6">
                     <div class="card-header">
-                        <a href="micf.php" class="btn btn-outline-success add-icon"><i
-                                class="fas fa-plus-square"></i></i>
+                        <a href="micf.php" class="btn btn-outline-success add-icon"><i class="fas fa-plus-square"></i></i>
                             <span>Add minor crime</span></a>
                     </div>
                     <div class="card-body bg-success">
@@ -126,10 +124,9 @@ $total_users = count_users();
                     </div>
                 </div>
 
-                <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6" >
+                <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6">
                     <div class="card-header">
-                        <a href="ocf.php" class="btn btn-outline-primary add-icon"><i
-                                class="fas fa-plus-square"></i></i>
+                        <a href="ocf.php" class="btn btn-outline-primary add-icon"><i class="fas fa-plus-square"></i></i>
                             <span>Add ongoing case</span></a>
                     </div>
                     <div class="card-body bg-primary">
@@ -140,7 +137,7 @@ $total_users = count_users();
                     </div>
                 </div>
 
-                <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6" >
+                <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6">
                     <div class="card-header">
                         <a href="dbf.php" class="btn btn-outline-dark add-icon"><i class="fas fa-plus-square"></i></i>
                             <span>Add deadbody details</span></a>
@@ -168,8 +165,7 @@ $total_users = count_users();
 
                 <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6">
                     <div class="card-header">
-                        <a href="create_user.php" class="btn btn-outline-info add-icon"><i
-                                class="fas fa-plus-square"></i></i>
+                        <a href="create_user.php" class="btn btn-outline-info add-icon"><i class="fas fa-plus-square"></i></i>
                             <span>Add user</span></a>
                     </div>
                     <div class="card-body bg-info">

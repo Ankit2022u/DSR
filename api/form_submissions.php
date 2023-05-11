@@ -12,6 +12,7 @@ if (isset($_POST['save_deadbody'])) {
     $dead_body_number = mysqli_real_escape_string($con, $_POST['dead_body_number']);
     $penal_code = mysqli_real_escape_string($con, $_POST['penal_code']);
     $accident_date = mysqli_real_escape_string($con, $_POST['accident_date']);
+    $accident_time = mysqli_real_escape_string($con, $_POST['accident_time']);
     $accident_place = mysqli_real_escape_string($con, $_POST['accident_place']);
     $information_date = mysqli_real_escape_string($con, $_POST['information_date']);
     $information_time = mysqli_real_escape_string($con, $_POST['information_time']);
@@ -32,6 +33,9 @@ if (isset($_POST['save_deadbody'])) {
     if (empty($accident_date)) {
         $errors[] = "Accident Date is required.";
     }
+    if (empty($accident_time)) {
+        $errors[] = "Accident Time is required.";
+    }
     if (empty($accident_place)) {
         $errors[] = "Accident Place is required.";
     }
@@ -51,8 +55,8 @@ if (isset($_POST['save_deadbody'])) {
 
     if (empty($errors)) {
         // Prepare and bind parameters to prevent SQL injection
-        $stmt = $con->prepare("INSERT INTO dead_bodies (district, sub_division, police_station, dead_body_number, penal_code, accident_date, accident_place, information_date, information_time, applicant_name, deceased_name, fir_writer, cause_of_death, updated_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssssssssssss", $district, $sub_division, $police_station, $dead_body_number, $penal_code, $accident_date, $accident_place, $information_date, $information_time, $applicant_name, $deceased_name, $fir_writer, $cause_of_death, $updated_by);
+        $stmt = $con->prepare("INSERT INTO dead_bodies (district, sub_division, police_station, dead_body_number, penal_code, accident_date, accident_time, accident_place, information_date, information_time, applicant_name, deceased_name, fir_writer, cause_of_death, updated_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
+        $stmt->bind_param("sssssssssssssss", $district, $sub_division, $police_station, $dead_body_number, $penal_code, $accident_date, $accident_time, $accident_place, $information_date, $information_time, $applicant_name, $deceased_name, $fir_writer, $cause_of_death, $updated_by);
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
@@ -94,7 +98,6 @@ if (isset($_POST['save_deadbody'])) {
             header("Location: ../user/dead_body_form.php");
         }
     }
-
 }
 
 // Save major crime
@@ -202,7 +205,6 @@ if (isset($_POST['save_major_crime'])) {
             header("Location: ../user/major_crime_form.php");
         }
     }
-
 }
 
 // Save Minor crime
@@ -285,7 +287,6 @@ if (isset($_POST['save_minor_crime'])) {
 
         exit(0);
     }
-
 }
 
 // Save ongoing case
@@ -368,7 +369,6 @@ if (isset($_POST['save_ongoing_case'])) {
         }
         exit(0);
     }
-
 }
 
 // Add police station
@@ -400,7 +400,7 @@ if (isset($_POST['add_police_station'])) {
         mysqli_stmt_execute($stmt);
         $affected_rows = mysqli_stmt_affected_rows($stmt);
         mysqli_stmt_close($stmt);
-    
+
         if ($affected_rows > 0) {
             $inserted_id = mysqli_insert_id($con);
             $user = $_SESSION['user-data']['user_id'];
@@ -409,7 +409,7 @@ if (isset($_POST['add_police_station'])) {
             mysqli_stmt_bind_param($stmt_log, "ss", $user, $inserted_id);
             mysqli_stmt_execute($stmt_log);
             mysqli_stmt_close($stmt_log);
-    
+
             $_SESSION['message'] = "Police Station Data Submitted successfully";
             $_SESSION['type'] = "success";
             header("Location: ../admin/police_station.php");
@@ -425,5 +425,4 @@ if (isset($_POST['add_police_station'])) {
         $_SESSION['type'] = "warning";
         header("Location: ../admin/police_station.php");
     }
-    
 }

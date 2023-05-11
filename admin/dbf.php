@@ -98,13 +98,13 @@ $police_stations = police_stations();
                 $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
                 $type = htmlspecialchars($type, ENT_QUOTES, 'UTF-8');
 
-                ?>
-                <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
-                    <strong>Hey!</strong>
-                    <?= $message; ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                <?php
+            ?>
+            <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
+                <strong>Hey!</strong>
+                <?= $message; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php
                 unset($_SESSION['message']);
                 unset($_SESSION['type']);
             }
@@ -170,7 +170,7 @@ $police_stations = police_stations();
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6 col-lg-6 col-sm-12">
+                        <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="accidentDate" type="date" placeholder="Accident Date"
                                     name="accident_date" required />
@@ -178,7 +178,15 @@ $police_stations = police_stations();
                                 <label for="accidentDate">Accident Date<span class="required-star">*</span></label>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-6 col-sm-12">
+                        <div class="col-md-4 col-lg-4 col-sm-12">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="accidentTime" type="time" placeholder="Accident Time"
+                                    name="accident_time" />
+
+                                <label for="accidentDate">Accident Time</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
 
                                 <input class="form-control" id="accidentPlace" type="text" placeholder="Accident Place"
@@ -228,8 +236,8 @@ $police_stations = police_stations();
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="firWriter" type="text" placeholder="FIR Writter"
-                                    name="fir_writer" required />
+                                <input class="form-control" id="firWriter" type="text" placeholder="FIR Writer"
+                                    name="fir_writer" required lang="hi" dir="auto" />
 
                                 <label for="firWriter">FIR Writer<span class="required-star">*</span></label>
                             </div>
@@ -263,6 +271,9 @@ $police_stations = police_stations();
 <!-- place footer here -->
 <?php include('../footer.php'); ?>
 <script src="../assets/js/police_station.js"></script>
+<!-- <script type="text/javascript">
+onLoad();
+</script> -->
 
 </body>
 
