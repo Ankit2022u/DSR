@@ -23,14 +23,14 @@ if (isset($_POST['change_status'])) {
 
     $query = "UPDATE users SET status=? where uid=?";
     $stmt = mysqli_prepare($con, $query);
-    mysqli_stmt_bind_param($stmt, $update_to, $uid);
+    mysqli_stmt_bind_param($stmt, "is", $update_to, $uid);
     $query_run = mysqli_stmt_execute($stmt);
 
     if ($query_run) {
         $user = $_SESSION['user-data']['user_id'];
         $log_query = "INSERT INTO `logs`( `status`, `created_by`, `table_name`, `table_id`, `operation`,`log_desc`) VALUES (1, ?, 'users', ?, 'update', 'User Activated/Deactivated.')";
         $stmt = mysqli_prepare($con, $log_query);
-        mysqli_stmt_bind_param($stmt, $user, $uid);
+        mysqli_stmt_bind_param($stmt, "si", $user, $uid);
         $log_query_run = mysqli_stmt_execute($stmt);
 
         $_SESSION['message'] = "User " . "$msg" . " successfully";
@@ -44,4 +44,3 @@ if (isset($_POST['change_status'])) {
         exit(0);
     }
 }
-?>

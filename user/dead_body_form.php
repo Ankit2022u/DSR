@@ -51,11 +51,11 @@ $police_stations = police_stations();
                             Minor Crime
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a class="nav-link link-dark" href="edit.php">
                             Edit
                         </a>
-                    </li>
+                    </li> -->
 
 
                     <li>
@@ -102,12 +102,12 @@ $police_stations = police_stations();
                 $type = htmlspecialchars($type, ENT_QUOTES, 'UTF-8');
 
                 ?>
-                <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
-                    <strong>Hey!</strong>
-                    <?= $message; ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                <?php
+            <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
+                <strong>Hey!</strong>
+                <?= $message; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php
                 unset($_SESSION['message']);
                 unset($_SESSION['type']);
             }
@@ -173,7 +173,7 @@ $police_stations = police_stations();
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6 col-lg-6 col-sm-12">
+                        <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="accidentDate" type="date" placeholder="Accident Date"
                                     name="accident_date" required />
@@ -181,7 +181,15 @@ $police_stations = police_stations();
                                 <label for="accidentDate">Accident Date<span class="required-star">*</span></label>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-6 col-sm-12">
+                        <div class="col-md-4 col-lg-4 col-sm-12">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="accidentTime" type="time" placeholder="Accident Time"
+                                    name="accident_time" />
+
+                                <label for="accidentDate">Accident Time</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
 
                                 <input class="form-control" id="accidentPlace" type="text" placeholder="Accident Place"

@@ -88,11 +88,11 @@ if (isset($_POST['save_feedback'])) {
                         </a>
                     </li>
 
-                    <li>
+                    <!-- <li>
                         <a class="nav-link link-dark" href="edit.php">
                             Edit
                         </a>
-                    </li>
+                    </li> -->
 
 
                     <li>

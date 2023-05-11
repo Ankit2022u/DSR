@@ -12,13 +12,15 @@ if (!(isset($_SESSION['user-data']))) {
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="hi">
 
 <head>
     <title>Admin-Dashboard | DSR</title>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta charset="utf-32">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Language" content="hi">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-32">
 
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -26,24 +28,47 @@ if (!(isset($_SESSION['user-data']))) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
     <script src="https://kit.fontawesome.com/aa2f2c478b.js" crossorigin="anonymous"></script>
     <script src="../assets/js/password.js"></script>
+    <!-- <script type="text/javascript" src="https://www.google.com/inputtools/js/load.js"></script> -->
+    <!-- <script type="text/javascript">
+        function onLoad() {
+            google.load("elements", "1", {
+                packages: "input"
+            });
+
+            function onIMEReady() {
+                var options = {
+                    // Specify the language to Hindi
+                    language: 'hi',
+                    // Enable the Hindi keyboard
+                    inputkey: 'inscript2'
+                };
+
+                var control = new google.elements.inputtools.InputMethodControl(options);
+                control.makeControl(document.getElementById('firWriter'));
+            }
+
+            google.setOnLoadCallback(onIMEReady);
+        }
+    </script> -->
+
     <style>
-        footer {
-            background-color: rgba(0, 0, 0, 0.05);
-            padding: 20px;
-        }
+    footer {
+        background-color: rgba(0, 0, 0, 0.05);
+        padding: 20px;
+    }
 
-        .required-star {
-            color: red;
-            margin-left: 5px;
-        }
+    .required-star {
+        color: red;
+        margin-left: 5px;
+    }
 
 
-        .pass_icon {
-            float: right;
-            margin-top: -30px;
-            margin-right: 15px;
+    .pass_icon {
+        float: right;
+        margin-top: -30px;
+        margin-right: 15px;
 
-        }
+    }
     </style>
 </head>
 
