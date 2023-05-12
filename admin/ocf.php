@@ -78,11 +78,16 @@ $police_stations = police_stations();
                         </a>
                     </li>
 
+                    <li>
+                        <a href="imp_action.php" class="nav-link link-dark">
+                            Important Actions
+                        </a>
+                    </li>
+
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
-                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>
@@ -97,13 +102,13 @@ $police_stations = police_stations();
                 $type = $_SESSION['type'];
                 $message = $_SESSION['message'];
                 unset($_SESSION['message']); // Remove session data after use to prevent data leaks
-                ?>
+            ?>
                 <div class="alert alert-<?php echo htmlspecialchars($type); ?> alert-dismissible fade show" role="alert">
                     <strong>Hye!</strong>
                     <?php echo htmlspecialchars($message); ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-                <?php
+            <?php
             }
             ?>
             <form action="../api/form_submissions.php" method="post">
@@ -111,8 +116,7 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
-                                <select class="form-select" name="district" id="district"
-                                    onchange="update_police_stations()" required>
+                                <select class="form-select" name="district" id="district" onchange="update_police_stations()" required>
                                     <option value="Surguja">Surguja</option>
                                     <option value="Balrampur">Balrampur</option>
                                     <option value="Surajpur">Surajpur</option>
@@ -126,8 +130,7 @@ $police_stations = police_stations();
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="subDivision" aria-label="Sub Division"
-                                    name="sub_division" required>
+                                <select class="form-select" id="subDivision" aria-label="Sub Division" name="sub_division" required>
                                     <option value="Option1">Option1</option>
                                     <option value="Option2">Option2</option>
                                     <option value="Option3">Option3</option>
@@ -150,6 +153,7 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
+
                                 <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number"
                                     name="crime_number" required />
                                 <label for="crimeNumber">Crime Number / अपराध क्रमांक<span class="required-star">*</span></label>
@@ -157,6 +161,7 @@ $police_stations = police_stations();
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
+
                                 <input class="form-control" id="section" type="text" placeholder="Section"
                                     name="penal_code" required />
                                 <label for="section">Section / धारा<span class="required-star">*</span></label>
@@ -174,6 +179,7 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
+
                                 <input class="form-control" id="nameOfCourt" type="text" placeholder="Name Of Court"
                                     name="name_of_court" required />
                                 <label for="nameOfCourt">Name Of Court / न्यायालय का नाम<span class="required-star">*</span></label>
@@ -181,6 +187,7 @@ $police_stations = police_stations();
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
+
                                 <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name"
                                     name="culprit_name" required />
                                 <label for="culpritName">Culprit Name / आरोपी/संदिग्ध का नाम<span class="required-star">*</span></label>
@@ -191,6 +198,7 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-8 col-lg-8 col-sm-12">
                             <div class="form-floating mb-3">
+
                                 <input class="form-control" id="culpritAddress" type="text"
                                     placeholder="Culprit Address" name="culprit_address" required />
                                 <label for="culpritAddress">Culprit Address / आरोपी/संदिग्ध का पता<span class="required-star">*</span></label>
@@ -211,6 +219,7 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-12">
                             <div class="form-floating mb-3">
+
                                 <textarea class="form-control" id="judgementOfCourt" type="text"
                                     placeholder="Judgement Of Court" style="height: 10rem;"
                                     name="judgement_of_court"></textarea>

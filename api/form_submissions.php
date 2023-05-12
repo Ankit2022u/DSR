@@ -458,6 +458,8 @@ if (isset($_POST['save_ongoing_case'])) {
     }
 }
 
+
+
 // Add police station
 if (isset($_POST['add_police_station'])) {
     $district = mysqli_real_escape_string($con, $_POST['district']);
@@ -512,4 +514,89 @@ if (isset($_POST['add_police_station'])) {
         $_SESSION['type'] = "warning";
         header("Location: ../admin/police_station.php");
     }
+}
+
+
+// Save Important Actions 
+if (isset($_POST['save_imp_action'])) {
+    $district = mysqli_real_escape_string($con, $_POST['district']);
+    $sub_division = mysqli_real_escape_string($con, $_POST['sub_division']);
+    $police_station = mysqli_real_escape_string($con, $_POST['police_station']);
+    $arrest_in_major_crime = mysqli_real_escape_string($con, $_POST['arrest_in_major_crime']);
+    $decision_given_by_the_court = mysqli_real_escape_string($con, $_POST['decision_given_by_the_court']);
+    $missing_man_document = mysqli_real_escape_string($con, $_POST['missing_man_document']);
+    $miscellaneous = mysqli_real_escape_string($con, $_POST['miscellaneous']);
+    $robbery = mysqli_real_escape_string($con, $_POST['robbery']);
+    $action_taken_under = mysqli_real_escape_string($con, $_POST['action_taken_under']);
+    $updated_by = $_SESSION['user-data']['user_id'];
+
+    // Validate input fields
+    // $errors = array();
+    // if (empty($crime_number)) {
+    //     $errors[] = "Crime Number is required.";
+    // }
+    // if (empty($penal_code)) {
+    //     $errors[] = "Section Number is required.";
+    // }
+    // if (empty($name_of_court)) {
+    //     $errors[] = "Court's Name is required.";
+    // }
+    // if (empty($culprit_name)) {
+    //     $errors[] = "Culprit Name is required.";
+    // }
+    // if (empty($culprit_address)) {
+    //     $errors[] = "Culprit Address is required.";
+    // }
+    // if (empty($fir_date)) {
+    //     $errors[] = "FIR Date is required.";
+    // }
+
+    // if (empty($errors)) {
+    // Prepare and bind the query with placeholders
+    $query = "INSERT INTO important_actions (`updated_by`,`district`,`sub_division`, `police_station`, `arrest_in_major_crime`, `decision_given_by_the_court`, `missing_man_document`, `miscellaneous`, `robbery`, `action_taken_under`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($con, $query);
+
+    // Assuming all columns are of type string (s)
+    mysqli_stmt_bind_param($stmt, "ssssssssss", $updated_by, $district, $sub_division, $police_station, $arrest_in_major_crime, $decision_given_by_the_court, $missing_man_document, $miscellaneous, $robbery, $action_taken_under);
+
+    // Execute the prepared statement
+    $result = mysqli_stmt_execute($stmt);
+
+
+    if ($result) {
+        $inserted_id = mysqli_insert_id($con);
+        $user = $_SESSION['user-data']['user_id'];
+        $log_query = "INSERT INTO `logs`(`status`, `created_by`, `table_name`, `table_id`, `operation`, `log_desc`) VALUES (1, ?, 'ongoing_cases', ?, 'insert', 'Important Action Data Filled.')";
+        $log_stmt = mysqli_prepare($con, $log_query);
+        mysqli_stmt_bind_param($log_stmt, "si", $user, $inserted_id);
+        mysqli_stmt_execute($log_stmt);
+
+        $_SESSION['message'] = "Important Action data Submitted successfully";
+        $_SESSION['type'] = "success";
+        if ($usertype == "admin") {
+            header("Location: ../admin/imp_action.php");
+        } else {
+            header("Location: ../user/imp_action.php");
+        }
+        exit(0);
+    } else {
+        $_SESSION['message'] = "Important Action data submission failed";
+        $_SESSION['type'] = "danger";
+        if ($usertype == "admin") {
+            header("Location: ../admin/imp_action.php");
+        } else {
+            header("Location: ../user/imp_action.php");
+        }
+        exit(0);
+    }
+    // } else {
+    //     $_SESSION['message'] = $errors[0];
+    //     $_SESSION['type'] = "warning";
+    //     if ($usertype == "admin") {
+    //         header("Location: ../admin/ocf.php");
+    //     } else {
+    //         header("Location: ../user/ongoing_case_form.php");
+    //     }
+    //     exit(0);
+    // }
 }

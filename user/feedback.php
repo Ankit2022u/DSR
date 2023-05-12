@@ -24,7 +24,6 @@ if (isset($_POST['save_feedback'])) {
 
             $_SESSION['message'] == "Successfully submitted feedback.";
             $_SESSION['type'] == "success";
-
         } else {
             $_SESSION['message'] == "Failed to submit Feedback";
             $_SESSION['type'] == "danger";
@@ -33,9 +32,6 @@ if (isset($_POST['save_feedback'])) {
         $_SESSION['message'] == "Feedback Field can't be empty.";
         $_SESSION['type'] == "warning";
     }
-
-
-
 }
 
 
@@ -50,8 +46,9 @@ if (isset($_POST['save_feedback'])) {
 <main>
     <div class="row">
         <div class="side-bar col-md-3 col-sm-5">
-            <?php //include('side-bar.php'); ?>
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" >
+            <?php //include('side-bar.php'); 
+            ?>
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
                 <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (User Panel)</span>
                 </a>
@@ -113,12 +110,17 @@ if (isset($_POST['save_feedback'])) {
                         </a>
                     </li>
 
+                    <li>
+                        <a href="imp_action.php" class="nav-link link-dark">
+                            Important Actions
+                        </a>
+                    </li>
+
 
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
-                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>
@@ -132,8 +134,7 @@ if (isset($_POST['save_feedback'])) {
                     <div class="row">
                         <div class="col-12">
                             <div class="form-floating mb-3">
-                                <textarea name="feedback" id="feedback" class="form-control" type="text"
-                                    placeholder="Feedback" style="height: 10rem;" name="feedback" required></textarea>
+                                <textarea name="feedback" id="feedback" class="form-control" type="text" placeholder="Feedback" style="height: 10rem;" name="feedback" required></textarea>
                                 <label for="feedback">Feedback</label>
                             </div>
                         </div>

@@ -40,7 +40,7 @@ $total_users = count_users();
                             Dead Body
                         </a>
                     </li>
-                    
+
 
                     <li>
                         <a href="major_crime_form.php" class="nav-link link-dark">
@@ -84,12 +84,18 @@ $total_users = count_users();
                         </a>
                     </li>
 
+                    <li>
+                        <a href="imp_action.php" class="nav-link link-dark">
+                            Important Actions
+                        </a>
+                    </li>
+
 
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?=$_SESSION['user-data']['user_type'];?>/<?=$_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32"
-                        height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?=$_SESSION['user-data']['user_type'];?>/<?=$_SESSION['user-data']['profile_photo_path']; ?>"
+                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>

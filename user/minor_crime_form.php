@@ -77,6 +77,12 @@ $police_stations = police_stations();
                         </a>
                     </li>
 
+                    <li>
+                        <a href="imp_action.php" class="nav-link link-dark">
+                            Important Actions
+                        </a>
+                    </li>
+
 
                 </ul>
                 <hr>
@@ -186,14 +192,12 @@ $police_stations = police_stations();
                                 <input class="form-control" id="culpritNumber" type="number" placeholder="Culprit Name" name="culprit_number" required />
                                 <label for="culpritNumber">No of Peoples / व्यक्तियों की संख्या<span class="required-star">*</span></label>
 
-                            </div>
+=              </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="firWriter" type="text" placeholder="FIR Writer" name="fir_writer" required />
-
                                 <label for="firWriter">FIR Writer / कायमीकर्ता<span class="required-star">*</span></label>
-
                             </div>
                         </div>
                     </div>
@@ -210,6 +214,7 @@ $police_stations = police_stations();
 
                                 <input class="form-control" id="incidentTime" type="time" placeholder="Incident Time" name="incident_time" />
                                 <label for="incidentTime">Incident Time / घटना समय</label>
+
                             </div>
                         </div>
 
