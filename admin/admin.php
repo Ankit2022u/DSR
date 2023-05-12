@@ -65,25 +65,29 @@ $total_users = count_users();
                     </li>
                     <li>
                         <a href="dbf.php" class="nav-link link-dark">
-                            Dead Body Form / मर्ग प्रपत्र
+                            Inquest / मर्ग
                         </a>
                     </li>
                     <li>
                         <a href="mcf.php" class="nav-link link-dark">
-                            Major Crime Form / गंभीर अपराध प्रपत्र
+                            Major Crime / गंभीर अपराध
                         </a>
                     </li>
                     <li>
                         <a href="micf.php" class="nav-link link-dark">
-                            Minor Crime Form / अपराध प्रपत्र
+                            Minor Crime / सामान्य अपराध
                         </a>
                     </li>
                     <li>
                         <a href="ocf.php" class="nav-link link-dark">
-                            Active Case Form / सक्रिय मामला प्रपत्र
+                            Active Case / सक्रिय मामला
                         </a>
                     </li>
-
+                    <li>
+                        <a href="cjf.php" class="nav-link link-dark">
+                            Court judgement / कोर्ट का निर्णय
+                        </a>
+                    </li>
                 </ul>
             </div>
             <hr>

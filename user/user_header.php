@@ -52,13 +52,13 @@ if (!(isset($_SESSION['user-data']))) {
                 <a href="user.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (User Panel)</span>
                 </a>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <!-- Navigation links here -->
+                        Navigation links here
                     </ul>
                     <div class="float-end"><a href="../auth/logout.php" class="btn btn-outline-danger" name="logout">Log
                             Out</a></div>
-                </div>
+                </div> -->
             </div>
         </nav>
     </header>

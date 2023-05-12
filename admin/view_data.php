@@ -121,7 +121,7 @@ if (!(isset($_SESSION['user-data']))) {
                                     <option value="Jashpur">Jashpur</option>
                                     <option value="Korea">Korea</option>
                                 </select>
-                                <label for="district">District<span class="required-star">*</span></label>
+                                <label for="district">District / ज़िला<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
@@ -133,7 +133,7 @@ if (!(isset($_SESSION['user-data']))) {
                                     <option value="All">All</option>
 
                                 </select>
-                                <label for="policeStation">Police Station<span class="required-star">*</span></label>
+                                <label for="policeStation">Police Station / पुलिस थाना<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -144,28 +144,28 @@ if (!(isset($_SESSION['user-data']))) {
                                 <input class="form-control" id="startDate" type="date" placeholder="Start Date"
                                     name="start_date" required />
 
-                                <label for="startDate">Starting Date<span class="required-star">*</span></label>
+                                <label for="startDate">Starting Date / शुरुवाती तिथि<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="endDate" type="date" placeholder="End Date"
                                     name="end_date" required />
-                                <label for="endDate">Ending Date<span class="required-star">*</span></label>
+                                <label for="endDate">Ending Date / अंतिम तिथि<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <fieldset class="border p-2">
-                            <legend class="float-none w-auto p-2">Information You Want<span
+                            <legend class="float-none w-auto p-2">Information You Want / किस तरह की जानकारी आपको चाहिए ?<span
                                     class="required-star">*</span></legend>
                             <div class="col-md-6 col-lg-6 col-sm-12">
                                 <div class="mb-3">
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" id="deadBodiesDetails" type="checkbox"
                                             name="dead_bodies" />
-                                        <label class="form-check-label" for="deadBodiesDetails">Deadbody Details</label>
+                                        <label class="form-check-label" for="deadBodiesDetails">Deadbody Details (मर्ग संबंधी जानकारी)</label>
                                     </div>
                                 </div>
                             </div>
@@ -175,7 +175,7 @@ if (!(isset($_SESSION['user-data']))) {
                                         <input class="form-check-input" id="ongoingCasesDetails" type="checkbox"
                                             name="ongoing_cases" />
                                         <label class="form-check-label" for="ongoingCasesDetails">Ongoing Cases
-                                            Details</label>
+                                            Details (चल रहे मुकदमे संबंधी जानकारी)</label>
                                     </div>
                                 </div>
                             </div>
@@ -185,7 +185,7 @@ if (!(isset($_SESSION['user-data']))) {
                                         <input class="form-check-input" id="majorCrimesDetails" type="checkbox"
                                             name="major_crimes" />
                                         <label class="form-check-label" for="majorCrimesDetails">Major Crime
-                                            Details</label>
+                                            Details (गंभीर अपराध संबंधी जानकारी)</label>
                                     </div>
                                 </div>
                             </div>
@@ -195,7 +195,7 @@ if (!(isset($_SESSION['user-data']))) {
                                         <input class="form-check-input" id="minorCrimesDetails" type="checkbox"
                                             name="minor_crimes" />
                                         <label class="form-check-label" for="minorCrimesDetails">Minor Crime
-                                            Details</label>
+                                            Details (सामान्य अपराध संबंधी जानकारी)</label>
                                     </div>
                                 </div>
                             </div>

@@ -6,7 +6,7 @@ $police_stations = police_stations();
 ?>
 
 <!-- place navbar here -->
-<?php include('admin_header.php'); ?>
+<?php include('user_header.php'); ?>
 
 <main>
     <div class="row">
@@ -19,8 +19,8 @@ $police_stations = police_stations();
                 </a>
                 <hr> -->
                 <ul class="nav nav-pills flex-column mb-auto">
-                    <li class="nav-item">
-                        <a href="admin.php" class="nav-link link-dark" aria-current="page">
+                    <!-- <li class="nav-item">
+                        <a href="user.php" class="nav-link link-dark" aria-current="page">
                             Dashboard
                         </a>
                     </li>
@@ -73,7 +73,7 @@ $police_stations = police_stations();
                         <a href="ocf.php" class="nav-link link-dark">
                             Ongoing Case Form
                         </a>
-                    </li>
+                    </li> -->
 
                 </ul>
                 <hr>
@@ -98,13 +98,13 @@ $police_stations = police_stations();
                 $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
                 $type = htmlspecialchars($type, ENT_QUOTES, 'UTF-8');
 
-            ?>
-            <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
-                <strong>Hey!</strong>
-                <?= $message; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <?php
+                ?>
+                <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
+                    <strong>Hey!</strong>
+                    <?= $message; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php
                 unset($_SESSION['message']);
                 unset($_SESSION['type']);
             }
@@ -146,18 +146,19 @@ $police_stations = police_stations();
                                     <option value="">Select Option</option>
 
                                 </select>
-                                <label for="policeStation">Police Station / पुलिस थाना<span class="required-star">*</span></label>
+                                <label for="policeStation">Police Station / पुलिस थाना<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-
-                                <input class="form-control" id="diedBodyNumber" type="text"
-                                    placeholder="Died Body Number" name="dead_body_number" required />
-
-                                <label for="diedBodyNumber">Dead Body Number / मर्ग क्रमांक<span class="required-star">*</span></label>
+                                <input class="form-control" id="nameOfCourt" type="text" placeholder="Name Of Court"
+                                    name="name_of_court" required />
+                                <label for="nameOfCourt">Name Of Court / न्यायालय का नाम<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
@@ -170,57 +171,23 @@ $police_stations = police_stations();
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4 col-lg-4 col-sm-12">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="accidentDate" type="date" placeholder="Accident Date"
-                                    name="accident_date" required />
+                                <input class="form-control" id="resultDate" type="date" placeholder="Result Date"
+                                    name="result_date" required />
 
-                                <label for="accidentDate">Accident Date / घटना दिनांक<span class="required-star">*</span></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-4 col-sm-12">
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="accidentTime" type="time" placeholder="Accident Time"
-                                    name="accident_time" />
-
-                                <label for="accidentDate">Accident Time / घटना का समय</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-4 col-sm-12">
-                            <div class="form-floating mb-3">
-
-                                <input class="form-control" id="accidentPlace" type="text" placeholder="Accident Place"
-                                    name="accident_place" required />
-
-                                <label for="accidentPlace">Accident Place / घटना स्थल<span class="required-star">*</span></label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4 col-lg-4 col-sm-12">
-                            <div class="form-floating mb-3">
-
-                                <input class="form-control" id="informationDate" type="date"
-                                    placeholder="Information Date" name="information_date" required />
-                                <label for="informationDate">Information Date / सूचना दिनांक<span
+                                <label for="resultDate">Result Date / कयमी दिनांक<span
                                         class="required-star">*</span></label>
-
                             </div>
                         </div>
-                        <div class="col-md-4 col-lg-4 col-sm-12">
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="informationTime" type="time"
-                                    placeholder="Information Time" name="information_time" />
-                                <label for="informationTime">Information Time / सूचना का समय</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-4 col-sm-12">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
 
-                                <input class="form-control" id="applicant" type="text" placeholder="Applicant Name"
-                                    name="applicant_name" required />
-                                <label for="applicantName">Applicant Name / सूचक का नाम<span class="required-star">*</span></label>
+                                <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number"
+                                    name="crime_number" required />
+
+                                <label for="crimeNumber">Crime Number / अपराध क्रमांक<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -228,18 +195,20 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="deceased" type="text" placeholder="Deceased"
-                                    name="deceased_name" required />
 
-                                <label for="deceasedName">Deceased Name / मृतक का नाम<span class="required-star">*</span></label>
+                                <input class="form-control" id="applicantName" type="text" placeholder="Applicant Name"
+                                    name="applicant_name" required />
+
+                                <label for="applicantName">Applicant Name / प्रार्थी का नाम<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="firWriter" type="text" placeholder="FIR Writer"
-                                    name="fir_writer" required lang="hi" dir="auto" />
-
-                                <label for="firWriter">FIR Writer / कायमीकर्ता<span class="required-star">*</span></label>
+                                <input class="form-control" id="applicantAddress" type="text"
+                                    placeholder="Applicant Address" name="applicant_address" required />
+                                <label for="applicantAddress">Applicant Address / प्रार्थी का पता<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -247,17 +216,18 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-12">
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" id="causeOfDeath" type="text"
-                                    placeholder="Cause Of Death" style="height: 10rem;"
-                                    name="cause_of_death"></textarea>
-                                <label for="causeOfDeath">Cause Of Death / मृत्यु का कारण</label>
+                                <input class="form-control" id="judgementOfCourt" type="text"
+                                    placeholder="Judgement of Court" name="judgement_of_court" required />
+                                <label for="judgementOfCourt">Judgement Of Court / न्यायालय का फैसला<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12 float-end">
-                            <button type="submit" name="save_deadbody" class="btn btn-primary">Save Deadbody</button>
+                            <button type="submit" name="save_court_judgement" class="btn btn-primary">Save Court
+                                Judgement</button>
                         </div>
                     </div>
                 </div>
