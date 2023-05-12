@@ -65,7 +65,7 @@ $total_users = count_users();
                     </li>
                     <li>
                         <a href="dbf.php" class="nav-link link-dark">
-                            Dead Body Form / मर्ग प्रपत्र
+                        Inquest / मर्ग 
                         </a>
                     </li>
                     <li>
@@ -75,7 +75,7 @@ $total_users = count_users();
                     </li>
                     <li>
                         <a href="micf.php" class="nav-link link-dark">
-                            Minor Crime Form / अपराध प्रपत्र
+                            Minor Crime  / सामान्य अपराध
                         </a>
                     </li>
                     <li>
