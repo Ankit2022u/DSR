@@ -100,6 +100,93 @@ if (isset($_POST['save_deadbody'])) {
     }
 }
 
+
+// Save court judgement
+if (isset($_POST['save_court_judgement'])) {
+    $district = mysqli_real_escape_string($con, $_POST['district']);
+    $sub_division = mysqli_real_escape_string($con, $_POST['sub_division']);
+    $police_station = mysqli_real_escape_string($con, $_POST['police_station']);
+
+    $crime_number = mysqli_real_escape_string($con, $_POST['crime_number']);
+    $penal_code = mysqli_real_escape_string($con, $_POST['penal_code']);
+    $result_date = mysqli_real_escape_string($con, $_POST['result_date']);
+    $applicant_address = mysqli_real_escape_string($con, $_POST['applicant_address']);
+    $applicant_name = mysqli_real_escape_string($con, $_POST['applicant_name']);
+    $name_of_court = mysqli_real_escape_string($con, $_POST['name_of_court']);
+    $judgement_of_court = mysqli_real_escape_string($con, $_POST['judgement_of_court']);
+    $updated_by = $_SESSION['user-data']['user_id'];
+
+    // Validate input fields
+    $errors = array();
+    if (empty($crime_number)) {
+        $errors[] = "Crime Number is required.";
+    }
+    if (empty($penal_code)) {
+        $errors[] = "Section Number is required.";
+    }
+    if (empty($result_date)) {
+        $errors[] = "Result Date is required.";
+    }
+    if (empty($applicant_name)) {
+        $errors[] = "Applicant Name is required.";
+    }
+    if (empty($applicant_address)) {
+        $errors[] = "Applicant Address is required.";
+    }
+    if (empty($name_of_court)) {
+        $errors[] = "Name of Court is required.";
+    }
+    if (empty($judgement_of_court)) {
+        $errors[] = "Court Judgement is required.";
+    }
+
+    if (empty($errors)) {
+        // Prepare and bind parameters to prevent SQL injection
+        $stmt = $con->prepare("INSERT INTO court_judgements (district, sub_division, police_station, crime_number, penal_code, result_date, applicant_address, applicant_name, judgement_of_court, court_name, updated_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssssssss", $district, $sub_division, $police_station, $crime_number, $penal_code, $result_date, $applicant_address, $applicant_name, $judgement_of_court, $name_of_court, $updated_by);
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            $inserted_id = $stmt->insert_id;
+            $user = $_SESSION['user-data']['user_id'];
+            // Prepare and bind parameters for log query
+            $log_query = $con->prepare("INSERT INTO logs (status, created_by, table_name, table_id, operation, log_desc) VALUES (?, ?, ?, ?, ?, ?)");
+            $status = 1;
+            $operation = 'insert';
+            $log_desc = 'Court Judgement Data Filled.';
+            $table_name = 'court_judgements';
+            $log_query->bind_param("ssssss", $status, $user, $table_name, $inserted_id, $operation, $log_desc);
+            $log_query->execute();
+
+            $_SESSION['message'] = "Court Judgement data submitted successfully";
+            $_SESSION['type'] = "success";
+            if ($usertype === "admin") {
+                header("Location: ../admin/cjf.php");
+            } else {
+                header("Location: ../user/court_judgement_form.php");
+            }
+            exit(0);
+        } else {
+            $_SESSION['message'] = "Court Judgement data submission failed";
+            $_SESSION['type'] = "danger";
+            if ($usertype == "admin") {
+                header("Location: ../admin/cjf.php");
+            } else {
+                header("Location: ../user/court_judgement_form.php");
+            }
+            exit(0);
+        }
+    } else {
+        $_SESSION['message'] = $errors[0];
+        $_SESSION['type'] = "warning";
+        if ($usertype == "admin") {
+            header("Location: ../admin/cjf.php");
+        } else {
+            header("Location: ../user/court_judgement_form.php");
+        }
+    }
+}
+
 // Save major crime
 if (isset($_POST['save_major_crime'])) {
     $district = mysqli_real_escape_string($con, $_POST['district']);

@@ -83,9 +83,9 @@ if (!(isset($_SESSION['user-data']))) {
                     class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (Admin Panel)</span>
                 </a>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <!-- Commented out the unnecessary nav links for better security -->
+                        Commented out the unnecessary nav links for better security
                     </ul>
                     <div class="float-end">
                         <img src="../uploads/<?= htmlspecialchars($_SESSION['user-data']['user_type']); ?>/<?= htmlspecialchars($_SESSION['user-data']['profile_photo_path']); ?>"
@@ -97,7 +97,7 @@ if (!(isset($_SESSION['user-data']))) {
                             Out</a>
                     </div>
 
-                </div>
+                </div> -->
             </div>
         </nav>
     </header>

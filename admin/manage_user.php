@@ -124,7 +124,7 @@ require "../api/dbcon.php";
                                                 <th>Officer Name</th>
                                                 <th>Officer Rank</th>
                                                 <th>Police Station</th>
-                                                <th>Password</th>
+                                                <!-- <th>Password</th> -->
                                                 <th>User Type</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
@@ -157,9 +157,9 @@ require "../api/dbcon.php";
                                                         <td>
                                                             <?= htmlspecialchars($user['police_station']); ?>
                                                         </td>
-                                                        <td>
-                                                            <?= htmlspecialchars($user['password']); ?>
-                                                        </td>
+                                                        <!-- <td>
+                                                            <= htmlspecialchars($user['password']); ?>
+                                                        </td> -->
                                                         <td>
                                                             <?php if ($user['user_type'] == "admin") {
                                                                 echo "Administration";
