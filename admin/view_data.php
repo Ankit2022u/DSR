@@ -79,6 +79,12 @@ if (!(isset($_SESSION['user-data']))) {
                         </a>
                     </li>
 
+                    <li>
+                        <a href="imp_action.php" class="nav-link link-dark">
+                            Important Actions
+                        </a>
+                    </li>
+
                 </ul>
                 <hr>
                 <div class="profile">
@@ -95,13 +101,13 @@ if (!(isset($_SESSION['user-data']))) {
         <div class="main-content container col-md-9 col-sm-7">
             <?php
             if (isset($_SESSION['message'])) {
-                ?>
-                <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
-                    <strong>Hye!</strong>
-                    <?= $_SESSION['message']; ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                <?php
+            ?>
+            <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
+                <strong>Hye!</strong>
+                <?= $_SESSION['message']; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php
                 unset($_SESSION['message']);
             }
             ?>
@@ -126,8 +132,7 @@ if (!(isset($_SESSION['user-data']))) {
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                            <select class="form-select" name="police_station" id="police_station"
-                                    required>
+                                <select class="form-select" name="police_station" id="police_station" required>
 
                                     <option value="">Select Option</option>
                                     <option value="All">All</option>
@@ -196,6 +201,17 @@ if (!(isset($_SESSION['user-data']))) {
                                             name="minor_crimes" />
                                         <label class="form-check-label" for="minorCrimesDetails">Minor Crime
                                             Details</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                <div class="mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" id="importantAction" type="checkbox"
+                                            name="important_action" />
+                                        <label class="form-check-label" for="important_action">Important Action /
+                                            महत्वपूर्ण कार्यवाही</label>
                                     </div>
                                 </div>
                             </div>

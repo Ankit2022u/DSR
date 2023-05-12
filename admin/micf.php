@@ -78,11 +78,16 @@ $police_stations = police_stations();
                         </a>
                     </li>
 
+                    <li>
+                        <a href="imp_action.php" class="nav-link link-dark">
+                            Important Actions
+                        </a>
+                    </li>
+
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
-                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>
@@ -96,13 +101,13 @@ $police_stations = police_stations();
             if (isset($_SESSION['message']) && isset($_SESSION['type'])) {
                 $type = htmlspecialchars($_SESSION['type'], ENT_QUOTES, 'UTF-8'); // Sanitize the 'type' value
                 $message = htmlspecialchars($_SESSION['message'], ENT_QUOTES, 'UTF-8'); // Sanitize the 'message' value
-                ?>
+            ?>
                 <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
                     <strong>Hey!</strong>
                     <?= $message; ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-                <?php
+            <?php
                 unset($_SESSION['message']);
                 unset($_SESSION['type']);
             }
@@ -113,8 +118,7 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
-                                <select class="form-select" name="district" id="district"
-                                    onchange="update_police_stations()" required>
+                                <select class="form-select" name="district" id="district" onchange="update_police_stations()" required>
                                     <option value="Surguja">Surguja</option>
                                     <option value="Balrampur">Balrampur</option>
                                     <option value="Surajpur">Surajpur</option>
@@ -128,8 +132,7 @@ $police_stations = police_stations();
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="subDivision" aria-label="Sub Division"
-                                    name="sub_division" required>
+                                <select class="form-select" id="subDivision" aria-label="Sub Division" name="sub_division" required>
                                     <option value="Option1">Option1</option>
                                     <option value="Option2">Option2</option>
                                     <option value="Option3">Option3</option>
@@ -152,16 +155,14 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number"
-                                    name="crime_number" required />
+                                <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number" name="crime_number" required />
 
                                 <label for="crimeNumber">Crime Number<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="section" type="text" placeholder="Section"
-                                    name="penal_code" required />
+                                <input class="form-control" id="section" type="text" placeholder="Section" name="penal_code" required />
                                 <label for="section">Section<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -171,15 +172,13 @@ $police_stations = police_stations();
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
 
-                                <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name"
-                                    name="culprit_name" required />
+                                <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name" name="culprit_name" required />
                                 <label for="culpritName">Culprit Name<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="firWriter" type="text" placeholder="FIR Writer"
-                                    name="fir_writer" required />
+                                <input class="form-control" id="firWriter" type="text" placeholder="FIR Writer" name="fir_writer" required />
                                 <label for="firWriter">FIR Writer<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -188,15 +187,13 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="reportDate" type="date" placeholder="Report Date"
-                                    name="reporting_date" required />
+                                <input class="form-control" id="reportDate" type="date" placeholder="Report Date" name="reporting_date" required />
                                 <label for="reportDate">Report Date<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="reportTime" type="time" placeholder="Report Time"
-                                    name="reporting_time" />
+                                <input class="form-control" id="reportTime" type="time" placeholder="Report Time" name="reporting_time" />
                                 <label for="reportTime">Report Time</label>
                             </div>
                         </div>

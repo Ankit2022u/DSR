@@ -14,7 +14,7 @@ if (!(isset($_SESSION['user-data']))) {
         <div class="side-bar col-md-3 col-sm-5">
             <?php //include('side-bar.php'); 
             ?>
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" >
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
                 <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (User Panel)</span>
                 </a>
@@ -72,6 +72,12 @@ if (!(isset($_SESSION['user-data']))) {
                     <li>
                         <a href="change_password.php" class="nav-link active">
                             Change Password
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="imp_action.php" class="nav-link link-dark">
+                            Important Actions
                         </a>
                     </li>
 

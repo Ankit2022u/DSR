@@ -74,12 +74,16 @@ require "../api/dbcon.php";
                             Ongoing Case Form
                         </a>
                     </li>
+                    <li>
+                        <a href="imp_action.php" class="nav-link link-dark">
+                            Important Actions
+                        </a>
+                    </li>
 
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
-                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>
@@ -96,13 +100,13 @@ require "../api/dbcon.php";
                         if (isset($_SESSION['message']) && isset($_SESSION['type'])) {
                             $type = htmlspecialchars($_SESSION['type'], ENT_QUOTES, 'UTF-8'); // Sanitize the 'type' value
                             $message = htmlspecialchars($_SESSION['message'], ENT_QUOTES, 'UTF-8'); // Sanitize the 'message' value
-                            ?>
+                        ?>
                             <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
                                 <strong>Hey!</strong>
                                 <?= $message; ?>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
-                            <?php
+                        <?php
                             unset($_SESSION['message']);
                             unset($_SESSION['type']);
                         }
@@ -114,23 +118,20 @@ require "../api/dbcon.php";
 
                                     <label for="district" class="form-label">District</label>
                                     <span class="required-star">*</span>
-                                    <input type="text" id="district" class="form-control" name="district"
-                                        placeholder="Enter District" required>
+                                    <input type="text" id="district" class="form-control" name="district" placeholder="Enter District" required>
                                 </div>
                                 <div class="mb-3">
 
                                     <label for="sub_division" class="form-label">Sub Division</label>
                                     <span class="required-star">*</span>
-                                    <input type="text" id="sub_division" class="form-control" name="sub_division"
-                                        placeholder="Enter Sub Division" required>
+                                    <input type="text" id="sub_division" class="form-control" name="sub_division" placeholder="Enter Sub Division" required>
 
                                 </div>
                                 <div class="mb-3">
 
                                     <label for="police_station" class="form-label">Police Station</label>
                                     <span class="required-star">*</span>
-                                    <input type="text" id="police_station" class="form-control" name="police_station"
-                                        placeholder="Enter Police Station" required>
+                                    <input type="text" id="police_station" class="form-control" name="police_station" placeholder="Enter Police Station" required>
                                 </div>
 
                                 <div class="mb-3 d-grid">

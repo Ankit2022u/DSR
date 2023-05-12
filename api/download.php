@@ -324,6 +324,94 @@ if (isset($_POST['dead_body_download'])) {
     echo $html;
 }
 
+// important action
+if (isset($_POST['important_action_download'])) {
+    $output_dead_bodies = $_SESSION['important_action'];
+
+    $html = "<table>
+                <tr>
+                <th>क्रमांक</th>
+                <th>ज़िला</th>
+                <th>संभाग</th>
+                <th>पुलिस थाना</th>
+                <th>मर्ग क्रमांक</th>
+                <th>धारा</th>
+                <th>घटना दिनांक</th>
+                <th>घटना का समय </th>
+                <th>घटना स्थान</th>
+                <th>सूचना दिनांक</th>
+                <th>सूचना का समय</th>
+                <th>आवेदक का नाम</th>
+                <th>मृतक का नाम</th>
+                <th>कायमीकर्ता</th>
+                <th>मृत्यु का कारण</th>
+                </tr>";
+    $i = 1;
+    foreach ($output_dead_bodies as $deadbody) {
+        foreach ($deadbody as $row) {
+            $html .= "<tr>
+                        <td>
+                            " . $i++ . "
+                        </td>
+                        <td>
+                            " . $row['district'] . " 
+                        </td>
+                        <td>
+                            " . $row['sub_division'] . " 
+                        </td>
+                        <td>
+                            " . $row['police_station'] . " 
+                        </td>
+                        <td>
+                            " . $row['dead_body_number'] . " 
+                        </td>
+                        <td>
+                            " . $row['penal_code'] . " 
+                        </td>
+                        <td>
+                        " . $row['accident_date'] . " 
+                        </td>
+                        <td>
+                        " . $row['accident_time'] . " 
+                        </td>
+                        <td>
+                            " . $row['accident_place'] . " 
+                        </td>
+                        <td>
+                            " . $row['information_date'] . " 
+                        </td>
+                        <td>
+                            " . $row['information_time'] . " 
+                        </td>
+                        <td>
+                            " . $row['applicant_name'] . " 
+                        </td>
+                        <td>
+                            " . $row['deceased_name'] . " 
+                        </td>
+                        <td>
+                            " . $row['fir_writer'] . " 
+                        </td>
+                        <td>
+                            " . $row['cause_of_death'] . " 
+                        </td>
+                    </tr>";
+        }
+    }
+
+    $html .= "</table>";
+
+    $html = '<html xmlns:o="urn:schemas-microsoft-com:office:office"
+    xmlns:x="urn:schemas-microsoft-com:office:excel"
+    xmlns="http://www.w3.org/TR/REC-html40">'
+        . '<head><meta http-equiv="Content-type" content="text/html;charset=UTF-8" /></head>'
+        . '<body>' . $html . '</body></html>';
+
+    header('Content-Type: application/xls');
+    header('Content-Disposition: attachment; filename=dead_bodies.xls');
+    echo $html;
+}
+
 ?>
 
 <!-- à¤¹à¥‡à¤²à¥‹ à¤†à¤ª à¤•à¥ˆà¤¸à¥‡ -->

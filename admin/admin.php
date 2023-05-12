@@ -84,6 +84,12 @@ $total_users = count_users();
                         </a>
                     </li>
 
+                    <li>
+                        <a href="imp_action.php" class="nav-link link-dark">
+                            Important Actions
+                        </a>
+                    </li>
+
                 </ul>
             </div>
             <hr>

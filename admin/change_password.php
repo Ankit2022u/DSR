@@ -76,12 +76,17 @@ if (!(isset($_SESSION['user-data']))) {
                         </a>
                     </li>
 
+                    <li>
+                        <a href="imp_action.php" class="nav-link link-dark">
+                            Important Actions
+                        </a>
+                    </li>
+
                 </ul>
             </div>
             <hr>
             <div class="profile">
-                <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
-                    alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                 <strong>
                     <?= $_SESSION['user-data']['officer_name']; ?>
                 </strong>
@@ -104,15 +109,14 @@ if (!(isset($_SESSION['user-data']))) {
                                 $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
                                 $type = htmlspecialchars($type, ENT_QUOTES, 'UTF-8');
 
-                                ?>
+                            ?>
                                 <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
                                     <span>
                                         <?= $message; ?>
                                     </span>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
-                                <?php
+                            <?php
                                 unset($_SESSION['message']);
                                 unset($_SESSION['type']);
                             }
@@ -120,34 +124,27 @@ if (!(isset($_SESSION['user-data']))) {
 
                             <div class="card-body">
                                 <form method="POST" action="../auth/change_password.php">
-                                    <input type="hidden" id="user_id" class="form-control" name="user_id"
-                                        value="<?= $_SESSION['user-data']['user_id']; ?>">
+                                    <input type="hidden" id="user_id" class="form-control" name="user_id" value="<?= $_SESSION['user-data']['user_id']; ?>">
                                     <div class="mb-3">
                                         <label for="old_password" class="form-label">Old Password</label>
                                         <span class="required-star">*</span>
-                                        <input type="password" id="old_password" class="form-control"
-                                            name="old_password" placeholder="Enter Current Password" required>
-                                        <span class="pass_icon" onclick="changeIcon(1)"><i id="icon1"
-                                                class="bi bi-eye-fill"></i></span>
+                                        <input type="password" id="old_password" class="form-control" name="old_password" placeholder="Enter Current Password" required>
+                                        <span class="pass_icon" onclick="changeIcon(1)"><i id="icon1" class="bi bi-eye-fill"></i></span>
 
                                     </div>
                                     <div class="mb-3">
                                         <label for="new_password" class="form-label">New Password</label>
                                         <span class="required-star">*</span>
-                                        <input type="password" id="new_password" class="form-control"
-                                            name="new_password" placeholder="Enter New Password" required>
-                                        <span class="pass_icon" onclick="changeIcon(2)"><i id="icon2"
-                                                class="bi bi-eye-fill"></i></span>
+                                        <input type="password" id="new_password" class="form-control" name="new_password" placeholder="Enter New Password" required>
+                                        <span class="pass_icon" onclick="changeIcon(2)"><i id="icon2" class="bi bi-eye-fill"></i></span>
 
                                     </div>
                                     <div class="mb-3">
                                         <label for="confirm_new_password" class="form-label">Confirm New
                                             Password</label>
                                         <span class="required-star">*</span>
-                                        <input type="password" id="confirm_new_password" class="form-control"
-                                            name="confirm_new_password" placeholder="Confirm New Password" required>
-                                        <span class="pass_icon" onclick="changeIcon(3)"><i id="icon3"
-                                                class="bi bi-eye-fill"></i></span>
+                                        <input type="password" id="confirm_new_password" class="form-control" name="confirm_new_password" placeholder="Confirm New Password" required>
+                                        <span class="pass_icon" onclick="changeIcon(3)"><i id="icon3" class="bi bi-eye-fill"></i></span>
                                     </div>
                                     <div class="mb-3 d-grid">
                                         <button type="submit" class="btn btn-primary" name="change_password_admin">
