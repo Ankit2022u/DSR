@@ -21,57 +21,57 @@ require "../api/dbcon.php";
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
                         <a href="admin.php" class="nav-link link-dark" aria-current="page">
-                            Dashboard
+                            Dashboard / डैशबोर्ड
                         </a>
                     </li>
                     <li>
                         <a href="manage_user.php" class="nav-link active">
-                            Manage Users
+                            Manage Users / उपयोगकर्ताओं का प्रबंधन
                         </a>
                     </li>
                     <li>
                         <a href="view_logs.php" class="nav-link link-dark">
-                            View Logs
+                            View Logs / लॉग्स को देखें
                         </a>
                     </li>
                     <li>
                         <a href="view_data.php" class="nav-link link-dark">
-                            View Data
+                            View Data / डेटा का हिसाब
                         </a>
                     </li>
                     <li>
                         <a href="change_password.php" class="nav-link link-dark">
-                            Change Password
+                            Change Password / पासवर्ड को बदले
                         </a>
                     </li>
                     <li>
                         <a href="police_station.php" class="nav-link link-dark">
-                            Police Stations
+                            Police Stations / थाना
                         </a>
                     </li>
                     <li>
                         <a href="profile.php" class="nav-link link-dark">
-                            View Profile
+                            View Profile /  प्रोफाइल
                         </a>
                     </li>
                     <li>
                         <a href="dbf.php" class="nav-link link-dark">
-                            Dead Body Form
+                            Inquest / मर्ग
                         </a>
                     </li>
                     <li>
                         <a href="mcf.php" class="nav-link link-dark">
-                            Major Crime Form
+                            Major Crime / गंभीर अपराध
                         </a>
                     </li>
                     <li>
                         <a href="micf.php" class="nav-link link-dark">
-                            Minor Crime Form
+                            Minor Crime / सामान्य अपराध
                         </a>
                     </li>
                     <li>
                         <a href="ocf.php" class="nav-link link-dark">
-                            Ongoing Case Form
+                            Ongoing Case / सक्रिय मामला
                         </a>
                     </li>
                     <li>

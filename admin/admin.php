@@ -65,6 +65,7 @@ $total_users = count_users();
                     </li>
                     <li>
                         <a href="dbf.php" class="nav-link link-dark">
+
                             Inquest / मर्ग
                         </a>
                     </li>
@@ -75,6 +76,7 @@ $total_users = count_users();
                     </li>
                     <li>
                         <a href="micf.php" class="nav-link link-dark">
+
                             Minor Crime / सामान्य अपराध
                         </a>
                     </li>
