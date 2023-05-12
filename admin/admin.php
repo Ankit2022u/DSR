@@ -70,7 +70,7 @@ $total_users = count_users();
                     </li>
                     <li>
                         <a href="mcf.php" class="nav-link link-dark">
-                            Major Crime Form / गंभीर अपराध प्रपत्र
+                            Major Crime / गंभीर अपराध
                         </a>
                     </li>
                     <li>
