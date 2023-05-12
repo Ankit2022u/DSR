@@ -125,7 +125,7 @@ $police_stations = police_stations();
                                     <option value="Jashpur">Jashpur</option>
                                     <option value="Korea">Korea</option>
                                 </select>
-                                <label for="district">District<span class="required-star">*</span></label>
+                                <label for="district">District / ज़िला<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
@@ -135,7 +135,7 @@ $police_stations = police_stations();
                                     <option value="Option2">Option2</option>
                                     <option value="Option3">Option3</option>
                                 </select>
-                                <label for="subDivision">Sub Division<span class="required-star">*</span></label>
+                                <label for="subDivision">Sub Division / अनुभाग<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
@@ -145,7 +145,7 @@ $police_stations = police_stations();
                                     <option value="">Select Option</option>
 
                                 </select>
-                                <label for="policeStation">Police Station<span class="required-star">*</span></label>
+                                <label for="policeStation">Police Station / पुलिस थाना<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -153,20 +153,25 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number" name="crime_number" required />
-                                <label for="crimeNumber">Crime Number<span class="required-star">*</span></label>
+
+                                <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number"
+                                    name="crime_number" required />
+                                <label for="crimeNumber">Crime Number / अपराध क्रमांक<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="section" type="text" placeholder="Section" name="penal_code" required />
-                                <label for="section">Section<span class="required-star">*</span></label>
+
+                                <input class="form-control" id="section" type="text" placeholder="Section"
+                                    name="penal_code" required />
+                                <label for="section">Section / धारा<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="firDate" type="date" placeholder="FIR Date" name="fir_date" required />
-                                <label for="firDate">FIR Date<span class="required-star">*</span></label>
+                                <input class="form-control" id="firDate" type="date" placeholder="FIR Date"
+                                    name="fir_date" required />
+                                <label for="firDate">FIR Date / एफ.आई.आर. का दिनाक<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -174,14 +179,18 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="nameOfCourt" type="text" placeholder="Name Of Court" name="name_of_court" required />
-                                <label for="nameOfCourt">Name Of Court<span class="required-star">*</span></label>
+
+                                <input class="form-control" id="nameOfCourt" type="text" placeholder="Name Of Court"
+                                    name="name_of_court" required />
+                                <label for="nameOfCourt">Name Of Court / न्यायालय का नाम<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name" name="culprit_name" required />
-                                <label for="culpritName">Culprit Name<span class="required-star">*</span></label>
+
+                                <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name"
+                                    name="culprit_name" required />
+                                <label for="culpritName">Culprit Name / आरोपी/संदिग्ध का नाम<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -189,8 +198,10 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-8 col-lg-8 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="culpritAddress" type="text" placeholder="Culprit Address" name="culprit_address" required />
-                                <label for="culpritAddress">Culprit Address<span class="required-star">*</span></label>
+
+                                <input class="form-control" id="culpritAddress" type="text"
+                                    placeholder="Culprit Address" name="culprit_address" required />
+                                <label for="culpritAddress">Culprit Address / आरोपी/संदिग्ध का पता<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
@@ -200,7 +211,7 @@ $police_stations = police_stations();
                                     <option value="Option2">Option2</option>
                                     <option value="Option3">Option3</option>
                                 </select>
-                                <label for="caseStatus">Case status</label>
+                                <label for="caseStatus">Case status / प्ररण की अद्यतन स्थिति</label>
                             </div>
                         </div>
                     </div>
@@ -208,8 +219,11 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-12">
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" id="judgementOfCourt" type="text" placeholder="Judgement Of Court" style="height: 10rem;" name="judgement_of_court"></textarea>
-                                <label for="judgementOfCourt">Judgement Of Court</label>
+
+                                <textarea class="form-control" id="judgementOfCourt" type="text"
+                                    placeholder="Judgement Of Court" style="height: 10rem;"
+                                    name="judgement_of_court"></textarea>
+                                <label for="judgementOfCourt">Judgement Of Court / न्यायालय के फैसले का संक्षिप्त विवरण</label>
                             </div>
                         </div>
                     </div>
