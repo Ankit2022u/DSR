@@ -13,7 +13,8 @@ require "../api/functions.php";
 <main>
     <div class="row">
         <div class="side-bar col-md-3 col-sm-5">
-            <?php //include('side-bar.php'); ?>
+            <?php //include('side-bar.php'); 
+            ?>
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
                 <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (User Panel)</span>
@@ -76,12 +77,17 @@ require "../api/functions.php";
                         </a>
                     </li>
 
+                    <li>
+                        <a href="imp_action.php" class="nav-link link-dark">
+                            Important Actions
+                        </a>
+                    </li>
+
 
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
-                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>
@@ -105,7 +111,7 @@ require "../api/functions.php";
 
                             if (mysqli_num_rows($query_run) > 0) {
                                 foreach ($query_run as $user) {
-                                    ?>
+                            ?>
                                     <div class="card-body">
                                         <!-- Start Details -->
                                         <div class="row">
@@ -174,14 +180,13 @@ require "../api/functions.php";
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-sm-12">
-                                                <img src="../uploads/user/<?= $user['profile_photo_path']; ?>"
-                                                    id="profile_photo" class="img-fluid" />
+                                                <img src="../uploads/user/<?= $user['profile_photo_path']; ?>" id="profile_photo" class="img-fluid" />
                                             </div>
                                         </div>
 
                                         <!-- End details -->
                                     </div>
-                                    <?php
+                            <?php
                                 }
                             } else {
                                 echo "No Records Found";

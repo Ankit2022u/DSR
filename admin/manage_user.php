@@ -11,7 +11,8 @@ require "../api/dbcon.php";
 <main>
     <div class="row">
         <div class="side-bar col-md-3 col-sm-5">
-            <?php //include('side-bar.php'); ?>
+            <?php //include('side-bar.php'); 
+            ?>
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
                 <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (Admin Panel)</span>
@@ -73,12 +74,15 @@ require "../api/dbcon.php";
                             Ongoing Case / सक्रिय मामला
                         </a>
                     </li>
-
+                    <li>
+                        <a href="imp_action.php" class="nav-link link-dark">
+                            Important Actions
+                        </a>
+                    </li>
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
-                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>
@@ -97,14 +101,13 @@ require "../api/dbcon.php";
                                 if (isset($_SESSION['message'])) {
                                     $type = htmlspecialchars($_SESSION['type'], ENT_QUOTES, 'UTF-8');
                                     $message = htmlspecialchars($_SESSION['message'], ENT_QUOTES, 'UTF-8');
-                                    ?>
+                                ?>
                                     <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
                                         <strong>Information: </strong>
                                         <?= $message; ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>
-                                    <?php
+                                <?php
                                     unset($_SESSION['message']);
                                 }
                                 ?>
@@ -124,7 +127,7 @@ require "../api/dbcon.php";
                                                 <th>Officer Name</th>
                                                 <th>Officer Rank</th>
                                                 <th>Police Station</th>
-                                                <th>Password</th>
+                                                <!-- <th>Password</th> -->
                                                 <th>User Type</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
@@ -139,7 +142,7 @@ require "../api/dbcon.php";
 
                                             if (mysqli_num_rows($result) > 0) {
                                                 while ($user = mysqli_fetch_assoc($result)) {
-                                                    ?>
+                                            ?>
                                                     <!-- Display user data in table rows with proper output encoding -->
                                                     <tr>
                                                         <td>
@@ -157,9 +160,9 @@ require "../api/dbcon.php";
                                                         <td>
                                                             <?= htmlspecialchars($user['police_station']); ?>
                                                         </td>
-                                                        <td>
-                                                            <?= htmlspecialchars($user['password']); ?>
-                                                        </td>
+                                                        <!-- <td>
+                                                            <= htmlspecialchars($user['password']); ?>
+                                                        </td> -->
                                                         <td>
                                                             <?php if ($user['user_type'] == "admin") {
                                                                 echo "Administration";
@@ -177,13 +180,9 @@ require "../api/dbcon.php";
                                                             } ?>
                                                         </td>
                                                         <td>
-                                                            <a href="update_user.php?uid=<?= htmlspecialchars($user['uid']); ?>"
-                                                                class="btn btn-primary">Edit</a>
-                                                            <form action="change_user_status.php" method="post"
-                                                                class="d-inline">
-                                                                <button type="submit" name="change_status"
-                                                                    value=<?= htmlspecialchars($user['uid']); ?>
-                                                                    class="btn btn-<?= $color; ?>">
+                                                            <a href="update_user.php?uid=<?= htmlspecialchars($user['uid']); ?>" class="btn btn-primary">Edit</a>
+                                                            <form action="change_user_status.php" method="post" class="d-inline">
+                                                                <button type="submit" name="change_status" value=<?= htmlspecialchars($user['uid']); ?> class="btn btn-<?= $color; ?>">
                                                                     <?php if ($user['status']) {
                                                                         echo 'Deactivate';
                                                                     } else {
@@ -194,7 +193,7 @@ require "../api/dbcon.php";
                                                         </td>
                                                     </tr>
 
-                                                    <?php
+                                            <?php
                                                 }
                                             } else {
                                                 echo "No Records Found";

@@ -75,6 +75,12 @@ require "../api/dbcon.php";
                         </a>
                     </li>
 
+                    <li>
+                        <a href="imp_action.php" class="nav-link link-dark">
+                            Important Actions
+                        </a>
+                    </li>
+
                 </ul>
                 <hr>
                 <div class="profile">

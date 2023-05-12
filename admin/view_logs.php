@@ -76,12 +76,17 @@ require "../api/functions.php";
                         </a>
                     </li>
 
+                    <li>
+                        <a href="imp_action.php" class="nav-link link-dark">
+                            Important Actions
+                        </a>
+                    </li>
+
                 </ul>
             </div>
             <hr>
             <div class="profile">
-                <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
-                    alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                 <strong>
                     <?= $_SESSION['user-data']['officer_name']; ?>
                 </strong>
@@ -119,7 +124,7 @@ require "../api/functions.php";
 
                                 if (mysqli_num_rows($query_run1) > 0) {
                                     while ($log = mysqli_fetch_assoc($query_run1)) {
-                                        ?>
+                                ?>
                                         <tr>
                                             <td>
                                                 <?= htmlspecialchars($log['lid']); ?>
@@ -131,18 +136,18 @@ require "../api/functions.php";
                                                 <?= htmlspecialchars($log['table_id']); ?>
                                             </td>
                                             <td class="text-<?php
-                                            if ($log['operation'] == "insert") {
-                                                echo "success";
-                                            } else if ($log['operation'] == "update") {
-                                                echo "primary";
-                                            } else if ($log['operation'] == "delete") {
-                                                echo "danger";
-                                            } else if ($log['operation'] == "login") {
-                                                echo "warning";
-                                            } else {
-                                                echo "dark";
-                                            }
-                                            ?>">
+                                                            if ($log['operation'] == "insert") {
+                                                                echo "success";
+                                                            } else if ($log['operation'] == "update") {
+                                                                echo "primary";
+                                                            } else if ($log['operation'] == "delete") {
+                                                                echo "danger";
+                                                            } else if ($log['operation'] == "login") {
+                                                                echo "warning";
+                                                            } else {
+                                                                echo "dark";
+                                                            }
+                                                            ?>">
                                                 <?= htmlspecialchars(ucfirst($log['operation'])); ?>
                                             </td>
                                             <td>
@@ -170,7 +175,7 @@ require "../api/functions.php";
                                             </td>
 
                                         </tr>
-                                        <?php
+                                <?php
                                     }
                                 } else {
                                     echo "No Records Found";

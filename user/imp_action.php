@@ -3,7 +3,6 @@ session_start();
 require "../api/dbcon.php";
 require "../api/functions.php";
 $police_stations = police_stations();
-
 ?>
 
 <header>
@@ -42,7 +41,7 @@ $police_stations = police_stations();
                     </li>
 
                     <li>
-                        <a href="ongoing_case_form.php" class="nav-link active">
+                        <a href="ongoing_case_form.php" class="nav-link link-dark">
                             Ongoing Case
                         </a>
                     </li>
@@ -52,12 +51,12 @@ $police_stations = police_stations();
                             Minor Crime
                         </a>
                     </li>
-
                     <!-- <li>
                         <a class="nav-link link-dark" href="edit.php">
                             Edit
                         </a>
                     </li> -->
+
 
                     <li>
                         <a class="nav-link link-dark" href="feedback.php">
@@ -78,7 +77,7 @@ $police_stations = police_stations();
                     </li>
 
                     <li>
-                        <a href="imp_action.php" class="nav-link link-dark">
+                        <a href="imp_action.php" class="nav-link active">
                             Important Actions
                         </a>
                     </li>
@@ -87,6 +86,7 @@ $police_stations = police_stations();
                 </ul>
                 <hr>
                 <div class="profile">
+
                     <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
@@ -98,17 +98,23 @@ $police_stations = police_stations();
 
         <div class="main-content col-md-9 col-sm-7">
             <?php
-            if (isset($_SESSION['message'])) {
-                $type = $_SESSION['type'];
+            if (isset($_SESSION['message']) && isset($_SESSION['type'])) {
                 $message = $_SESSION['message'];
-                unset($_SESSION['message']); // Remove session data after use to prevent data leaks
+                $type = $_SESSION['type'];
+
+                // Sanitize message and type to prevent XSS attacks
+                $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+                $type = htmlspecialchars($type, ENT_QUOTES, 'UTF-8');
+
             ?>
-                <div class="alert alert-<?php echo htmlspecialchars($type); ?> alert-dismissible fade show" role="alert">
-                    <strong>Hye!</strong>
-                    <?php echo htmlspecialchars($message); ?>
+                <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
+                    <strong>Hey!</strong>
+                    <?= $message; ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php
+                unset($_SESSION['message']);
+                unset($_SESSION['type']);
             }
             ?>
             <form action="../api/form_submissions.php" method="post">
@@ -125,12 +131,13 @@ $police_stations = police_stations();
                                     <option value="Jashpur">Jashpur</option>
                                     <option value="Korea">Korea</option>
                                 </select>
-                                <label for="district">District / ज़िला<span class="required-star">*</span></label>
+                                <label for="district">District / जिला<span class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
                                 <select class="form-select" id="subDivision" aria-label="Sub Division" name="sub_division" required>
+
                                     <option value="Option1">Option1</option>
                                     <option value="Option2">Option2</option>
                                     <option value="Option3">Option3</option>
@@ -145,89 +152,76 @@ $police_stations = police_stations();
                                     <option value="">Select Option</option>
 
                                 </select>
-                                <label for="policeStation">Police Station / पुलिस थाना<span class="required-star">*</span></label>
+                                <label for="policeStation">Police Station / थाना<span class="required-star">*</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-sm-12">
+                            <div class="form-floating mb-3">
+                                <!-- <textarea class="form-control" id="causeOfDeath" type="text" placeholder="Cause Of Death" style="height: 10rem;" name="cause_of_death"></textarea> -->
+
+                                <textarea class="form-control" id="arrest_in_major_crime" type="text" placeholder="गंभीर अपराधों में गिरफ्तारि / महत्वपूर्ण गिरफ्तारि" name="arrest_in_major_crime" style="height: 5rem;" required></textarea>
+                                <label for="policeStation">गंभीर अपराधों में गिरफ्तारि / महत्वपूर्ण गिरफ्तारि<span class="required-star">*</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-sm-12">
+                            <div class="form-floating mb-3">
+
+                                <textarea class="form-control" id="decision_given_by_the_court" type="text" placeholder="कोर्ट द्वारा दिए गये निर्णय (दोषमुक्त / सजा / जमानत / रद्द)" style="height: 5rem;" name="decision_given_by_the_court" required></textarea>
+
+                                <label for="decision_given_by_the_court">कोर्ट द्वारा दिए गये निर्णय (दोषमुक्त / सजा /
+                                    जमानत / रद्द)<span class="required-star">*</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-12 col-lg-12 col-sm-12">
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" id="missingManDocument" type="text" placeholder="आपरेशन मुस्कान / गुम इंसान दस्तायी" name="missing_man_document" style="height: 5rem;" required></textarea>
+                                <label for="missing_man_document">आपरेशन मुस्कान / गुम इंसान दस्तायी<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4 col-lg-4 col-sm-12">
+                        <div class="col-md-12 col-lg-12 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number"
-                                    name="crime_number" required />
-                                <label for="crimeNumber">Crime Number / अपराध क्रमांक<span class="required-star">*</span></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-4 col-sm-12">
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="section" type="text" placeholder="Section"
-                                    name="penal_code" required />
-                                <label for="section">Section / धारा<span class="required-star">*</span></label>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-4 col-sm-12">
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="firDate" type="date" placeholder="FIR Date"
-                                    name="fir_date" required />
-                                <label for="firDate">FIR Date / एफ.आई.आर. का दिनाक<span class="required-star">*</span></label>
+                                <textarea class="form-control" id="miscellaneous" type="text" placeholder="विविध जैसे जन जागरुकता अभियान मे विशेष सफलता या प्राण रक्षा, गिरफ्तारी वारंटो की तमिलि आदि" style="height: 5rem;" name="miscellaneous" required></textarea>
+
+                                <label for="miscellaneous">विविध जैसे जन जागरुकता अभियान मे विशेष सफलता या प्राण
+                                    रक्षा,गिरफ्तारी वारंटो की तमिलि आदि<span class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6 col-lg-6 col-sm-12">
+                        <div class="col-md-12 col-lg-12 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="nameOfCourt" type="text" placeholder="Name Of Court"
-                                    name="name_of_court" required />
-                                <label for="nameOfCourt">Name Of Court / न्यायालय का नाम<span class="required-star">*</span></label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-6 col-sm-12">
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name"
-                                    name="culprit_name" required />
-                                <label for="culpritName">Culprit Name / आरोपी/संदिग्ध का नाम<span class="required-star">*</span></label>              </div>
-                        </div>
-                    </div>
+                                <textarea class="form-control" id="robbery" type="text" placeholder="डकैती / लुट / चोरी का खुलासा" name="robbery" style="height: 5rem;" required></textarea>
 
-                    <div class="row">
-                        <div class="col-md-8 col-lg-8 col-sm-12">
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="culpritAddress" type="text"
-                                    placeholder="Culprit Address" name="culprit_address" required />
-                                <label for="culpritAddress">Culprit Address / आरोपी/संदिग्ध का पता<span class="required-star">*</span></label>
+                                <label for="robbery">डकैती / लुट / चोरी का खुलासा<span class="required-star">*</span></label>
                             </div>
                         </div>
-                        <div class="col-md-4 col-lg-4 col-sm-12">
+                        <div class="col-md-12 col-lg-12 col-sm-12">
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="caseStatus" aria-label="Case Status" name="case_status">
-                                    <option value="Option1">Option1</option>
-                                    <option value="Option2">Option2</option>
-                                    <option value="Option3">Option3</option>
-                                </select>
-                                <label for="caseStatus">Case status / प्ररण की अद्यतन स्थिति</label>
+                                <textarea class="form-control" id="actionTakenUnder" type="text" placeholder="धारा 102 के तहत कि गई कार्यवाही" style="height: 5rem;" name="action_taken_under"></textarea>
+
+                                <label for="action_taken_under">धारा 102 के तहत कि गई कार्यवाही</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-12 float-end">
+                                <button type="submit" name="save_imp_action" class="btn btn-primary">Save Important
+                                    Action</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" id="judgementOfCourt" type="text"
-                                    placeholder="Judgement Of Court" style="height: 10rem;"
-                                    name="judgement_of_court"></textarea>
-                                <label for="judgementOfCourt">Judgement Of Court / न्यायालय के फैसले का संक्षिप्त विवरण</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 col-lg-6 col-sm-12">
-                            <button class="btn btn-primary" type="submit" name="save_ongoing_case">Save Ongoing
-                                Case</button>
-                        </div>
-                    </div>
-                </div>
             </form>
         </div>
     </div>

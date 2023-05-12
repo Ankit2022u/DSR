@@ -65,7 +65,8 @@ $total_users = count_users();
                     </li>
                     <li>
                         <a href="dbf.php" class="nav-link link-dark">
-                        Inquest / मर्ग 
+
+                            Inquest / मर्ग
                         </a>
                     </li>
                     <li>
@@ -75,12 +76,24 @@ $total_users = count_users();
                     </li>
                     <li>
                         <a href="micf.php" class="nav-link link-dark">
-                            Minor Crime  / सामान्य अपराध
+
+                            Minor Crime / सामान्य अपराध
                         </a>
                     </li>
                     <li>
                         <a href="ocf.php" class="nav-link link-dark">
-                            Active Case  / सक्रिय मामला 
+                            Active Case / सक्रिय मामला
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cjf.php" class="nav-link link-dark">
+                            Court judgement / कोर्ट का निर्णय
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="imp_action.php" class="nav-link link-dark">
+                            Important Actions
                         </a>
                     </li>
 
