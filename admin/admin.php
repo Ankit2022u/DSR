@@ -80,7 +80,7 @@ $total_users = count_users();
                     </li>
                     <li>
                         <a href="ocf.php" class="nav-link link-dark">
-                            Active Case Form / सक्रिय मामला प्रपत्र
+                            Active Case  / सक्रिय मामला 
                         </a>
                     </li>
 
