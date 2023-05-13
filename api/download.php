@@ -8,19 +8,16 @@ if (isset($_POST['major_crime_download'])) {
                 <tr>
                     <th>क्रमांक</th>
                     <th>ज़िला</th>
-                    <th>संभाग</th>
+                    <th>अनुभाग</th>
                     <th>पुलिस थाना</th>
                     <th>अपराध क्रमांक</th>
                     <th>धारा</th>
                     <th>प्रार्थी का नाम एवम् पता</th>
-                    <th>घटना दिनांक</th>
-                    <th>घटना का समय</th>
+                    <th>घटना दिनांक एवम् समय</th>
                     <th>घटना स्थल</th>
-                    <th>सूचना दिनाक</th>
-                    <th>सूचना का समय</th>
+                    <th>सूचना दिनाक एवम् समय</th>
                     <th>आरोपी/संदिग्ध का नाम व पता</th>
-                    <th>गिरफ्तारी का दिनाक</th>
-                    <th>गिरफ्तारी का समय</th>
+                    <th>गिरफ्तारी का दिनाक एवम् समय</th>
                     <th>पीड़ित का नाम</th>
                     <th>अपराध का संक्षिप्त विवरण</th>
                     <th>गंभीर अपराध ?</th>
@@ -31,8 +28,10 @@ if (isset($_POST['major_crime_download'])) {
         foreach ($majorcrime as $row) {
             if ($row['is_major_crime']) {
                 $row_val = "Yes";
+                $victim_name = "";
             } else {
                 $row_val = "No";
+                $victim_name = $row['victim_name'];
             }
             $html .= "<tr>
                         <td>
@@ -54,34 +53,25 @@ if (isset($_POST['major_crime_download'])) {
                             " . $row['penal_code'] . " 
                         </td>
                         <td>
-                            " . $row['applicant_name'] . "|" . $row['applicant_address'] . " 
+                            " . $row['applicant_name'] . " | " . $row['applicant_address'] . " 
                         </td>
                         <td>
-                            " . $row['incident_date'] . " 
-                        </td>
-                        <td>
-                            " . $row['incident_time'] . " 
+                            " . $row['incident_date'] . " | " . $row['incident_time'] . " 
                         </td>
                         <td>
                             " . $row['incident_place'] . " 
                         </td>
                         <td>
-                            " . $row['reporting_date'] . " 
-                        </td>
-                        <td>
-                            " . $row['reporting_time'] . " 
+                            " . $row['reporting_date'] . " | " . $row['reporting_time'] . " 
                         </td>
                         <td>
                             " . $row['culprit_name'] . " | " . $row['culprit_address'] . " 
                         </td>
                         <td>
-                            " . $row['arrest_date'] . " 
+                            " . $row['arrest_date'] . " | " . $row['arrest_time'] . " 
                         </td>
                         <td>
-                            " . $row['arrest_time'] . " 
-                        </td>
-                        <td>
-                            " . $row['victim_name'] . " 
+                            " . $victim_name . " 
                         </td>
                         <td>
                             " . $row['description_of_crime'] . " 
@@ -116,9 +106,9 @@ if (isset($_POST['minor_crime_download'])) {
                 <tr>
                 <th>क्रमांक</th>
                 <th>ज़िला</th>
-                <th>संभाग</th>
+                <th>अनुभाग</th>
                 <th>पुलिस थाना</th>
-                <th>समय</th>
+                <th>घटना समय</th>
                 <th>घटना दिनांक</th>
                 <th>व्यक्तियों की संख्या</th>
                 <th>धारा</th>
@@ -253,7 +243,7 @@ if (isset($_POST['dead_body_download'])) {
                 <th>मर्ग क्रमांक</th>
                 <th>धारा</th>
                 <th>घटना दिनांक</th>
-                <th>घटना का समय </th>
+                <th>घटना का समय</th>
                 <th>घटना स्थान</th>
                 <th>सूचना दिनांक</th>
                 <th>सूचना का समय</th>
@@ -328,8 +318,8 @@ if (isset($_POST['dead_body_download'])) {
     echo $html;
 }
 
-// important action
-if (isset($_POST['important_action_download'])) {
+// important achievement
+if (isset($_POST['important_achievement_download'])) {
     $output_dead_bodies = $_SESSION['important_action'];
 
     $html = "<table>
@@ -373,19 +363,13 @@ if (isset($_POST['important_action_download'])) {
                             " . $row['penal_code'] . " 
                         </td>
                         <td>
-                        " . $row['accident_date'] . " 
-                        </td>
-                        <td>
-                        " . $row['accident_time'] . " 
+                        " . $row['accident_date'] . " | " . $row['accident_time'] . " 
                         </td>
                         <td>
                             " . $row['accident_place'] . " 
                         </td>
                         <td>
-                            " . $row['information_date'] . " 
-                        </td>
-                        <td>
-                            " . $row['information_time'] . " 
+                            " . $row['information_date'] . " | " . $row['information_time'] . " 
                         </td>
                         <td>
                             " . $row['applicant_name'] . " 

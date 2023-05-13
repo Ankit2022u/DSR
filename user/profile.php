@@ -22,7 +22,7 @@ require "../api/functions.php";
                 <hr> -->
                 <ul class="nav nav-pills flex-column mb-auto">
 
-                    <li class="nav-item">
+                <li class="nav-item">
                         <a href="user.php" class="nav-link link-dark" aria-current="page">
                             User Dashboard
                         </a>
@@ -57,13 +57,12 @@ require "../api/functions.php";
                         </a>
                     </li> -->
 
+
                     <li>
                         <a class="nav-link link-dark" href="feedback.php">
                             Feedback
                         </a>
                     </li>
-
-
 
                     <li>
                         <a href="profile.php" class="nav-link active">
@@ -78,9 +77,14 @@ require "../api/functions.php";
                     </li>
 
                     <li>
-                        <a href="imp_action.php" class="nav-link link-dark">
-                            Important Actions
+                        <a href="court_judgement_form.php" class="nav-link link-dark">
+                            Court Judgement
                         </a>
+                    </li>
+
+                    <li>
+                        <a href="impotant_achievements_form.php" class="nav-link link-dark">
+                            Important Achievements
                     </li>
 
 

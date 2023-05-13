@@ -51,12 +51,6 @@ $police_stations = police_stations();
                             Minor Crime
                         </a>
                     </li>
-                    <!-- <li>
-                        <a class="nav-link link-dark" href="edit.php">
-                            Edit
-                        </a>
-                    </li> -->
-
 
                     <li>
                         <a class="nav-link link-dark" href="feedback.php">
@@ -77,8 +71,8 @@ $police_stations = police_stations();
                     </li>
 
                     <li>
-                        <a href="imp_action.php" class="nav-link active">
-                            Important Actions
+                        <a href="important_achievements_form.php" class="nav-link active">
+                            Important Achievements
                         </a>
                     </li>
 
@@ -216,7 +210,7 @@ $police_stations = police_stations();
 
                         <div class="row">
                             <div class="col-md-6 col-lg-6 col-sm-12 float-end">
-                                <button type="submit" name="save_imp_action" class="btn btn-primary">Save Important
+                                <button type="submit" name="save_important_achievement" class="btn btn-primary">Save Important
                                     Action</button>
                             </div>
                         </div>

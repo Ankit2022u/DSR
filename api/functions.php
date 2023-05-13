@@ -322,6 +322,43 @@ function find_dead_bodies($district, $start, $end)
 }
 
 
+/**
+ * Retrieves dead bodies data from the dead_bodies table based on the provided district, start date, and end date.
+ *
+ * @param string $district The district for which to retrieve dead bodies data. Use "All" to retrieve data for all districts.
+ * @param string $start The start date for the data retrieval (formatted as 'Y-m-d H:i:s').
+ * @param string $end The end date for the data retrieval (formatted as 'Y-m-d H:i:s').
+ *
+ * @return array|false The important achievement data on success, false on failure.
+ */
+function find_important_achievements($district, $start, $end)
+{
+    global $con; // Note: Consider passing $con as a parameter instead of using global
+
+    // Prepare and bind parameters to prevent SQL injection
+    if ($district != "All") {
+        $stmt = $con->prepare("SELECT * FROM important_achievements WHERE updated_at > ? AND updated_at < ? AND updated_by IN (SELECT `user_id` FROM users) AND district = ?");
+        $stmt->bind_param("sss", $start, $end, $district);
+    } else {
+        $stmt = $con->prepare("SELECT * FROM important_achievements WHERE updated_at > ? AND updated_at < ?");
+        $stmt->bind_param("ss", $start, $end);
+    }
+
+    $stmt->execute();
+    $query_run = $stmt->get_result();
+
+    if (!$query_run) {
+        // Query Failed
+        // Note: Consider logging the error instead of echoing it to prevent exposing sensitive information
+        echo "Error: " . $stmt->error;
+        return false;
+    }
+
+    // Query Success
+    $result = $query_run->fetch_all(MYSQLI_ASSOC);
+    return $result;
+}
+
 
 /**
  * Retrieves the total count of major crimes from the major_crimes table.

@@ -60,7 +60,7 @@ if (!(isset($_SESSION['user-data']))) {
                     </li>
                     <li>
                         <a href="dbf.php" class="nav-link link-dark">
-                            Dead Body Form
+                            Inquest / मर्ग
                         </a>
                     </li>
                     <li>
@@ -80,8 +80,14 @@ if (!(isset($_SESSION['user-data']))) {
                     </li>
 
                     <li>
-                        <a href="imp_action.php" class="nav-link link-dark">
-                            Important Actions
+                        <a href="cjf.php" class="nav-link link-dark">
+                            Court judgement / कोर्ट का निर्णय
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="iaf.php" class="nav-link link-dark">
+                            Important Achievements / मुख्य उपलब्धियां
                         </a>
                     </li>
 
@@ -101,13 +107,13 @@ if (!(isset($_SESSION['user-data']))) {
         <div class="main-content container col-md-9 col-sm-7">
             <?php
             if (isset($_SESSION['message'])) {
-            ?>
-            <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
-                <strong>Hye!</strong>
-                <?= $_SESSION['message']; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <?php
+                ?>
+                <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
+                    <strong>Hye!</strong>
+                    <?= $_SESSION['message']; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php
                 unset($_SESSION['message']);
             }
             ?>
@@ -138,7 +144,8 @@ if (!(isset($_SESSION['user-data']))) {
                                     <option value="All">All</option>
 
                                 </select>
-                                <label for="policeStation">Police Station / पुलिस थाना<span class="required-star">*</span></label>
+                                <label for="policeStation">Police Station / पुलिस थाना<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -149,28 +156,31 @@ if (!(isset($_SESSION['user-data']))) {
                                 <input class="form-control" id="startDate" type="date" placeholder="Start Date"
                                     name="start_date" required />
 
-                                <label for="startDate">Starting Date / शुरुवाती तिथि<span class="required-star">*</span></label>
+                                <label for="startDate">Starting Date / शुरुवाती तिथि<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="endDate" type="date" placeholder="End Date"
                                     name="end_date" required />
-                                <label for="endDate">Ending Date / अंतिम तिथि<span class="required-star">*</span></label>
+                                <label for="endDate">Ending Date / अंतिम तिथि<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <fieldset class="border p-2">
-                            <legend class="float-none w-auto p-2">Information You Want / किस तरह की जानकारी आपको चाहिए ?<span
-                                    class="required-star">*</span></legend>
+                            <legend class="float-none w-auto p-2">Information You Want / किस तरह की जानकारी आपको चाहिए
+                                ?<span class="required-star">*</span></legend>
                             <div class="col-md-6 col-lg-6 col-sm-12">
                                 <div class="mb-3">
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" id="deadBodiesDetails" type="checkbox"
                                             name="dead_bodies" />
-                                        <label class="form-check-label" for="deadBodiesDetails">Deadbody Details (मर्ग संबंधी जानकारी)</label>
+                                        <label class="form-check-label" for="deadBodiesDetails">Deadbody Details (मर्ग
+                                            संबंधी जानकारी)</label>
                                     </div>
                                 </div>
                             </div>
@@ -208,13 +218,22 @@ if (!(isset($_SESSION['user-data']))) {
                             <div class="col-md-6 col-lg-6 col-sm-12">
                                 <div class="mb-3">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" id="importantAction" type="checkbox"
-                                            name="important_action" />
-                                        <label class="form-check-label" for="important_action">Important Action /
-                                            महत्वपूर्ण कार्यवाही</label>
+                                        <input class="form-check-input" id="importantAchievement" type="checkbox"
+                                            name="important_achievements" />
+                                        <label class="form-check-label" for="important_achievement">Important Achievements ( महत्वपूर्ण कार्यवाही )</label>
                                     </div>
                                 </div>
                             </div>
+                            
+                            <!-- <div class="col-md-6 col-lg-6 col-sm-12">
+                                <div class="mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" id="importantAction" type="checkbox"
+                                            name="important_action" />
+                                        <label class="form-check-label" for="important_action">Important Achievements ( महत्वपूर्ण कार्यवाही )</label>
+                                    </div>
+                                </div>
+                            </div> -->
                         </fieldset>
                     </div>
 
