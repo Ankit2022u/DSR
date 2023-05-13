@@ -18,6 +18,7 @@ if (isset($_POST['view'])) {
     $minor_crimes = isset($_POST['minor_crimes']) ? 1 : 0;
     $major_crimes = isset($_POST['major_crimes']) ? 1 : 0;
     $important_achievements = isset($_POST['important_achievements']) ? 1 : 0;
+    $court_judgements = isset($_POST['court_judgements']) ? 1 : 0;
     $districts = districts();
 
     $errors = array();
@@ -29,7 +30,7 @@ if (isset($_POST['view'])) {
     if (empty($end_date)) {
         $errors[] = "End Date is required.";
     }
-    if (!($dead_bodies or $ongoing_cases or $minor_crimes or $major_crimes)) {
+    if (!($dead_bodies or $ongoing_cases or $minor_crimes or $major_crimes or $important_achievements or $court_judgements)) {
         $errors[] = "Select Atleast One Information You Want";
     }
 
@@ -39,6 +40,7 @@ if (isset($_POST['view'])) {
         $output_major_crimes = array();
         $output_ongoing_cases = array();
         $output_important_achievements = array();
+        $output_court_judgements = array();
 
         if ($district == 'All') {
             foreach ($districts as $row) {
@@ -57,6 +59,9 @@ if (isset($_POST['view'])) {
                 if ($important_achievements) {
                     $output_important_achievements[] = find_important_achievements($row['district'], $start_date, $end_date);
                 }
+                if ($court_judgements) {
+                    $output_court_judgements[] = find_court_judgements($row['district'], $start_date, $end_date);
+                }
             }
         } else {
             if ($dead_bodies) {
@@ -74,14 +79,18 @@ if (isset($_POST['view'])) {
             if ($important_achievements) {
                 $output_important_achievements[] = find_important_achievements($district, $start_date, $end_date);
             }
+            if ($court_judgements) {
+                $output_court_judgements[] = find_court_judgements($district, $start_date, $end_date);
+            }
         }
+    } else {
 
         $_SESSION['ongoing_cases'] = $output_ongoing_cases;
         $_SESSION['major_crimes'] = $output_major_crimes;
         $_SESSION['minor_crimes'] = $output_minor_crimes;
         $_SESSION['dead_bodies'] = $output_dead_bodies;
         $_SESSION['important_achievements'] = $output_important_achievements;
-    } else {
+        $_SESSION['court_judgements'] = $output_court_judgements;
         $_SESSION['message'] = $errors[0];
         $_SESSION['type'] = "warning";
         header('Location: view_data.php');
@@ -184,7 +193,7 @@ if (isset($_POST['view'])) {
 
             <div class="row justify-content-center align-items-center g-2">
                 <!-- Ongoing Cases -->
-                <div class="col-12">
+                <div class="col-6">
                     <div class="card">
                         <div class="card-header">
                             <div class="alert alert-light" role="alert">
@@ -269,8 +278,9 @@ if (isset($_POST['view'])) {
                         </div>
                     </div>
                 </div>
+
                 <!-- Dead Bodies -->
-                <div class="col-12">
+                <div class="col-6">
                     <div class="card">
                         <div class="card-header">
                             <div class="alert alert-light" role="alert">
@@ -375,7 +385,7 @@ if (isset($_POST['view'])) {
 
             <div class="row justify-content-center align-items-center g-2">
                 <!-- Minor Crimes -->
-                <div class="col-12">
+                <div class="col-6">
                     <div class="card">
                         <div class="card-header">
                             <div class="alert alert-light" role="alert">
@@ -451,8 +461,9 @@ if (isset($_POST['view'])) {
                         </div>
                     </div>
                 </div>
+
                 <!-- Major Crimes -->
-                <div class="col-12">
+                <div class="col-6">
                     <div class="card">
                         <div class="card-header">
                             <div class="alert alert-light" role="alert">
@@ -579,8 +590,11 @@ if (isset($_POST['view'])) {
                     </div>
                 </div>
 
+            </div>
+
+            <div class="row justify-content-center align-items-center g-2">
                 <!-- Important Achievements -->
-                <div class="col-12">
+                <div class="col-6">
                     <div class="card">
                         <div class="card-header">
                             <div class="alert alert-light" role="alert">
@@ -651,6 +665,91 @@ if (isset($_POST['view'])) {
                                                 </td>
                                                 <td>
                                                     <?= $row['action_taken_under']; ?>
+                                                </td>
+                                            </tbody>
+                                            <?php
+                                        }
+                                    } ?>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Court Jugdements --> 
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="alert alert-light" role="alert">
+                                <strong>Court Judgement / कोर्ट का निर्णय</strong>
+                            </div>
+                            <!-- Court Judgements download -->
+                            <div class="row justify-content-center align-items-center g-2">
+                                <div class="col-12">
+                                    <form action="../api/download.php" method="post" class="d-flex justify-content-end">
+                                        <div class="p-2">
+                                            <button type="submit" class="btn btn-primary"
+                                                name="court_judgement_download">Download</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-container" style="height: 400px; overflow: scroll;">
+                                <table class="table table-bordered table-warning">
+                                    <thead>
+                                        <!-- Database Columns -->
+                                        <th>S.No./ क्रमांक</th>
+                                        <th>District / ज़िला</th>
+                                        <th>Sub-Division / अनुभाग</th>
+                                        <th>Police Station / थाना/चौकी</th>
+                                        <th>Court's Name / कोर्ट का नाम</th>
+                                        <th>Crime Number / अपराध क्रमांक</th>
+                                        <th>Penal Code / धारा</th>
+                                        <th>Written Date / कायमी दिनांक</th>
+                                        <th>Name & Address of Culprit / आरोपी का नाम व पता</th>
+                                        <th>Date / दिनांक</th>
+                                        <th>Decision / निर्णय</th>
+                                    </thead>
+                                    <?php $i = 1;
+                                    foreach ($output_court_judgements as $courtjudgement) {
+                                        foreach ($courtjudgement as $row) {
+                                            ?>
+                                            <tbody>
+                                                <td>
+                                                    <?= $i++; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['district']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['sub_division']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['police_station']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['court_name']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['crime_number']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['penal_code']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['result_date']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['culprit_name']; ?> | <?= $row['culprit_address']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= (new DateTime($row['updated_at']))->format('Y-m-d'); ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['judgement_of_court']; ?>
                                                 </td>
                                             </tbody>
                                             <?php

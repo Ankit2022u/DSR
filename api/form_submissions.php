@@ -110,8 +110,8 @@ if (isset($_POST['save_court_judgement'])) {
     $crime_number = mysqli_real_escape_string($con, $_POST['crime_number']);
     $penal_code = mysqli_real_escape_string($con, $_POST['penal_code']);
     $result_date = mysqli_real_escape_string($con, $_POST['result_date']);
-    $applicant_address = mysqli_real_escape_string($con, $_POST['applicant_address']);
-    $applicant_name = mysqli_real_escape_string($con, $_POST['applicant_name']);
+    $culprit_address = mysqli_real_escape_string($con, $_POST['culprit_address']);
+    $culprit_name = mysqli_real_escape_string($con, $_POST['culprit_name']);
     $name_of_court = mysqli_real_escape_string($con, $_POST['name_of_court']);
     $judgement_of_court = mysqli_real_escape_string($con, $_POST['judgement_of_court']);
     $updated_by = $_SESSION['user-data']['user_id'];
@@ -127,11 +127,11 @@ if (isset($_POST['save_court_judgement'])) {
     if (empty($result_date)) {
         $errors[] = "Result Date is required.";
     }
-    if (empty($applicant_name)) {
-        $errors[] = "Applicant Name is required.";
+    if (empty($culprit_name)) {
+        $errors[] = "Culprit Name is required.";
     }
-    if (empty($applicant_address)) {
-        $errors[] = "Applicant Address is required.";
+    if (empty($culprit_address)) {
+        $errors[] = "Culprit Address is required.";
     }
     if (empty($name_of_court)) {
         $errors[] = "Name of Court is required.";
@@ -142,8 +142,8 @@ if (isset($_POST['save_court_judgement'])) {
 
     if (empty($errors)) {
         // Prepare and bind parameters to prevent SQL injection
-        $stmt = $con->prepare("INSERT INTO court_judgements (district, sub_division, police_station, crime_number, penal_code, result_date, applicant_address, applicant_name, judgement_of_court, court_name, updated_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssssssss", $district, $sub_division, $police_station, $crime_number, $penal_code, $result_date, $applicant_address, $applicant_name, $judgement_of_court, $name_of_court, $updated_by);
+        $stmt = $con->prepare("INSERT INTO court_judgements (district, sub_division, police_station, crime_number, penal_code, result_date, culprit_address, culprit_name, judgement_of_court, court_name, updated_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssssssss", $district, $sub_division, $police_station, $crime_number, $penal_code, $result_date, $culprit_address, $culprit_name, $judgement_of_court, $name_of_court, $updated_by);
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {

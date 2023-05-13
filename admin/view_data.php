@@ -10,7 +10,8 @@ if (!(isset($_SESSION['user-data']))) {
 }
 
 ?>
-<?php include('admin_header.php'); ?>
+<?php
+include('admin_header.php'); ?>
 <main>
     <div class="row">
 
@@ -220,20 +221,20 @@ if (!(isset($_SESSION['user-data']))) {
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" id="importantAchievement" type="checkbox"
                                             name="important_achievements" />
-                                        <label class="form-check-label" for="important_achievement">Important Achievements ( महत्वपूर्ण कार्यवाही )</label>
+                                        <label class="form-check-label" for="importantAchievement">Important Achievements ( महत्वपूर्ण कार्यवाही )</label>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <!-- <div class="col-md-6 col-lg-6 col-sm-12">
+
+                            <div class="col-md-6 col-lg-6 col-sm-12">
                                 <div class="mb-3">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" id="importantAction" type="checkbox"
-                                            name="important_action" />
-                                        <label class="form-check-label" for="important_action">Important Achievements ( महत्वपूर्ण कार्यवाही )</label>
+                                        <input class="form-check-input" id="courtJudgement" type="checkbox"
+                                            name="court_judgements" />
+                                        <label class="form-check-label" for="courtJudgement">Court Judgements ( कोर्ट का निर्णय )</label>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                         </fieldset>
                     </div>
 
