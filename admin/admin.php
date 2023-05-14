@@ -11,6 +11,8 @@ $total_dead_bodies = count_dead_bodies();
 $total_minor_crimes = count_minor_crimes();
 $total_ongoing_cases = count_ongoing_cases();
 $total_police_stations = count_police_stations();
+$total_important_achievements = count_important_achievements();
+$total_court_judgments = count_court_judgements();
 $total_users = count_users();
 ?>
 
@@ -185,6 +187,32 @@ $total_users = count_users();
                         <h5 class="card-title">Total Users: </h5>
                         <p class="card-text">
                             <?= $total_users; ?>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6">
+                    <div class="card-header">
+                        <a href="cjf.php" class="btn btn-outline-primary add-icon"><i class="fas fa-plus-square"></i></i>
+                            <span>Add Court Judgement</span></a>
+                    </div>
+                    <div class="card-body bg-primary">
+                        <h5 class="card-title">Total Court Judgments: </h5>
+                        <p class="card-text">
+                            <?= $total_court_judgments; ?>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6">
+                    <div class="card-header">
+                        <a href="iaf.php" class="btn btn-outline-success add-icon"><i class="fas fa-plus-square"></i></i>
+                            <span>Add Important Achievement</span></a>
+                    </div>
+                    <div class="card-body bg-success">
+                        <h5 class="card-title">Total Achievements: </h5>
+                        <p class="card-text">
+                            <?= $total_important_achievements; ?>
                         </p>
                     </div>
                 </div>

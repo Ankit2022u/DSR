@@ -115,6 +115,58 @@ function count_dead_bodies()
     return $result;
 }
 
+/**
+ * Retrieves the count of important achievements from the important_achievements table.
+ *
+ * @return int|false The count of important achievements on success, false on failure.
+ */
+function count_important_achievements()
+{
+    global $con; // Note: Consider passing $con as a parameter instead of using global
+
+    // Prepare and bind parameters to prevent SQL injection
+    $stmt = $con->prepare("SELECT COUNT(*) FROM important_achievements");
+    $stmt->execute();
+    $query_run = $stmt->get_result();
+
+    if (!$query_run) {
+        // Query Failed
+        // Note: Consider logging the error instead of echoing it to prevent exposing sensitive information
+        echo "Error: " . $stmt->error;
+        return false;
+    }
+
+    // Query Success
+    $result = $query_run->fetch_array()[0];
+    return $result;
+}
+
+/**
+ * Retrieves the count of court judgements from the court_judgements table.
+ *
+ * @return int|false The count of court judgements on success, false on failure.
+ */
+function count_court_judgements()
+{
+    global $con; // Note: Consider passing $con as a parameter instead of using global
+
+    // Prepare and bind parameters to prevent SQL injection
+    $stmt = $con->prepare("SELECT COUNT(*) FROM court_judgements");
+    $stmt->execute();
+    $query_run = $stmt->get_result();
+
+    if (!$query_run) {
+        // Query Failed
+        // Note: Consider logging the error instead of echoing it to prevent exposing sensitive information
+        echo "Error: " . $stmt->error;
+        return false;
+    }
+
+    // Query Success
+    $result = $query_run->fetch_array()[0];
+    return $result;
+}
+
 
 /**
  * Retrieves the list of distinct police stations from the police_stations table.
@@ -184,10 +236,10 @@ function find_minor_crimes($district, $start, $end)
 
     // Prepare and bind parameters to prevent SQL injection
     if ($district != "All") {
-        $stmt = $con->prepare("SELECT * FROM minor_crimes WHERE updated_at > ? AND updated_at < ? AND updated_by IN (SELECT user_id FROM users) AND district = ?");
+        $stmt = $con->prepare("SELECT * FROM minor_crimes WHERE updated_at >= ? AND updated_at <= ? AND updated_by IN (SELECT user_id FROM users) AND district = ?");
         $stmt->bind_param("sss", $start, $end, $district);
     } else {
-        $stmt = $con->prepare("SELECT * FROM minor_crimes WHERE updated_at > ? AND updated_at < ?");
+        $stmt = $con->prepare("SELECT * FROM minor_crimes WHERE updated_at >= ? AND updated_at <= ?");
         $stmt->bind_param("ss", $start, $end);
     }
 
@@ -222,10 +274,10 @@ function find_major_crimes($district, $start, $end)
 
     // Prepare and bind parameters to prevent SQL injection
     if ($district != "All") {
-        $stmt = $con->prepare("SELECT * FROM major_crimes WHERE updated_at > ? AND updated_at < ? AND updated_by IN (SELECT user_id FROM users) AND district = ?");
+        $stmt = $con->prepare("SELECT * FROM major_crimes WHERE updated_at >= ? AND updated_at <= ? AND updated_by IN (SELECT user_id FROM users) AND district = ?");
         $stmt->bind_param("sss", $start, $end, $district);
     } else {
-        $stmt = $con->prepare("SELECT * FROM major_crimes WHERE updated_at > ? AND updated_at < ?");
+        $stmt = $con->prepare("SELECT * FROM major_crimes WHERE updated_at >= ? AND updated_at <= ?");
         $stmt->bind_param("ss", $start, $end);
     }
 
@@ -261,10 +313,10 @@ function find_ongoing_cases($district, $start, $end)
 
     // Prepare and bind parameters to prevent SQL injection
     if ($district != "All") {
-        $stmt = $con->prepare("SELECT * FROM ongoing_cases WHERE updated_at > ? AND updated_at < ? AND updated_by IN (SELECT user_id FROM users) AND district = ?");
+        $stmt = $con->prepare("SELECT * FROM ongoing_cases WHERE updated_at >= ? AND updated_at <= ? AND updated_by IN (SELECT user_id FROM users) AND district = ?");
         $stmt->bind_param("sss", $start, $end, $district);
     } else {
-        $stmt = $con->prepare("SELECT * FROM ongoing_cases WHERE updated_at > ? AND updated_at < ?");
+        $stmt = $con->prepare("SELECT * FROM ongoing_cases WHERE updated_at >= ? AND updated_at <= ?");
         $stmt->bind_param("ss", $start, $end);
     }
 
@@ -299,10 +351,10 @@ function find_dead_bodies($district, $start, $end)
 
     // Prepare and bind parameters to prevent SQL injection
     if ($district != "All") {
-        $stmt = $con->prepare("SELECT * FROM dead_bodies WHERE updated_at > ? AND updated_at < ? AND updated_by IN (SELECT `user_id` FROM users) AND district = ?");
+        $stmt = $con->prepare("SELECT * FROM dead_bodies WHERE updated_at >= ? AND updated_at <= ? AND updated_by IN (SELECT `user_id` FROM users) AND district = ?");
         $stmt->bind_param("sss", $start, $end, $district);
     } else {
-        $stmt = $con->prepare("SELECT * FROM dead_bodies WHERE updated_at > ? AND updated_at < ?");
+        $stmt = $con->prepare("SELECT * FROM dead_bodies WHERE updated_at >= ? AND updated_at <= ?");
         $stmt->bind_param("ss", $start, $end);
     }
 
@@ -337,10 +389,10 @@ function find_important_achievements($district, $start, $end)
 
     // Prepare and bind parameters to prevent SQL injection
     if ($district != "All") {
-        $stmt = $con->prepare("SELECT * FROM important_achievements WHERE updated_at > ? AND updated_at < ? AND updated_by IN (SELECT `user_id` FROM users) AND district = ?");
+        $stmt = $con->prepare("SELECT * FROM important_achievements WHERE updated_at >= ? AND updated_at <= ? AND updated_by IN (SELECT `user_id` FROM users) AND district = ?");
         $stmt->bind_param("sss", $start, $end, $district);
     } else {
-        $stmt = $con->prepare("SELECT * FROM important_achievements WHERE updated_at > ? AND updated_at < ?");
+        $stmt = $con->prepare("SELECT * FROM important_achievements WHERE updated_at >= ? AND updated_at <= ?");
         $stmt->bind_param("ss", $start, $end);
     }
 
@@ -374,10 +426,10 @@ function find_court_judgements($district, $start, $end)
 
     // Prepare and bind parameters to prevent SQL injection
     if ($district != "All") {
-        $stmt = $con->prepare("SELECT * FROM court_judgements WHERE updated_at > ? AND updated_at < ? AND updated_by IN (SELECT `user_id` FROM users) AND district = ?");
+        $stmt = $con->prepare("SELECT * FROM court_judgements WHERE updated_at >= ? AND updated_at <= ? AND updated_by IN (SELECT `user_id` FROM users) AND district = ?");
         $stmt->bind_param("sss", $start, $end, $district);
     } else {
-        $stmt = $con->prepare("SELECT * FROM court_judgements WHERE updated_at > ? AND updated_at < ?");
+        $stmt = $con->prepare("SELECT * FROM court_judgements WHERE updated_at >= ? AND updated_at <= ?");
         $stmt->bind_param("ss", $start, $end);
     }
 
