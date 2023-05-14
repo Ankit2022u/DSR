@@ -33,55 +33,55 @@ $data = mysqli_fetch_array($query_run);
 
                     <li class="nav-item">
                         <a href="user.php" class="nav-link link-dark" aria-current="page">
-                            User Dashboard
+                            User Dashboard / डैशबोर्ड
                         </a>
                     </li>
 
                     <li>
                         <a href="dead_body_form.php" class="nav-link link-dark">
-                            Dead Body
+                        Inquest / मर्ग
                         </a>
                     </li>
 
                     <li>
                         <a href="major_crime_form.php" class="nav-link link-dark">
-                            Major Crime
+                            Major Crime / गंभीर अपराध
                         </a>
                     </li>
 
                     <li>
                         <a href="ongoing_case_form.php" class="nav-link link-dark">
-                            Ongoing Case
+                            Ongoing Case / सक्रिय मामला
                         </a>
                     </li>
 
                     <li>
                         <a href="minor_crime_form.php" class="nav-link link-dark">
-                            Minor Crime
+                            Minor Crime / सामान्य अपराध
                         </a>
                     </li>
 
                     <li>
                         <a class="nav-link active" href="edit.php">
-                            Edit
+                            Edit / एडिट
                         </a>
                     </li>
 
                     <li>
                         <a class="nav-link link-dark" href="feedback.php">
-                            Feedback
+                            Feedback / फीडबैक
                         </a>
                     </li>
 
                     <li>
                         <a href="profile.php" class="nav-link link-dark">
-                            Profile
+                            Profile / प्रोफाइल
                         </a>
                     </li>
 
                     <li>
                         <a href="change_password.php" class="nav-link link-dark">
-                            Change Password
+                            Change Password / पासवर्ड को बदले
                         </a>
                     </li>
 
