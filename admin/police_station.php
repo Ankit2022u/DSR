@@ -46,7 +46,7 @@ require "../api/dbcon.php";
                     </li>
                     <li>
                         <a href="police_station.php" class="nav-link active">
-                            Police Stations /  थाना
+                            Police Stations / थाना
                         </a>
                     </li>
                     <li>
@@ -56,7 +56,7 @@ require "../api/dbcon.php";
                     </li>
                     <li>
                         <a href="dbf.php" class="nav-link link-dark">
-                             Inquest / मर्ग
+                            Inquest / मर्ग
                         </a>
                     </li>
                     <li>
@@ -89,7 +89,8 @@ require "../api/dbcon.php";
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
+                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>
@@ -107,11 +108,11 @@ require "../api/dbcon.php";
                             $type = htmlspecialchars($_SESSION['type'], ENT_QUOTES, 'UTF-8'); // Sanitize the 'type' value
                             $message = htmlspecialchars($_SESSION['message'], ENT_QUOTES, 'UTF-8'); // Sanitize the 'message' value
                         ?>
-                            <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
-                                <strong>Hey!</strong>
-                                <?= $message; ?>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
+                        <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
+                            <strong>Hey!</strong>
+                            <?= $message; ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                         <?php
                             unset($_SESSION['message']);
                             unset($_SESSION['type']);
@@ -120,24 +121,36 @@ require "../api/dbcon.php";
 
                         <form action="../api/form_submissions.php" method="post">
                             <div class="mb-3 mt-5">
-                                <div class="mb-3">
-
-                                    <label for="district" class="form-label">District</label>
-                                    <span class="required-star">*</span>
-                                    <input type="text" id="district" class="form-control" name="district" placeholder="Enter District" required>
+                                <div class="form-floating mb-3">
+                                    <select class="form-select" name="district" id="district"
+                                        onchange="update_police_stations()" required>
+                                        <option value="सरगुजा">सरगुजा</option>
+                                        <option value="बलरामपुर">बलरामपुर</option>
+                                        <option value="सूरजपुर">सूरजपुर</option>
+                                        <option value="मनेंद्रगढ़-चिरमीरी-भरतपुर">मनेंद्रगढ़-चिरमीरी-भरतपुर</option>
+                                        <option value="जशपुर">जशपुर</option>
+                                        <option value="कोरिया">कोरिया</option>
+                                    </select>
+                                    <label for="district">District / ज़िला<span class="required-star">*</span></label>
                                 </div>
-                                <div class="mb-3">
+                                <div class="form-floating mb-3">
 
-                                    <label for="sub_division" class="form-label">Sub Division</label>
-                                    <span class="required-star">*</span>
-                                    <input type="text" id="sub_division" class="form-control" name="sub_division" placeholder="Enter Sub Division" required>
+                                    <select class="form-select" id="subDivision" aria-label="Sub Division"
+                                        name="sub_division" required>
 
+                                        <option value="Option1">Option1</option>
+                                        <option value="Option2">Option2</option>
+                                        <option value="Option3">Option3</option>
+                                    </select>
+                                    <label for="subDivision">Sub Division / अनुभाग<span
+                                            class="required-star">*</span></label>
                                 </div>
                                 <div class="mb-3">
 
                                     <label for="police_station" class="form-label">Police Station</label>
                                     <span class="required-star">*</span>
-                                    <input type="text" id="police_station" class="form-control" name="police_station" placeholder="Enter Police Station" required>
+                                    <input type="text" id="police_station" class="form-control" name="police_station"
+                                        placeholder="Enter Police Station" required>
                                 </div>
 
                                 <div class="mb-3 d-grid">

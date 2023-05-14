@@ -540,43 +540,43 @@ if (isset($_POST['save_important_achievement'])) {
     }
 
     if (empty($errors)) {
-    // Prepare and bind the query with placeholders
-    $query = "INSERT INTO important_achievements (`updated_by`,`district`,`sub_division`, `police_station`, `arrest_in_major_crime`, `decision_given_by_the_court`, `missing_man_document`, `miscellaneous`, `robbery`, `action_taken_under`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = mysqli_prepare($con, $query);
+        // Prepare and bind the query with placeholders
+        $query = "INSERT INTO important_achievements (`updated_by`,`district`,`sub_division`, `police_station`, `arrest_in_major_crime`, `decision_given_by_the_court`, `missing_man_document`, `miscellaneous`, `robbery`, `action_taken_under`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($con, $query);
 
-    // Assuming all columns are of type string (s)
-    mysqli_stmt_bind_param($stmt, "ssssssssss", $updated_by, $district, $sub_division, $police_station, $arrest_in_major_crime, $decision_given_by_the_court, $missing_man_document, $miscellaneous, $robbery, $action_taken_under);
+        // Assuming all columns are of type string (s)
+        mysqli_stmt_bind_param($stmt, "ssssssssss", $updated_by, $district, $sub_division, $police_station, $arrest_in_major_crime, $decision_given_by_the_court, $missing_man_document, $miscellaneous, $robbery, $action_taken_under);
 
-    // Execute the prepared statement
-    $result = mysqli_stmt_execute($stmt);
+        // Execute the prepared statement
+        $result = mysqli_stmt_execute($stmt);
 
 
-    if ($result) {
-        $inserted_id = mysqli_insert_id($con);
-        $user = $_SESSION['user-data']['user_id'];
-        $log_query = "INSERT INTO `logs`(`status`, `created_by`, `table_name`, `table_id`, `operation`, `log_desc`) VALUES (1, ?, 'ongoing_cases', ?, 'insert', 'Important Achievement Data Filled.')";
-        $log_stmt = mysqli_prepare($con, $log_query);
-        mysqli_stmt_bind_param($log_stmt, "si", $user, $inserted_id);
-        mysqli_stmt_execute($log_stmt);
+        if ($result) {
+            $inserted_id = mysqli_insert_id($con);
+            $user = $_SESSION['user-data']['user_id'];
+            $log_query = "INSERT INTO `logs`(`status`, `created_by`, `table_name`, `table_id`, `operation`, `log_desc`) VALUES (1, ?, 'important_achievements', ?, 'insert', 'Important Achievement Data Filled.')";
+            $log_stmt = mysqli_prepare($con, $log_query);
+            mysqli_stmt_bind_param($log_stmt, "si", $user, $inserted_id);
+            mysqli_stmt_execute($log_stmt);
 
-        $_SESSION['message'] = "Important Achievement data Submitted successfully";
-        $_SESSION['type'] = "success";
-        if ($usertype == "admin") {
-            header("Location: ../admin/iaf.php");
+            $_SESSION['message'] = "Important Achievement data Submitted successfully";
+            $_SESSION['type'] = "success";
+            if ($usertype == "admin") {
+                header("Location: ../admin/iaf.php");
+            } else {
+                header("Location: ../user/important_achievements_form.php");
+            }
+            exit(0);
         } else {
-            header("Location: ../user/important_achievements_form.php");
+            $_SESSION['message'] = "Important Achievement data submission failed";
+            $_SESSION['type'] = "danger";
+            if ($usertype == "admin") {
+                header("Location: ../admin/iaf.php");
+            } else {
+                header("Location: ../user/important_achievements_form.php");
+            }
+            exit(0);
         }
-        exit(0);
-    } else {
-        $_SESSION['message'] = "Important Action data submission failed";
-        $_SESSION['type'] = "danger";
-        if ($usertype == "admin") {
-            header("Location: ../admin/iaf.php");
-        } else {
-            header("Location: ../user/important_achievements_form.php");
-        }
-        exit(0);
-    }
     } else {
         $_SESSION['message'] = $errors[0];
         $_SESSION['type'] = "warning";
