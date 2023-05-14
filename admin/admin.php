@@ -95,7 +95,7 @@ $total_users = count_users();
 
                     <li>
                         <a href="iaf.php" class="nav-link link-dark">
-                            Important Achievements
+                            Important Achievements / मुख्य उपलब्धियां
                         </a>
                     </li>
 
