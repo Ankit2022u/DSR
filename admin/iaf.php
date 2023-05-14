@@ -21,62 +21,68 @@ $police_stations = police_stations();
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
                         <a href="admin.php" class="nav-link link-dark" aria-current="page">
-                            Dashboard
+                            Dashboard / डैशबोर्ड
                         </a>
                     </li>
                     <li>
                         <a href="manage_user.php" class="nav-link link-dark">
-                            Manage Users
+                            Manage Users / उपयोगकर्ताओं का प्रबंधन
                         </a>
                     </li>
                     <li>
                         <a href="view_logs.php" class="nav-link link-dark">
-                            View Logs
+                            View Logs / लॉग्स को देखें
                         </a>
                     </li>
                     <li>
                         <a href="view_data.php" class="nav-link link-dark">
-                            View Data
+                            View Data / डेटा का हिसाब
                         </a>
                     </li>
                     <li>
                         <a href="change_password.php" class="nav-link link-dark">
-                            Change Password
+                            Change Password / पासवर्ड को बदले
                         </a>
                     </li>
                     <li>
                         <a href="police_station.php" class="nav-link link-dark">
-                            Police Stations
+                            Police Stations /  थाना
                         </a>
                     </li>
                     <li>
                         <a href="profile.php" class="nav-link link-dark">
-                            View Profile
+                            View Profile / प्रोफाइल
                         </a>
                     </li>
                     <li>
                         <a href="dbf.php" class="nav-link link-dark">
-                            Dead Body Form
+                            Inquest / मर्ग
                         </a>
                     </li>
                     <li>
                         <a href="mcf.php" class="nav-link link-dark">
-                            Major Crime Form
+                            Major Crime / गंभीर अपराध
                         </a>
                     </li>
                     <li>
                         <a href="micf.php" class="nav-link link-dark">
-                            Minor Crime Form
+                            Minor Crime / सामान्य अपराध
                         </a>
                     </li>
                     <li>
                         <a href="ocf.php" class="nav-link link-dark">
-                            Ongoing Case Form
+                            Ongoing Case / सक्रिय मामला
                         </a>
                     </li>
                     <li>
-                        <a href="imp_action.php" class="nav-link active">
-                            Important Actions
+                        <a href="cjf.php" class="nav-link link-dark">
+                            Court judgement / कोर्ट का निर्णय
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="iaf.php" class="nav-link active">
+                            Important Achievements / मुख्य उपलब्धियां
                         </a>
                     </li>
 
@@ -157,8 +163,8 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <!-- <textarea class="form-control" id="causeOfDeath" type="text" placeholder="Cause Of Death" style="height: 10rem;" name="cause_of_death"></textarea> -->
 
-                                <textarea class="form-control" id="arrest_in_major_crime" type="text" placeholder="गंभीर अपराधों में गिरफ्तारि / महत्वपूर्ण गिरफ्तारि" name="arrest_in_major_crime" style="height: 5rem;" required></textarea>
-                                <label for="policeStation">गंभीर अपराधों में गिरफ्तारि / महत्वपूर्ण गिरफ्तारि<span class="required-star">*</span></label>
+                                <textarea class="form-control" id="arrest_in_major_crime" type="text" placeholder="गंभीर अपराधों में गिरफ्तारि / महत्वपूर्ण गिरफ्तारि" name="arrest_in_major_crime" style="height: 5rem;"></textarea>
+                                <label for="policeStation">गंभीर अपराधों में गिरफ्तारि / महत्वपूर्ण गिरफ्तारि</label>
                             </div>
                         </div>
                     </div>
@@ -177,8 +183,8 @@ $police_stations = police_stations();
 
                         <div class="col-md-12 col-lg-12 col-sm-12">
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" id="missingManDocument" type="text" placeholder="आपरेशन मुस्कान / गुम इंसान दस्तायी" name="missing_man_document" style="height: 5rem;" required></textarea>
-                                <label for="missing_man_document">आपरेशन मुस्कान / गुम इंसान दस्तायी<span class="required-star">*</span></label>
+                                <textarea class="form-control" id="missingManDocument" type="text" placeholder="आपरेशन मुस्कान / गुम इंसान दस्तायी" name="missing_man_document" style="height: 5rem;"></textarea>
+                                <label for="missing_man_document">आपरेशन मुस्कान / गुम इंसान दस्तायी</label>
                             </div>
                         </div>
                     </div>
@@ -186,10 +192,10 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-12 col-lg-12 col-sm-12">
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" id="miscellaneous" type="text" placeholder="विविध जैसे जन जागरुकता अभियान मे विशेष सफलता या प्राण रक्षा, गिरफ्तारी वारंटो की तमिलि आदि" style="height: 5rem;" name="miscellaneous" required></textarea>
+                                <textarea class="form-control" id="miscellaneous" type="text" placeholder="विविध जैसे जन जागरुकता अभियान मे विशेष सफलता या प्राण रक्षा, गिरफ्तारी वारंटो की तमिलि आदि" style="height: 5rem;" name="miscellaneous"></textarea>
 
                                 <label for="miscellaneous">विविध जैसे जन जागरुकता अभियान मे विशेष सफलता या प्राण रक्षा,
-                                    गिरफ्तारी वारंटो की तमिलि आदि<span class="required-star">*</span></label>
+                                    गिरफ्तारी वारंटो की तमिलि आदि</label>
                             </div>
                         </div>
                     </div>
@@ -197,22 +203,22 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-12 col-lg-12 col-sm-12">
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" id="robbery" type="text" placeholder="डकैती / लुट / चोरी का खुलासा" name="robbery" style="height: 5rem;" required></textarea>
+                                <textarea class="form-control" id="robbery" type="text" placeholder="डकैती / लुट / चोरी का खुलासा" name="robbery" style="height: 5rem;"></textarea>
 
-                                <label for="robbery">डकैती / लुट / चोरी का खुलासा<span class="required-star">*</span></label>
+                                <label for="robbery">डकैती / लुट / चोरी का खुलासा</label>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-12 col-sm-12">
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" id="actionTakenUnder" type="text" placeholder="धारा 102 के तहत कि गई कार्यवाही" style="height: 5rem;" name="action_taken_under"></textarea>
+                                <textarea class="form-control" id="actionTakenUnder" type="text" placeholder="धारा 102 के तहत कि गई कार्यवाही" style="height: 5rem;" name="action_taken_under" required></textarea>
 
-                                <label for="action_taken_under">धारा 102 के तहत कि गई कार्यवाही</label>
+                                <label for="action_taken_under">धारा 102 के तहत कि गई कार्यवाही<span class="required-star">*</span></label>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 col-lg-6 col-sm-12 float-end">
-                                <button type="submit" name="save_imp_action" class="btn btn-primary">Save Important
+                                <button type="submit" name="save_important_achievement" class="btn btn-primary">Save Important
                                     Action</button>
                             </div>
                         </div>

@@ -84,7 +84,6 @@ if (isset($_POST['save_feedback'])) {
                             Minor Crime
                         </a>
                     </li>
-
                     <!-- <li>
                         <a class="nav-link link-dark" href="edit.php">
                             Edit
@@ -111,16 +110,22 @@ if (isset($_POST['save_feedback'])) {
                     </li>
 
                     <li>
-                        <a href="imp_action.php" class="nav-link link-dark">
-                            Important Actions
+                        <a href="court_judgement_form.php" class="nav-link link-dark">
+                            Change Password
                         </a>
+                    </li>
+
+                    <li>
+                        <a href="impotant_achievements_form.php" class="nav-link link-dark">
+                            Important Achievements
                     </li>
 
 
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
+                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>
@@ -134,7 +139,8 @@ if (isset($_POST['save_feedback'])) {
                     <div class="row">
                         <div class="col-12">
                             <div class="form-floating mb-3">
-                                <textarea name="feedback" id="feedback" class="form-control" type="text" placeholder="Feedback" style="height: 10rem;" name="feedback" required></textarea>
+                                <textarea name="feedback" id="feedback" class="form-control" type="text"
+                                    placeholder="Feedback" style="height: 10rem;" name="feedback" required></textarea>
                                 <label for="feedback">Feedback</label>
                             </div>
                         </div>

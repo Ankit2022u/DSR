@@ -41,7 +41,6 @@ $total_users = count_users();
                         </a>
                     </li>
 
-
                     <li>
                         <a href="major_crime_form.php" class="nav-link link-dark">
                             Major Crime
@@ -59,12 +58,6 @@ $total_users = count_users();
                             Minor Crime
                         </a>
                     </li>
-
-                    <!-- <li>
-                        <a class="nav-link link-dark" href="edit.php">
-                            Edit
-                        </a>
-                    </li> -->
 
                     <li>
                         <a class="nav-link link-dark" href="feedback.php">
@@ -85,9 +78,14 @@ $total_users = count_users();
                     </li>
 
                     <li>
-                        <a href="imp_action.php" class="nav-link link-dark">
-                            Important Actions
+                        <a href="court_judgement_form.php" class="nav-link link-dark">
+                            Court Judgement
                         </a>
+                    </li>
+
+                    <li>
+                        <a href="impotant_achievements_form.php" class="nav-link link-dark">
+                            Important Achievements
                     </li>
 
 

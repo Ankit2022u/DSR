@@ -21,62 +21,70 @@ $police_stations = police_stations();
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
                         <a href="admin.php" class="nav-link link-dark" aria-current="page">
-                            Dashboard
+                            Dashboard / डैशबोर्ड
                         </a>
                     </li>
                     <li>
                         <a href="manage_user.php" class="nav-link link-dark">
-                            Manage Users
+                            Manage Users / उपयोगकर्ताओं का प्रबंधन
                         </a>
                     </li>
                     <li>
                         <a href="view_logs.php" class="nav-link link-dark">
-                            View Logs
+                            View Logs / लॉग्स को देखें
                         </a>
                     </li>
                     <li>
                         <a href="view_data.php" class="nav-link link-dark">
-                            View Data
+                            View Data / डेटा का हिसाब
                         </a>
                     </li>
                     <li>
                         <a href="change_password.php" class="nav-link link-dark">
-                            Change Password
+                            Change Password / पासवर्ड को बदले
                         </a>
                     </li>
                     <li>
                         <a href="police_station.php" class="nav-link link-dark">
-                            Police Stations
+                            Police Station / थाना
                         </a>
                     </li>
                     <li>
                         <a href="profile.php" class="nav-link link-dark">
-                            View Profile
+                            View Profile / प्रोफाइल
                         </a>
                     </li>
                     <li>
                         <a href="dbf.php" class="nav-link link-dark">
-                            Dead Body Form
+
+                            Inquest / मर्ग
                         </a>
                     </li>
                     <li>
                         <a href="mcf.php" class="nav-link link-dark">
-                            Major Crime Form
+                            Major Crime / गंभीर अपराध
                         </a>
                     </li>
                     <li>
                         <a href="micf.php" class="nav-link link-dark">
-                            Minor Crime Form
+
+                            Minor Crime / सामान्य अपराध
                         </a>
                     </li>
                     <li>
                         <a href="ocf.php" class="nav-link link-dark">
-                            Ongoing Case Form
+                            Active Case / सक्रिय मामला
                         </a>
                     </li>
                     <li>
                         <a href="cjf.php" class="nav-link active">
-                            Court judgement
+                            Court judgement / कोर्ट का निर्णय
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="iaf.php" class="nav-link link-dark">
+                            Important Achievements / मुख्य उपलब्धियां
                         </a>
                     </li>
                 </ul>
@@ -200,18 +208,17 @@ $police_stations = police_stations();
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
 
-                                <input class="form-control" id="applicantName" type="text" placeholder="Applicant Name"
-                                    name="applicant_name" required />
-
-                                <label for="applicantName">Applicant Name / प्रार्थी का नाम<span
+                                <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name"
+                                    name="culprit_name" required />
+                                <label for="culpritName">Culprit Name / आरोपी/संदिग्ध का नाम<span
                                         class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="applicantAddress" type="text"
-                                    placeholder="Applicant Address" name="applicant_address" required />
-                                <label for="applicantAddress">Applicant Address / प्रार्थी का पता<span
+                                <input class="form-control" id="culpritAddress" type="text"
+                                    placeholder="Culprit Address" name="culprit_address" required />
+                                <label for="culpritAddress">Culprit Address / आरोपी/संदिग्ध का पता<span
                                         class="required-star">*</span></label>
                             </div>
                         </div>
@@ -222,7 +229,8 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="judgementOfCourt" type="text"
                                     placeholder="Judgement of Court" name="judgement_of_court" required />
-                                <label for="judgementOfCourt">Judgement Of Court / न्यायालय का फैसला<span class="required-star">*</span></label>
+                                <label for="judgementOfCourt">Judgement Of Court / न्यायालय का फैसला<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>

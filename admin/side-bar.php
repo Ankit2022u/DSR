@@ -11,7 +11,7 @@
         </li>
         <li>
             <a href="manage_user.php" class="nav-link link-dark">
-                Manage Users /  उपयोगकर्ताओं का प्रबंधन
+                Manage Users / उपयोगकर्ताओं का प्रबंधन
             </a>
         </li>
         <li>
@@ -36,7 +36,7 @@
         </li>
         <li>
             <a href="dbf.php" class="nav-link link-dark">
-                 Inquest / मर्ग
+                Inquest / मर्ग
             </a>
         </li>
         <li>
@@ -52,6 +52,17 @@
         <li>
             <a href="ocf.php" class="nav-link link-dark">
                 Ongoing Case / सक्रिय मामला
+            </a>
+        </li>
+        <li>
+            <a href="cjf.php" class="nav-link link-dark">
+                Court judgement / कोर्ट का निर्णय
+            </a>
+        </li>
+
+        <li>
+            <a href="iaf.php" class="nav-link link-dark">
+                Important Achievements / मुख्य उपलब्धियां
             </a>
         </li>
 

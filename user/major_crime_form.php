@@ -23,7 +23,8 @@ $police_stations = police_stations();
                 <hr> -->
                 <ul class="nav nav-pills flex-column mb-auto">
 
-                    <li class="nav-item">
+                   
+                <li class="nav-item">
                         <a href="user.php" class="nav-link link-dark" aria-current="page">
                             User Dashboard
                         </a>
@@ -52,7 +53,6 @@ $police_stations = police_stations();
                             Minor Crime
                         </a>
                     </li>
-
                     <!-- <li>
                         <a class="nav-link link-dark" href="edit.php">
                             Edit
@@ -79,9 +79,14 @@ $police_stations = police_stations();
                     </li>
 
                     <li>
-                        <a href="imp_action.php" class="nav-link link-dark">
-                            Important Actions
+                        <a href="court_judgement_form.php" class="nav-link link-dark">
+                            Change Password
                         </a>
+                    </li>
+
+                    <li>
+                        <a href="impotant_achievements_form.php" class="nav-link link-dark">
+                            Important Achievements
                     </li>
 
 
