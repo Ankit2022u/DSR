@@ -78,19 +78,15 @@ $police_stations = police_stations();
                     </li>
 
                     <li>
-<<<<<<< HEAD
-                        <a href="imp_action.php" class="nav-link link-dark">
-                            Important Actions / महत्वपूर्ण कार्यवाही
-=======
                         <a href="court_judgement_form.php" class="nav-link link-dark">
-                            Court Judgement
->>>>>>> 42d7c262d56c128f63d0f1236219623eaa3dc39a
+                            Court Judgement / कोर्ट का निर्णय
                         </a>
                     </li>
 
                     <li>
-                        <a href="impotant_achievements_form.php" class="nav-link link-dark">
-                            Important Achievements
+                        <a href="important_achievements_form.php" class="nav-link link-dark">
+                            Important Achievements / महत्वपूर्ण कार्यवाही
+                        </a>
                     </li>
 
 

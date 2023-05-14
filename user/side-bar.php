@@ -37,13 +37,9 @@
         </li>
 
         <li>
-<<<<<<< HEAD
             <a href="minor_crime_form.php" class="nav-link link-dark">
                 Minor Crime / सामान्य अपराध
-=======
-            <a href="minor_crime_form.php" class="nav-link active">
-                Minor Crime
->>>>>>> 42d7c262d56c128f63d0f1236219623eaa3dc39a
+
             </a>
         </li>
         <!-- <li>
@@ -73,13 +69,14 @@
 
         <li>
             <a href="court_judgement_form.php" class="nav-link link-dark">
-                Court Judgement
+                Court Judgement / कोर्ट का निर्णय
             </a>
         </li>
 
         <li>
-            <a href="impotant_achievements_form.php" class="nav-link link-dark">
-                Important Achievements
+            <a href="important_achievements_form.php" class="nav-link link-dark">
+                Important Achievements / महत्वपूर्ण कार्यवाही
+            </a>
         </li>
 
 

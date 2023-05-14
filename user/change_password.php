@@ -76,14 +76,15 @@ if (!(isset($_SESSION['user-data']))) {
                     </li>
 
                     <li>
-                        <a href="imp_action.php" class="nav-link link-dark">
-                            Important Actions
+                        <a href="court_judgement_form.php" class="nav-link link-dark">
+                            Court Judgement / कोर्ट का निर्णय
                         </a>
                     </li>
 
                     <li>
-                        <a href="impotant_achievements_form.php" class="nav-link link-dark">
-                            Important Achievements
+                        <a href="important_achievements_form.php" class="nav-link link-dark">
+                            Important Achievements / महत्वपूर्ण कार्यवाही
+                        </a>
                     </li>
 
                 </ul>

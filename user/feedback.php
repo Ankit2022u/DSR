@@ -110,14 +110,15 @@ if (isset($_POST['save_feedback'])) {
                     </li>
 
                     <li>
-                        <a href="imp_action.php" class="nav-link link-dark">
-                            Important Actions / महत्वपूर्ण कार्यवाही
+                        <a href="court_judgement_form.php" class="nav-link link-dark">
+                            Court Judgement / कोर्ट का निर्णय
                         </a>
                     </li>
 
                     <li>
-                        <a href="impotant_achievements_form.php" class="nav-link link-dark">
-                            Important Achievements
+                        <a href="important_achievements_form.php" class="nav-link link-dark">
+                            Important Achievements / महत्वपूर्ण कार्यवाही
+                        </a>
                     </li>
 
 
