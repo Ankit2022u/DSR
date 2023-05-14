@@ -31,7 +31,7 @@ $data = mysqli_fetch_array($query_run);
                 </a>
                 <hr> -->
                 <ul class="nav nav-pills flex-column mb-auto">
-             
+
                     <li class="nav-item">
                         <a href="user.php" class="nav-link link-dark" aria-current="page">
                             User Dashboard
@@ -45,7 +45,7 @@ $data = mysqli_fetch_array($query_run);
                     </li>
 
                     <li>
-                        <a href="major_crime_form.php" class="nav-link active">
+                        <a href="major_crime_form.php" class="nav-link link-dark">
                             Major Crime
                         </a>
                     </li>
@@ -61,11 +61,12 @@ $data = mysqli_fetch_array($query_run);
                             Minor Crime
                         </a>
                     </li>
-                    <!-- <li>
-                        <a class="nav-link link-dark" href="edit.php">
+
+                    <li>
+                        <a class="nav-link active" href="edit.php">
                             Edit
                         </a>
-                    </li> -->
+                    </li>
 
 
                     <li>
@@ -84,17 +85,6 @@ $data = mysqli_fetch_array($query_run);
                         <a href="change_password.php" class="nav-link link-dark">
                             Change Password
                         </a>
-                    </li>
-
-                    <li>
-                        <a href="court_judgement_form.php" class="nav-link link-dark">
-                            Change Password
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="impotant_achievements_form.php" class="nav-link link-dark">
-                            Important Achievements
                     </li>
 
 
@@ -283,5 +273,3 @@ $data = mysqli_fetch_array($query_run);
 <script src="../assets/js/police_station.js"></script>
 
 </body>
-
-</html>

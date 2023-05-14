@@ -4,34 +4,42 @@
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
+<<<<<<< HEAD
+       
+    <li class="nav-item">
+            <a href="user.php" class="nav-link active" aria-current="page">
+               User Dashboard / डैशबोर्ड
+=======
 
         <li class="nav-item">
             <a href="user.php" class="nav-link link-dark" aria-current="page">
                 User Dashboard
+>>>>>>> 42d7c262d56c128f63d0f1236219623eaa3dc39a
             </a>
         </li>
 
         <li>
             <a href="dead_body_form.php" class="nav-link link-dark">
-                Dead Body
+                 Inquest / मर्ग
             </a>
         </li>
 
         <li>
             <a href="major_crime_form.php" class="nav-link link-dark">
-                Major Crime
+                Major Crime / गंभीर अपराध
             </a>
         </li>
 
         <li>
             <a href="ongoing_case_form.php" class="nav-link link-dark">
-                Ongoing Case
+                Ongoing Case / सक्रिय मामला
             </a>
         </li>
 
         <li>
-            <a href="minor_crime_form.php" class="nav-link active">
-                Minor Crime
+            <a href="minor_crime_form.php" class="nav-link link-dark">
+                Minor Crime / सामान्य अपराध
+
             </a>
         </li>
         <!-- <li>
@@ -43,31 +51,32 @@
 
         <li>
             <a class="nav-link link-dark" href="feedback.php">
-                Feedback
+                Feedback / फीडबैक
             </a>
         </li>
 
         <li>
             <a href="profile.php" class="nav-link link-dark">
-                Profile
+                Profile / प्रोफाइल
             </a>
         </li>
 
         <li>
             <a href="change_password.php" class="nav-link link-dark">
-                Change Password
+                Change Password / पासवर्ड को बदले
             </a>
         </li>
 
         <li>
             <a href="court_judgement_form.php" class="nav-link link-dark">
-                Court Judgement
+                Court Judgement / कोर्ट का निर्णय
             </a>
         </li>
 
         <li>
-            <a href="impotant_achievements_form.php" class="nav-link link-dark">
-                Important Achievements
+            <a href="important_achievements_form.php" class="nav-link link-dark">
+                Important Achievements / महत्वपूर्ण कार्यवाही
+            </a>
         </li>
 
 
