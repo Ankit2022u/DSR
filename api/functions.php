@@ -30,6 +30,31 @@ function get_sub_divisions($district)
     return $result;
 }
 
+/**
+ * Retrieves distinct sub-divisions based on district from the police_stations table.
+ * @return array|false An array of districts on success, false on failure.
+ */
+function get_districts()
+{
+    global $con; // Note: Consider passing $con as a parameter instead of using global
+
+    // Prepare and bind parameters to prevent SQL injection
+    $stmt = $con->prepare("SELECT DISTINCT district FROM police_stations");
+    $stmt->execute();
+    $query_run = $stmt->get_result();
+
+    if (!$query_run) {
+        // Query Failed
+        // Note: Consider logging the error instead of echoing it to prevent exposing sensitive information
+        echo "Error: " . $stmt->error;
+        return false;
+    }
+
+    // Query Success
+    $result = $query_run->fetch_all(MYSQLI_ASSOC);
+    return $result;
+}
+
 
 /**
  * Retrieves police stations based on district and sub-division from the police_stations table.
