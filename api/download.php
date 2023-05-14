@@ -1,6 +1,7 @@
 <?php
 session_start();
 require "dbcon.php";
+require "functions.php";
 
 // Major crime download
 if (isset($_POST['major_crime_download'])) {
@@ -97,26 +98,49 @@ if (isset($_POST['major_crime_download'])) {
     echo $html;
 }
 
+// Incomplete
 // Minor crime download
 if (isset($_POST['minor_crime_download'])) {
     $output_minor_crimes = $_SESSION['minor_crimes'];
+    $districts = get_districts();
+    $top_row = ["41(1) जा. फौ", "102 जा. फौ", "109 जा. फौ", "110 जा. फौ", "145 जा. फौ", "151 जा. फौ", "107,116 जा. फौ", "सट्टा", "जुआ एक्ट", "आव. एक्ट", "नारको", "आर्म्स. एक्ट", "एम. वी. एक्ट"];
 
-    $html = "<table>
-                <tr>
-                <th>क्रमांक</th>
-                <th>ज़िला</th>
-                <th>अनुभाग</th>
-                <th>पुलिस थाना</th>
-                <th>घटना समय</th>
-                <th>घटना दिनांक</th>
-                <th>व्यक्तियों की संख्या</th>
-                <th>धारा</th>
-                <th>कायमीकर्ता</th>
-                </tr>";
-    $i = 1;
-    foreach ($output_minor_crimes as $minorcrime) {
-        foreach ($minorcrime as $row) {
-            $html .= "<tr>
+    $html = "<table>";
+
+    foreach ($districts as $dist) {
+
+        $html .= "<tr>
+                    <th colspan=28>" . $dist['district'] . "</th>
+                </tr>
+                <tr>        
+                    <th rowspan=2>क्रमांक</th>
+                    <th rowspan=2>पुलिस थाना</th>";
+        foreach ($top_row as $cols) {
+            $html .= "<th colspan=2>" . $cols . "</th>";
+        }
+
+        $html .= "</tr>";
+
+        $html .= "<tr>";
+        for ($i = 1; $i <= 13; $i++) {
+            $html .= "<td>प्र.</td><td>व्य.</td>";
+        }
+        $html .= "</tr>";
+        //     <th>अनुभाग</th>
+        //     <th>ज़िला</th>";
+        //     <th>पुलिस थाना</th>
+        //     <th>घटना समय</th>
+        //     <th>घटना दिनांक</th>
+        //     <th>व्यक्तियों की संख्या</th>
+        //     <th>धारा</th>
+        //     <th>कायमीकर्ता</th>
+        $i = 1;
+        foreach ($output_minor_crimes as $minorcrime) {
+            foreach ($minorcrime as $row) {
+                if ($row['district'] == $dist) {
+
+
+                    $html .= "<tr>
                         <td>
                             " . $i++ . "
                         </td>
@@ -146,6 +170,8 @@ if (isset($_POST['minor_crime_download'])) {
                         </td>
                         
                     </tr>";
+                }
+            }
         }
     }
 
@@ -163,75 +189,75 @@ if (isset($_POST['minor_crime_download'])) {
 }
 
 // Ongoing crime download
-// if (isset($_POST['ongoing_case_download'])) {
-//     $output_ongoing_cases = $_SESSION['ongoing_cases'];
-//     $html = "<table>
-//                 <tr>
-//                     <th>क्रमांक</th>
-//                     <th>ज़िला</th>
-//                     <th>अनुभाग</th>
-//                     <th>पुलिस थाना</th>
-//                     <th>अपराध क्रमांक</th>
-//                     <th>धारा</th>
-//                     <th>एफ.आई.आर. का दिनाक</th>
-//                     <th>आरोपी/संदिग्ध का नाम व पता</th>
-//                     <th>प्ररण की अद्यतन स्थिति</th>
-//                     <th>न्यायालय का नाम</th>
-//                     <th>न्यायालय के फैसले का संक्षिप्त विवरण</th>
-//                 </tr>";
-//     $i = 1;
-//     foreach ($output_ongoing_cases as $ongoingcase) {
-//         foreach ($ongoingcase as $row) {
-//             $html .= "<tr>
-//                         <td>
-//                             " . $i++ . "
-//                         </td>
-//                         <td>
-//                             " . $row['district'] . " 
-//                         </td>
-//                         <td>
-//                             " . $row['sub_division'] . " 
-//                         </td>
-//                         <td>
-//                             " . $row['police_station'] . " 
-//                         </td>
-//                         <td>
-//                             " . $row['crime_number'] . " 
-//                         </td>
-//                         <td>
-//                             " . $row['penal_code'] . " 
-//                         </td>
-//                         <td>
-//                             " . $row['fir_date'] . " 
-//                         </td>
-//                         <td>
-//                             " . $row['culprit_name'] . " | " . $row['culprit_address'] . " 
-//                         </td>
-//                         <td>
-//                             " . $row['case_status'] . " 
-//                         </td>
-//                         <td>
-//                             " . $row['name_of_court'] . " 
-//                         </td>
-//                         <td>
-//                             " . $row['judgement_of_court'] . " 
-//                         </td>
-//                     </tr>";
-//         }
-//     }
+if (isset($_POST['ongoing_case_download'])) {
+    $output_ongoing_cases = $_SESSION['ongoing_cases'];
+    $html = "<table>
+                <tr>
+                    <th>क्रमांक</th>
+                    <th>ज़िला</th>
+                    <th>अनुभाग</th>
+                    <th>पुलिस थाना</th>
+                    <th>अपराध क्रमांक</th>
+                    <th>धारा</th>
+                    <th>एफ.आई.आर. का दिनाक</th>
+                    <th>आरोपी/संदिग्ध का नाम व पता</th>
+                    <th>प्ररण की अद्यतन स्थिति</th>
+                    <th>न्यायालय का नाम</th>
+                    <th>न्यायालय के फैसले का संक्षिप्त विवरण</th>
+                </tr>";
+    $i = 1;
+    foreach ($output_ongoing_cases as $ongoingcase) {
+        foreach ($ongoingcase as $row) {
+            $html .= "<tr>
+                        <td>
+                            " . $i++ . "
+                        </td>
+                        <td>
+                            " . $row['district'] . " 
+                        </td>
+                        <td>
+                            " . $row['sub_division'] . " 
+                        </td>
+                        <td>
+                            " . $row['police_station'] . " 
+                        </td>
+                        <td>
+                            " . $row['crime_number'] . " 
+                        </td>
+                        <td>
+                            " . $row['penal_code'] . " 
+                        </td>
+                        <td>
+                            " . $row['fir_date'] . " 
+                        </td>
+                        <td>
+                            " . $row['culprit_name'] . " | " . $row['culprit_address'] . " 
+                        </td>
+                        <td>
+                            " . $row['case_status'] . " 
+                        </td>
+                        <td>
+                            " . $row['name_of_court'] . " 
+                        </td>
+                        <td>
+                            " . $row['judgement_of_court'] . " 
+                        </td>
+                    </tr>";
+        }
+    }
 
-//     $html .= "</table>";
+    $html .= "</table>";
 
-//     $html = '<html xmlns:o="urn:schemas-microsoft-com:office:office"
-//     xmlns:x="urn:schemas-microsoft-com:office:excel"
-//     xmlns="http://www.w3.org/TR/REC-html40">'
-//         . '<head><meta http-equiv="Content-type" content="text/html;charset=UTF-8" /></head>'
-//         . '<body>' . $html . '</body></html>';
+    $html = '<html xmlns:o="urn:schemas-microsoft-com:office:office"
+    xmlns:x="urn:schemas-microsoft-com:office:excel"
+    xmlns="http://www.w3.org/TR/REC-html40">'
+        . '<head><meta http-equiv="Content-type" content="text/html;charset=UTF-8" /></head>'
+        . '<body>' . $html . '</body></html>';
 
-//     header('Content-Type: application/xls');
-//     header('Content-Disposition: attachment; filename=ongoing_cases.xls');
-//     echo $html;
-// }
+    header('Content-Type: application/xls');
+    header('Content-Disposition: attachment; filename=ongoing_cases.xls');
+    echo $html;
+}
 
 // Dead body download
 if (isset($_POST['dead_body_download'])) {
