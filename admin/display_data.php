@@ -83,7 +83,6 @@ if (isset($_POST['view'])) {
                 $output_court_judgements[] = find_court_judgements($district, $start_date, $end_date);
             }
         }
-    } else {
 
         $_SESSION['ongoing_cases'] = $output_ongoing_cases;
         $_SESSION['major_crimes'] = $output_major_crimes;
@@ -91,6 +90,9 @@ if (isset($_POST['view'])) {
         $_SESSION['dead_bodies'] = $output_dead_bodies;
         $_SESSION['important_achievements'] = $output_important_achievements;
         $_SESSION['court_judgements'] = $output_court_judgements;
+        
+    } else {
+
         $_SESSION['message'] = $errors[0];
         $_SESSION['type'] = "warning";
         header('Location: view_data.php');
