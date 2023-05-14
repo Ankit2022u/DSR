@@ -75,10 +75,15 @@ if (!(isset($_SESSION['user-data']))) {
                             Ongoing Case सक्रिय मामला
                         </a>
                     </li>
+                    <li>
+                        <a href="cjf.php" class="nav-link link-dark">
+                            Court judgement / कोर्ट का निर्णय
+                        </a>
+                    </li>
 
                     <li>
-                        <a href="imp_action.php" class="nav-link link-dark">
-                            Important Actions
+                        <a href="iaf.php" class="nav-link link-dark">
+                            Important Achievements / मुख्य उपलब्धियां
                         </a>
                     </li>
 

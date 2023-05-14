@@ -19,61 +19,71 @@ $police_stations = police_stations();
                 </a>
                 <hr> -->
                 <ul class="nav nav-pills flex-column mb-auto">
-                    <!-- <li class="nav-item">
+
+                    <li class="nav-item">
                         <a href="user.php" class="nav-link link-dark" aria-current="page">
-                            Dashboard
+                            User Dashboard
                         </a>
                     </li>
+
                     <li>
-                        <a href="manage_user.php" class="nav-link link-dark">
-                            Manage Users
+                        <a href="dead_body_form.php" class="nav-link link-dark">
+                            Dead Body
                         </a>
                     </li>
+
                     <li>
-                        <a href="view_logs.php" class="nav-link link-dark">
-                            View Logs
+                        <a href="major_crime_form.php" class="nav-link link-dark">
+                            Major Crime
                         </a>
                     </li>
+
                     <li>
-                        <a href="view_data.php" class="nav-link link-dark">
-                            View Data
+                        <a href="ongoing_case_form.php" class="nav-link link-dark">
+                            Ongoing Case
                         </a>
                     </li>
+
+                    <li>
+                        <a href="minor_crime_form.php" class="nav-link link-dark">
+                            Minor Crime
+                        </a>
+                    </li>
+                    <!-- <li>
+                        <a class="nav-link link-dark" href="edit.php">
+                            Edit
+                        </a>
+                    </li> -->
+
+
+                    <li>
+                        <a class="nav-link link-dark" href="feedback.php">
+                            Feedback
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="profile.php" class="nav-link link-dark">
+                            Profile
+                        </a>
+                    </li>
+
                     <li>
                         <a href="change_password.php" class="nav-link link-dark">
                             Change Password
                         </a>
                     </li>
+
                     <li>
-                        <a href="police_station.php" class="nav-link link-dark">
-                            Police Stations
+                        <a href="court_judgement_form.php" class="nav-link active">
+                            Change Password
                         </a>
                     </li>
+
                     <li>
-                        <a href="profile.php" class="nav-link link-dark">
-                            View Profile
-                        </a>
+                        <a href="impotant_achievements_form.php" class="nav-link link-dark">
+                            Important Achievements
                     </li>
-                    <li>
-                        <a href="dbf.php" class="nav-link active">
-                            Dead Body Form
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mcf.php" class="nav-link link-dark">
-                            Major Crime Form
-                        </a>
-                    </li>
-                    <li>
-                        <a href="micf.php" class="nav-link link-dark">
-                            Minor Crime Form
-                        </a>
-                    </li>
-                    <li>
-                        <a href="ocf.php" class="nav-link link-dark">
-                            Ongoing Case Form
-                        </a>
-                    </li> -->
 
                 </ul>
                 <hr>

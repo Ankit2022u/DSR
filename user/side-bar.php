@@ -4,25 +4,25 @@
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
-       
-    <li class="nav-item">
-            <a href="user.php" class="nav-link active" aria-current="page">
-               User Dashboard
+
+        <li class="nav-item">
+            <a href="user.php" class="nav-link link-dark" aria-current="page">
+                User Dashboard
             </a>
         </li>
-       
+
         <li>
             <a href="dead_body_form.php" class="nav-link link-dark">
                 Dead Body
             </a>
         </li>
-       
+
         <li>
             <a href="major_crime_form.php" class="nav-link link-dark">
                 Major Crime
             </a>
         </li>
-       
+
         <li>
             <a href="ongoing_case_form.php" class="nav-link link-dark">
                 Ongoing Case
@@ -30,35 +30,52 @@
         </li>
 
         <li>
-            <a href="minor_crime_form.php" class="nav-link link-dark">
+            <a href="minor_crime_form.php" class="nav-link active">
                 Minor Crime
             </a>
         </li>
+        <!-- <li>
+                        <a class="nav-link link-dark" href="edit.php">
+                            Edit
+                        </a>
+                    </li> -->
+
 
         <li>
             <a class="nav-link link-dark" href="feedback.php">
                 Feedback
             </a>
-        </li>   
-       
+        </li>
+
         <li>
             <a href="profile.php" class="nav-link link-dark">
                 Profile
             </a>
         </li>
-       
+
         <li>
             <a href="change_password.php" class="nav-link link-dark">
                 Change Password
             </a>
         </li>
-       
-        
+
+        <li>
+            <a href="court_judgement_form.php" class="nav-link link-dark">
+                Court Judgement
+            </a>
+        </li>
+
+        <li>
+            <a href="impotant_achievements_form.php" class="nav-link link-dark">
+                Important Achievements
+        </li>
+
+
     </ul>
     <hr>
     <div class="profile">
-        <img src="../uploads/<?=$_SESSION['user-data']['user_type'];?>/<?=$_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32"
-            class="rounded-circle me-2">
+        <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
+            alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
         <strong>
             <?= $_SESSION['user-data']['officer_name']; ?>
         </strong>

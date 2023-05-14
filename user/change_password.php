@@ -76,16 +76,21 @@ if (!(isset($_SESSION['user-data']))) {
                     </li>
 
                     <li>
-                        <a href="imp_action.php" class="nav-link link-dark">
-                            Important Actions
+                        <a href="court_judgement_form.php" class="nav-link link-dark">
+                            Change Password
                         </a>
                     </li>
 
+                    <li>
+                        <a href="impotant_achievements_form.php" class="nav-link link-dark">
+                            Important Achievements
+                    </li>
 
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
+                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>
@@ -101,34 +106,44 @@ if (!(isset($_SESSION['user-data']))) {
                     <div class="col-12 col-md-8">
                         <div class="card shadow-sm">
                             <?php if (isset($_SESSION['message'])) {
-                            ?>
+                                ?>
                                 <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
                                     <span>
                                         <?= $_SESSION['message']; ?>
                                     </span>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
                                 </div>
-                            <?php unset($_SESSION['message']);
+                                <?php unset($_SESSION['message']);
                             } ?>
 
                             <div class="card-body">
                                 <form method="POST" action="../auth/change_password.php">
-                                    <input type="hidden" id="user_id" class="form-control" name="user_id" value="<?= $_SESSION['user-data']['user_id']; ?>">
+                                    <input type="hidden" id="user_id" class="form-control" name="user_id"
+                                        value="<?= $_SESSION['user-data']['user_id']; ?>">
                                     <div class="mb-3">
-                                        <label for="old_password" class="form-label">Old Password<span class="required-star">*</span></label>
-                                        <input type="password" id="old_password" class="form-control" name="old_password" placeholder="Enter Current Password" required>
-                                        <span class="pass_icon" onclick="changeIcon(1)"><i id="icon1" class="bi bi-eye-fill"></i></span>
+                                        <label for="old_password" class="form-label">Old Password<span
+                                                class="required-star">*</span></label>
+                                        <input type="password" id="old_password" class="form-control"
+                                            name="old_password" placeholder="Enter Current Password" required>
+                                        <span class="pass_icon" onclick="changeIcon(1)"><i id="icon1"
+                                                class="bi bi-eye-fill"></i></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="new_password" class="form-label">New Password<span class="required-star">*</span></label>
-                                        <input type="password" id="new_password" class="form-control" name="new_password" placeholder="Enter New Password" required>
-                                        <span class="pass_icon" onclick="changeIcon(2)"><i id="icon2" class="bi bi-eye-fill"></i></span>
+                                        <label for="new_password" class="form-label">New Password<span
+                                                class="required-star">*</span></label>
+                                        <input type="password" id="new_password" class="form-control"
+                                            name="new_password" placeholder="Enter New Password" required>
+                                        <span class="pass_icon" onclick="changeIcon(2)"><i id="icon2"
+                                                class="bi bi-eye-fill"></i></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="confirm_new_password" class="form-label">Confirm New
                                             Password<span class="required-star">*</span></label>
-                                        <input type="password" id="confirm_new_password" class="form-control" name="confirm_new_password" placeholder="Confirm New Password" required>
-                                        <span class="pass_icon" onclick="changeIcon(3)"><i id="icon3" class="bi bi-eye-fill"></i></span>
+                                        <input type="password" id="confirm_new_password" class="form-control"
+                                            name="confirm_new_password" placeholder="Confirm New Password" required>
+                                        <span class="pass_icon" onclick="changeIcon(3)"><i id="icon3"
+                                                class="bi bi-eye-fill"></i></span>
                                     </div>
                                     <div class="mb-3 d-grid">
                                         <button type="submit" class="btn btn-primary" name="change_password_user">

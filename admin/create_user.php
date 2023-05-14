@@ -191,6 +191,17 @@ $police_stations = police_stations();
                             Ongoing Case / सक्रिय मामला
                         </a>
                     </li>
+                    <li>
+                        <a href="cjf.php" class="nav-link link-dark">
+                            Court judgement / कोर्ट का निर्णय
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="iaf.php" class="nav-link link-dark">
+                            Important Achievements / मुख्य उपलब्धियां
+                        </a>
+                    </li>
 
                 </ul>
                 <hr>
