@@ -110,8 +110,8 @@ if (isset($_POST['save_court_judgement'])) {
     $crime_number = mysqli_real_escape_string($con, $_POST['crime_number']);
     $penal_code = mysqli_real_escape_string($con, $_POST['penal_code']);
     $result_date = mysqli_real_escape_string($con, $_POST['result_date']);
-    $applicant_address = mysqli_real_escape_string($con, $_POST['applicant_address']);
-    $applicant_name = mysqli_real_escape_string($con, $_POST['applicant_name']);
+    $culprit_address = mysqli_real_escape_string($con, $_POST['culprit_address']);
+    $culprit_name = mysqli_real_escape_string($con, $_POST['culprit_name']);
     $name_of_court = mysqli_real_escape_string($con, $_POST['name_of_court']);
     $judgement_of_court = mysqli_real_escape_string($con, $_POST['judgement_of_court']);
     $updated_by = $_SESSION['user-data']['user_id'];
@@ -127,11 +127,11 @@ if (isset($_POST['save_court_judgement'])) {
     if (empty($result_date)) {
         $errors[] = "Result Date is required.";
     }
-    if (empty($applicant_name)) {
-        $errors[] = "Applicant Name is required.";
+    if (empty($culprit_name)) {
+        $errors[] = "Culprit Name is required.";
     }
-    if (empty($applicant_address)) {
-        $errors[] = "Applicant Address is required.";
+    if (empty($culprit_address)) {
+        $errors[] = "Culprit Address is required.";
     }
     if (empty($name_of_court)) {
         $errors[] = "Name of Court is required.";
@@ -142,8 +142,8 @@ if (isset($_POST['save_court_judgement'])) {
 
     if (empty($errors)) {
         // Prepare and bind parameters to prevent SQL injection
-        $stmt = $con->prepare("INSERT INTO court_judgements (district, sub_division, police_station, crime_number, penal_code, result_date, applicant_address, applicant_name, judgement_of_court, court_name, updated_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssssssss", $district, $sub_division, $police_station, $crime_number, $penal_code, $result_date, $applicant_address, $applicant_name, $judgement_of_court, $name_of_court, $updated_by);
+        $stmt = $con->prepare("INSERT INTO court_judgements (district, sub_division, police_station, crime_number, penal_code, result_date, culprit_address, culprit_name, judgement_of_court, court_name, updated_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssssssss", $district, $sub_division, $police_station, $crime_number, $penal_code, $result_date, $culprit_address, $culprit_name, $judgement_of_court, $name_of_court, $updated_by);
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
@@ -517,8 +517,8 @@ if (isset($_POST['add_police_station'])) {
 }
 
 
-// Save Important Actions 
-if (isset($_POST['save_imp_action'])) {
+// Save Important Achievements 
+if (isset($_POST['save_important_achievement'])) {
     $district = mysqli_real_escape_string($con, $_POST['district']);
     $sub_division = mysqli_real_escape_string($con, $_POST['sub_division']);
     $police_station = mysqli_real_escape_string($con, $_POST['police_station']);
@@ -531,29 +531,17 @@ if (isset($_POST['save_imp_action'])) {
     $updated_by = $_SESSION['user-data']['user_id'];
 
     // Validate input fields
-    // $errors = array();
-    // if (empty($crime_number)) {
-    //     $errors[] = "Crime Number is required.";
-    // }
-    // if (empty($penal_code)) {
-    //     $errors[] = "Section Number is required.";
-    // }
-    // if (empty($name_of_court)) {
-    //     $errors[] = "Court's Name is required.";
-    // }
-    // if (empty($culprit_name)) {
-    //     $errors[] = "Culprit Name is required.";
-    // }
-    // if (empty($culprit_address)) {
-    //     $errors[] = "Culprit Address is required.";
-    // }
-    // if (empty($fir_date)) {
-    //     $errors[] = "FIR Date is required.";
-    // }
+    $errors = array();
+    if (empty($decision_given_by_the_court)) {
+        $errors[] = "Court Decision is required.";
+    }
+    if (empty($action_taken_under)) {
+        $errors[] = "Action Taken Under 102 is required.";
+    }
 
-    // if (empty($errors)) {
+    if (empty($errors)) {
     // Prepare and bind the query with placeholders
-    $query = "INSERT INTO important_actions (`updated_by`,`district`,`sub_division`, `police_station`, `arrest_in_major_crime`, `decision_given_by_the_court`, `missing_man_document`, `miscellaneous`, `robbery`, `action_taken_under`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO important_achievements (`updated_by`,`district`,`sub_division`, `police_station`, `arrest_in_major_crime`, `decision_given_by_the_court`, `missing_man_document`, `miscellaneous`, `robbery`, `action_taken_under`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($con, $query);
 
     // Assuming all columns are of type string (s)
@@ -566,37 +554,37 @@ if (isset($_POST['save_imp_action'])) {
     if ($result) {
         $inserted_id = mysqli_insert_id($con);
         $user = $_SESSION['user-data']['user_id'];
-        $log_query = "INSERT INTO `logs`(`status`, `created_by`, `table_name`, `table_id`, `operation`, `log_desc`) VALUES (1, ?, 'ongoing_cases', ?, 'insert', 'Important Action Data Filled.')";
+        $log_query = "INSERT INTO `logs`(`status`, `created_by`, `table_name`, `table_id`, `operation`, `log_desc`) VALUES (1, ?, 'ongoing_cases', ?, 'insert', 'Important Achievement Data Filled.')";
         $log_stmt = mysqli_prepare($con, $log_query);
         mysqli_stmt_bind_param($log_stmt, "si", $user, $inserted_id);
         mysqli_stmt_execute($log_stmt);
 
-        $_SESSION['message'] = "Important Action data Submitted successfully";
+        $_SESSION['message'] = "Important Achievement data Submitted successfully";
         $_SESSION['type'] = "success";
         if ($usertype == "admin") {
-            header("Location: ../admin/imp_action.php");
+            header("Location: ../admin/iaf.php");
         } else {
-            header("Location: ../user/imp_action.php");
+            header("Location: ../user/important_achievements_form.php");
         }
         exit(0);
     } else {
         $_SESSION['message'] = "Important Action data submission failed";
         $_SESSION['type'] = "danger";
         if ($usertype == "admin") {
-            header("Location: ../admin/imp_action.php");
+            header("Location: ../admin/iaf.php");
         } else {
-            header("Location: ../user/imp_action.php");
+            header("Location: ../user/important_achievements_form.php");
         }
         exit(0);
     }
-    // } else {
-    //     $_SESSION['message'] = $errors[0];
-    //     $_SESSION['type'] = "warning";
-    //     if ($usertype == "admin") {
-    //         header("Location: ../admin/ocf.php");
-    //     } else {
-    //         header("Location: ../user/ongoing_case_form.php");
-    //     }
-    //     exit(0);
-    // }
+    } else {
+        $_SESSION['message'] = $errors[0];
+        $_SESSION['type'] = "warning";
+        if ($usertype == "admin") {
+            header("Location: ../admin/iaf.php");
+        } else {
+            header("Location: ../user/important_achievements_form.php");
+        }
+        exit(0);
+    }
 }

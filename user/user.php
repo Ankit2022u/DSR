@@ -41,7 +41,6 @@ $total_users = count_users();
                         </a>
                     </li>
 
-
                     <li>
                         <a href="major_crime_form.php" class="nav-link link-dark">
                             Major Crime / गंभीर अपराध
@@ -59,12 +58,6 @@ $total_users = count_users();
                             Minor Crime / सामान्य अपराध
                         </a>
                     </li>
-
-                    <!-- <li>
-                        <a class="nav-link link-dark" href="edit.php">
-                            Edit
-                        </a>
-                    </li> -->
 
                     <li>
                         <a class="nav-link link-dark" href="feedback.php">
@@ -85,9 +78,19 @@ $total_users = count_users();
                     </li>
 
                     <li>
+<<<<<<< HEAD
                         <a href="imp_action.php" class="nav-link link-dark">
                             Important Actions / महत्वपूर्ण कार्यवाही
+=======
+                        <a href="court_judgement_form.php" class="nav-link link-dark">
+                            Court Judgement
+>>>>>>> 42d7c262d56c128f63d0f1236219623eaa3dc39a
                         </a>
+                    </li>
+
+                    <li>
+                        <a href="impotant_achievements_form.php" class="nav-link link-dark">
+                            Important Achievements
                     </li>
 
 

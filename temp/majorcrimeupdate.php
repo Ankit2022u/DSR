@@ -34,56 +34,56 @@ $data = mysqli_fetch_array($query_run);
 
                     <li class="nav-item">
                         <a href="user.php" class="nav-link link-dark" aria-current="page">
-                            User Dashboard / डैशबोर्ड
+                            User Dashboard
                         </a>
                     </li>
 
                     <li>
                         <a href="dead_body_form.php" class="nav-link link-dark">
-                            Inquest / मर्ग
+                            Dead Body
                         </a>
                     </li>
 
                     <li>
                         <a href="major_crime_form.php" class="nav-link link-dark">
-                            Major Crime / गंभीर अपराध
+                            Major Crime
                         </a>
                     </li>
 
                     <li>
                         <a href="ongoing_case_form.php" class="nav-link link-dark">
-                            Ongoing Case / सक्रिय मामला 
+                            Ongoing Case
                         </a>
                     </li>
 
                     <li>
                         <a href="minor_crime_form.php" class="nav-link link-dark">
-                            Minor Crime / सामान्य अपराध
+                            Minor Crime
                         </a>
                     </li>
 
                     <li>
                         <a class="nav-link active" href="edit.php">
-                            Edit / एडिट
+                            Edit
                         </a>
                     </li>
 
 
                     <li>
                         <a class="nav-link link-dark" href="feedback.php">
-                            Feedback / फीडबैक
+                            Feedback
                         </a>
                     </li>
 
                     <li>
                         <a href="profile.php" class="nav-link link-dark">
-                            Profile / प्रोफाइल
+                            Profile
                         </a>
                     </li>
 
                     <li>
                         <a href="change_password.php" class="nav-link link-dark">
-                            Change Password / पासवर्ड को बदले
+                            Change Password
                         </a>
                     </li>
 
@@ -273,5 +273,3 @@ $data = mysqli_fetch_array($query_run);
 <script src="../assets/js/police_station.js"></script>
 
 </body>
-
-</html>

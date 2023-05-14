@@ -24,31 +24,31 @@ $police_stations = police_stations();
 
                     <li class="nav-item">
                         <a href="user.php" class="nav-link link-dark" aria-current="page">
-                            User Dashboard / डैशबोर्ड
+                            User Dashboard
                         </a>
                     </li>
 
                     <li>
                         <a href="dead_body_form.php" class="nav-link link-dark">
-                             Inquest / मर्ग
+                            Dead Body
                         </a>
                     </li>
 
                     <li>
                         <a href="major_crime_form.php" class="nav-link link-dark">
-                            Major Crime / गंभीर अपराध
+                            Major Crime
                         </a>
                     </li>
 
                     <li>
                         <a href="ongoing_case_form.php" class="nav-link link-dark">
-                            Ongoing Case / सक्रिय मामला
+                            Ongoing Case
                         </a>
                     </li>
 
                     <li>
                         <a href="minor_crime_form.php" class="nav-link link-dark">
-                            Minor Crime / सामान्य अपराध
+                            Minor Crime
                         </a>
                     </li>
                     <!-- <li>
@@ -60,25 +60,25 @@ $police_stations = police_stations();
 
                     <li>
                         <a class="nav-link link-dark" href="feedback.php">
-                            Feedback / फीडबैक
+                            Feedback
                         </a>
                     </li>
 
                     <li>
                         <a href="profile.php" class="nav-link link-dark">
-                            Profile / प्रोफाइल
+                            Profile
                         </a>
                     </li>
 
                     <li>
                         <a href="change_password.php" class="nav-link link-dark">
-                            Change Password / पासवर्ड को बदले
+                            Change Password
                         </a>
                     </li>
 
                     <li>
                         <a href="imp_action.php" class="nav-link active">
-                            Important Actions / महत्वपूर्ण कार्यवाही
+                            Important Actions
                         </a>
                     </li>
 
@@ -233,5 +233,3 @@ $police_stations = police_stations();
 <script src="../assets/js/police_station.js"></script>
 
 </body>
-
-</html>
