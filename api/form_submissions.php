@@ -71,7 +71,7 @@ if (isset($_POST['save_deadbody'])) {
             $log_query->bind_param("ssssss", $status, $user, $table_name, $inserted_id, $operation, $log_desc);
             $log_query->execute();
 
-            $_SESSION['message'] = "Deadbody data submitted successfully";
+            $_SESSION['message'] = "डेटा सफलतापूर्वक दर्ज हुआ!";
             $_SESSION['type'] = "success";
             if ($usertype === "admin") {
                 header("Location: ../admin/dbf.php");
@@ -80,7 +80,7 @@ if (isset($_POST['save_deadbody'])) {
             }
             exit(0);
         } else {
-            $_SESSION['message'] = "Deadbody data submission failed";
+            $_SESSION['message'] = "डेटा भेजने में त्रुटि!";
             $_SESSION['type'] = "danger";
             if ($usertype == "admin") {
                 header("Location: ../admin/dbf.php");
@@ -157,7 +157,7 @@ if (isset($_POST['save_court_judgement'])) {
             $log_query->bind_param("ssssss", $status, $user, $table_name, $inserted_id, $operation, $log_desc);
             $log_query->execute();
 
-            $_SESSION['message'] = "Court Judgement data submitted successfully";
+            $_SESSION['message'] = "डेटा सफलतापूर्वक दर्ज हुआ!";
             $_SESSION['type'] = "success";
             if ($usertype === "admin") {
                 header("Location: ../admin/cjf.php");
@@ -166,7 +166,7 @@ if (isset($_POST['save_court_judgement'])) {
             }
             exit(0);
         } else {
-            $_SESSION['message'] = "Court Judgement data submission failed";
+            $_SESSION['message'] = "डेटा भेजने में त्रुटि!";
             $_SESSION['type'] = "danger";
             if ($usertype == "admin") {
                 header("Location: ../admin/cjf.php");
@@ -264,7 +264,7 @@ if (isset($_POST['save_major_crime'])) {
             mysqli_stmt_bind_param($log_stmt, "ss", $user, $inserted_id);
             mysqli_stmt_execute($log_stmt);
 
-            $_SESSION['message'] = "Major Crime data Submitted successfully";
+            $_SESSION['message'] = "डेटा सफलतापूर्वक दर्ज हुआ!";
             $_SESSION['type'] = "success";
             if ($usertype == "admin") {
                 header("Location: ../admin/mcf.php");
@@ -273,7 +273,7 @@ if (isset($_POST['save_major_crime'])) {
             }
             exit(0);
         } else {
-            $_SESSION['message'] = "Major Crime data submission failed";
+            $_SESSION['message'] = "डेटा भेजने में त्रुटि!";
             $_SESSION['type'] = "danger";
             if ($usertype == "admin") {
                 header("Location: ../admin/mcf.php");
@@ -342,7 +342,7 @@ if (isset($_POST['save_minor_crime'])) {
             $log_stmt->bind_param("si", $user, $inserted_id);
             $log_stmt->execute();
 
-            $_SESSION['message'] = "Minor Crime data Submitted successfully";
+            $_SESSION['message'] = "डेटा सफलतापूर्वक दर्ज हुआ!";
             $_SESSION['type'] = "success";
             if ($usertype == "admin") {
                 header("Location: ../admin/micf.php");
@@ -352,7 +352,7 @@ if (isset($_POST['save_minor_crime'])) {
 
             exit(0);
         } else {
-            $_SESSION['message'] = "Minor Crime data submission failed";
+            $_SESSION['message'] = "डेटा भेजने में त्रुटि!";
             $_SESSION['type'] = "danger";
             if ($usertype == "admin") {
                 header("Location: ../admin/micf.php");
@@ -427,7 +427,7 @@ if (isset($_POST['save_ongoing_case'])) {
             mysqli_stmt_bind_param($log_stmt, "si", $user, $inserted_id);
             mysqli_stmt_execute($log_stmt);
 
-            $_SESSION['message'] = "Ongoing Case data Submitted successfully";
+            $_SESSION['message'] = "डेटा सफलतापूर्वक दर्ज हुआ!";
             $_SESSION['type'] = "success";
             if ($usertype == "admin") {
                 header("Location: ../admin/ocf.php");
@@ -436,7 +436,7 @@ if (isset($_POST['save_ongoing_case'])) {
             }
             exit(0);
         } else {
-            $_SESSION['message'] = "Ongoing Case data submission failed";
+            $_SESSION['message'] = "डेटा भेजने में त्रुटि!";
             $_SESSION['type'] = "danger";
             if ($usertype == "admin") {
                 header("Location: ../admin/ocf.php");
@@ -496,12 +496,12 @@ if (isset($_POST['add_police_station'])) {
             mysqli_stmt_execute($stmt_log);
             mysqli_stmt_close($stmt_log);
 
-            $_SESSION['message'] = "Police Station Data Submitted successfully";
+            $_SESSION['message'] = "डेटा सफलतापूर्वक दर्ज हुआ!";
             $_SESSION['type'] = "success";
             header("Location: ../admin/police_station.php");
             exit(0);
         } else {
-            $_SESSION['message'] = "Police Station data submission failed";
+            $_SESSION['message'] = "डेटा भेजने में त्रुटि!";
             $_SESSION['type'] = "danger";
             header("Location: ../admin/police_station.php");
             exit(0);
@@ -556,7 +556,7 @@ if (isset($_POST['save_important_achievement'])) {
             mysqli_stmt_bind_param($log_stmt, "si", $user, $inserted_id);
             mysqli_stmt_execute($log_stmt);
 
-            $_SESSION['message'] = "Important Achievement data Submitted successfully";
+            $_SESSION['message'] = "डेटा सफलतापूर्वक दर्ज हुआ!";
             $_SESSION['type'] = "success";
             if ($usertype == "admin") {
                 header("Location: ../admin/iaf.php");
@@ -565,7 +565,7 @@ if (isset($_POST['save_important_achievement'])) {
             }
             exit(0);
         } else {
-            $_SESSION['message'] = "Important Achievement data submission failed";
+            $_SESSION['message'] = "डेटा भेजने में त्रुटि!";
             $_SESSION['type'] = "danger";
             if ($usertype == "admin") {
                 header("Location: ../admin/iaf.php");
