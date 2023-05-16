@@ -109,13 +109,13 @@ $police_stations = police_stations();
                 $type = $_SESSION['type'];
                 $message = $_SESSION['message'];
                 unset($_SESSION['message']); // Remove session data after use to prevent data leaks
-            ?>
-            <div class="alert alert-<?php echo htmlspecialchars($type); ?> alert-dismissible fade show" role="alert">
-                <strong>Hye!</strong>
-                <?php echo htmlspecialchars($message); ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <?php
+                ?>
+                <div class="alert alert-<?php echo htmlspecialchars($type); ?> alert-dismissible fade show" role="alert">
+                    <strong>Hye!</strong>
+                    <?php echo htmlspecialchars($message); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php
             }
             ?>
             <form action="../api/form_submissions.php" method="post">
@@ -125,6 +125,7 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="district" id="district"
                                     onchange="update_police_stations()" required>
+                                    <option value="">Select Option</option>
                                     <option value="सरगुजा">सरगुजा</option>
                                     <option value="बलरामपुर">बलरामपुर</option>
                                     <option value="सूरजपुर">सूरजपुर</option>

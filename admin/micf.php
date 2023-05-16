@@ -108,13 +108,13 @@ $police_stations = police_stations();
             if (isset($_SESSION['message']) && isset($_SESSION['type'])) {
                 $type = htmlspecialchars($_SESSION['type'], ENT_QUOTES, 'UTF-8'); // Sanitize the 'type' value
                 $message = htmlspecialchars($_SESSION['message'], ENT_QUOTES, 'UTF-8'); // Sanitize the 'message' value
-            ?>
-            <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
-                <strong>Important: </strong>
-                <?= $message; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <?php
+                ?>
+                <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
+                    <strong>Important: </strong>
+                    <?= $message; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php
                 unset($_SESSION['message']);
                 unset($_SESSION['type']);
             }
@@ -127,6 +127,7 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="district" id="district"
                                     onchange="update_police_stations()" required>
+                                    <option value="">Select Option</option>
                                     <option value="सरगुजा">सरगुजा</option>
                                     <option value="बलरामपुर">बलरामपुर</option>
                                     <option value="सूरजपुर">सूरजपुर</option>
