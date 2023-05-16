@@ -125,13 +125,13 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="district" id="district"
                                     onchange="update_police_stations()" required>
-                                    <option value="Surguja">Surguja</option>
-                                    <option value="Balrampur">Balrampur</option>
-                                    <option value="Surajpur">Surajpur</option>
-                                    <option value="Manendragarh-Chirmiri-Bharatpur">Manendragarh-Chirmiri-Bharatpur
-                                    </option>
-                                    <option value="Jashpur">Jashpur</option>
-                                    <option value="Korea">Korea</option>
+                                    <option value="">Select option </option>
+                                    <option value="सरगुजा">सरगुजा</option>
+                                    <option value="बलरामपुर">बलरामपुर</option>
+                                    <option value="सूरजपुर">सूरजपुर</option>
+                                    <option value="मनेंद्रगढ़-चिरमीरी-भरतपुर">मनेंद्रगढ़-चिरमीरी-भरतपुर</option>
+                                    <option value="जशपुर">जशपुर</option>
+                                    <option value="कोरिया">कोरिया</option>
                                 </select>
                                 <label for="district">District / ज़िला<span class="required-star">*</span></label>
                             </div>
