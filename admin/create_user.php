@@ -71,13 +71,13 @@ if (isset($_POST['save_user'])) {
 
         if ($password == $confirm_password) {
             $query = "INSERT INTO users(officer_name, officer_rank, user_id, user_type, district, status, police_station, password, profile_photo_path) VALUES (?, ?, ?, ?, ?, 0, ?, ?, ?)";
-    
+
             try {
                 $stmt = mysqli_prepare($con, $query);
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                mysqli_stmt_bind_param($stmt, "ssssssss", $officer_name, $officer_rank, $user_id, $user_type, $district, $police_station, $hashed_password, $profile_photo_path);                
+                mysqli_stmt_bind_param($stmt, "ssssssss", $officer_name, $officer_rank, $user_id, $user_type, $district, $police_station, $hashed_password, $profile_photo_path);
                 mysqli_stmt_execute($stmt);
-    
+
                 if (mysqli_stmt_affected_rows($stmt) > 0) {
                     $inserted_id = mysqli_insert_id($con);
                     $user = $_SESSION['user-data']['user_id'];
@@ -85,7 +85,7 @@ if (isset($_POST['save_user'])) {
                     $log_stmt = mysqli_prepare($con, $log_query);
                     mysqli_stmt_bind_param($log_stmt, "ss", $user, $inserted_id);
                     mysqli_stmt_execute($log_stmt);
-    
+
                     $_SESSION['message'] = "User created successfully";
                     $_SESSION['type'] = "success";
                     header("Location: create_user.php");
@@ -114,7 +114,7 @@ if (isset($_POST['save_user'])) {
         $_SESSION['message'] = $errors[0];
         $_SESSION['type'] = "warning";
     }
-    
+
 }
 
 $police_stations = police_stations();
@@ -143,7 +143,7 @@ $police_stations = police_stations();
                     </li>
                     <li>
                         <a href="manage_user.php" class="nav-link active">
-                            Manage Users /  उपयोगकर्ताओं का प्रबंधन
+                            Manage Users / उपयोगकर्ताओं का प्रबंधन
                         </a>
                     </li>
                     <li>
@@ -173,7 +173,7 @@ $police_stations = police_stations();
                     </li>
                     <li>
                         <a href="dbf.php" class="nav-link link-dark">
-                          Inquest / मर्ग
+                            Inquest / मर्ग
                         </a>
                     </li>
                     <li>
@@ -285,21 +285,22 @@ $police_stations = police_stations();
                                     <div class="row">
                                         <div class="col-md-6 col-lg-6 col-sm-12">
                                             <div class="mb-3">
-                                                <label for="district" class="form-label">District</label>
-                                                <span class="required-star">*</span>
 
-                                                <select class="form-select form-select-lg" name="district" id="district"
-                                                onchange="update_police_stations()" required>
 
-                                                    <option value="Surguja">Surguja</option>
-                                                    <option value="Balrampur">Balrampur</option>
-                                                    <option value="Surajpur">Surajpur</option>
-                                                    <option value="Jashpur">Jashpur</option>
-                                                    <option value="Manendragarh-Chirmiri-Bharatpur">
-                                                        Manendragarh-Chirmiri-Bharatpur
+                                                <label for="district">District / जिला<span
+                                                        class="required-star">*</span></label>
+                                                <select class="form-select" name="district" id="district"
+                                                    onchange="update_police_stations()" required>
+                                                    <option value="">Select Option</option>
+                                                    <option value="सरगुजा">सरगुजा</option>
+                                                    <option value="बलरामपुर">बलरामपुर</option>
+                                                    <option value="सूरजपुर">सूरजपुर</option>
+                                                    <option value="मनेंद्रगढ़-चिरमीरी-भरतपुर">मनेंद्रगढ़-चिरमीरी-भरतपुर
                                                     </option>
-                                                    <option value="Korea">Korea</option>
+                                                    <option value="जशपुर">जशपुर</option>
+                                                    <option value="कोरिया">कोरिया</option>
                                                 </select>
+
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-lg-6 col-sm-12">
