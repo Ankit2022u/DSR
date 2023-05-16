@@ -4,23 +4,18 @@
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
-<<<<<<< HEAD
-       
-    <li class="nav-item">
-            <a href="user.php" class="nav-link active" aria-current="page">
-               User Dashboard / डैशबोर्ड
-=======
+
 
         <li class="nav-item">
-            <a href="user.php" class="nav-link link-dark" aria-current="page">
-                User Dashboard
->>>>>>> 42d7c262d56c128f63d0f1236219623eaa3dc39a
+            <a href="user.php" class="nav-link active" aria-current="page">
+                User Dashboard / डैशबोर्ड
+
             </a>
         </li>
 
         <li>
             <a href="dead_body_form.php" class="nav-link link-dark">
-                 Inquest / मर्ग
+                Inquest / मर्ग
             </a>
         </li>
 

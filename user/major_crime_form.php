@@ -23,8 +23,8 @@ $police_stations = police_stations();
                 <hr> -->
                 <ul class="nav nav-pills flex-column mb-auto">
 
-                   
-                <li class="nav-item">
+
+                    <li class="nav-item">
                         <a href="user.php" class="nav-link link-dark" aria-current="page">
                             User Dashboard / डैशबोर्ड
                         </a>
@@ -32,7 +32,7 @@ $police_stations = police_stations();
 
                     <li>
                         <a href="dead_body_form.php" class="nav-link link-dark">
-                             Inquest / मर्ग
+                            Inquest / मर्ग
                         </a>
                     </li>
 
@@ -80,7 +80,7 @@ $police_stations = police_stations();
 
                     <li>
                         <a href="court_judgement_form.php" class="nav-link link-dark">
-                           Court Judgement / कोर्ट का निर्णय
+                            Court Judgement / कोर्ट का निर्णय
                         </a>
                     </li>
 
@@ -95,7 +95,8 @@ $police_stations = police_stations();
                 <hr>
                 <div class="profile">
 
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
+                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>
@@ -109,13 +110,13 @@ $police_stations = police_stations();
             if (isset($_SESSION['message'])) {
                 $type = htmlspecialchars($_SESSION['type']);
                 $message = htmlspecialchars($_SESSION['message']);
-            ?>
+                ?>
                 <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
                     <strong>Hye!</strong>
                     <?= $message; ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-            <?php
+                <?php
                 unset($_SESSION['message']);
             }
             ?>
@@ -124,14 +125,15 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
-                                <select class="form-select" name="district" id="district" onchange="update_police_stations()" required>
-                                    <option value="Surguja">Surguja</option>
-                                    <option value="Balrampur">Balrampur</option>
-                                    <option value="Surajpur">Surajpur</option>
-                                    <option value="Manendragarh-Chirmiri-Bharatpur">Manendragarh-Chirmiri-Bharatpur
-                                    </option>
-                                    <option value="Jashpur">Jashpur</option>
-                                    <option value="Korea">Korea</option>
+                                <select class="form-select" name="district" id="district"
+                                    onchange="update_police_stations()" required>
+                                    <option value="">Select option </option>
+                                    <option value="सरगुजा">सरगुजा</option>
+                                    <option value="बलरामपुर">बलरामपुर</option>
+                                    <option value="सूरजपुर">सूरजपुर</option>
+                                    <option value="मनेंद्रगढ़-चिरमीरी-भरतपुर">मनेंद्रगढ़-चिरमीरी-भरतपुर</option>
+                                    <option value="जशपुर">जशपुर</option>
+                                    <option value="कोरिया">कोरिया</option>
                                 </select>
                                 <label for="district">District / ज़िला<span class="required-star">*</span></label>
                             </div>
@@ -139,7 +141,8 @@ $police_stations = police_stations();
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
 
-                                <select class="form-select" id="subDivision" aria-label="Sub Division" name="sub_division" required>
+                                <select class="form-select" id="subDivision" aria-label="Sub Division"
+                                    name="sub_division" required>
 
                                     <option value="Option1">Option1</option>
                                     <option value="Option2">Option2</option>
@@ -167,7 +170,8 @@ $police_stations = police_stations();
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
 
-                                <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number" name="crime_number" required />
+                                <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number"
+                                    name="crime_number" required />
 
                                 <label for="crimeNumber">Crime Number / अपराध क्रमांक<span
                                         class="required-star">*</span></label>
@@ -175,7 +179,8 @@ $police_stations = police_stations();
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="section" type="text" placeholder="Section" name="penal_code" required />
+                                <input class="form-control" id="section" type="text" placeholder="Section"
+                                    name="penal_code" required />
 
                                 <label for="section">Section / धारा<span class="required-star">*</span></label>
                             </div>
@@ -186,7 +191,8 @@ $police_stations = police_stations();
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
 
-                                <input class="form-control" id="applicantName" type="text" placeholder="Applicant Name" name="applicant_name" required />
+                                <input class="form-control" id="applicantName" type="text" placeholder="Applicant Name"
+                                    name="applicant_name" required />
 
                                 <label for="applicantName">Applicant Name / प्रार्थी का नाम<span
                                         class="required-star">*</span></label>
@@ -205,7 +211,8 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="incidentDate" type="date" placeholder="Incident Date" name="incident_date" required />
+                                <input class="form-control" id="incidentDate" type="date" placeholder="Incident Date"
+                                    name="incident_date" required />
 
                                 <label for="incidentDate">Incident Date / घटना दिनांक<span
                                         class="required-star">*</span></label>
