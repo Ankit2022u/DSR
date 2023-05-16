@@ -100,7 +100,6 @@ if (isset($_POST['save_deadbody'])) {
     }
 }
 
-
 // Save court judgement
 if (isset($_POST['save_court_judgement'])) {
     $district = mysqli_real_escape_string($con, $_POST['district']);
@@ -457,8 +456,6 @@ if (isset($_POST['save_ongoing_case'])) {
         exit(0);
     }
 }
-
-
 
 // Add police station
 if (isset($_POST['add_police_station'])) {

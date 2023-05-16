@@ -685,6 +685,28 @@ function get_user_uploads($user_id)
     return $upload_results;
 }
 
+function get_acts_count($start_date, $end_date, $act, $police_station)
+{
+    global $con; // Note: Consider passing $con as a parameter instead of using global
+
+    // Prepare and bind parameters to prevent SQL injection
+    $stmt = $con->prepare("SELECT COUNT(*) as case_count, SUM(culprit_number) as people_count FROM minor_crimes where updated_at >= ? and updated_at <= ? and penal_code = ? and police_station = ?");
+    $stmt->bind_param('ssss', $start_date, $end_date, $act, $police_station);
+    $stmt->execute();
+    $query_run = $stmt->get_result();
+
+    if (!$query_run) {
+        // Query Failed
+        // Note: Consider logging the error instead of echoing it to prevent exposing sensitive information
+        echo "Error: " . $stmt->error;
+        return false;
+    }
+
+    // Query Success
+    $result = $query_run->fetch_assoc();
+    return $result;
+}
+
 
 
 ?>

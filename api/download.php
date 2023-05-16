@@ -98,7 +98,6 @@ if (isset($_POST['major_crime_download'])) {
     echo $html;
 }
 
-// Incomplete
 // Minor crime download
 if (isset($_POST['minor_crime_download'])) {
     $output_minor_crimes = $_SESSION['minor_crimes'];
@@ -106,7 +105,6 @@ if (isset($_POST['minor_crime_download'])) {
     $top_row = ["41(1) जा. फौ", "102 जा. फौ", "109 जा. फौ", "110 जा. फौ", "145 जा. फौ", "151 जा. फौ", "107,116 जा. फौ", "सट्टा", "जुआ एक्ट", "आव. एक्ट", "नारको", "आर्म्स. एक्ट", "एम. वी. एक्ट"];
 
     $html = "<table>";
-
     foreach ($districts as $dist) {
 
         $html .= "<tr>
@@ -120,59 +118,32 @@ if (isset($_POST['minor_crime_download'])) {
         }
 
         $html .= "</tr>";
-
+        $x = 1;
         $html .= "<tr>";
         for ($i = 1; $i <= 13; $i++) {
             $html .= "<td>प्र.</td><td>व्य.</td>";
         }
         $html .= "</tr>";
-        //     <th>अनुभाग</th>
-        //     <th>ज़िला</th>";
-        //     <th>पुलिस थाना</th>
-        //     <th>घटना समय</th>
-        //     <th>घटना दिनांक</th>
-        //     <th>व्यक्तियों की संख्या</th>
-        //     <th>धारा</th>
-        //     <th>कायमीकर्ता</th>
-        $i = 1;
-        foreach ($output_minor_crimes as $minorcrime) {
-            foreach ($minorcrime as $row) {
-                if ($row['district'] == $dist) {
 
-
-                    $html .= "<tr>
-                        <td>
-                            " . $i++ . "
-                        </td>
-                        <td>
-                            " . $row['district'] . " 
-                        </td>
-                        <td>
-                            " . $row['sub_division'] . " 
-                        </td>
-                        <td>
-                            " . $row['police_station'] . " 
-                        </td>
-                        <td>
-                            " . (new DateTime($row['time_date']))->format('H:i:s') . " 
-                        </td>
-                        <td>
-                            " . (new DateTime($row['time_date']))->format('Y-m-d') . " 
-                        </td>
-                        <td>
-                            " . $row['culprit_number'] . " 
-                        </td>
-                        <td>
-                            " . $row['penal_code'] . " 
-                        </td>
-                        <td>
-                            " . $row['fir_writer'] . " 
-                        </td>
-                        
-                    </tr>";
+        $substations = get_sub_divisions($dist['district']);
+        foreach ($substations as $sub) {
+            $stations = get_police_stations($dist['district'], $sub['sub_division']);
+            foreach ($stations as $ps) {
+                $html .= "<tr><td>" . $x++ . "</td>";
+                $html .= "<td>" . $ps['police_station'] . "</td>";
+                foreach ($top_row as $act) {
+                    $cases = get_acts_count($_SESSION['start_date'], $_SESSION['end_date'], $act, $ps['police_station']);
+                    if (($cases != false) and $cases['case_count'] >= 1) {
+                        $html .= "<td>" . $cases['case_count'] . "</td>";
+                        $html .= "<td>" . $cases['people_count'] . "</td>";
+                    } else {
+                        $html .= "<td></td><td></td>";
+                    }
                 }
+                $html .= "</tr>";
             }
         }
+        
     }
 
     $html .= "</table>";
