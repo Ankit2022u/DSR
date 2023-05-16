@@ -174,9 +174,8 @@ $police_stations = police_stations();
 
                                 <textarea class="form-control" id="arrest_in_major_crime" type="text"
                                     placeholder="गंभीर अपराधों में गिरफ्तारि / महत्वपूर्ण गिरफ्तारि"
-                                    name="arrest_in_major_crime" style="height: 5rem;" required></textarea>
-                                <label for="policeStation">गंभीर अपराधों में गिरफ्तारि / महत्वपूर्ण गिरफ्तारि<span
-                                        class="required-star">*</span></label>
+                                    name="arrest_in_major_crime" style="height: 5rem;"></textarea>
+                                <label for="policeStation">गंभीर अपराधों में गिरफ्तारि / महत्वपूर्ण गिरफ्तारि</label>
                             </div>
                         </div>
                     </div>
@@ -186,10 +185,10 @@ $police_stations = police_stations();
 
                                 <textarea class="form-control" id="decision_given_by_the_court" type="text"
                                     placeholder="कोर्ट द्वारा दिए गये निर्णय (दोषमुक्त / सजा / जमानत / रद्द)"
-                                    style="height: 5rem;" name="decision_given_by_the_court" required></textarea>
+                                    style="height: 5rem;" name="decision_given_by_the_court"></textarea>
 
                                 <label for="decision_given_by_the_court">कोर्ट द्वारा दिए गये निर्णय (दोषमुक्त / सजा /
-                                    जमानत / रद्द)<span class="required-star">*</span></label>
+                                    जमानत / रद्द)</label>
                             </div>
                         </div>
                     </div>
@@ -199,9 +198,8 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <textarea class="form-control" id="missingManDocument" type="text"
                                     placeholder="आपरेशन मुस्कान / गुम इंसान दस्तायी" name="missing_man_document"
-                                    style="height: 5rem;" required></textarea>
-                                <label for="missing_man_document">आपरेशन मुस्कान / गुम इंसान दस्तायी<span
-                                        class="required-star">*</span></label>
+                                    style="height: 5rem;"></textarea>
+                                <label for="missing_man_document">आपरेशन मुस्कान / गुम इंसान दस्तायी</label>
                             </div>
                         </div>
                     </div>
@@ -211,10 +209,10 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <textarea class="form-control" id="miscellaneous" type="text"
                                     placeholder="विविध जैसे जन जागरुकता अभियान मे विशेष सफलता या प्राण रक्षा, गिरफ्तारी वारंटो की तमिलि आदि"
-                                    style="height: 5rem;" name="miscellaneous" required></textarea>
+                                    style="height: 5rem;" name="miscellaneous"></textarea>
 
                                 <label for="miscellaneous">विविध जैसे जन जागरुकता अभियान मे विशेष सफलता या प्राण
-                                    रक्षा,गिरफ्तारी वारंटो की तमिलि आदि<span class="required-star">*</span></label>
+                                    रक्षा,गिरफ्तारी वारंटो की तमिलि आदि</label>
                             </div>
                         </div>
                     </div>
@@ -223,11 +221,9 @@ $police_stations = police_stations();
                         <div class="col-md-12 col-lg-12 col-sm-12">
                             <div class="form-floating mb-3">
                                 <textarea class="form-control" id="robbery" type="text"
-                                    placeholder="डकैती / लुट / चोरी का खुलासा" name="robbery" style="height: 5rem;"
-                                    required></textarea>
+                                    placeholder="डकैती / लुट / चोरी का खुलासा" name="robbery" style="height: 5rem;"></textarea>
 
-                                <label for="robbery">डकैती / लुट / चोरी का खुलासा<span
-                                        class="required-star">*</span></label>
+                                <label for="robbery">डकैती / लुट / चोरी का खुलासा</label>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-12 col-sm-12">

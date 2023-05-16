@@ -210,7 +210,7 @@ $police_stations = police_stations();
 
                                 <input class="form-control" id="culpritName" type="text" placeholder="Culprit Name"
                                     name="culprit_name" required />
-                                <label for="culpritName">Culprit Name / आरोपी/संदिग्ध का नाम<span
+                                <label for="culpritName">Culprit Name / आरोपी का नाम<span
                                         class="required-star">*</span></label>
                             </div>
                         </div>
@@ -218,7 +218,7 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="culpritAddress" type="text"
                                     placeholder="Culprit Address" name="culprit_address" required />
-                                <label for="culpritAddress">Culprit Address / आरोपी/संदिग्ध का पता<span
+                                <label for="culpritAddress">Culprit Address / आरोपी का पता<span
                                         class="required-star">*</span></label>
                             </div>
                         </div>

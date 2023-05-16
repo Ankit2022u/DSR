@@ -279,9 +279,8 @@ $police_stations = police_stations();
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="culpritAddress" type="text"
-                                    placeholder="Culprit Address" name="culprit_address" required />
-                                <label for="culpritAddress">Culprit Address / आरोपी/संदिग्ध का पता<span
-                                        class="required-star">*</span></label>
+                                    placeholder="Culprit Address" name="culprit_address" />
+                                <label for="culpritAddress">Culprit Address / आरोपी/संदिग्ध का पता</label>
                             </div>
                         </div>
                     </div>
@@ -290,9 +289,8 @@ $police_stations = police_stations();
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="arrestDate" type="date" placeholder="Arrest Date"
-                                    name="arrest_date" required />
-                                <label for="arrestDate">Arrest Date / गिरफ्तारी का दिनाक<span
-                                        class="required-star">*</span></label>
+                                    name="arrest_date"/>
+                                <label for="arrestDate">Arrest Date / गिरफ्तारी का दिनाक</label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
