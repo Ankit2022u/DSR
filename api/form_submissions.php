@@ -237,14 +237,8 @@ if (isset($_POST['save_major_crime'])) {
     if (empty($culprit_name)) {
         $errors[] = "Culprit Name is required.";
     }
-    if (empty($culprit_address)) {
-        $errors[] = "Culprit Address is required.";
-    }
     if (empty($fir_writer)) {
         $errors[] = "Fir Writer Name is required.";
-    }
-    if (empty($arrest_date)) {
-        $errors[] = "Arrest Date is required.";
     }
     if (empty($description_of_crime)) {
         $errors[] = "Description of Crime is required.";
@@ -529,12 +523,12 @@ if (isset($_POST['save_important_achievement'])) {
 
     // Validate input fields
     $errors = array();
-    if (empty($decision_given_by_the_court)) {
-        $errors[] = "Court Decision is required.";
-    }
-    if (empty($action_taken_under)) {
-        $errors[] = "Action Taken Under 102 is required.";
-    }
+    // if (empty($decision_given_by_the_court)) {
+    //     $errors[] = "Court Decision is required.";
+    // }
+    // if (empty($action_taken_under)) {
+    //     $errors[] = "Action Taken Under 102 is required.";
+    // }
 
     if (empty($errors)) {
         // Prepare and bind the query with placeholders

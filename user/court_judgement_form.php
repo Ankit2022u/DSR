@@ -206,18 +206,18 @@ $police_stations = police_stations();
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
 
-                                <input class="form-control" id="applicantName" type="text" placeholder="Applicant Name"
-                                    name="applicant_name" required />
+                                <input class="form-control" id="culpritName" type="text" placeholder="culprit Name"
+                                    name="culprit_name" required />
 
-                                <label for="applicantName">Applicant Name / प्रार्थी का नाम<span
+                                <label for="culpritName">Culprit Name / आरोपी का नाम<span
                                         class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="applicantAddress" type="text"
-                                    placeholder="Applicant Address" name="applicant_address" required />
-                                <label for="applicantAddress">Applicant Address / प्रार्थी का पता<span
+                                <input class="form-control" id="culpritAddress" type="text"
+                                    placeholder="culprit Address" name="culprit_address" required />
+                                <label for="culpritAddress">Culprit Address / आरोपी का पता<span
                                         class="required-star">*</span></label>
                             </div>
                         </div>
