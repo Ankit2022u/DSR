@@ -2,13 +2,15 @@
 session_start();
 require "dbcon.php";
 require "functions.php";
+$start_date = $_SESSION['start_date'];
+$end_date = $_SESSION['end_date'];
 
 // Major crime download
 if (isset($_POST['major_crime_download'])) {
     $output_major_crimes = $_SESSION['major_crimes'];
     $html = "<table>
                 <tr>
-                    <th colspan=15 center>समस्त अपराधो की जानकारी</th>
+                    <th colspan=15 center>समस्त अपराधो की जानकारी | $start_date - $end_date </th>
                 </tr>
                 <tr>
                     <th>क्रमांक</th>
@@ -105,6 +107,7 @@ if (isset($_POST['minor_crime_download'])) {
     $top_row = ["41(1) जा. फौ", "102 जा. फौ", "109 जा. फौ", "110 जा. फौ", "145 जा. फौ", "151 जा. फौ", "107,116 जा. फौ", "सट्टा", "जुआ एक्ट", "आव. एक्ट", "नारको", "आर्म्स. एक्ट", "एम. वी. एक्ट"];
 
     $html = "<table>";
+    $html.= "<tr>दैनिक प्रतिवेदन प्रतिबंधात्मकता कार्यवाही/लघु अधिनियम रेंज सरगुजा जिला सरगुजा | $start_date - $end_date</tr>";
     foreach ($districts as $dist) {
 
         $html .= "<tr>
@@ -236,7 +239,7 @@ if (isset($_POST['dead_body_download'])) {
 
     $html = "<table>
                 <tr>
-                    <th colspan=13 center>समस्त मर्ग की जानकारी</th>
+                    <th colspan=13 center>समस्त मर्ग की जानकारी | $start_date - $end_date </th>
                 </tr>
                 <tr>
                 <th>क्रमांक</th>
@@ -319,7 +322,7 @@ if (isset($_POST['important_achievement_download'])) {
 
     $html = "<table>
                 <tr>
-                    <th colspan=10 center>महत्पूर्ण कार्यवाहिया / उपलब्धियां </th>
+                    <th colspan=10 center>महत्पूर्ण कार्यवाहिया / उपलब्धियां | $start_date - $end_date</th>
                 </tr>
                 <tr>
                     th>क्रमांक</th>
@@ -391,7 +394,7 @@ if (isset($_POST['court_judgement_download'])) {
 
     $html = "<table>
                 <tr>
-                    <th colspan=11 center>कोर्ट का निर्णय</th>
+                    <th colspan=11 center>कोर्ट का निर्णय | $start_date - $end_date </th>
                 </tr>
                 <tr>
                     <th>क्रमांक</th>
