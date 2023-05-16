@@ -90,6 +90,8 @@ if (isset($_POST['view'])) {
         $_SESSION['dead_bodies'] = $output_dead_bodies;
         $_SESSION['important_achievements'] = $output_important_achievements;
         $_SESSION['court_judgements'] = $output_court_judgements;
+        $_SESSION['start_date'] = $start_date;
+        $_SESSION['end_date'] = $end_date;
     } else {
 
         $_SESSION['message'] = $errors[0];
@@ -431,13 +433,22 @@ if (isset($_POST['view'])) {
                                             <?= $i++; ?>
                                         </td>
                                         <td>
+                                            <?= $row['district']; ?>
+                                        </td>
+                                        <td>
+                                            <?= $row['sub_division']; ?>
+                                        </td>
+                                        <td>
+                                            <?= $row['police_station']; ?>
+                                        </td>
+                                        <td>
                                             <?= (new DateTime($row['time_date']))->format('H:i:s'); ?>
                                         </td>
                                         <td>
                                             <?= (new DateTime($row['time_date']))->format('Y-m-d'); ?>
                                         </td>
                                         <td>
-                                            <?= $row['culprit_name']; ?>
+                                            <?= $row['culprit_number']; ?>
                                         </td>
                                         <td>
                                             <?= $row['penal_code']; ?>
@@ -604,7 +615,7 @@ if (isset($_POST['view'])) {
                                     <form action="../api/download.php" method="post" class="d-flex justify-content-end">
                                         <div class="p-2">
                                             <button type="submit" class="btn btn-primary"
-                                                name="imp_action_download">Download</button>
+                                                name="important_achievement_download">Download</button>
                                         </div>
                                     </form>
                                 </div>
@@ -689,6 +700,115 @@ if (isset($_POST['view'])) {
                                     <?php
                                         }
                                     } ?>
+
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center align-items-center g-2">
+                <!-- Court Judgements TODO -->
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="alert alert-light" role="alert">
+                                <strong>Court Judgements / महत्वपूर्ण कार्यवाही</strong>
+                            </div>
+                            <!-- Court Judgement download -->
+                            <div class="row justify-content-center align-items-center g-2">
+                                <div class="col-12">
+                                    <form action="../api/download.php" method="post" class="d-flex justify-content-end">
+                                        <div class="p-2">
+                                            <button type="submit" class="btn btn-primary"
+                                                name="court_judgement_download">Download</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-container" style="height: 400px; overflow: scroll;">
+                                <table class="table table-bordered table-success">
+                                    <thead>
+                                        <!-- Database Columns -->
+                                        <th>S.No./ क्रमांक</th>
+                                        <th>District / ज़िला</th>
+                                        <th>Sub-Division / अनुभाग</th>
+                                        <th>Police Station / थाना/चौकी</th>
+                                        <th>Name / गंभीर अपराधों में गिरफ्तारि / महत्वपूर्ण गिरफ्तारि</th>
+                                        <th>Court's Decision / कोर्ट द्वारा दिए गये निर्णय (दोषमुक्त / सजा / जमानत /
+                                            रद्द)</th>
+                                        <th>Operation Muskaan आपरेशन मुस्कान / गुम इंसान दस्तायी</th>
+                                        <th>Robbery Case / डकैती / लुट / चोरी का खुलासा</th>
+                                        <th>Miscellaneous / विविध जैसे जन जागरुकता अभियान मे विशेष सफलता या प्राण
+                                            रक्षा,गिरफ्तारी वारंटो
+                                            की तमिलि आदि</th>
+                                        <th>Section 102 / धारा 102 के तहत कि गई कार्यवाही</th>
+                                    </thead>
+                                    <?php $i = 1;
+                                    foreach ($output_important_achievements as $impaction) {
+                                        foreach ($impaction as $row) {
+                                    ?>
+                                    <tbody>
+                                        <td>
+                                            <?= $i++; ?>
+                                        </td>
+                                        <td>
+                                            <?= $row['district']; ?>
+                                        </td>
+                                        <td>
+                                            <?= $row['sub_division']; ?>
+                                        </td>
+                                        <td>
+                                            <?= $row['police_station']; ?>
+                                        </td>
+                                        <td>
+                                            <?= $row['court_name']; ?>
+                                        </td>
+                                        <td>
+                                            <?= $row['decision_given_by_the_court']; ?>
+                                        </td>
+                                        <td>
+                                            <?= $row['missing_man_document']; ?>
+                                        </td>
+                                        <td>
+                                            <?= $row['robbery']; ?>
+                                        </td>
+                                        <td>
+                                            <?= $row['miscellaneous']; ?>
+                                        </td>
+                                        <td>
+                                            <?= $row['action_taken_under']; ?>
+                                        </td>
+
+                                        <td>
+                                            <?php if ($row['is_major_crime']) {
+                                                        echo "<span class='text-danger'>Hidden." . $row['victim_name'] . "</span>";
+                                                    } else {
+                                                        echo "<span class='text-danger'>" . $row['victim_name'] . "</span>";
+                                                    } ?>
+                                        </td>
+                                        <td>
+                                            <?= $row['description_of_crime']; ?>
+                                        </td>
+                                        <td>
+                                            <?php if ($row['is_major_crime']) {
+                                                        echo "<span class='text-danger'>Yes</span>";
+                                                    } else {
+                                                        echo "<span class='text-success'>No</span>";
+                                                    } ?>
+                                        </td>
+                                        <td>
+                                            <?= $row['fir_writer']; ?>
+                                        </td>
+                                    </tbody>
+                                    <?php
+                                        }
+                                    } ?>
+
 
                                 </table>
                             </div>

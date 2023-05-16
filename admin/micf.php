@@ -176,19 +176,19 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="penal_code" id="section" required>
 
-                                    <option value="41(1)">41(1)</option>
-                                    <option value="102">102</option>
-                                    <option value="109">109</option>
-                                    <option value="110">110</option>
-                                    <option value="145">145</option>
-                                    <option value="151">151</option>
-                                    <option value="107/116">107/116</option>
-                                    <option value="Jua Act">Jua Act</option>
-                                    <option value="Satta">Satta</option>
-                                    <option value="AB Act">AB Act</option>
-                                    <option value="Narcotics">Narcotics</option>
-                                    <option value="Arms Act">Arms Act</option>
-                                    <option value="MV Act">MV Act</option>
+                                    <option value="41(1) जा. फौ">41(1) जा. फौ</option>
+                                    <option value="102 जा. फौ">102 जा. फौ</option>
+                                    <option value="109 जा. फौ">109 जा. फौ</option>
+                                    <option value="110 जा. फौ">110 जा. फौ</option>
+                                    <option value="145 जा. फौ">145 जा. फौ</option>
+                                    <option value="151 जा. फौ">151 जा. फौ</option>
+                                    <option value="107,116 जा. फौ">107,116 जा. फौ</option>
+                                    <option value="जुआ एक्ट">जुआ एक्ट</option>
+                                    <option value="सट्टा">सट्टा</option>
+                                    <option value="आव. एक्ट">आव. एक्ट</option>
+                                    <option value="नारको">नारको</option>
+                                    <option value="आर्म्स. एक्ट">आर्म्स. एक्ट</option>
+                                    <option value="एम. वी. एक्ट">एम. वी. एक्ट</option>
 
                                 </select>
                                 <label for="section">Section / धारा<span class="required-star">*</span></label>
