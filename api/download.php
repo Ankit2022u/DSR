@@ -59,25 +59,25 @@ if (isset($_POST['major_crime_download'])) {
                             " . $row['penal_code'] . " 
                         </td>
                         <td style='border:1px solid black; border-collapse: collapse; text-align:center;'>
-                            " . $row['applicant_name'] . " | " . $row['applicant_address'] . " 
+                            " . $row['applicant_name'] . " " . $row['applicant_address'] . " 
                         </td>
                         <td style='border:1px solid black; border-collapse: collapse; text-align:center;'>
-                            " . $row['incident_date'] . " | " . $row['incident_time'] . " 
+                            " . $row['incident_date'] . " " . $row['incident_time'] . " 
                         </td>
                         <td style='border:1px solid black; border-collapse: collapse; text-align:center;'>
                             " . $row['incident_place'] . " 
                         </td>
                         <td style='border:1px solid black; border-collapse: collapse; text-align:center;'>
-                            " . $row['reporting_date'] . " | " . $row['reporting_time'] . " 
+                            " . $row['reporting_date'] . " " . $row['reporting_time'] . " 
                         </td>
                         <td style='border:1px solid black; border-collapse: collapse; text-align:center;'>
                             " . $row['fir_writer'] . " 
                         </td>
                         <td style='border:1px solid black; border-collapse: collapse; text-align:center;'>
-                            " . $row['culprit_name'] . " | " . $row['culprit_address'] . " 
+                            " . $row['culprit_name'] . " " . $row['culprit_address'] . " 
                         </td>
                         <td style='border:1px solid black; border-collapse: collapse; text-align:center;'>
-                            " . $row['arrest_date'] . " | " . $row['arrest_time'] . " 
+                            " . $row['arrest_date'] . " " . $row['arrest_time'] . " 
                         </td>
                         <td style='border:1px solid black; border-collapse: collapse; text-align:center;'>
                             " . $victim_name . " 
@@ -155,10 +155,10 @@ if (isset($_POST['minor_crime_download'])) {
         $alphabets = ["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","AA","AB"];
         $html.="<tr>
                     <td colspan=2 style='border:1px solid black; border-collapse: collapse; text-align:center;'>योग</td>";
-                    foreach ($alphabets as $letter) {
-                        
+        foreach ($alphabets as $letter) {
+
                         $html.="<td style='border:1px solid black; border-collapse: collapse; text-align:center;'>=SUM(".$letter.$numbers[$begin].":".$letter.$numbers[$finish].")</td>";
-                    }
+        }
         $html.="</tr>";
         $distnum++;
         $begin+=2;
@@ -218,7 +218,7 @@ if (isset($_POST['ongoing_case_download'])) {
                             " . $row['fir_date'] . " 
                         </td>
                         <td style='border:1px solid black; border-collapse: collapse; text-align:center;'>
-                            " . $row['culprit_name'] . " | " . $row['culprit_address'] . " 
+                            " . $row['culprit_name'] . " " . $row['culprit_address'] . " 
                         </td>
                         <td style='border:1px solid black; border-collapse: collapse; text-align:center;'>
                             " . $row['case_status'] . " 
@@ -288,13 +288,13 @@ if (isset($_POST['dead_body_download'])) {
                             " . $row['penal_code'] . " 
                         </td>
                         <td style='border:1px solid black; border-collapse: collapse; text-align:center;'>
-                        " . $row['accident_date'] . " | " . $row['accident_time'] . " 
+                        " . $row['accident_date'] . " " . $row['accident_time'] . " 
                         </td>
                         <td style='border:1px solid black; border-collapse: collapse; text-align:center;'>
                             " . $row['accident_place'] . " 
                         </td>
                         <td style='border:1px solid black; border-collapse: collapse; text-align:center;'>
-                            " . $row['information_date'] . " | " . $row['information_time'] . " 
+                            " . $row['information_date'] . " " . $row['information_time'] . " 
                         </td>
                         <td style='border:1px solid black; border-collapse: collapse; text-align:center;'>
                             " . $row['applicant_name'] . " 
@@ -440,7 +440,7 @@ if (isset($_POST['court_judgement_download'])) {
                         " . $row['result_date'] . " 
                         </td>
                         <td style='border:1px solid black; border-collapse: collapse; text-align:center;'>
-                            " . $row['culprit_name'] . " | " . $row['culprit_address'] . " 
+                            " . $row['culprit_name'] . " " . $row['culprit_address'] . " 
                         </td>
                         <td style='border:1px solid black; border-collapse: collapse; text-align:center;'>
                             " . (new DateTime($row['updated_at']))->format('Y-m-d') . " 
