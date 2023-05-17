@@ -108,8 +108,8 @@ if (isset($_POST['minor_crime_download'])) {
     $districts = get_districts();
     $top_row = ["41(1) जा. फौ", "102 जा. फौ", "109 जा. फौ", "110 जा. फौ", "145 जा. फौ", "151 जा. फौ", "107,116 जा. फौ", "सट्टा", "जुआ एक्ट", "आव. एक्ट", "नारको", "आर्म्स. एक्ट", "एम. वी. एक्ट"];
 
-    $html = "<table style='font-size: 40px;border:1px solid black; border-collapse: collapse;'>";
-    $html.= "<tr><th colspan=28 style='border:1px solid black; border-collapse: collapse;'>दैनिक प्रतिवेदन प्रतिबंधात्मकता कार्यवाही/लघु अधिनियम रेंज सरगुजा जिला सरगुजा | $text</th></tr>";
+    $html = "<table style='border:1px solid black; border-collapse: collapse;'>";
+    $html.= "<tr><th colspan=28 style='font-size: 40px;  border:1px solid black; border-collapse: collapse;'>दैनिक प्रतिवेदन प्रतिबंधात्मकता कार्यवाही/लघु अधिनियम रेंज सरगुजा जिला सरगुजा | $text</th></tr>";
     $distnum = 1;
     $begin=0;
     $finish=1;
