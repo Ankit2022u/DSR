@@ -167,7 +167,7 @@ $police_stations = police_stations();
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number"
-                                    name="crime_number"/>
+                                    name="crime_number" />
 
                                 <label for="crimeNumber">Crime Number / अपराध क्रमांक</label>
                             </div>
