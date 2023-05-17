@@ -260,16 +260,13 @@ if (isset($_POST['view'])) {
                                                     <?= $row['fir_date']; ?>
                                                 </td>
                                                 <td>
-                                                    <?= $row['culprit_name']; ?>
+                                                    <?= $row['culprit_name']; ?> | <?= $row['culprit_address']; ?>
                                                 </td>
                                                 <td>
                                                     <?= $row['case_status']; ?>
                                                 </td>
                                                 <td>
                                                     <?= $row['name_of_court']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $row['culprit_address']; ?>
                                                 </td>
                                                 <td>
                                                     <?= $row['judgement_of_court']; ?>
@@ -536,10 +533,7 @@ if (isset($_POST['view'])) {
                                                     <?= $row['penal_code']; ?>
                                                 </td>
                                                 <td>
-                                                    <?= $row['applicant_name']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $row['applicant_address']; ?>
+                                                    <?= $row['applicant_name']; ?> | <?= $row['applicant_address']; ?>
                                                 </td>
                                                 <td>
                                                     <?= $row['incident_date']; ?>
@@ -557,10 +551,7 @@ if (isset($_POST['view'])) {
                                                     <?= $row['reporting_time']; ?>
                                                 </td>
                                                 <td>
-                                                    <?= $row['culprit_name']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $row['culprit_address']; ?>
+                                                    <?= $row['culprit_name']; ?> | <?= $row['culprit_address']; ?>
                                                 </td>
                                                 <td>
                                                     <?= $row['arrest_date']; ?>
@@ -570,7 +561,7 @@ if (isset($_POST['view'])) {
                                                 </td>
                                                 <td>
                                                     <?php if ($row['is_major_crime']) {
-                                                        echo "<span class='text-danger'>Hidden." . $row['victim_name'] . "</span>";
+                                                        echo "<span class='text-danger'>Hidden (" . $row['victim_name'] . " )</span>";
                                                     } else {
                                                         echo "<span class='text-danger'>" . $row['victim_name'] . "</span>";
                                                     } ?>
@@ -674,27 +665,6 @@ if (isset($_POST['view'])) {
                                                 </td>
                                                 <td>
                                                     <?= $row['action_taken_under']; ?>
-                                                </td>
-
-                                                <td>
-                                                    <?php if ($row['is_major_crime']) {
-                                                        echo "<span class='text-danger'>Hidden." . $row['victim_name'] . "</span>";
-                                                    } else {
-                                                        echo "<span class='text-danger'>" . $row['victim_name'] . "</span>";
-                                                    } ?>
-                                                </td>
-                                                <td>
-                                                    <?= $row['description_of_crime']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php if ($row['is_major_crime']) {
-                                                        echo "<span class='text-danger'>Yes</span>";
-                                                    } else {
-                                                        echo "<span class='text-success'>No</span>";
-                                                    } ?>
-                                                </td>
-                                                <td>
-                                                    <?= $row['fir_writer']; ?>
                                                 </td>
                                             </tbody>
                                             <?php

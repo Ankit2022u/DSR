@@ -137,13 +137,13 @@ if (isset($_POST['minor_crime_download'])) {
         foreach ($substations as $sub) {
             $stations = get_police_stations($dist['district'], $sub['sub_division']);
             foreach ($stations as $ps) {
-                $html .= "<tr><td style='border:1px solid black; border-collapse: collapse; text-align:center; text-align:center;'>" . $x++ . "</td>";
-                $html .= "<td style='border:1px solid black; border-collapse: collapse; text-align:center; text-align:center;'>" . $ps['police_station'] . "</td>";
+                $html .= "<tr><td style='border:1px solid black; border-collapse: collapse; text-align:center;'>" . $x++ . "</td>";
+                $html .= "<td style='border:1px solid black; border-collapse: collapse; text-align:center;'>" . $ps['police_station'] . "</td>";
                 foreach ($top_row as $act) {
                     $cases = get_acts_count($_SESSION['start_date'], $_SESSION['end_date'], $act, $ps['police_station']);
                     if (($cases != false) and $cases['case_count'] >= 1) {
-                        $html .= "<td>" . $cases['case_count'] . "</td>";
-                        $html .= "<td>" . $cases['people_count'] . "</td>";
+                        $html .= "<td style='border:1px solid black; border-collapse: collapse; text-align:center;'>" . $cases['case_count'] . "</td>";
+                        $html .= "<td style='border:1px solid black; border-collapse: collapse; text-align:center;'>" . $cases['people_count'] . "</td>";
 
                     } else {
                         $html .= "<td style='border:1px solid black; border-collapse: collapse; text-align:center;'></td><td style='border:1px solid black; border-collapse: collapse; text-align:center;'></td>";

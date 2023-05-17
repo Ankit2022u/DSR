@@ -197,11 +197,12 @@ $police_stations = police_stations();
                     </div>
 
                     <div class="row">
+                    <span><strong>In MV Act enter amount instead of no of peoples | एम. वी. एक्ट में व्यक्तियों की संख्या के जगह राशि अंकित करे</strong></span>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="culpritNumber" type="number" placeholder="Culprit Name"
                                     name="culprit_number" required />
-                                <label for="culpritNumber">No of Peoples / व्यक्तियों की संख्या<span
+                                <label for="culpritNumber">No of Peoples | Amount / व्यक्तियों की संख्या | राशि<span
                                         class="required-star">*</span></label>
                             </div>
                         </div>
