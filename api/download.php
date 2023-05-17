@@ -110,6 +110,10 @@ if (isset($_POST['minor_crime_download'])) {
 
     $html = "<table style='font-size: 40px;border:1px solid black; border-collapse: collapse;'>";
     $html.= "<tr><th colspan=28 style='border:1px solid black; border-collapse: collapse;'>दैनिक प्रतिवेदन प्रतिबंधात्मकता कार्यवाही/लघु अधिनियम रेंज सरगुजा जिला सरगुजा | $text</th></tr>";
+    $distnum = 1;
+    $begin=0;
+    $finish=1;
+    $numbers = ["5","16","21","31","36","48","53","58","63","74","79","94"];
     foreach ($districts as $dist) {
 
         $html .= "<tr>
@@ -148,8 +152,17 @@ if (isset($_POST['minor_crime_download'])) {
                 $html .= "</tr>";
             }
         }
-        $html.="<tr><td style='border:1px solid black; border-collapse: collapse; text-align:center; text-align:center;'></td><td style='border:1px solid black; border-collapse: collapse; text-align:center;'>योग</td></tr>";
-        
+        $alphabets = ["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","AA","AB"];
+        $html.="<tr>
+                    <td colspan=2 style='border:1px solid black; border-collapse: collapse; text-align:center;'>योग</td>";
+                    foreach ($alphabets as $letter) {
+                        
+                        $html.="<td style='border:1px solid black; border-collapse: collapse; text-align:center;'>=SUM(".$letter.$numbers[$begin].":".$letter.$numbers[$finish].")</td>";
+                    }
+        $html.="</tr>";
+        $distnum++;
+        $begin+=2;
+        $finish+=2;
     }
 
     $html .= "</table>";
