@@ -16,23 +16,23 @@ if (isset($_POST['major_crime_download'])) {
     $output_major_crimes = $_SESSION['major_crimes'];
     $html = "<table style='border:1px solid black; border-collapse: collapse;'>
                 <tr>
-                    <th colspan=15 center style='border:1px solid black; border-collapse: collapse;'>समस्त अपराधो की जानकारी | $text </th>
+                    <th colspan=14 center style=' font-size: 40px; border:1px solid black; border-collapse: collapse;' >समस्त अपराधो की जानकारी | $text </th>
                 </tr>
                 <tr>
-                    <th style='border:1px solid black; border-collapse: collapse;'>क्रमांक</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>ज़िला</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>पुलिस थाना</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>अपराध क्रमांक</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>धारा</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>प्रार्थी का नाम व पता</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>घटना दिनांक व समय</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>घटना स्थल</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>सूचना दिनाक व समय</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>कायमीकर्ता</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>आरोपी/संदिग्ध का नाम व पता</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>गिरफ्तारी दिनाक व समय</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>मृतक - मृतिका / आहत - आहता / पीड़ित - पीड़िता का नाम</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>विवरण</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>क्रमांक</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>ज़िला</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>पुलिस थाना</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>अपराध क्रमांक</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>धारा</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>प्रार्थी का नाम व पता</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>घटना दिनांक व समय</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>घटना स्थल</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>सूचना दिनाक व समय</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>कायमीकर्ता</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>आरोपी/संदिग्ध का नाम व पता</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>गिरफ्तारी दिनाक व समय</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>मृतक - मृतिका / आहत - आहता / पीड़ित - पीड़िता का नाम</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>विवरण</th>
                 </tr>";
     $i = 1;
     foreach ($output_major_crimes as $majorcrime) {
@@ -108,18 +108,18 @@ if (isset($_POST['minor_crime_download'])) {
     $districts = get_districts();
     $top_row = ["41(1) जा. फौ", "102 जा. फौ", "109 जा. फौ", "110 जा. फौ", "145 जा. फौ", "151 जा. फौ", "107,116 जा. फौ", "सट्टा", "जुआ एक्ट", "आव. एक्ट", "नारको", "आर्म्स. एक्ट", "एम. वी. एक्ट"];
 
-    $html = "<table style='border:1px solid black; border-collapse: collapse;'>";
+    $html = "<table style='font-size: 40px;border:1px solid black; border-collapse: collapse;'>";
     $html.= "<tr><th colspan=28 style='border:1px solid black; border-collapse: collapse;'>दैनिक प्रतिवेदन प्रतिबंधात्मकता कार्यवाही/लघु अधिनियम रेंज सरगुजा जिला सरगुजा | $text</th></tr>";
     foreach ($districts as $dist) {
 
         $html .= "<tr>
-                    <th colspan=28 style='border:1px solid black; border-collapse: collapse;'>" . $dist['district'] . "</th>
+                    <th colspan=28 style='font-size: 30font-size: 24px;px;border:1px solid black; border-collapse: collapse;'>" . $dist['district'] . "</th>
                 </tr>
                 <tr>        
-                    <th rowspan=2 style='border:1px solid black; border-collapse: collapse;'>क्रमांक</th>
-                    <th rowspan=2 style='border:1px solid black; border-collapse: collapse;'>पुलिस थाना</th>";
+                    <th rowspan=2 style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>क्रमांक</th>
+                    <th rowspan=2 style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>पुलिस थाना</th>";
         foreach ($top_row as $cols) {
-            $html .= "<th colspan=2 style='border:1px solid black; border-collapse: collapse;'>" . $cols . "</th>";
+            $html .= "<th colspan=2 style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>" . $cols . "</th>";
         }
 
         $html .= "</tr>";
@@ -170,16 +170,16 @@ if (isset($_POST['ongoing_case_download'])) {
     $output_ongoing_cases = $_SESSION['ongoing_cases'];
     $html = "<table style='border:1px solid black; border-collapse: collapse;'>
                 <tr>
-                    <th style='border:1px solid black; border-collapse: collapse;'>क्रमांक</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>ज़िला</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>पुलिस थाना</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>अपराध क्रमांक</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>धारा</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>एफ.आई.आर. का दिनाक</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>आरोपी/संदिग्ध का नाम व पता</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>प्ररण की अद्यतन स्थिति</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>न्यायालय का नाम</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>न्यायालय के फैसले का संक्षिप्त विवरण</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>क्रमांक</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>ज़िला</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>पुलिस थाना</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>अपराध क्रमांक</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>धारा</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>एफ.आई.आर. का दिनाक</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>आरोपी/संदिग्ध का नाम व पता</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>प्ररण की अद्यतन स्थिति</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>न्यायालय का नाम</th>
+                    <th style='font-size: 24px;border:1px solid black; border-collapse: collapse;'>न्यायालय के फैसले का संक्षिप्त विवरण</th>
                 </tr>";
     $i = 1;
     foreach ($output_ongoing_cases as $ongoingcase) {
@@ -238,21 +238,21 @@ if (isset($_POST['dead_body_download'])) {
 
     $html = "<table style='border:1px solid black; border-collapse: collapse;'>
                 <tr>
-                    <th colspan=13 center style='border:1px solid black; border-collapse: collapse;'>समस्त मर्ग की जानकारी | $text </th>
+                    <th colspan=13 center style='font-size: 40px; border:1px solid black; border-collapse: collapse;'>समस्त मर्ग की जानकारी | $text </th>
                 </tr>
                 <tr>
-                <th style='border:1px solid black; border-collapse: collapse;'>क्रमांक</th>
-                <th style='border:1px solid black; border-collapse: collapse;'>ज़िला</th>
-                <th style='border:1px solid black; border-collapse: collapse;'>पुलिस थाना</th>
-                <th style='border:1px solid black; border-collapse: collapse;'>मर्ग क्रमांक</th>
-                <th style='border:1px solid black; border-collapse: collapse;'>धारा</th>
-                <th style='border:1px solid black; border-collapse: collapse;'>घटना दिनांक व समय</th>
-                <th style='border:1px solid black; border-collapse: collapse;'>घटना स्थान</th>
-                <th style='border:1px solid black; border-collapse: collapse;'>सूचना दिनांक व समय</th>
-                <th style='border:1px solid black; border-collapse: collapse;'>प्रार्थी</th>
-                <th style='border:1px solid black; border-collapse: collapse;'>मृतक/मृतिका का नाम</th>
-                <th style='border:1px solid black; border-collapse: collapse;'>कायमीकर्ता का नाम</th>
-                <th style='border:1px solid black; border-collapse: collapse;'>सबब मौत</th>
+                <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>ज़िला</th>
+                <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>क्रमांक</th>
+                <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>पुलिस थाना</th>
+                <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>मर्ग क्रमांक</th>
+                <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>धारा</th>
+                <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>घटना दिनांक व समय</th>
+                <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>घटना स्थान</th>
+                <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>सूचना दिनांक व समय</th>
+                <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>प्रार्थी</th>
+                <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>मृतक/मृतिका का नाम</th>
+                <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>कायमीकर्ता का नाम</th>
+                <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>सबब मौत</th>
                 </tr>";
     $i = 1;
     foreach ($output_dead_bodies as $deadbody) {
@@ -317,19 +317,19 @@ if (isset($_POST['important_achievement_download'])) {
 
     $html = "<table style='border:1px solid black; border-collapse: collapse;'>
                 <tr>
-                    <th colspan=10 center style='border:1px solid black; border-collapse: collapse;'>महत्पूर्ण कार्यवाहिया / उपलब्धियां | $text</th>
+                    <th colspan=10 center style='font-size: 40px; border:1px solid black; border-collapse: collapse;'>महत्पूर्ण कार्यवाहिया / उपलब्धियां | $text</th>
                 </tr>
                 <tr>
-                    <th style='border:1px solid black; border-collapse: collapse;'>क्रमांक</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>ज़िला</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>थाना/चौकी</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>गंभीर अपराधों में गिरफ्तारि / महत्वपूर्ण गिरफ्तारि</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>कोर्ट द्वारा दिए गये निर्णय (दोषमुक्त / सजा / जमानत /
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>क्रमांक</th>
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>ज़िला</th>
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>थाना/चौकी</th>
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>गंभीर अपराधों में गिरफ्तारि / महत्वपूर्ण गिरफ्तारि</th>
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>कोर्ट द्वारा दिए गये निर्णय (दोषमुक्त / सजा / जमानत /
                     रद्द)</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>आपरेशन मुस्कान / गुम इंसान दस्तायी</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>डकैती / लुट / चोरी का खुलासा</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>विविध जैसे जन जागरुकता अभियान मे विशेष सफलता या प्राण रक्षा,गिरफ्तारी वारंटो की तमिलि आदि</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>धारा 102 के तहत कि गई कार्यवाही</th>
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>आपरेशन मुस्कान / गुम इंसान दस्तायी</th>
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>डकैती / लुट / चोरी का खुलासा</th>
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>विविध जैसे जन जागरुकता अभियान मे विशेष सफलता या प्राण रक्षा,गिरफ्तारी वारंटो की तमिलि आदि</th>
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>धारा 102 के तहत कि गई कार्यवाही</th>
                 </tr>";
     $i = 1;
     foreach ($output_important_achievements as $impaction) {
@@ -385,19 +385,19 @@ if (isset($_POST['court_judgement_download'])) {
 
     $html = "<table style='border:1px solid black; border-collapse: collapse;'>
                 <tr>
-                    <th colspan=11 center style='border:1px solid black; border-collapse: collapse;'>कोर्ट का निर्णय | $text </th>
+                    <th colspan=11 center style='font-size: 40px; border:1px solid black; border-collapse: collapse;'>कोर्ट का निर्णय | $text </th>
                 </tr>
                 <tr>
-                    <th style='border:1px solid black; border-collapse: collapse;'>क्रमांक</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>ज़िला</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>थाना/चौकी</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>कोर्ट का नाम</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>अपराध क्रमांक</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>धारा</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>कायमी दिनांक</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>आरोपी का नाम व पता</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>दिनांक</th>
-                    <th style='border:1px solid black; border-collapse: collapse;'>निर्णय</th>
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>क्रमांक</th>
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>ज़िला</th>
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>थाना/चौकी</th>
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>कोर्ट का नाम</th>
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>अपराध क्रमांक</th>
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>धारा</th>
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>कायमी दिनांक</th>
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>आरोपी का नाम व पता</th>
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>दिनांक</th>
+                    <th style='font-size: 24px; border:1px solid black; border-collapse: collapse;'>निर्णय</th>
                 </tr>";
     $i = 1;
     foreach ($output_court_judgements as $impaction) {
