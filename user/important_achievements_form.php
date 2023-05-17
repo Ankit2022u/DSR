@@ -183,12 +183,16 @@ $police_stations = police_stations();
                         <div class="col-md-12 col-lg-12 col-sm-12">
                             <div class="form-floating mb-3">
 
-                                <textarea class="form-control" id="decision_given_by_the_court" type="text"
-                                    placeholder="कोर्ट द्वारा दिए गये निर्णय (दोषमुक्त / सजा / जमानत / रद्द)"
-                                    style="height: 5rem;" name="decision_given_by_the_court"></textarea>
-
-                                <label for="decision_given_by_the_court">कोर्ट द्वारा दिए गये निर्णय (दोषमुक्त / सजा /
-                                    जमानत / रद्द)</label>
+                                <select class="form-select" id="decision_given_by_the_court" aria-label="decision_given_by_the_court"
+                                    name="decision_given_by_the_court" required>
+                                    <option value="">Select Option</option>
+                                    <option value="जमानत">जमानत</option>
+                                    <option value="जमानत रद्द">जमानत रद्द</option>
+                                    <option value="सजा">सजा</option>
+                                    <option value="दोष">दोष</option>
+                                    <option value="दोष मुक्त">दोष मुक्त</option>
+                                </select>
+                                <label for="decision_given_by_the_court">कोर्ट द्वारा दिए गये निर्णय</label>
                             </div>
                         </div>
                     </div>
