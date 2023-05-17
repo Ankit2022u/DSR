@@ -239,7 +239,7 @@ if (isset($_POST['dead_body_download'])) {
 
     $html = "<table style='border:1px solid black; border-collapse: collapse;'>
                 <tr>
-                    <th colspan=13 center style='font-size: 40px; border:1px solid black; border-collapse: collapse;'>समस्त मर्ग की जानकारी | $text </th>
+                    <th colspan=12 center style='font-size: 40px; border:1px solid black; border-collapse: collapse;'>समस्त मर्ग की जानकारी | $text </th>
                 </tr>
                 <tr>
                 <th style='font-size: 24px; border:1px solid black; border-collapse: collapse; text-align:center;'>क्रमांक</th>
