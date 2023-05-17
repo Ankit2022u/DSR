@@ -304,9 +304,6 @@ if (isset($_POST['save_minor_crime'])) {
 
     // Validate input fields
     $errors = array();
-    if (empty($crime_number)) {
-        $errors[] = "Crime Number is required.";
-    }
     if (empty($penal_code)) {
         $errors[] = "Section Number is required.";
     }
@@ -315,9 +312,6 @@ if (isset($_POST['save_minor_crime'])) {
     }
     if (empty($culprit_number)) {
         $errors[] = "Number of Culprits is required.";
-    }
-    if (empty($fir_writer)) {
-        $errors[] = "Fir Writer Name is required.";
     }
 
     if (empty($errors)) {

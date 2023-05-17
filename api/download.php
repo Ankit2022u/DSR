@@ -4,30 +4,35 @@ require "dbcon.php";
 require "functions.php";
 $start_date = $_SESSION['start_date'];
 $end_date = $_SESSION['end_date'];
+if($start_date == $end_date){
+    $text = $start_date;
+}
+else{
+    $text = $start_date." - ".$end_date;
+}
 
 // Major crime download
 if (isset($_POST['major_crime_download'])) {
     $output_major_crimes = $_SESSION['major_crimes'];
-    $html = "<table>
+    $html = "<table style='border:1px solid black; border-collapse: collapse;'>
                 <tr>
-                    <th colspan=15 center>समस्त अपराधो की जानकारी | $start_date - $end_date </th>
+                    <th colspan=15 center style='border:1px solid black; border-collapse: collapse;'>समस्त अपराधो की जानकारी | $text </th>
                 </tr>
                 <tr>
-                    <th>क्रमांक</th>
-                    <th>ज़िला</th>
-                    <th>अनुभाग</th>
-                    <th>पुलिस थाना</th>
-                    <th>अपराध क्रमांक</th>
-                    <th>धारा</th>
-                    <th>प्रार्थी का नाम व पता</th>
-                    <th>घटना दिनांक व समय</th>
-                    <th>घटना स्थल</th>
-                    <th>सूचना दिनाक व समय</th>
-                    <th>कायमीकर्ता</th>
-                    <th>आरोपी/संदिग्ध का नाम व पता</th>
-                    <th>गिरफ्तारी दिनाक व समय</th>
-                    <th>मृतक - मृतिका / आहत - आहता / पीड़ित - पीड़िता का नाम</th>
-                    <th>विवरण</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>क्रमांक</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>ज़िला</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>पुलिस थाना</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>अपराध क्रमांक</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>धारा</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>प्रार्थी का नाम व पता</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>घटना दिनांक व समय</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>घटना स्थल</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>सूचना दिनाक व समय</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>कायमीकर्ता</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>आरोपी/संदिग्ध का नाम व पता</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>गिरफ्तारी दिनाक व समय</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>मृतक - मृतिका / आहत - आहता / पीड़ित - पीड़िता का नाम</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>विवरण</th>
                 </tr>";
     $i = 1;
     foreach ($output_major_crimes as $majorcrime) {
@@ -38,49 +43,46 @@ if (isset($_POST['major_crime_download'])) {
                 $victim_name = $row['victim_name'];
             }
             $html .= "<tr>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $i++ . "
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['district'] . " 
                         </td>
-                        <td>
-                            " . $row['sub_division'] . " 
-                        </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['police_station'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['crime_number'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['penal_code'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['applicant_name'] . " | " . $row['applicant_address'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['incident_date'] . " | " . $row['incident_time'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['incident_place'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['reporting_date'] . " | " . $row['reporting_time'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['fir_writer'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['culprit_name'] . " | " . $row['culprit_address'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['arrest_date'] . " | " . $row['arrest_time'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $victim_name . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['description_of_crime'] . " 
                         </td>
                     </tr>";
@@ -106,46 +108,47 @@ if (isset($_POST['minor_crime_download'])) {
     $districts = get_districts();
     $top_row = ["41(1) जा. फौ", "102 जा. फौ", "109 जा. फौ", "110 जा. फौ", "145 जा. फौ", "151 जा. फौ", "107,116 जा. फौ", "सट्टा", "जुआ एक्ट", "आव. एक्ट", "नारको", "आर्म्स. एक्ट", "एम. वी. एक्ट"];
 
-    $html = "<table>";
-    $html.= "<tr>दैनिक प्रतिवेदन प्रतिबंधात्मकता कार्यवाही/लघु अधिनियम रेंज सरगुजा जिला सरगुजा | $start_date - $end_date</tr>";
+    $html = "<table style='border:1px solid black; border-collapse: collapse;'>";
+    $html.= "<tr><th colspan=28 style='border:1px solid black; border-collapse: collapse;'>दैनिक प्रतिवेदन प्रतिबंधात्मकता कार्यवाही/लघु अधिनियम रेंज सरगुजा जिला सरगुजा | $text</th></tr>";
     foreach ($districts as $dist) {
 
         $html .= "<tr>
-                    <th colspan=28>" . $dist['district'] . "</th>
+                    <th colspan=28 style='border:1px solid black; border-collapse: collapse;'>" . $dist['district'] . "</th>
                 </tr>
                 <tr>        
-                    <th rowspan=2>क्रमांक</th>
-                    <th rowspan=2>पुलिस थाना</th>";
+                    <th rowspan=2 style='border:1px solid black; border-collapse: collapse;'>क्रमांक</th>
+                    <th rowspan=2 style='border:1px solid black; border-collapse: collapse;'>पुलिस थाना</th>";
         foreach ($top_row as $cols) {
-            $html .= "<th colspan=2>" . $cols . "</th>";
+            $html .= "<th colspan=2 style='border:1px solid black; border-collapse: collapse;'>" . $cols . "</th>";
         }
 
         $html .= "</tr>";
         $x = 1;
         $html .= "<tr>";
         for ($i = 1; $i <= 13; $i++) {
-            $html .= "<td>प्र.</td><td>व्य.</td>";
+            $html .= "<td style='border:1px solid black; border-collapse: collapse;'>प्र.</td><td style='border:1px solid black; border-collapse: collapse;'>व्य.</td>";
         }
         $html .= "</tr>";
-
         $substations = get_sub_divisions($dist['district']);
         foreach ($substations as $sub) {
             $stations = get_police_stations($dist['district'], $sub['sub_division']);
             foreach ($stations as $ps) {
-                $html .= "<tr><td>" . $x++ . "</td>";
-                $html .= "<td>" . $ps['police_station'] . "</td>";
+                $html .= "<tr><td style='border:1px solid black; border-collapse: collapse;'>" . $x++ . "</td>";
+                $html .= "<td style='border:1px solid black; border-collapse: collapse;'>" . $ps['police_station'] . "</td>";
                 foreach ($top_row as $act) {
                     $cases = get_acts_count($_SESSION['start_date'], $_SESSION['end_date'], $act, $ps['police_station']);
                     if (($cases != false) and $cases['case_count'] >= 1) {
                         $html .= "<td>" . $cases['case_count'] . "</td>";
                         $html .= "<td>" . $cases['people_count'] . "</td>";
+
                     } else {
-                        $html .= "<td></td><td></td>";
+                        $html .= "<td style='border:1px solid black; border-collapse: collapse;'></td><td style='border:1px solid black; border-collapse: collapse;'></td>";
                     }
                 }
                 $html .= "</tr>";
             }
         }
+        $html.="<tr><td style='border:1px solid black; border-collapse: collapse;'></td><td style='border:1px solid black; border-collapse: collapse;'>योग</td></tr>";
         
     }
 
@@ -165,55 +168,51 @@ if (isset($_POST['minor_crime_download'])) {
 // Ongoing crime download
 if (isset($_POST['ongoing_case_download'])) {
     $output_ongoing_cases = $_SESSION['ongoing_cases'];
-    $html = "<table>
+    $html = "<table style='border:1px solid black; border-collapse: collapse;'>
                 <tr>
-                    <th>क्रमांक</th>
-                    <th>ज़िला</th>
-                    <th>अनुभाग</th>
-                    <th>पुलिस थाना</th>
-                    <th>अपराध क्रमांक</th>
-                    <th>धारा</th>
-                    <th>एफ.आई.आर. का दिनाक</th>
-                    <th>आरोपी/संदिग्ध का नाम व पता</th>
-                    <th>प्ररण की अद्यतन स्थिति</th>
-                    <th>न्यायालय का नाम</th>
-                    <th>न्यायालय के फैसले का संक्षिप्त विवरण</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>क्रमांक</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>ज़िला</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>पुलिस थाना</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>अपराध क्रमांक</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>धारा</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>एफ.आई.आर. का दिनाक</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>आरोपी/संदिग्ध का नाम व पता</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>प्ररण की अद्यतन स्थिति</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>न्यायालय का नाम</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>न्यायालय के फैसले का संक्षिप्त विवरण</th>
                 </tr>";
     $i = 1;
     foreach ($output_ongoing_cases as $ongoingcase) {
         foreach ($ongoingcase as $row) {
             $html .= "<tr>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $i++ . "
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['district'] . " 
                         </td>
-                        <td>
-                            " . $row['sub_division'] . " 
-                        </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['police_station'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['crime_number'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['penal_code'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['fir_date'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['culprit_name'] . " | " . $row['culprit_address'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['case_status'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['name_of_court'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['judgement_of_court'] . " 
                         </td>
                     </tr>";
@@ -237,66 +236,62 @@ if (isset($_POST['ongoing_case_download'])) {
 if (isset($_POST['dead_body_download'])) {
     $output_dead_bodies = $_SESSION['dead_bodies'];
 
-    $html = "<table>
+    $html = "<table style='border:1px solid black; border-collapse: collapse;'>
                 <tr>
-                    <th colspan=13 center>समस्त मर्ग की जानकारी | $start_date - $end_date </th>
+                    <th colspan=13 center style='border:1px solid black; border-collapse: collapse;'>समस्त मर्ग की जानकारी | $text </th>
                 </tr>
                 <tr>
-                <th>क्रमांक</th>
-                <th>ज़िला</th>
-                <th>अनुभाग</th>
-                <th>पुलिस थाना</th>
-                <th>मर्ग क्रमांक</th>
-                <th>धारा</th>
-                <th>घटना दिनांक व समय</th>
-                <th>घटना स्थान</th>
-                <th>सूचना दिनांक व समय</th>
-                <th>प्रार्थी</th>
-                <th>मृतक/मृतिका का नाम</th>
-                <th>कायमीकर्ता का नाम</th>
-                <th>सबब मौत</th>
+                <th style='border:1px solid black; border-collapse: collapse;'>क्रमांक</th>
+                <th style='border:1px solid black; border-collapse: collapse;'>ज़िला</th>
+                <th style='border:1px solid black; border-collapse: collapse;'>पुलिस थाना</th>
+                <th style='border:1px solid black; border-collapse: collapse;'>मर्ग क्रमांक</th>
+                <th style='border:1px solid black; border-collapse: collapse;'>धारा</th>
+                <th style='border:1px solid black; border-collapse: collapse;'>घटना दिनांक व समय</th>
+                <th style='border:1px solid black; border-collapse: collapse;'>घटना स्थान</th>
+                <th style='border:1px solid black; border-collapse: collapse;'>सूचना दिनांक व समय</th>
+                <th style='border:1px solid black; border-collapse: collapse;'>प्रार्थी</th>
+                <th style='border:1px solid black; border-collapse: collapse;'>मृतक/मृतिका का नाम</th>
+                <th style='border:1px solid black; border-collapse: collapse;'>कायमीकर्ता का नाम</th>
+                <th style='border:1px solid black; border-collapse: collapse;'>सबब मौत</th>
                 </tr>";
     $i = 1;
     foreach ($output_dead_bodies as $deadbody) {
         foreach ($deadbody as $row) {
             $html .= "<tr>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $i++ . "
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['district'] . " 
                         </td>
-                        <td>
-                            " . $row['sub_division'] . " 
-                        </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['police_station'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['dead_body_number'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['penal_code'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                         " . $row['accident_date'] . " | " . $row['accident_time'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['accident_place'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['information_date'] . " | " . $row['information_time'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['applicant_name'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['deceased_name'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['fir_writer'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['cause_of_death'] . " 
                         </td>
                     </tr>";
@@ -320,55 +315,51 @@ if (isset($_POST['dead_body_download'])) {
 if (isset($_POST['important_achievement_download'])) {
     $output_important_achievements = $_SESSION['important_achievements'];
 
-    $html = "<table>
+    $html = "<table style='border:1px solid black; border-collapse: collapse;'>
                 <tr>
-                    <th colspan=10 center>महत्पूर्ण कार्यवाहिया / उपलब्धियां | $start_date - $end_date</th>
+                    <th colspan=10 center style='border:1px solid black; border-collapse: collapse;'>महत्पूर्ण कार्यवाहिया / उपलब्धियां | $text</th>
                 </tr>
                 <tr>
-                    <th>क्रमांक</th>
-                    <th>ज़िला</th>
-                    <th>अनुभाग</th>
-                    <th>थाना/चौकी</th>
-                    <th>गंभीर अपराधों में गिरफ्तारि / महत्वपूर्ण गिरफ्तारि</th>
-                    <th>कोर्ट द्वारा दिए गये निर्णय (दोषमुक्त / सजा / जमानत /
+                    <th style='border:1px solid black; border-collapse: collapse;'>क्रमांक</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>ज़िला</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>थाना/चौकी</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>गंभीर अपराधों में गिरफ्तारि / महत्वपूर्ण गिरफ्तारि</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>कोर्ट द्वारा दिए गये निर्णय (दोषमुक्त / सजा / जमानत /
                     रद्द)</th>
-                    <th>आपरेशन मुस्कान / गुम इंसान दस्तायी</th>
-                    <th>डकैती / लुट / चोरी का खुलासा</th>
-                    <th>विविध जैसे जन जागरुकता अभियान मे विशेष सफलता या प्राण रक्षा,गिरफ्तारी वारंटो की तमिलि आदि</th>
-                    <th>धारा 102 के तहत कि गई कार्यवाही</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>आपरेशन मुस्कान / गुम इंसान दस्तायी</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>डकैती / लुट / चोरी का खुलासा</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>विविध जैसे जन जागरुकता अभियान मे विशेष सफलता या प्राण रक्षा,गिरफ्तारी वारंटो की तमिलि आदि</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>धारा 102 के तहत कि गई कार्यवाही</th>
                 </tr>";
     $i = 1;
     foreach ($output_important_achievements as $impaction) {
         foreach ($impaction as $row) {
             $html .= "<tr>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $i++ . "
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['district'] . " 
                         </td>
-                        <td>
-                            " . $row['sub_division'] . " 
-                        </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['police_station'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['arrest_in_major_crime'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['decision_given_by_the_court'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                         " . $row['missing_man_document'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['robbery'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['miscellaneous'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['action_taken_under'] . " 
                         </td>
                     </tr>";
@@ -392,58 +383,54 @@ if (isset($_POST['important_achievement_download'])) {
 if (isset($_POST['court_judgement_download'])) {
     $output_court_judgements = $_SESSION['court_judgements'];
 
-    $html = "<table>
+    $html = "<table style='border:1px solid black; border-collapse: collapse;'>
                 <tr>
-                    <th colspan=11 center>कोर्ट का निर्णय | $start_date - $end_date </th>
+                    <th colspan=11 center style='border:1px solid black; border-collapse: collapse;'>कोर्ट का निर्णय | $text </th>
                 </tr>
                 <tr>
-                    <th>क्रमांक</th>
-                    <th>ज़िला</th>
-                    <th>अनुभाग</th>
-                    <th>थाना/चौकी</th>
-                    <th>कोर्ट का नाम</th>
-                    <th>अपराध क्रमांक</th>
-                    <th>धारा</th>
-                    <th>कायमी दिनांक</th>
-                    <th>आरोपी का नाम व पता</th>
-                    <th>दिनांक</th>
-                    <th>निर्णय</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>क्रमांक</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>ज़िला</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>थाना/चौकी</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>कोर्ट का नाम</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>अपराध क्रमांक</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>धारा</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>कायमी दिनांक</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>आरोपी का नाम व पता</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>दिनांक</th>
+                    <th style='border:1px solid black; border-collapse: collapse;'>निर्णय</th>
                 </tr>";
     $i = 1;
     foreach ($output_court_judgements as $impaction) {
         foreach ($impaction as $row) {
             $html .= "<tr>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $i++ . "
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['district'] . " 
                         </td>
-                        <td>
-                            " . $row['sub_division'] . " 
-                        </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['police_station'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['court_name'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['crime_number'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                         " . $row['penal_code'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                         " . $row['result_date'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['culprit_name'] . " | " . $row['culprit_address'] . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . (new DateTime($row['updated_at']))->format('Y-m-d') . " 
                         </td>
-                        <td>
+                        <td style='border:1px solid black; border-collapse: collapse;'>
                             " . $row['judgement_of_court'] . " 
                         </td>
                     </tr>";
@@ -463,5 +450,9 @@ if (isset($_POST['court_judgement_download'])) {
     echo $html;
 }
 
-
+// <td style='border:1px solid black; border-collapse: collapse;'>
+//                             " . $row['sub_division'] . " 
+//                         </td>
 ?>
+
+<!-- <th style='border:1px solid black; border-collapse: collapse;'>अनुभाग</th> -->

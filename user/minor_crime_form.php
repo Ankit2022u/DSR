@@ -167,10 +167,9 @@ $police_stations = police_stations();
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="crimeNumber" type="text" placeholder="Crime Number"
-                                    name="crime_number" required />
+                                    name="crime_number"/>
 
-                                <label for="crimeNumber">Crime Number / अपराध क्रमांक<span
-                                        class="required-star">*</span></label>
+                                <label for="crimeNumber">Crime Number / अपराध क्रमांक</label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
@@ -211,9 +210,8 @@ $police_stations = police_stations();
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="firWriter" type="text" placeholder="FIR Writer"
-                                    name="fir_writer" required />
-                                <label for="firWriter">FIR Writer / कायमीकर्ता<span
-                                        class="required-star">*</span></label>
+                                    name="fir_writer" />
+                                <label for="firWriter">FIR Writer / कायमीकर्ता</label>
                             </div>
                         </div>
                     </div>
