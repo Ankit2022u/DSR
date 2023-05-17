@@ -325,7 +325,7 @@ if (isset($_POST['important_achievement_download'])) {
                     <th colspan=10 center>महत्पूर्ण कार्यवाहिया / उपलब्धियां | $start_date - $end_date</th>
                 </tr>
                 <tr>
-                    th>क्रमांक</th>
+                    <th>क्रमांक</th>
                     <th>ज़िला</th>
                     <th>अनुभाग</th>
                     <th>थाना/चौकी</th>

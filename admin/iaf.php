@@ -227,10 +227,9 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
                                 <textarea class="form-control" id="actionTakenUnder" type="text"
                                     placeholder="धारा 102 के तहत कि गई कार्यवाही" style="height: 5rem;"
-                                    name="action_taken_under" required></textarea>
+                                    name="action_taken_under"></textarea>
 
-                                <label for="action_taken_under">धारा 102 के तहत कि गई कार्यवाही<span
-                                        class="required-star">*</span></label>
+                                <label for="action_taken_under">धारा 102 के तहत कि गई कार्यवाही</label>
                             </div>
                         </div>
 
