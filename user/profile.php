@@ -5,11 +5,8 @@ require "../api/functions.php";
 
 ?>
 
-<header>
-    <!-- place navbar here -->
-    <?php include('user_header.php'); ?>
-</header>
-
+<!-- place navbar here -->
+<?php include('user_header.php'); ?>
 <main>
     <div class="row">
         <div class="side-bar col-md-3 col-sm-5">
@@ -22,7 +19,7 @@ require "../api/functions.php";
                 <hr> -->
                 <ul class="nav nav-pills flex-column mb-auto">
 
-                <li class="nav-item">
+                    <li class="nav-item">
                         <a href="user.php" class="nav-link link-dark" aria-current="page">
                             User Dashboard / डैशबोर्ड
                         </a>
@@ -30,7 +27,7 @@ require "../api/functions.php";
 
                     <li>
                         <a href="dead_body_form.php" class="nav-link link-dark">
-                             Inquest / मर्ग
+                            Inquest / मर्ग
                         </a>
                     </li>
 

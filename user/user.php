@@ -15,15 +15,14 @@ $total_users = count_users();
 
 ?>
 
-<header>
-    <!-- place navbar here -->
-    <?php include('user_header.php'); ?>
-</header>
+<!-- place navbar here -->
+<?php include('user_header.php'); ?>
 
 <main>
     <div class="row">
         <div class="side-bar col-md-3 col-sm-5">
-            <?php //include('side-bar.php'); ?>
+            <?php //include('side-bar.php'); 
+            ?>
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
                 <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (User Panel)</span>
@@ -95,8 +94,7 @@ $total_users = count_users();
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
-                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>

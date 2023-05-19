@@ -6,10 +6,8 @@ $police_stations = police_stations();
 
 ?>
 
-<header>
-    <!-- place navbar here -->
-    <?php include('admin_header.php'); ?>
-</header>
+<!-- place navbar here -->
+<?php include('admin_header.php'); ?>
 
 <main>
     <div class="row">
@@ -109,12 +107,12 @@ $police_stations = police_stations();
                 $type = htmlspecialchars($_SESSION['type']);
                 $message = htmlspecialchars($_SESSION['message']);
                 ?>
-                <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
-                    <strong>Information: </strong>
-                    <?= $message; ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                <?php
+            <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
+                <strong>Information: </strong>
+                <?= $message; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php
                 unset($_SESSION['message']);
             }
             ?>
@@ -289,7 +287,7 @@ $police_stations = police_stations();
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="arrestDate" type="date" placeholder="Arrest Date"
-                                    name="arrest_date"/>
+                                    name="arrest_date" />
                                 <label for="arrestDate">Arrest Date / गिरफ्तारी का दिनाक</label>
                             </div>
                         </div>

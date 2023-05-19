@@ -38,10 +38,8 @@ if (isset($_POST['save_feedback'])) {
 
 ?>
 
-<header>
-    <!-- place navbar here -->
-    <?php include('user_header.php'); ?>
-</header>
+<!-- place navbar here -->
+<?php include('user_header.php'); ?>
 
 <main>
     <div class="row">
@@ -63,7 +61,7 @@ if (isset($_POST['save_feedback'])) {
 
                     <li>
                         <a href="dead_body_form.php" class="nav-link link-dark">
-                             Inquest / मर्ग
+                            Inquest / मर्ग
                         </a>
                     </li>
 
@@ -125,8 +123,7 @@ if (isset($_POST['save_feedback'])) {
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
-                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>
@@ -140,8 +137,7 @@ if (isset($_POST['save_feedback'])) {
                     <div class="row">
                         <div class="col-12">
                             <div class="form-floating mb-3">
-                                <textarea name="feedback" id="feedback" class="form-control" type="text"
-                                    placeholder="Feedback" style="height: 10rem;" name="feedback" required></textarea>
+                                <textarea name="feedback" id="feedback" class="form-control" type="text" placeholder="Feedback" style="height: 10rem;" name="feedback" required></textarea>
                                 <label for="feedback">Feedback</label>
                             </div>
                         </div>

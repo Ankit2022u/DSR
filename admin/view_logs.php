@@ -4,11 +4,8 @@ require "../api/dbcon.php";
 require "../api/functions.php";
 ?>
 
-<header>
-    <!-- place navbar here -->
-    <?php include('admin_header.php'); ?>
-</header>
-
+<!-- place navbar here -->
+<?php include('admin_header.php'); ?>
 <main>
     <div class="row">
         <div class="side-bar col-md-3 col-sm-5">
@@ -52,7 +49,7 @@ require "../api/functions.php";
                     </li>
                     <li>
                         <a href="profile.php" class="nav-link link-dark">
-                            View Profile /  प्रोफाइल
+                            View Profile / प्रोफाइल
                         </a>
                     </li>
                     <li>

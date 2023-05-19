@@ -30,7 +30,7 @@ if (isset($_POST['major_crime_download'])) {
                     <th style='font-size: 28px;border:1px solid black; border-collapse: collapse; vertical-align:middle; vertical-align:middle; text-align:center; width:130px;'>घटना स्थल</th>
                     <th style='font-size: 28px;border:1px solid black; border-collapse: collapse; vertical-align:middle; vertical-align:middle; text-align:center; width:190px;'>सूचना दिनाक व समय</th>
                     <th style='font-size: 28px;border:1px solid black; border-collapse: collapse; vertical-align:middle; vertical-align:middle; text-align:center; width:150px;'>कायमीकर्ता</th>
-                    <th style='font-size: 28px;border:1px solid black; border-collapse: collapse; vertical-align:middle; vertical-align:middle; text-align:center; width:160px;'>आरोपी/संदिग्ध का नाम व पता</th>
+                    <th style='font-size: 28px;border:1px solid black; border-collapse: collapse; vertical-align:middle; vertical-align:middle; text-align:center; width:160px;'>आरोपी / संदिग्ध का नाम व पता</th>
                     <th style='font-size: 28px;border:1px solid black; border-collapse: collapse; vertical-align:middle; vertical-align:middle; text-align:center; width:190px;'>गिरफ्तारी दिनाक व समय</th>
                     <th style='font-size: 28px;border:1px solid black; border-collapse: collapse; vertical-align:middle; vertical-align:middle; text-align:center; width:120px;'>मृतक - मृतिका / आहत - आहता / पीड़ित - पीड़िता का नाम</th>
                     <th style='font-size: 28px;border:1px solid black; border-collapse: collapse; vertical-align:middle; vertical-align:middle; text-align:center; width:225px'>विवरण</th>
@@ -87,9 +87,7 @@ if (isset($_POST['major_crime_download'])) {
                             " . $row['description_of_crime'] . " 
                         </td>
                     </tr>";
-
                 }
-
             }
         }
         if (!($found_crimes)) {
@@ -167,7 +165,7 @@ if (isset($_POST['minor_crime_download'])) {
         }
         $alphabets = ["C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA", "AB"];
         $html .= "<tr>
-                    <td colspan=2 style='border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>योग</td>";
+                    <td colspan=2 style='font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>योग</td>";
         foreach ($alphabets as $letter) {
 
             $html .= "<td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>=SUM(" . $letter . $numbers[$begin] . ":" . $letter . $numbers[$finish] . ")</td>";
@@ -205,7 +203,7 @@ if (isset($_POST['ongoing_case_download'])) {
                     <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>अपराध<br>क्रमांक</th>
                     <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>धारा</th>
                     <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>एफ.आई.आर.<br>का दिनाक</th>
-                    <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>आरोपी/संदिग्ध का<br>नाम व पता</th>
+                    <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>आरोपी / संदिग्ध का<br>नाम व पता</th>
                     <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>प्ररण की<br>अद्यतन स्थिति</th>
                     <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>न्यायालय का नाम</th>
                     <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>न्यायालय के फैसले<br>का संक्षिप्त विवरण</th>
@@ -362,7 +360,7 @@ if (isset($_POST['important_achievement_download'])) {
             <tr>
                 <th colspan=8 center style='font-size: 42px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; height:75px;'>महत्पूर्ण कार्यवाहिया / उपलब्धियां | $text</th>
             </tr>
-            <tr style='height:190px;'>
+            <tr style='height:240px;'>
                 <th style='font-size: 26px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:45px;'>क्र.</th>
                 <th style='font-size: 26px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:150px;'>थाना/चौकी</th>
                 <th style='font-size: 26px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:500px;'>गंभीर अपराधों में गिरफ्तारि / महत्वपूर्ण गिरफ्तारि</th>
