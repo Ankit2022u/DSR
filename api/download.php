@@ -87,9 +87,9 @@ if (isset($_POST['major_crime_download'])) {
                             " . $row['description_of_crime'] . " 
                         </td>
                     </tr>";
-                    
+
                 }
-                
+
             }
         }
         if (!($found_crimes)) {
@@ -265,67 +265,80 @@ if (isset($_POST['ongoing_case_download'])) {
 // Dead body download
 if (isset($_POST['dead_body_download'])) {
     $output_dead_bodies = $_SESSION['dead_bodies'];
+    $districts = get_districts();
+    $html = "<table style='vertical-align:middle;'>";
+    foreach ($districts as $dist) {
+        $distt = $dist['district'];
 
-    $html = "<table style='border:1px solid black; border-collapse: collapse; vertical-align:middle;'>
-                <tr>
-                    <th colspan=12 center style='font-size: 40px; border:1px solid black; border-collapse: collapse; vertical-align:middle;'>समस्त मर्ग की जानकारी | $text </th>
+        $html.= "<tr>
+                    <th colspan=11 center style='font-size: 40px; border:1px solid black; border-collapse: collapse; vertical-align:middle; height:75px;'>$distt के समस्त मर्ग की जानकारी | $text </th>
                 </tr>
                 <tr>
-                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>क्र.</th>
-                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>ज़िला</th>
-                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>पुलिस<br> थाना</th>
-                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>मर्ग क्रमांक</th>
-                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>धारा</th>
-                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>घटना दिनांक<br> व समय</th>
-                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>घटना स्थान</th>
-                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>सूचना दिनांक<br> व समय</th>
-                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>प्रार्थी</th>
-                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>मृतक/मृतिका<br> का नाम</th>
-                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>कायमीकर्ता<br> का नाम</th>
-                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>सबब मौत</th>
+                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:45;'>क्र.</th>
+                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:160px'>पुलिस थाना</th>
+                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:90px;'>मर्ग क्रमांक</th>
+                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:80px;'>धारा</th>
+                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:190px;'>घटना दिनांक व समय</th>
+                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:130px;'>घटना स्थान</th>
+                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:190px;'>सूचना दिनांक व समय</th>
+                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:240px;'>प्रार्थी</th>
+                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:190px;'>मृतक/मृतिका का नाम</th>
+                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:220px;'>कायमीकर्ता का नाम</th>
+                <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:300px;'>सबब मौत</th>
                 </tr>";
-    $i = 1;
-    foreach ($output_dead_bodies as $deadbody) {
-        foreach ($deadbody as $row) {
-            $html .= "<tr>
-                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+        $i = 1;
+        $found_bodies = false;
+        foreach ($output_dead_bodies as $deadbody) {
+            foreach ($deadbody as $row) {
+                if ($row['district'] == $distt) {
+                    $found_bodies = true;
+                    $html .= "<tr>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; min-height: 50px;'>
                             " . $i++ . "
                         </td>
-                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
-                            " . $row['district'] . " 
-                        </td>
-                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; min-height: 50px;'>
                             " . $row['police_station'] . " 
                         </td>
-                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; min-height: 50px;'>
                             " . $row['dead_body_number'] . " 
                         </td>
-                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; min-height: 50px;'>
                             " . $row['penal_code'] . " 
                         </td>
-                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; min-height: 50px;'>
                         " . $row['accident_date'] . " " . $row['accident_time'] . " 
                         </td>
-                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; min-height: 50px;'>
                             " . $row['accident_place'] . " 
                         </td>
-                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; min-height: 50px;'>
                             " . $row['information_date'] . " " . $row['information_time'] . " 
                         </td>
-                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
-                            " . $row['applicant_name'] . " 
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; min-height: 50px;'>
+                            " . $row['applicant_name'] . "
                         </td>
-                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; min-height: 50px;'>
                             " . $row['deceased_name'] . " 
                         </td>
-                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; min-height: 50px;'>
                             " . $row['fir_writer'] . " 
                         </td>
-                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; min-height: 50px;'>
                             " . $row['cause_of_death'] . " 
                         </td>
                     </tr>";
+                }
+            }
         }
+        if (!($found_bodies)) {
+            $html .= "<tr style='height: 40px;'>
+                    <td colspan=11 style=' height:50px; font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                        निरंक
+                    </td>
+                </tr>
+                ";
+        }
+        $html .= "<tr style='height: 40px;'><td colspan=11 style='border:1px solid black; border-collapse: collapse;'></td></tr>";
     }
 
     $html .= "</table>";
