@@ -241,7 +241,7 @@ $police_stations = police_stations();
 
                                 <input class="form-control" id="applicant" type="text" placeholder="Applicant Name"
                                     name="applicant_name" required />
-                                <label for="applicantName">Applicant Name / सूचक का नाम<span
+                                <label for="applicantName">Applicant Name and Address / सूचक का नाम व पता<span
                                         class="required-star">*</span></label>
                             </div>
                         </div>
@@ -253,7 +253,7 @@ $police_stations = police_stations();
                                 <input class="form-control" id="deceased" type="text" placeholder="Deceased"
                                     name="deceased_name" required />
 
-                                <label for="deceasedName">Deceased Name / मृतक का नाम<span
+                                <label for="deceasedName">Deceased Name and Address / मृतक का नाम व पता<span
                                         class="required-star">*</span></label>
                             </div>
                         </div>
