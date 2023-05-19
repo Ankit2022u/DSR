@@ -3,10 +3,8 @@ session_start();
 require "../api/dbcon.php";
 ?>
 
-<header>
-    <!-- place navbar here -->
-    <?php include('admin_header.php'); ?>
-</header>
+<!-- place navbar here -->
+<?php include('admin_header.php'); ?>
 
 <main>
     <div class="row">
@@ -26,7 +24,7 @@ require "../api/dbcon.php";
                     </li>
                     <li>
                         <a href="manage_user.php" class="nav-link  link-dark">
-                            Manage Users /  उपयोगकर्ताओं का प्रबंधन
+                            Manage Users / उपयोगकर्ताओं का प्रबंधन
                         </a>
                     </li>
                     <li>
@@ -46,7 +44,7 @@ require "../api/dbcon.php";
                     </li>
                     <li>
                         <a href="police_station.php" class="nav-link link-dark">
-                            Police Stations /  थाना
+                            Police Stations / थाना
                         </a>
                     </li>
                     <li>
@@ -56,7 +54,7 @@ require "../api/dbcon.php";
                     </li>
                     <li>
                         <a href="dbf.php" class="nav-link link-dark">
-                             Inquest / मर्ग
+                            Inquest / मर्ग
                         </a>
                     </li>
                     <li>

@@ -114,17 +114,14 @@ if (isset($_POST['save_user'])) {
         $_SESSION['message'] = $errors[0];
         $_SESSION['type'] = "warning";
     }
-
 }
 
 $police_stations = police_stations();
 
 ?>
 
-<header>
-    <!-- place navbar here -->
-    <?php include('admin_header.php'); ?>
-</header>
+<!-- place navbar here -->
+<?php include('admin_header.php'); ?>
 <main>
     <div class="row">
         <div class="side-bar col-md-3 col-sm-5">
@@ -206,8 +203,7 @@ $police_stations = police_stations();
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
-                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= $_SESSION['user-data']['officer_name']; ?>
                     </strong>
@@ -221,13 +217,13 @@ $police_stations = police_stations();
 
                 <?php
                 if (isset($_SESSION['message'])) {
-                    ?>
+                ?>
                     <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
                         <strong>Hye!</strong>
                         <?= $_SESSION['message']; ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                    <?php
+                <?php
                     unset($_SESSION['message']);
                 }
                 ?>
@@ -273,8 +269,7 @@ $police_stations = police_stations();
                                                 <label for="">User Type</label>
                                                 <span class="required-star">*</span>
 
-                                                <select class="form-select form-select-lg" name="user_type"
-                                                    id="user_type" required>
+                                                <select class="form-select form-select-lg" name="user_type" id="user_type" required>
                                                     <option selected value="user">User</option>
                                                     <option value="admin">Administration</option>
                                                 </select>
@@ -287,10 +282,8 @@ $police_stations = police_stations();
                                             <div class="mb-3">
 
 
-                                                <label for="district">District / जिला<span
-                                                        class="required-star">*</span></label>
-                                                <select class="form-select" name="district" id="district"
-                                                    onchange="update_police_stations()" required>
+                                                <label for="district">District / जिला<span class="required-star">*</span></label>
+                                                <select class="form-select" name="district" id="district" onchange="update_police_stations()" required>
                                                     <option value="">Select Option</option>
                                                     <option value="सरगुजा">सरगुजा</option>
                                                     <option value="बलरामपुर">बलरामपुर</option>
@@ -307,8 +300,7 @@ $police_stations = police_stations();
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Police Station</label>
                                                 <span class="required-star">*</span>
-                                                <select class="form-select form-select-lg" name="police_station"
-                                                    id="police_station" required>
+                                                <select class="form-select form-select-lg" name="police_station" id="police_station" required>
 
                                                     <option value="">Select Option</option>
 
@@ -335,8 +327,7 @@ $police_stations = police_stations();
                                             <div class="mb-3">
                                                 <label for="">Confirm Password</label>
                                                 <span class="required-star">*</span>
-                                                <input type="text" name="confirm_password" class="form-control"
-                                                    required>
+                                                <input type="text" name="confirm_password" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>

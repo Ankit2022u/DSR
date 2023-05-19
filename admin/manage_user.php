@@ -3,10 +3,8 @@ session_start();
 require "../api/dbcon.php";
 ?>
 
-<header>
-    <!-- place navbar here -->
-    <?php include('admin_header.php'); ?>
-</header>
+<!-- place navbar here -->
+<?php include('admin_header.php'); ?>
 
 <main>
     <div class="row">
@@ -51,7 +49,7 @@ require "../api/dbcon.php";
                     </li>
                     <li>
                         <a href="profile.php" class="nav-link link-dark">
-                            View Profile /  प्रोफाइल
+                            View Profile / प्रोफाइल
                         </a>
                     </li>
                     <li>

@@ -3,10 +3,10 @@ session_start();
 require "../api/dbcon.php";
 ?>
 
-<header>
-    <!-- place navbar here -->
-    <?php include('admin_header.php'); ?>
-</header>
+
+<!-- place navbar here -->
+<?php include('admin_header.php'); ?>
+
 
 <main>
     <div class="row">
@@ -122,16 +122,16 @@ require "../api/dbcon.php";
                         <form action="../api/form_submissions.php" method="post">
                             <div class="mb-3 mt-5">
                                 <div class="form-floating mb-3">
-                                <select class="form-select" name="district" id="district"
-                                    onchange="update_police_stations()" required>
-                                    <option value="">Select Option</option>
-                                    <option value="सरगुजा">सरगुजा</option>
-                                    <option value="बलरामपुर">बलरामपुर</option>
-                                    <option value="सूरजपुर">सूरजपुर</option>
-                                    <option value="मनेंद्रगढ़-चिरमीरी-भरतपुर">मनेंद्रगढ़-चिरमीरी-भरतपुर</option>
-                                    <option value="जशपुर">जशपुर</option>
-                                    <option value="कोरिया">कोरिया</option>
-                                </select>
+                                    <select class="form-select" name="district" id="district"
+                                        onchange="update_police_stations()" required>
+                                        <option value="">Select Option</option>
+                                        <option value="सरगुजा">सरगुजा</option>
+                                        <option value="बलरामपुर">बलरामपुर</option>
+                                        <option value="सूरजपुर">सूरजपुर</option>
+                                        <option value="मनेंद्रगढ़-चिरमीरी-भरतपुर">मनेंद्रगढ़-चिरमीरी-भरतपुर</option>
+                                        <option value="जशपुर">जशपुर</option>
+                                        <option value="कोरिया">कोरिया</option>
+                                    </select>
                                     <label for="district">District / ज़िला<span class="required-star">*</span></label>
                                 </div>
                                 <div class="form-floating mb-3">
