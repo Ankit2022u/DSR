@@ -123,7 +123,7 @@ if (isset($_POST['minor_crime_download'])) {
     $top_row = ["41(1) जा. फौ", "102 जा. फौ", "109 जा. फौ", "110 जा. फौ", "145 जा. फौ", "151 जा. फौ", "107,116 जा. फौ", "सट्टा", "जुआ एक्ट", "आव. एक्ट", "नारको", "आर्म्स. एक्ट", "एम. वी. एक्ट"];
 
     $html = "<table style='border:1px solid black; border-collapse: collapse; vertical-align:middle;'>";
-    $html .= "<tr><th colspan=28 style='font-size: 40px;  border:1px solid black; border-collapse: collapse; vertical-align:middle;'>दैनिक प्रतिवेदन प्रतिबंधात्मकता कार्यवाही/लघु अधिनियम रेंज सरगुजा जिला सरगुजा | $text</th></tr>";
+    $html .= "<tr><th colspan=28 style='height:75px; font-size: 42px;  border:1px solid black; border-collapse: collapse; vertical-align:middle;'>दैनिक प्रतिवेदन प्रतिबंधात्मकता कार्यवाही/लघु अधिनियम रेंज सरगुजा जिला सरगुजा | $text</th></tr>";
     $distnum = 1;
     $begin = 0;
     $finish = 1;
@@ -131,11 +131,11 @@ if (isset($_POST['minor_crime_download'])) {
     foreach ($districts as $dist) {
 
         $html .= "<tr>
-                    <th colspan=28 style='font-size: 30px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>" . $dist['district'] . "</th>
+                    <th colspan=28 style='font-size: 30px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; height:45px'>" . $dist['district'] . "</th>
                 </tr>
                 <tr>        
-                    <th rowspan=2 style='font-size: 24px;border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>क्र.</th>
-                    <th rowspan=2 style='font-size: 24px;border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>पुलिस थाना</th>";
+                    <th rowspan=2 style='font-size: 24px;border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:45px;'>क्र.</th>
+                    <th rowspan=2 style='font-size: 24px;border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:125px'>पुलिस थाना</th>";
         foreach ($top_row as $cols) {
             $html .= "<th colspan=2 style='font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>" . $cols . "</th>";
         }
@@ -196,7 +196,7 @@ if (isset($_POST['ongoing_case_download'])) {
     $output_ongoing_cases = $_SESSION['ongoing_cases'];
     $html = "<table style='border:1px solid black; border-collapse: collapse; vertical-align:middle;'>
                 <tr>
-                    <th colspan=10 center style='font-size: 40px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>सक्रिय मामला| $text </th>
+                    <th colspan=10 center style='font-size: 42px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; height:70px;'>सक्रिय मामला| $text </th>
                 </tr>
                 <tr>
                     <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>क्र.</th>
