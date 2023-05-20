@@ -25,8 +25,11 @@ if (!(isset($_SESSION['user-data']))) {
     <meta http-equiv="Content-Language" content="hi">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-32">
 
+
+
     <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
     <script src="https://kit.fontawesome.com/aa2f2c478b.js" crossorigin="anonymous"></script>
     <script src="../assets/js/password.js"></script>
@@ -54,27 +57,27 @@ if (!(isset($_SESSION['user-data']))) {
     </script> -->
 
     <style>
-        /* body {
+    /* body {
             background: linear-gradient(to bottom left, #FFFDDE, #45A9BA);
         } */
 
-        footer {
-            background-color: rgba(0, 0, 0, 0.05);
-            padding: 20px;
-        }
+    footer {
+        background-color: rgba(0, 0, 0, 0.05);
+        padding: 20px;
+    }
 
-        .required-star {
-            color: red;
-            margin-left: 5px;
-        }
+    .required-star {
+        color: red;
+        margin-left: 5px;
+    }
 
 
-        .pass_icon {
-            float: right;
-            margin-top: -30px;
-            margin-right: 15px;
+    .pass_icon {
+        float: right;
+        margin-top: -30px;
+        margin-right: 15px;
 
-        }
+    }
     </style>
 </head>
 
@@ -83,8 +86,10 @@ if (!(isset($_SESSION['user-data']))) {
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
 
-                <img src="../assets/img/logo.jpeg" alt="Logo for Admin Dashboard" width="50" height="50" class="d-inline-block align-text-top mr-3">
-                <a href="admin.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <img src="../assets/img/logo.jpeg" alt="Logo for Admin Dashboard" width="50" height="50"
+                    class="d-inline-block align-text-top mr-3">
+                <a href="admin.php"
+                    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (Admin Panel)</span>
                 </a>
                 <!-- <div class="collapse navbar-collapse" id="navbarNav">
