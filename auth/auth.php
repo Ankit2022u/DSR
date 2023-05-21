@@ -48,7 +48,6 @@ if (isset($_POST['login'])) {
             $_SESSION['login_type'] = $user_type;
             header("Location: ../login.php");
         }
-
     } else {
         $query = "SELECT * FROM users WHERE `user_id` = ?";
         $stmt = mysqli_prepare($con, $query);
@@ -66,8 +65,5 @@ if (isset($_POST['login'])) {
         }
         $_SESSION['login_type'] = $user_type;
         header("Location: ../login.php");
-
     }
 }
-
-?>

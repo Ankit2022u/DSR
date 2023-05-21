@@ -181,8 +181,7 @@ if (isset($_POST['view'])) {
                 </ul>
                 <hr>
                 <div class="profile">
-                    <img src="../uploads/<?= htmlspecialchars($_SESSION['user-data']['user_type'], ENT_QUOTES, 'UTF-8'); ?>/<?= htmlspecialchars($_SESSION['user-data']['profile_photo_path'], ENT_QUOTES, 'UTF-8'); ?>"
-                        alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+                    <img src="../uploads/<?= htmlspecialchars($_SESSION['user-data']['user_type'], ENT_QUOTES, 'UTF-8'); ?>/<?= htmlspecialchars($_SESSION['user-data']['profile_photo_path'], ENT_QUOTES, 'UTF-8'); ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
                     <strong>
                         <?= htmlspecialchars($_SESSION['user-data']['officer_name'], ENT_QUOTES, 'UTF-8'); ?>
                     </strong>
@@ -195,6 +194,11 @@ if (isset($_POST['view'])) {
         <div class="main-content container col-md-9 col-sm-7">
 
             <div class="row justify-content-center align-items-center g-2">
+                <form action="../api/pdf.php" method="post" class="d-flex justify-content-end">
+                    <div class="p-2">
+                        <button type="submit" class="btn btn-danger" name="major_crime_download"> All pdf</button>
+                    </div>
+                </form>
                 <!-- Ongoing Cases -->
                 <div class="col-12">
                     <div class="card">
@@ -208,8 +212,7 @@ if (isset($_POST['view'])) {
                                 <div class="col-12">
                                     <form action="../api/download.php" method="post" class="d-flex justify-content-end">
                                         <div class="p-2">
-                                            <button type="submit" class="btn btn-primary"
-                                                name="ongoing_case_download">Download</button>
+                                            <button type="submit" class="btn btn-primary" name="ongoing_case_download">Download</button>
                                         </div>
                                     </form>
                                 </div>
@@ -236,7 +239,7 @@ if (isset($_POST['view'])) {
                                     <?php $i = 1;
                                     foreach ($output_ongoing_cases as $ongoingcase) {
                                         foreach ($ongoingcase as $row) {
-                                            ?>
+                                    ?>
                                             <tbody>
                                                 <td>
                                                     <?= $i++; ?>
@@ -272,7 +275,7 @@ if (isset($_POST['view'])) {
                                                     <?= $row['judgement_of_court']; ?>
                                                 </td>
                                             </tbody>
-                                        <?php }
+                                    <?php }
                                     } ?>
 
                                 </table>
@@ -294,8 +297,7 @@ if (isset($_POST['view'])) {
                                 <div class="col-12">
                                     <form action="../api/download.php" method="post" class="d-flex justify-content-end">
                                         <div class="p-2">
-                                            <button type="submit" class="btn btn-primary"
-                                                name="dead_body_download">Download</button>
+                                            <button type="submit" class="btn btn-primary" name="dead_body_download">Download</button>
                                         </div>
                                     </form>
                                 </div>
@@ -326,7 +328,7 @@ if (isset($_POST['view'])) {
                                     <?php $i = 1;
                                     foreach ($output_dead_bodies as $deadbody) {
                                         foreach ($deadbody as $row) {
-                                            ?>
+                                    ?>
                                             <tbody>
                                                 <td>
                                                     <?= $i++; ?>
@@ -374,7 +376,7 @@ if (isset($_POST['view'])) {
                                                     <?= $row['cause_of_death']; ?>
                                                 </td>
                                             </tbody>
-                                            <?php
+                                    <?php
                                         }
                                     } ?>
 
@@ -398,8 +400,7 @@ if (isset($_POST['view'])) {
                                 <div class="col-12">
                                     <form action="../api/download.php" method="post" class="d-flex justify-content-end">
                                         <div class="p-2">
-                                            <button type="submit" class="btn btn-primary"
-                                                name="minor_crime_download">Download</button>
+                                            <button type="submit" class="btn btn-primary" name="minor_crime_download">Download</button>
                                         </div>
                                     </form>
                                 </div>
@@ -424,7 +425,7 @@ if (isset($_POST['view'])) {
                                     <?php $i = 1;
                                     foreach ($output_minor_crimes as $minorcrime) {
                                         foreach ($minorcrime as $row) {
-                                            ?>
+                                    ?>
                                             <tbody>
                                                 <td>
                                                     <?= $i++; ?>
@@ -454,7 +455,7 @@ if (isset($_POST['view'])) {
                                                     <?= $row['fir_writer']; ?>
                                                 </td>
                                             </tbody>
-                                            <?php
+                                    <?php
                                         }
                                     } ?>
 
@@ -477,10 +478,10 @@ if (isset($_POST['view'])) {
                                 <div class="col-12">
                                     <form action="../api/download.php" method="post" class="d-flex justify-content-end">
                                         <div class="p-2">
-                                            <button type="submit" class="btn btn-primary"
-                                                name="major_crime_download">Download</button>
+                                            <button type="submit" class="btn btn-primary" name="major_crime_download">Download excel</button>
                                         </div>
                                     </form>
+
                                 </div>
                             </div>
                         </div>
@@ -512,7 +513,7 @@ if (isset($_POST['view'])) {
                                     <?php $i = 1;
                                     foreach ($output_major_crimes as $majorcrime) {
                                         foreach ($majorcrime as $row) {
-                                            ?>
+                                    ?>
                                             <tbody>
                                                 <td>
                                                     <?= $i++; ?>
@@ -580,7 +581,7 @@ if (isset($_POST['view'])) {
                                                     <?= $row['fir_writer']; ?>
                                                 </td>
                                             </tbody>
-                                            <?php
+                                    <?php
                                         }
                                     } ?>
 
@@ -605,8 +606,7 @@ if (isset($_POST['view'])) {
                                 <div class="col-12">
                                     <form action="../api/download.php" method="post" class="d-flex justify-content-end">
                                         <div class="p-2">
-                                            <button type="submit" class="btn btn-primary"
-                                                name="important_achievement_download">Download</button>
+                                            <button type="submit" class="btn btn-primary" name="important_achievement_download">Download</button>
                                         </div>
                                     </form>
                                 </div>
@@ -634,7 +634,7 @@ if (isset($_POST['view'])) {
                                     <?php $i = 1;
                                     foreach ($output_important_achievements as $impaction) {
                                         foreach ($impaction as $row) {
-                                            ?>
+                                    ?>
                                             <tbody>
                                                 <td>
                                                     <?= $i++; ?>
@@ -667,7 +667,7 @@ if (isset($_POST['view'])) {
                                                     <?= $row['action_taken_under']; ?>
                                                 </td>
                                             </tbody>
-                                            <?php
+                                    <?php
                                         }
                                     } ?>
 
@@ -692,8 +692,7 @@ if (isset($_POST['view'])) {
                                 <div class="col-12">
                                     <form action="../api/download.php" method="post" class="d-flex justify-content-end">
                                         <div class="p-2">
-                                            <button type="submit" class="btn btn-primary"
-                                                name="court_judgement_download">Download</button>
+                                            <button type="submit" class="btn btn-primary" name="court_judgement_download">Download</button>
                                         </div>
                                     </form>
                                 </div>
@@ -719,7 +718,7 @@ if (isset($_POST['view'])) {
                                     <?php $i = 1;
                                     foreach ($output_court_judgements as $cjudgements) {
                                         foreach ($cjudgements as $row) {
-                                            ?>
+                                    ?>
                                             <tbody>
                                                 <td>
                                                     <?= $i++; ?>
@@ -755,7 +754,7 @@ if (isset($_POST['view'])) {
                                                     <?= $row['judgement_of_court']; ?>
                                                 </td>
                                             </tbody>
-                                            <?php
+                                    <?php
                                         }
                                     } ?>
 
