@@ -16,8 +16,7 @@ include('admin_header.php'); ?>
     <div class="row">
 
         <div class="side-bar col-md-3 col-sm-5">
-            <?php //include('side-bar.php'); 
-            ?>
+            <?php //include('side-bar.php'); ?>
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
                 <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <span class="fs-4">Daily Station Report (Admin Panel)</span>
@@ -110,7 +109,7 @@ include('admin_header.php'); ?>
             if (isset($_SESSION['message'])) {
                 ?>
                 <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
-                    <strong>Hye!</strong>
+                    <strong>Information: </strong>
                     <?= $_SESSION['message']; ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
@@ -118,7 +117,7 @@ include('admin_header.php'); ?>
                 unset($_SESSION['message']);
             }
             ?>
-            <form action="display_data.php" method="post">
+            <!-- <form action="display_data.php" method="post">
                 <div class="container px-5 my-5">
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12">
@@ -248,7 +247,78 @@ include('admin_header.php'); ?>
                     </div>
 
                 </div>
+            </form> -->
 
+            <form action="../api/download.php" method="post" id="downloadForm">
+                <div class="row">
+
+                    <!-- DSR Date-->
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="dsrDate" type="date" placeholder="DSR Date" name="dsr_date"
+                                required />
+
+                            <label for="dsrDate">Date / तिथि<span class="required-star">*</span></label>
+                        </div>
+                    </div>
+
+                    <!-- District -->
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                        <div class="form-floating mb-3">
+                            <select class="form-select" name="district" id="district" required>
+                                <option value="All">समस्त</option>
+                                <option value="सरगुजा">सरगुजा</option>
+                                <option value="बलरामपुर">बलरामपुर</option>
+                                <option value="सूरजपुर">सूरजपुर</option>
+                                <option value="मनेंद्रगढ़-चिरमीरी-भरतपुर">मनेंद्रगढ़-चिरमीरी-भरतपुर</option>
+                                <option value="जशपुर">जशपुर</option>
+                                <option value="कोरिया">कोरिया</option>
+                            </select>
+                            <label for="district">District / ज़िला<span class="required-star">*</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Document Type -->
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                        <div class="form-floating mb-3">
+                            <select class="form-select" name="document_type" id="documentType" required>
+                                <option value="All">समस्त</option>
+                                <option value="Summary">Summary()</option>
+                                <option value="Application">Application()</option>
+                                <option value="MinorCrime">Minor Crimes()</option>
+                                <option value="MajorCrime">Major Crimes()</option>
+                                <option value="Crime">Crimes()</option>
+                                <option value="Deadbody">Deadbodies()</option>
+                                <option value="Achievement">Achievements()</option>
+                                <option value="Judgement">Court Judgements()</option>
+                                <option value="Disposal">Disposals()</option>
+                            </select>
+                            <label for="documentType">Document Type / दस्तावेज़ का प्रकार<span
+                                    class="required-star">*</span></label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+
+                        <label>Select Format / दस्तावेज़ का फॉर्मेट<span class="required-star">*</span></label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="doc_format" id="excel" value="excel">
+                            <label class="form-check-label" for="excel">Excel</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="doc_format" id="pdf" value="pdf">
+                            <label class="form-check-label" for="pdf">PDF</label>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <div class="p-2">
+                            <button type="submit" class="btn btn-primary" name="download">Download</button>
+                        </div>
+                    </div>
+
+                </div>
             </form>
 
         </div>

@@ -1,0 +1,9 @@
+/* #documentType:focus{
+    box-shadow: 0 0 10px red !important;
+} */
+
+#downloadForm{
+    border: 1px solid rgb(87, 126, 255);
+    border-radius: 1px;
+    padding: 20px; 
+}
