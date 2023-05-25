@@ -2,6 +2,7 @@
 session_start();
 require "dbcon.php";
 require "functions.php";
+require "download_manager.php";
 
 // $start_date = $_SESSION['start_date'];
 // $end_date = $_SESSION['end_date'];
@@ -538,335 +539,29 @@ if ($doc_format == "excel") {
 
     // Downloading specific data
     if ($document == "Summary") {
+        $data = array();
+        $data['murder_count'] = count_murder_cases($date,$district);
+        $data['gangrape_count'] = count_gangrape_cases($date,$district);
+        $data['rape_count'] = count_rape_cases($date, $district);
+        $data['dhara363_count'] = count_ipc_363_cases($date, $district);
+        // $data['narbali_prakaran'] = count_narbali_prakaran($date, $district);
+        $data['dacoity_count'] = count_dacoity_cases($date, $district);
+        $data['robbery_count'] = count_robbery_cases($date, $district);
+        $data['kidnap_for_ransom_count'] = count_kidnap_for_ransom_cases($date, $district);
 
-        $script = "<script src='https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js'></script>
-        <script>
-            function downloadpdf() {
-                const data = document.getElementById('data');
-                const options = {
-                    margin: [0, 0, 0, 0],
-                    filename: 'Summary-".$district." (".$date.").pdf',
-                    image: { type: 'jpeg', quality: 1 },
-                    html2canvas: { scale: 5 },
-                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' };
-                html2pdf().set(options).from(data).save();
-            }
-        </script>";
+        $minor_penal_codes = get_penal_codes('Minor-Act');
+        $restricted_penal_codes = get_penal_codes('Restricted');
+        foreach ($minor_penal_codes as $penal_code) {
+            $data[$penal_code['penal_code']] = count_cases($date, $district, $penal_code['penal_code']);
+        }
+        foreach ($restricted_penal_codes as $penal_code){
+            $data[$penal_code['penal_code']] = count_cases($date, $district, $penal_code['penal_code']);
+        }
 
-        $html='<h1 style="font-size: 19px; text-align: center; font-weight: 600;">दैनिक
-        प्रतिवेदन दिनांक '.$date.'</h1>
-    <pre style="margin: 0px; padding:0px;">
-प्रति,
-    पुलिस महानिदेशक
-    अ०अ०वि० पुमु० .
-    नया रायपुर छ०ग०
-
-कृप्यारेंज पुलिस महा निरीक्षक सरगुजा के दैनिक प्रतिवेदन दिनांक की जानकारी निम्नानुसार है:-</pre>
-    <table>
-        <thead>
-            <tr>
-                <th
-                    style="padding: 2px 10px;">क्र०</th>
-                <th style="padding: 2px 10px;">अपराध
-                    शीर्ष</th>
-                <th style="padding: 2px 10px;">प्रकरण
-                    संख्या</th>
-                <th style="padding: 2px 10px;">आरोपियों
-                    की संख्या</th>
-                <th style="padding: 2px 10px;">गिरफ्तार
-                    आरोपियों की संख्या</th>
-                <th style="padding: 2px 15px;">अन्य</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td scope="row">1</td>
-                <td class="notcenter">हत्या</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td scope="row">2</td>
-                <td class="notcenter">सामूहिक बलात्कार</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td scope="row">3</td>
-                <td class="notcenter">बलात्कार</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td scope="row">4</td>
-                <td class="notcenter">धारा 363 भा०द०वि०</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td scope="row">5</td>
-                <td class="notcenter">नरबलि प्रकरण</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td scope="row">6</td>
-                <td class="notcenter">डकैती</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td scope="row">7</td>
-                <td class="notcenter">लूट</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td scope="row">8</td>
-                <td class="notcenter">फिरौती हेतु अपहरण</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td scope="row">9</td>
-                <td class="notcenter">महत्वपूर्ण नक्सली अपराध</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td scope="row">10</td>
-                <td class="notcenter">पुलिस कर्मचारियों पर हत्या हमला</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr> <th colspan="6" class="notcenter">लघु अधिनियम :-</th>
-            </tr>
-            <tr>
-                <td scope="row">11</td>
-                <td class="notcenter">आबकारी एक्ट</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td scope="row">12</td>
-                <td class="notcenter">जुआ</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td scope="row">10</td>
-                <td class="notcenter">पुलिस कर्मचारियों पर हत्या हमला</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr><tr>
-                <td scope="row">13</td>
-                <td class="notcenter">आर्म्स एक्ट</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td scope="row">14</td>
-                <td class="notcenter">नारकोटिक्स एक्ट</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td scope="row">15</td>
-                <td class="notcenter">सट्टा</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td scope="row">16</td>
-                <td class="notcenter">मोटरयान अधिनियम</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr> <th colspan="6" class="notcenter">प्रतिबंधात्मक
-                    कार्यवाही :-</th> </tr>
-
-            <tr>
-                <td scope="row">17</td>
-                <td class="notcenter">धारा 41(1) जा०फौ०</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td scope="row">18</td>
-                <td class="notcenter">धारा 41(2) जा०फौ०</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td scope="row">19</td>
-                <td class="notcenter">धारा 109 जा०फौ०</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td scope="row">20</td>
-                <td class="notcenter">धारा 110 जा०फौ०</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td scope="row">21</td>
-                <td class="notcenter">धारा 151 जा०फौ०</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td scope="row">22</td>
-                <td class="notcenter">धारा 107,116(3) जा०फौ०</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td scope="row">23</td>
-                <td class="notcenter">धारा 145 जा०फौ०</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td scope="row">24</td>
-                <td class="notcenter">धारा 102 जा०फौ०</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td scope="row">25</td>
-                <td class="notcenter">जिला बदर</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td scope="row">26</td>
-                <td class="notcenter">रा०सु०का०</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td scope="row"></td>
-                <td class="notcenter">योग</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td scope="row" class="notcenter">योग</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
-    <pre style="margin-top: 3px; padding: 0px;">
-प्रतिलिपि:-
-01.आईजी रेंज                                                            प्रभारी
-सरगुजा                                                            कंट्रोल रूम रेंज सरगुजा
-                                                                      
-
-    </pre>';
-
-        echo '<!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>DSR PDF</title>
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-            <style>
-                td, th{
-                    border: 1px solid black;
-                    text-align: center;
-                }
-                .notcenter{
-                    text-align: start;
-                }
-                *{
-                    font-size: 14px;
-                }
-            </style>
-            '.$script.'
-        </head>
-        <body>
-        <button class="bn btn-success" onclick="downloadpdf()">Print</button>
-        <div class="main" style="padding:15mm 18mm 30mm 13mm; width: 210mm; height:297mm" id="data">'.$html.'</div>
-        </body>
-        </html>';
+        $total = sum_elements($data);
+        $data['total'] = $total; 
+        $pdf = summary_pdf($date, $district, $data);
+        echo $pdf;
 
     } elseif ($document == "MinorCrime") {
 
@@ -881,6 +576,27 @@ if ($doc_format == "excel") {
     } elseif ($document == "Disposal") {
 
     } elseif ($document == "Judgement") {
+
+    } elseif ($document == "Application") {
+
+        $data = array();
+        $data['gangrape_count'] = count_gangrape_cases($date,$district);
+        // $data['narbali_prakaran'] = count_narbali_prakaran($date, $district);
+        $data['dacoity_count'] = count_dacoity_cases($date, $district);
+        $data['robbery_count'] = count_robbery_cases($date, $district);
+        $data['kidnap_for_ransom_count'] = count_kidnap_for_ransom_cases($date, $district);
+
+        $restricted_penal_codes = get_penal_codes('Restricted');
+        $rdata = array();
+        foreach ($restricted_penal_codes as $penal_code){
+            $rdata[$penal_code['penal_code']] = count_cases($date, $district, $penal_code['penal_code']);
+        }
+
+        $data['restricted_cases_count'] = sum_elements($rdata);; 
+        $pdf = application_pdf($date, $district, $data);
+        echo $pdf;
+
+    } elseif ($document == "Disposal") {
 
     }
     // Condition when All is selected
