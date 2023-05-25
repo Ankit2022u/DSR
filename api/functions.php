@@ -708,40 +708,163 @@ function get_acts_count($start_date, $end_date, $act, $police_station)
 }
 
 // Funtions for pdf downloads
-function get_semidata($date, $district)
-{
-    $conn = new mysqli('localhost', 'username', 'password', 'database_name');
-    if ($conn->connect_error) {
-        die('Connection failed: ' . $conn->connect_error);
-    }
+// function get_semidata($date, $district)
+// {
+//     global $con;
+//     $tables = array(
+//         'major_crimes',
+//         'dead_bodies',
+//         'important_achievements',
+//         'court_judgements'
+//     );
 
-    $tables = array(
-        'major_crimes',
-        'dead_bodies',
-        'important_achievements',
-        'court_judgements'
-    );
+//     $data = array();
 
-    $data = array();
+//     foreach ($tables as $table) {
+//         $query = "SELECT * FROM $table WHERE date = '$date' AND district = '$district'";
+//         $result = $con->query($query);
 
-    foreach ($tables as $table) {
-        $query = "SELECT * FROM $table WHERE date = '$date' AND district = '$district'";
-        $result = $conn->query($query);
+//         if ($result->num_rows > 0) {
+//             $records = array();
+//             while ($row = $result->fetch_assoc()) {
+//                 $records[] = $row;
+//             }
+//             $data[$table] = $records;
+//         } else {
+//             $data[$table] = array();
+//         }
+//     }
 
-        if ($result->num_rows > 0) {
-            $records = array();
-            while ($row = $result->fetch_assoc()) {
-                $records[] = $row;
-            }
-            $data[$table] = $records;
-        } else {
-            $data[$table] = array();
+//     return $data;
+// }
+
+/**
+ * Get data from the 'court_judgements' table for a specific date and district.
+ *
+ * @param string $date The date for which to retrieve the data.
+ * @param string $district The district for which to retrieve the data.
+ * @return array The records from the 'court_judgements' table.
+ */
+function get_court_judgements(string $date, string $district): array {
+    global $con;
+    $query = "SELECT * FROM court_judgements WHERE DATE(created_at) = ? AND district = ?";
+    $stmt = $con->prepare($query);
+    $stmt->bind_param("ss", $date, $district);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $records = [];
+        while ($row = $result->fetch_assoc()) {
+            $records[] = $row;
         }
+        return $records;
+    } else {
+        return [];
     }
+}
 
-    $conn->close();
+/**
+ * Get data from the 'important_achievements' table for a specific date and district.
+ *
+ * @param string $date The date for which to retrieve the data.
+ * @param string $district The district for which to retrieve the data.
+ * @return array The records from the 'important_achievements' table.
+ */
+function get_important_achievements(string $date, string $district): array {
+    global $con;
+    $query = "SELECT * FROM important_achievements WHERE DATE(created_at) = ? AND district = ?";
+    $stmt = $con->prepare($query);
+    $stmt->bind_param("ss", $date, $district);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    return $data;
+    if ($result->num_rows > 0) {
+        $records = [];
+        while ($row = $result->fetch_assoc()) {
+            $records[] = $row;
+        }
+        return $records;
+    } else {
+        return [];
+    }
+}
+
+/**
+ * Get data from the 'dead_bodies' table for a specific date and district.
+ *
+ * @param string $date The date for which to retrieve the data.
+ * @param string $district The district for which to retrieve the data.
+ * @return array The records from the 'dead_bodies' table.
+ */
+function get_dead_bodies(string $date, string $district): array {
+    global $con;
+    $query = "SELECT * FROM dead_bodies WHERE DATE(created_at) = ? AND district = ?";
+    $stmt = $con->prepare($query);
+    $stmt->bind_param("ss", $date, $district);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $records = [];
+        while ($row = $result->fetch_assoc()) {
+            $records[] = $row;
+        }
+        return $records;
+    } else {
+        return [];
+    }
+}
+
+/**
+ * Get data from the 'major_crimes' table for a specific date and district.
+ *
+ * @param string $date The date for which to retrieve the data.
+ * @param string $district The district for which to retrieve the data.
+ * @return array The records from the 'major_crimes' table.
+ */
+function get_major_crimes(string $date, string $district): array {
+    global $con;
+    $query = "SELECT * FROM major_crimes WHERE DATE(created_at) = ? AND district = ? AND is_major_crime = 1";
+    $stmt = $con->prepare($query);
+    $stmt->bind_param("ss", $date, $district);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $records = [];
+        while ($row = $result->fetch_assoc()) {
+            $records[] = $row;
+        }
+        return $records;
+    } else {
+        return [];
+    }
+}
+
+/**
+ * Get data from the 'crimes' table for a specific date and district.
+ *
+ * @param string $date The date for which to retrieve the data.
+ * @param string $district The district for which to retrieve the data.
+ * @return array The records from the 'crimes' table.
+ */
+function get_crimes(string $date, string $district): array {
+    global $con;
+    $query = "SELECT * FROM major_crimes WHERE DATE(created_at) = ? AND district = ?";
+    $stmt = $con->prepare($query);
+    $stmt->bind_param("ss", $date, $district);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $records = [];
+        while ($row = $result->fetch_assoc()) {
+            $records[] = $row;
+        }
+        return $records;
+    } else {
+        return [];
+    }
 }
 
 function get_act_count_by_police_station($date, $act, $police_station)
@@ -799,7 +922,7 @@ function get_penal_codes(string $type): array {
     global $con; // Note: Consider passing $con as a parameter instead of using global
 
     $query = "SELECT * FROM penal_codes";
-    if ($type !== 'all') {
+    if ($type !== 'All') {
         $type = $con->real_escape_string($type);
         $query .= " WHERE type = '$type'";
     }
@@ -811,7 +934,6 @@ function get_penal_codes(string $type): array {
             $result[] = $row;
         }
     }
-
     return $result;
 }
 
@@ -820,40 +942,50 @@ function get_penal_codes(string $type): array {
  * Retrieve the count of minor crimes, categorized by district, police station, and penal code, for a specific date.
  *
  * @param string $date The date for which to retrieve the crime data.
+ * @param string $district The district for which to retrieve the crime data.
  * @return array An array containing the count of cases and people for each district, police station, and penal code.
  */
-function get_minor_crimes(string $date): array {
+function get_minor_crimes(string $date, $dist): array {
     global $con; // Note: Consider passing $con as a parameter instead of using global
 
     // Retrieve penal codes
-    $penal_codes = get_penal_codes("minor");
+    $penal_codes1 = get_penal_codes("Restricted");
+    $penal_codes2 = get_penal_codes("Minor-Act");
+    $penal_codes = array_merge($penal_codes1, $penal_codes2);
 
     // Retrieve districts
-    $districts = get_districts();
+    if($dist=="All"){
+        $districts = get_districts();
+    }
+    else{
+        $distt['district'] = $dist;
+        $districts = [$distt];
+    }
 
     // Count cases and people for each district, police station, and penal code
     $result = [];
     foreach ($districts as $district) {
         foreach ($penal_codes as $penal_code) {
-            $district_result = get_act_count_by_district($date, $penal_code, $district['district']);
+            $district_result = get_act_count_by_district($date, $penal_code['penal_code'], $district['district']);
             $police_stations = get_police_stations($district['district'], "Option1"); // Retrieve police stations for the district
 
             foreach ($police_stations as $police_station) {
                 $police_station_name = $police_station['police_station'];
-                $police_station_result = get_act_count_by_police_station($date, $penal_code, $police_station_name);
+                $police_station_result = get_act_count_by_police_station($date, $penal_code['penal_code'], $police_station_name);
 
-                $result[$district['district']][$police_station_name][$penal_code] = [
+                $result[$district['district']][$police_station_name][$penal_code['penal_code']] = [
                     'case_count' => $police_station_result['case_count'],
                     'people_count' => $police_station_result['people_count']
                 ];
             }
-            $result[$district['district']]['योग'][$penal_code] = [
+            $result[$district['district']]['योग'][$penal_code['penal_code']] = [
                 'case_count' => $district_result['case_count'],
                 'people_count' => $district_result['people_count'],
             ];
         }
     }
-
+    // echo"<pre>";
+    // print_r($result);
     return $result;
 }
 
@@ -1389,6 +1521,26 @@ function sum_elements(array $numbers): int|float
 
     return $sum;
 }
+
+/**
+ * Get the next date based on the given date, including handling leap years.
+ *
+ * @param string $date The date for which to calculate the next date (YYYY-MM-DD format).
+ * @return string|false The next date in YYYY-MM-DD format, or false if the input date is invalid.
+ */
+function get_next_date(string $date): string|false {
+    $currentDate = DateTime::createFromFormat('Y-m-d', $date);
+    
+    if (!$currentDate) {
+        // Invalid input date
+        return false;
+    }
+
+    $currentDate->modify('+1 day');
+
+    return $currentDate->format('Y-m-d');
+}
+
 
 
 ?>

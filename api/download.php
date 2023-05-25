@@ -564,18 +564,35 @@ if ($doc_format == "excel") {
         echo $pdf;
 
     } elseif ($document == "MinorCrime") {
+        $data['crime_sum'] = get_minor_crimes($date,$district);
+        $data['penal_codes'] = array_merge(get_penal_codes('Minor-Act'), get_penal_codes('Restricted'));
+        $pdf = minor_crime_pdf($date, $district, $data);
+        echo $pdf;
 
     } elseif ($document == "MajorCrime") {
+        $data['major_crimes'] = get_major_crimes($date,$district);
+        $pdf = major_crime_pdf($date, $district, $data);
+        echo $pdf;
 
     } elseif ($document == "Crime") {
+        $data['crimes'] = get_crimes($date,$district);
+        $pdf = crime_pdf($date, $district, $data);
+        echo $pdf;
 
     } elseif ($document == "Deadbody") {
+        $data['deadbodies'] = get_dead_bodies($date,$district);
+        $pdf = deadbody_pdf($date, $district, $data);
+        echo $pdf;
 
     } elseif ($document == "Achievement") {
-
-    } elseif ($document == "Disposal") {
+        $data['achievements'] = get_important_achievements($date,$district);
+        $pdf = achievements_pdf($date, $district, $data);
+        echo $pdf;
 
     } elseif ($document == "Judgement") {
+        $data['judgements'] = get_court_judgements($date,$district);
+        $pdf = judgements_pdf($date, $district, $data);
+        echo $pdf;
 
     } elseif ($document == "Application") {
 
