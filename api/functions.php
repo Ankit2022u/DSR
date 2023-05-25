@@ -1116,24 +1116,23 @@ function count_kidnap_for_ransom_cases(string $date, string $district): int|fals
 }
 
 /**
- * Counts the number of abkari act cases within a specific date and district.
+ * Counts the number of cases within a specific date, district, and penal code.
  *
- * @param string $date The date for which abkari act cases are counted (YYYY-MM-DD format).
- * @param string $district The district in which the abkari act cases occurred.
- * @return int|false The count of abkari act cases, or false if the query fails.
+ * @param string $date The date for which cases are counted (YYYY-MM-DD format).
+ * @param string $district The district in which the cases occurred.
+ * @param string $penal_code The penal code for which cases are counted.
+ * @return int|false The count of cases, or false if the query fails.
  */
-function count_abkari_act_cases(string $date, string $district): int|false
+function count_cases(string $date, string $district, string $penal_code): int|false
 {
     // Connect to the database
     global $con;
 
-    // Prepare and execute the query to count gangrape cases
+    // Prepare and execute the query to count cases
     $query = "SELECT COUNT(*) AS case_count FROM major_crimes 
-              WHERE DATE(date) = ? AND district = ? AND penal_code IN (
-                  SELECT penal_code FROM penal_codes WHERE penal_code = 'आब. एक्ट'
-              )";
+              WHERE DATE(date) = ? AND district = ? AND penal_code = ?";
     $stmt = $con->prepare($query);
-    $stmt->bind_param('ss', $date, $district);
+    $stmt->bind_param('sss', $date, $district, $penal_code);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -1152,189 +1151,5 @@ function count_abkari_act_cases(string $date, string $district): int|false
     return $case_count;
 }
 
-/**
- * Counts the number of jua act cases within a specific date and district.
- *
- * @param string $date The date for which jua act cases are counted (YYYY-MM-DD format).
- * @param string $district The district in which the jua act cases occurred.
- * @return int|false The count of jua act cases, or false if the query fails.
- */
-function count_jua_act_cases(string $date, string $district): int|false
-{
-    // Connect to the database
-    global $con;
-
-    // Prepare and execute the query to count gangrape cases
-    $query = "SELECT COUNT(*) AS case_count FROM major_crimes 
-              WHERE DATE(date) = ? AND district = ? AND penal_code IN (
-                  SELECT penal_code FROM penal_codes WHERE penal_code = 'जुआ एक्ट'
-              )";
-    $stmt = $con->prepare($query);
-    $stmt->bind_param('ss', $date, $district);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Check if query execution was successful
-    if (!$result) {
-        // Query Failed
-        // Note: Consider logging the error instead of echoing it to prevent exposing sensitive information
-        echo "Error: " . $stmt->error;
-        return false;
-    }
-
-    // Fetch the result
-    $row = $result->fetch_assoc();
-    $case_count = $row['case_count'];
-
-    return $case_count;
-}
-
-/**
- * Counts the number of narcotics cases within a specific date and district.
- *
- * @param string $date The date for which narcotics cases are counted (YYYY-MM-DD format).
- * @param string $district The district in which the narcotics cases occurred.
- * @return int|false The count of narcotics cases, or false if the query fails.
- */
-function count_narcotics_cases(string $date, string $district): int|false
-{
-    // Connect to the database
-    global $con;
-
-    // Prepare and execute the query to count gangrape cases
-    $query = "SELECT COUNT(*) AS case_count FROM major_crimes 
-              WHERE DATE(date) = ? AND district = ? AND penal_code IN (
-                  SELECT penal_code FROM penal_codes WHERE penal_code = 'नारको'
-              )";
-    $stmt = $con->prepare($query);
-    $stmt->bind_param('ss', $date, $district);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Check if query execution was successful
-    if (!$result) {
-        // Query Failed
-        // Note: Consider logging the error instead of echoing it to prevent exposing sensitive information
-        echo "Error: " . $stmt->error;
-        return false;
-    }
-
-    // Fetch the result
-    $row = $result->fetch_assoc();
-    $case_count = $row['case_count'];
-
-    return $case_count;
-}
-
-/**
- * Counts the number of arms act cases within a specific date and district.
- *
- * @param string $date The date for which arms act cases are counted (YYYY-MM-DD format).
- * @param string $district The district in which the arms act cases occurred.
- * @return int|false The count of arms act cases, or false if the query fails.
- */
-function count_arms_act_cases(string $date, string $district): int|false
-{
-    // Connect to the database
-    global $con;
-
-    // Prepare and execute the query to count gangrape cases
-    $query = "SELECT COUNT(*) AS case_count FROM major_crimes 
-              WHERE DATE(date) = ? AND district = ? AND penal_code IN (
-                  SELECT penal_code FROM penal_codes WHERE penal_code = 'आर्म्स. एक्ट'
-              )";
-    $stmt = $con->prepare($query);
-    $stmt->bind_param('ss', $date, $district);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Check if query execution was successful
-    if (!$result) {
-        // Query Failed
-        // Note: Consider logging the error instead of echoing it to prevent exposing sensitive information
-        echo "Error: " . $stmt->error;
-        return false;
-    }
-
-    // Fetch the result
-    $row = $result->fetch_assoc();
-    $case_count = $row['case_count'];
-
-    return $case_count;
-}
-
-/**
- * Counts the number of satta cases within a specific date and district.
- *
- * @param string $date The date for which satta cases are counted (YYYY-MM-DD format).
- * @param string $district The district in which the satta cases occurred.
- * @return int|false The count of satta cases, or false if the query fails.
- */
-function count_satta_cases(string $date, string $district): int|false
-{
-    // Connect to the database
-    global $con;
-
-    // Prepare and execute the query to count gangrape cases
-    $query = "SELECT COUNT(*) AS case_count FROM major_crimes 
-              WHERE DATE(date) = ? AND district = ? AND penal_code IN (
-                  SELECT penal_code FROM penal_codes WHERE penal_code = 'सट्टा'
-              )";
-    $stmt = $con->prepare($query);
-    $stmt->bind_param('ss', $date, $district);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Check if query execution was successful
-    if (!$result) {
-        // Query Failed
-        // Note: Consider logging the error instead of echoing it to prevent exposing sensitive information
-        echo "Error: " . $stmt->error;
-        return false;
-    }
-
-    // Fetch the result
-    $row = $result->fetch_assoc();
-    $case_count = $row['case_count'];
-
-    return $case_count;
-}
-
-/**
- * Counts the number of mv act cases within a specific date and district.
- *
- * @param string $date The date for which mv act cases are counted (YYYY-MM-DD format).
- * @param string $district The district in which the mv act cases occurred.
- * @return int|false The count of mv act cases, or false if the query fails.
- */
-function count_mv_act_cases(string $date, string $district): int|false
-{
-    // Connect to the database
-    global $con;
-
-    // Prepare and execute the query to count gangrape cases
-    $query = "SELECT COUNT(*) AS case_count FROM major_crimes 
-              WHERE DATE(date) = ? AND district = ? AND penal_code IN (
-                  SELECT penal_code FROM penal_codes WHERE penal_code = 'एम. वी. एक्ट'
-              )";
-    $stmt = $con->prepare($query);
-    $stmt->bind_param('ss', $date, $district);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Check if query execution was successful
-    if (!$result) {
-        // Query Failed
-        // Note: Consider logging the error instead of echoing it to prevent exposing sensitive information
-        echo "Error: " . $stmt->error;
-        return false;
-    }
-
-    // Fetch the result
-    $row = $result->fetch_assoc();
-    $case_count = $row['case_count'];
-
-    return $case_count;
-}
 
 ?>
