@@ -32,6 +32,16 @@ if (!(isset($_SESSION['user-data']))) {
             background: linear-gradient(to bottom left, #FFFDDE, #45A9BA);
         } */
 
+         /* .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar.active {
+
+            transform: translateX(0);
+        } */
+
         footer {
             background-color: rgba(0, 0, 0, 0.05);
             padding: 20px;
