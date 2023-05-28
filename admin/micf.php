@@ -87,7 +87,13 @@ $police_stations = police_stations();
                             Important Achievements / मुख्य उपलब्धियां
                         </a>
                     </li>
-
+                    
+                    <li>
+                        <a href="disposal.php" class="nav-link link-dark">
+                            Disposals / निकाल 
+                        </a>
+                    </li>
+                    
                 </ul>
                 <hr>
                 <div class="profile">

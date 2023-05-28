@@ -66,6 +66,11 @@
             </a>
         </li>
 
+        <li>
+            <a href="disposal.php" class="nav-link link-dark">
+                Disposals / निकाल
+            </a>
+        </li>
 
     </ul>
     <hr>
