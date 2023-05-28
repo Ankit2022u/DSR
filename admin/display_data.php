@@ -19,7 +19,7 @@ if (isset($_POST['view'])) {
     $major_crimes = isset($_POST['major_crimes']) ? 1 : 0;
     $important_achievements = isset($_POST['important_achievements']) ? 1 : 0;
     $court_judgements = isset($_POST['court_judgements']) ? 1 : 0;
-    $districts = districts();
+    $districts = get_districts();
 
     $errors = array();
     // Validate input fields
@@ -177,7 +177,13 @@ if (isset($_POST['view'])) {
                             Important Achievements / मुख्य उपलब्धियां
                         </a>
                     </li>
-
+                    
+                    <li>
+                        <a href="disposal.php" class="nav-link link-dark">
+                            Disposals / निकाल 
+                        </a>
+                    </li>
+                    
                 </ul>
                 <hr>
                 <div class="profile">

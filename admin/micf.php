@@ -87,7 +87,13 @@ $police_stations = police_stations();
                             Important Achievements / मुख्य उपलब्धियां
                         </a>
                     </li>
-
+                    
+                    <li>
+                        <a href="disposal.php" class="nav-link link-dark">
+                            Disposals / निकाल 
+                        </a>
+                    </li>
+                    
                 </ul>
                 <hr>
                 <div class="profile">
@@ -177,7 +183,7 @@ $police_stations = police_stations();
                                     <option value="107,116 जा. फौ">107,116 जा. फौ</option>
                                     <option value="जुआ एक्ट">जुआ एक्ट</option>
                                     <option value="सट्टा">सट्टा</option>
-                                    <option value="आव. एक्ट">आव. एक्ट</option>
+                                    <option value="आब. एक्ट">आब. एक्ट</option>
                                     <option value="नारको">नारको</option>
                                     <option value="आर्म्स. एक्ट">आर्म्स. एक्ट</option>
                                     <option value="एम. वी. एक्ट">एम. वी. एक्ट</option>
