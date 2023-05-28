@@ -124,93 +124,12 @@ $police_stations = police_stations();
 <?php include('admin_header.php'); ?>
 <main>
     <div class="row">
-        <div class="side-bar col-md-3 col-sm-5">
-            <?php //include('side-bar.php'); 
-            ?>
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
-                <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                    <span class="fs-4">Daily Station Report (Admin Panel)</span>
-                </a>
-                <hr> -->
-                <ul class="nav nav-pills flex-column mb-auto">
-                    <li class="nav-item">
-                        <a href="admin.php" class="nav-link link-dark" aria-current="page">
-                            Dashboard / डैशबोर्ड
-                        </a>
-                    </li>
-                    <li>
-                        <a href="manage_user.php" class="nav-link active">
-                            Manage Users / उपयोगकर्ताओं का प्रबंधन
-                        </a>
-                    </li>
-                    <li>
-                        <a href="view_logs.php" class="nav-link link-dark">
-                            View Logs / लॉग्स को देखें
-                        </a>
-                    </li>
-                    <li>
-                        <a href="view_data.php" class="nav-link link-dark">
-                            View Data / डेटा का हिसाब
-                        </a>
-                    </li>
-                    <li>
-                        <a href="change_password.php" class="nav-link link-dark">
-                            Change Password / पासवर्ड को बदले
-                        </a>
-                    </li>
-                    <li>
-                        <a href="police_station.php" class="nav-link link-dark">
-                            Police Stations / थाना
-                        </a>
-                    </li>
-                    <li>
-                        <a href="profile.php" class="nav-link link-dark">
-                            View Profile / प्रोफाइल
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dbf.php" class="nav-link link-dark">
-                            Inquest / मर्ग
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mcf.php" class="nav-link link-dark">
-                            Major Crime / गंभीर अपराध
-                        </a>
-                    </li>
-                    <li>
-                        <a href="micf.php" class="nav-link link-dark">
-                            Minor Crime / सामान्य अपराध
-                        </a>
-                    </li>
-                    <li>
-                        <a href="ocf.php" class="nav-link link-dark">
-                            Ongoing Case / सक्रिय मामला
-                        </a>
-                    </li>
-                    <li>
-                        <a href="cjf.php" class="nav-link link-dark">
-                            Court judgement / कोर्ट का निर्णय
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="iaf.php" class="nav-link link-dark">
-                            Important Achievements / मुख्य उपलब्धियां
-                        </a>
-                    </li>
-
-                </ul>
-                <hr>
-                <div class="profile">
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
-                    <strong>
-                        <?= $_SESSION['user-data']['officer_name']; ?>
-                    </strong>
-                    <a href="../auth/logout.php" class="btn btn-outline-danger m-2" name="logout">Log Out</a>
-                </div>
-            </div>
-        </div>
+        <?php
+        // Define the active page variable based on the current page
+        $active_page = basename($_SERVER['PHP_SELF'], ".php");
+        // Include the side-bar.php file
+        include 'side-bar.php';
+        ?>
 
         <div class="main-content col-md-9 col-sm-7">
             <div class="container p-1">
@@ -218,11 +137,11 @@ $police_stations = police_stations();
                 <?php
                 if (isset($_SESSION['message'])) {
                 ?>
-                    <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
-                        <strong>Hye!</strong>
-                        <?= $_SESSION['message']; ?>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
+                    <strong>Hye!</strong>
+                    <?= $_SESSION['message']; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 <?php
                     unset($_SESSION['message']);
                 }
@@ -269,7 +188,8 @@ $police_stations = police_stations();
                                                 <label for="">User Type</label>
                                                 <span class="required-star">*</span>
 
-                                                <select class="form-select form-select-lg" name="user_type" id="user_type" required>
+                                                <select class="form-select form-select-lg" name="user_type"
+                                                    id="user_type" required>
                                                     <option selected value="user">User</option>
                                                     <option value="admin">Administration</option>
                                                 </select>
@@ -282,8 +202,10 @@ $police_stations = police_stations();
                                             <div class="mb-3">
 
 
-                                                <label for="district">District / जिला<span class="required-star">*</span></label>
-                                                <select class="form-select" name="district" id="district" onchange="update_police_stations()" required>
+                                                <label for="district">District / जिला<span
+                                                        class="required-star">*</span></label>
+                                                <select class="form-select" name="district" id="district"
+                                                    onchange="update_police_stations()" required>
                                                     <option value="">Select Option</option>
                                                     <option value="सरगुजा">सरगुजा</option>
                                                     <option value="बलरामपुर">बलरामपुर</option>
@@ -300,7 +222,8 @@ $police_stations = police_stations();
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Police Station</label>
                                                 <span class="required-star">*</span>
-                                                <select class="form-select form-select-lg" name="police_station" id="police_station" required>
+                                                <select class="form-select form-select-lg" name="police_station"
+                                                    id="police_station" required>
 
                                                     <option value="">Select Option</option>
 
@@ -327,7 +250,8 @@ $police_stations = police_stations();
                                             <div class="mb-3">
                                                 <label for="">Confirm Password</label>
                                                 <span class="required-star">*</span>
-                                                <input type="text" name="confirm_password" class="form-control" required>
+                                                <input type="text" name="confirm_password" class="form-control"
+                                                    required>
                                             </div>
                                         </div>
                                     </div>

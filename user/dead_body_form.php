@@ -10,96 +10,12 @@ $police_stations = police_stations();
 
 <main>
     <div class="row">
-        <div class="side-bar col-md-3 col-sm-5">
-            <?php //include('side-bar.php'); 
-            ?>
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
-                <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                    <span class="fs-4">Daily Station Report (User Panel)</span>
-                </a>
-                <hr> -->
-                <ul class="nav nav-pills flex-column mb-auto">
-
-
-                    <li class="nav-item">
-                        <a href="user.php" class="nav-link link-dark" aria-current="page">
-                            User Dashboard / डैशबोर्ड
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="dead_body_form.php" class="nav-link active">
-                            Inquest / मर्ग
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="major_crime_form.php" class="nav-link link-dark">
-                            Major Crime / गंभीर अपराध
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="ongoing_case_form.php" class="nav-link link-dark">
-                            Ongoing Case / सक्रिय मामला
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="minor_crime_form.php" class="nav-link link-dark">
-                            Minor Crime / सामान्य अपराध
-                        </a>
-                    </li>
-                    <!-- <li>
-                        <a class="nav-link link-dark" href="edit.php">
-                            Edit
-                        </a>
-                    </li> -->
-
-
-                    <li>
-                        <a class="nav-link link-dark" href="feedback.php">
-                            Feedback / फीडबैक
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="profile.php" class="nav-link link-dark">
-                            Profile / प्रोफाइल
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="change_password.php" class="nav-link link-dark">
-                            Change Password / पासवर्ड को बदले
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="court_judgement_form.php" class="nav-link link-dark">
-                            Court Judgement / कोर्ट का निर्णय
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="important_achievements_form.php" class="nav-link link-dark">
-                            Important Achievements / महत्वपूर्ण कार्यवाही
-                        </a>
-                    </li>
-
-
-                </ul>
-                <hr>
-                <div class="profile">
-
-                    <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
-                    <strong>
-                        <?= $_SESSION['user-data']['officer_name']; ?>
-                    </strong>
-                    <a href="../auth/logout.php" class="btn btn-outline-danger m-2" name="logout">Log Out</a>
-                </div>
-            </div>
-        </div>
+        <?php
+        // Define the active page variable based on the current page
+        $active_page = basename($_SERVER['PHP_SELF'], ".php");
+        // Include the side-bar.php file
+        include 'side-bar.php';
+        ?>
 
         <div class="main-content col-md-9 col-sm-7">
             <?php
@@ -113,11 +29,11 @@ $police_stations = police_stations();
 
 
             ?>
-                <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
-                    <strong>Hey!</strong>
-                    <?= $message; ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+            <div class="alert alert-<?= $type; ?> alert-dismissible fade show" role="alert">
+                <strong>Hey!</strong>
+                <?= $message; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
 
             <?php
                 unset($_SESSION['message']);
@@ -130,7 +46,8 @@ $police_stations = police_stations();
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
 
-                                <select class="form-select" name="district" id="district" onchange="update_police_stations()" required>
+                                <select class="form-select" name="district" id="district"
+                                    onchange="update_police_stations()" required>
                                     <option value="">Select option </option>
                                     <option value="सरगुजा">सरगुजा</option>
                                     <option value="बलरामपुर">बलरामपुर</option>
@@ -144,7 +61,8 @@ $police_stations = police_stations();
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="subDivision" aria-label="Sub Division" name="sub_division" required>
+                                <select class="form-select" id="subDivision" aria-label="Sub Division"
+                                    name="sub_division" required>
 
                                     <option value="Option1">Option1</option>
                                     <option value="Option2">Option2</option>
@@ -160,7 +78,8 @@ $police_stations = police_stations();
                                     <option value="">Select Option</option>
 
                                 </select>
-                                <label for="policeStation">Police Station / पुलिस थाना<span class="required-star">*</span></label>
+                                <label for="policeStation">Police Station / पुलिस थाना<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -168,15 +87,18 @@ $police_stations = police_stations();
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
 
-                                <input class="form-control" id="diedBodyNumber" type="text" placeholder="Died Body Number" name="dead_body_number" required />
+                                <input class="form-control" id="diedBodyNumber" type="text"
+                                    placeholder="Died Body Number" name="dead_body_number" required />
 
-                                <label for="diedBodyNumber">Dead Body Number / मर्ग क्रमांक<span class="required-star">*</span></label>
+                                <label for="diedBodyNumber">Dead Body Number / मर्ग क्रमांक<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
 
-                                <input class="form-control" id="section" type="text" placeholder="Section" name="penal_code" required />
+                                <input class="form-control" id="section" type="text" placeholder="Section"
+                                    name="penal_code" required />
                                 <label for="section">Section / धारा<span class="required-star">*</span></label>
                             </div>
                         </div>
@@ -185,14 +107,17 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="accidentDate" type="date" placeholder="Accident Date" name="accident_date" required />
+                                <input class="form-control" id="accidentDate" type="date" placeholder="Accident Date"
+                                    name="accident_date" required />
 
-                                <label for="accidentDate">Accident Date / घटना दिनांक<span class="required-star">*</span></label>
+                                <label for="accidentDate">Accident Date / घटना दिनांक<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="accidentTime" type="time" placeholder="Accident Time" name="accident_time" />
+                                <input class="form-control" id="accidentTime" type="time" placeholder="Accident Time"
+                                    name="accident_time" />
 
                                 <label for="accidentDate">Accident Time / घटना का समय</label>
                             </div>
@@ -200,9 +125,11 @@ $police_stations = police_stations();
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
 
-                                <input class="form-control" id="accidentPlace" type="text" placeholder="Accident Place" name="accident_place" required />
+                                <input class="form-control" id="accidentPlace" type="text" placeholder="Accident Place"
+                                    name="accident_place" required />
 
-                                <label for="accidentPlace">Accident Place / घटना स्थल<span class="required-star">*</span></label>
+                                <label for="accidentPlace">Accident Place / घटना स्थल<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -211,15 +138,18 @@ $police_stations = police_stations();
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
 
-                                <input class="form-control" id="informationDate" type="date" placeholder="Information Date" name="information_date" required />
-                                <label for="informationDate">Information Date / सूचना दिनांक<span class="required-star">*</span></label>
+                                <input class="form-control" id="informationDate" type="date"
+                                    placeholder="Information Date" name="information_date" required />
+                                <label for="informationDate">Information Date / सूचना दिनांक<span
+                                        class="required-star">*</span></label>
 
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12">
                             <div class="form-floating mb-3">
 
-                                <input class="form-control" id="informationTime" type="time" placeholder="Information Time" name="information_time" />
+                                <input class="form-control" id="informationTime" type="time"
+                                    placeholder="Information Time" name="information_time" />
                                 <label for="informationTime">Information Time / सूचना का समय</label>s
                             </div>
                         </div>
@@ -227,8 +157,10 @@ $police_stations = police_stations();
                             <div class="form-floating mb-3">
 
 
-                                <input class="form-control" id="applicant" type="text" placeholder="Applicant Name" name="applicant_name" required />
-                                <label for="applicantName">Applicant Name / सूचक का नाम<span class="required-star">*</span></label>
+                                <input class="form-control" id="applicant" type="text" placeholder="Applicant Name"
+                                    name="applicant_name" required />
+                                <label for="applicantName">Applicant Name / सूचक का नाम<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -236,17 +168,21 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="deceased" type="text" placeholder="Deceased" name="deceased_name" required />
+                                <input class="form-control" id="deceased" type="text" placeholder="Deceased"
+                                    name="deceased_name" required />
 
-                                <label for="deceasedName">Deceased Name / मृतक का नाम<span class="required-star">*</span></label>
+                                <label for="deceasedName">Deceased Name / मृतक का नाम<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-floating mb-3">
 
-                                <input class="form-control" id="firWriter" type="text" placeholder="FIR Writer" name="fir_writer" required lang="hi" dir="auto" />
+                                <input class="form-control" id="firWriter" type="text" placeholder="FIR Writer"
+                                    name="fir_writer" required lang="hi" dir="auto" />
 
-                                <label for="firWriter">FIR Writer / कायमीकर्ता<span class="required-star">*</span></label>
+                                <label for="firWriter">FIR Writer / कायमीकर्ता<span
+                                        class="required-star">*</span></label>
                             </div>
                         </div>
                     </div>
@@ -254,7 +190,9 @@ $police_stations = police_stations();
                     <div class="row">
                         <div class="col-12">
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" id="causeOfDeath" type="text" placeholder="Cause Of Death" style="height: 10rem;" name="cause_of_death"></textarea>
+                                <textarea class="form-control" id="causeOfDeath" type="text"
+                                    placeholder="Cause Of Death" style="height: 10rem;"
+                                    name="cause_of_death"></textarea>
                                 <label for="causeOfDeath">Cause Of Death / मृत्यु का कारण</label>
                             </div>
                         </div>
