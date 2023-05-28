@@ -7,9 +7,9 @@ require "download_manager.php";
 // $start_date = $_SESSION['start_date'];
 // $end_date = $_SESSION['end_date'];
 // if ($start_date == $end_date) {
-//     $text = $start_date;
+//     $date = $start_date;
 // } else {
-//     $text = $start_date . " - " . $end_date;
+//     $date = $start_date . " - " . $end_date;
 // }
 
 $doc_format = $_POST['doc_format'];
@@ -28,7 +28,7 @@ if ($doc_format == "excel") {
         foreach ($districts as $dist) {
             $distt = $dist['district'];
             $html .= "<tr>
-                        <th colspan=13 center style='font-size: 44px; border:1px solid black; border-collapse: collapse; height:75px; vertical-align:middle; text-align:center;'>$distt के समस्त अपराधो की जानकारी | $text </th>
+                        <th colspan=13 center style='font-size: 44px; border:1px solid black; border-collapse: collapse; height:75px; vertical-align:middle; text-align:center;'>$distt के समस्त अपराधो की जानकारी | $date </th>
                     </tr>
                     <tr>
                         <th style='font-size: 28px;border:1px solid black; border-collapse: collapse; vertical-align:middle; vertical-align:middle; text-align:center; width:45px;'>क्र.</th>
@@ -131,7 +131,7 @@ if ($doc_format == "excel") {
         $top_row = ["41(1) जा. फौ", "102 जा. फौ", "109 जा. फौ", "110 जा. फौ", "145 जा. फौ", "151 जा. फौ", "107,116 जा. फौ", "सट्टा", "जुआ एक्ट", "आव. एक्ट", "नारको", "आर्म्स. एक्ट", "एम. वी. एक्ट"];
 
         $html = "<table style='border:1px solid black; border-collapse: collapse; vertical-align:middle;'>";
-        $html .= "<tr><th colspan=28 style='height:75px; font-size: 42px;  border:1px solid black; border-collapse: collapse; vertical-align:middle;'>दैनिक प्रतिवेदन प्रतिबंधात्मकता कार्यवाही/लघु अधिनियम रेंज सरगुजा जिला सरगुजा | $text</th></tr>";
+        $html .= "<tr><th colspan=28 style='height:75px; font-size: 42px;  border:1px solid black; border-collapse: collapse; vertical-align:middle;'>दैनिक प्रतिवेदन प्रतिबंधात्मकता कार्यवाही/लघु अधिनियम रेंज सरगुजा जिला सरगुजा | $date</th></tr>";
         $distnum = 1;
         $begin = 0;
         $finish = 1;
@@ -204,7 +204,7 @@ if ($doc_format == "excel") {
         $output_ongoing_cases = $_SESSION['ongoing_cases'];
         $html = "<table style='border:1px solid black; border-collapse: collapse; vertical-align:middle;'>
                     <tr>
-                        <th colspan=10 center style='font-size: 42px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; height:70px;'>सक्रिय मामला| $text </th>
+                        <th colspan=10 center style='font-size: 42px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; height:70px;'>सक्रिय मामला| $date </th>
                     </tr>
                     <tr>
                         <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>क्र.</th>
@@ -279,7 +279,7 @@ if ($doc_format == "excel") {
             $distt = $dist['district'];
 
             $html .= "<tr>
-                        <th colspan=11 center style='font-size: 40px; border:1px solid black; border-collapse: collapse; vertical-align:middle; height:75px;'>$distt के समस्त मर्ग की जानकारी | $text </th>
+                        <th colspan=11 center style='font-size: 40px; border:1px solid black; border-collapse: collapse; vertical-align:middle; height:75px;'>$distt के समस्त मर्ग की जानकारी | $date </th>
                     </tr>
                     <tr>
                     <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:45;'>क्र.</th>
@@ -368,7 +368,7 @@ if ($doc_format == "excel") {
         $districts = get_districts();
         $html = "<table style='vertical-align:middle;'>
                 <tr>
-                    <th colspan=8 center style='font-size: 42px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; height:75px;'>महत्पूर्ण कार्यवाहिया / उपलब्धियां | $text</th>
+                    <th colspan=8 center style='font-size: 42px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; height:75px;'>महत्पूर्ण कार्यवाहिया / उपलब्धियां | $date</th>
                 </tr>
                 <tr style='height:240px;'>
                     <th style='font-size: 26px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:45px;'>क्र.</th>
@@ -451,7 +451,7 @@ if ($doc_format == "excel") {
         $html = "<table style='vertical-align:middle;'>";
 
         $html .= "<tr>
-                        <th colspan=9 center style='font-size: 40px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; height:75;'>कोर्ट के निर्णय | $text </th>
+                        <th colspan=9 center style='font-size: 40px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; height:75;'>कोर्ट के निर्णय | $date </th>
                     </tr>
                     <tr style='height:100px'>
                         <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:45px;'>क्र.</th>
@@ -626,7 +626,7 @@ if ($doc_format == "excel") {
                         const element = document.getElementById("data");
                         const opt = {
                             margin: [0, 0, 0, 0],
-                            filename: "Court Judgements-' . $district . ' (' . $date . ').pdf",
+                            filename: "Disposals-' . $district . ' (' . $date . ').pdf",
                             image: { type: "jpeg", quality: 1 },
                             html2canvas: { scale: 4 },
                             jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }

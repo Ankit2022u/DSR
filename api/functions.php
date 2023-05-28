@@ -1559,23 +1559,33 @@ function get_disposals(string $date, string $district, string $type): array {
         $table = 'dead_bodies';
     }
 
-    $query = "
-        SELECT ps.police_station, COUNT(mc.disposal_date) AS count
-        FROM police_stations ps
-        LEFT JOIN $table mc
-        ON ps.district = mc.district AND ps.police_station = mc.police_station AND mc.disposal_date = ?
-        WHERE ps.district = ?
-        GROUP BY ps.police_station
-    ";
+    $query = "SELECT COUNT(*) as count FROM $table WHERE disposal_date = ? AND district = ?";
     $stmt = $con->prepare($query);
     $stmt->bind_param("ss", $date, $district);
     $stmt->execute();
     $result = $stmt->get_result();
-    $disposals = array();
+    $row = $result->fetch_assoc();
+    $count = $row['count'];
+
+    $query = "SELECT police_station FROM police_stations WHERE district = ?";
+    $stmt = $con->prepare($query);
+    $stmt->bind_param("s", $district);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $police_stations = array();
     while ($row = $result->fetch_assoc()) {
-        $police_station = $row['police_station'];
-        $count = $row['count'];
-        $disposals[$police_station] = $count;
+        $police_stations[] = $row['police_station'];
+    }
+
+    $disposals = array();
+    foreach ($police_stations as $police_station) {
+        $query = "SELECT COUNT(*) as count FROM $table WHERE disposal_date = ? AND district = ? AND police_station = ?";
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("sss", $date, $district, $police_station);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $disposals[$police_station] = $row['count'];
     }
 
     return $disposals;
@@ -1608,24 +1618,33 @@ function get_old_disposals(string $date, string $district, string $type): array 
         $table = 'dead_bodies';
     }
 
-    $query = "
-        SELECT ps.police_station, COUNT(mc.disposal_date) AS count
-        FROM police_stations ps
-        LEFT JOIN $table mc
-        ON ps.district = mc.district AND ps.police_station = mc.police_station
-        WHERE mc.disposal_date < ? AND YEAR(mc.disposal_date) = YEAR(?)
-        AND ps.district = ?
-        GROUP BY ps.police_station
-    ";
+    $query = "SELECT COUNT(*) as count FROM $table WHERE disposal_date = ? AND district = ? AND YEAR(disposal_date) = YEAR(?)";
     $stmt = $con->prepare($query);
-    $stmt->bind_param("sss", $date, $date, $district);
+    $stmt->bind_param("sss", $date, $district, $date);
     $stmt->execute();
     $result = $stmt->get_result();
-    $disposals = array();
+    $row = $result->fetch_assoc();
+    $count = $row['count'];
+
+    $query = "SELECT police_station FROM police_stations WHERE district = ?";
+    $stmt = $con->prepare($query);
+    $stmt->bind_param("s", $district);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $police_stations = array();
     while ($row = $result->fetch_assoc()) {
-        $police_station = $row['police_station'];
-        $count = $row['count'];
-        $disposals[$police_station] = $count;
+        $police_stations[] = $row['police_station'];
+    }
+
+    $disposals = array();
+    foreach ($police_stations as $police_station) {
+        $query = "SELECT COUNT(*) as count FROM $table WHERE disposal_date < ? AND district = ? AND police_station = ?  AND YEAR(disposal_date) = YEAR(?)";
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("ssss", $date, $district, $police_station, $date);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $disposals[$police_station] = $row['count'];
     }
 
     return $disposals;
