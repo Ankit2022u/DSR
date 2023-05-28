@@ -2,16 +2,14 @@
 session_start();
 require "../api/dbcon.php";
 require "../api/functions.php";
-
-if (!(isset($_SESSION['user-data']))) {
-    header("Location: ../index.php");
-    exit; // added exit to prevent further code execution
-}
+$police_stations = police_stations();
 ?>
-<?php include('admin_header.php'); ?>
+
+<!-- place navbar here -->
+<?php include('user_header.php'); ?>
+
 <main>
     <div class="row">
-
         <?php
         // Define the active page variable based on the current page
         $active_page = basename($_SERVER['PHP_SELF'], ".php");
@@ -238,11 +236,16 @@ if (!(isset($_SESSION['user-data']))) {
                 </div>
             </div>
         </div>
+
     </div>
 </main>
 
+
+<!-- place footer here -->
 <?php include('../footer.php'); ?>
+<script src="../assets/js/police_station.js"></script>
 <script src="../assets/js/disposal.js"></script>
+
 </body>
 
 </html>
