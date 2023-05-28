@@ -1094,13 +1094,13 @@ function achievements_pdf($date, $district, $data)
             " . $row['decision_given_by_the_court'] . " 
         </td>
         <td class='border'>
-        " . $row['missing_man_document']." 
+        " . $row['missing_man_document'] . " 
         </td>
         <td class='border'>
         " . $row['robbery'] . "
         </td>
         <td class='border'>
-        " . $row['miscellaneous']. " 
+        " . $row['miscellaneous'] . " 
         </td>
         <td class='border'>
         " . $row['action_taken_under'] . "
@@ -1202,13 +1202,13 @@ function judgements_pdf($date, $district, $data)
             " . $row['crime_number'] . " 
         </td>
         <td class='border'>
-        " . $row['penal_code']." 
+        " . $row['penal_code'] . " 
         </td>
         <td class='border'>
         " . $row['result_date'] . "
         </td>
         <td class='border'>
-        " .  $row['culprit_name'] . " " . $row['culprit_address']. " 
+        " . $row['culprit_name'] . " " . $row['culprit_address'] . " 
         </td>
         <td class='border'>
         " . (new DateTime($row['updated_at']))->format('Y-m-d') . "
@@ -1236,6 +1236,79 @@ function judgements_pdf($date, $district, $data)
             <div class="main" id="data">' . $html . '</div>
             </body>
             </html>';
+}
+
+function disposals_pdf($date, $district, $data)
+{
+    $html = "<h1 style='font-size: 20px; text-decoration:underline; font-weight: 600; text-align: center; margin-bottom: 20px;'>अपराध, मर्ग, शिकायत के प्रतिदिन निकाल की दैनिक रिपोर्ट की जानकारी जिला " . $district . "</h1>
+    <h2 style='font-size: 13px; text-decoration:underline; font-weight: 300; text-align: center; margin-bottom: 20px;'> दिनाक - 01.01." . date('Y') . " से प्रेषित दिनाक " . $date . "</h2>
+    <table class='border' style='margin:auto; margin-top:10px; min-width:260mm;'>";
+    $html .= '<tr>        
+                <th rowspan=2 class="border">क्र.</th>
+                <th rowspan=2 class="border">थाना/चौकी का नाम</th>
+                <th colspan=2 class="border">अपराध</th>
+                <th colspan=2 class="border">मर्ग</th>
+                <th colspan=2 class="border">शिकायत</th>
+            </tr><tr>';
+    for ($i = 1; $i < 4; $i++) {
+        $html .= '<th class="border">पिछला निकाल</th>
+                <th class="border">आज का निकाल</th>';
+    }
+    $i = 0;
+    foreach ($data['disposals_crime_old'] as $row => $y) {
+        $html .= "<tr>
+            <td class='border'>
+                " . $i++ . "
+            </td>
+            <td class='border'>
+                " . $row . "
+            </td>
+            <td class='border'>
+                " . $data['disposals_crime_old'][$row] . " 
+            </td>
+            <td class='border'>
+                " . $data['disposals_crime'][$row] . " 
+            </td>
+            <td class='border'>
+                " . $data['disposals_deadbody_old'][$row] . " 
+            </td>
+            <td class='border'>
+                " . $data['disposals_deadbody'][$row] . " 
+            </td>
+            <td class='border'>
+                TODO 
+            </td>
+            <td class='border'>
+                TODO
+            </td>
+        </tr>";
+    }
+    $html .= '<tr>
+                <th class="border" colspan=2>
+                    योग
+                </th>
+                <th class="border">
+                    ' . sum_elements($data['disposals_crime_old']) . '
+                </th>
+                <th class="border">
+                    ' . sum_elements($data['disposals_crime']) . '
+                </th>
+                <th class="border">
+                    ' . sum_elements($data['disposals_deadbody_old']) . '
+                </th>
+                <th class="border">
+                    ' . sum_elements($data['disposals_deadbody']) . '
+                </th>
+                <th class="border">
+                    ' . sum_elements($data['disposals_complain_old']) . '
+                </th>
+                <th class="border">
+                    ' . sum_elements($data['disposals_complain']) . '
+                </th>
+            </tr>
+            </table>';
+    return $html;
+
 }
 
 ?>

@@ -1541,6 +1541,95 @@ function get_next_date(string $date): string|false {
     return $currentDate->format('Y-m-d');
 }
 
+/**
+ * Retrieve the count of rows from a specific table where disposal_date matches the given date for a specific district.
+ *
+ * @param string $date The date to match for disposal_date.
+ * @param string $district The district for which to retrieve the count.
+ * @param string $type The type of table to query ('crime' or 'deadbody').
+ * @return int The count of rows matching the criteria.
+ */
+function get_disposals(string $date, string $district, string $type): array {
+    global $con;
+    $table = '';
+
+    if ($type == 'crime') {
+        $table = 'major_crimes';
+    } elseif ($type == 'deadbody') {
+        $table = 'dead_bodies';
+    }
+
+    $query = "
+        SELECT ps.police_station, COUNT(mc.disposal_date) AS count
+        FROM police_stations ps
+        LEFT JOIN $table mc
+        ON ps.district = mc.district AND ps.police_station = mc.police_station AND mc.disposal_date = ?
+        WHERE ps.district = ?
+        GROUP BY ps.police_station
+    ";
+    $stmt = $con->prepare($query);
+    $stmt->bind_param("ss", $date, $district);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $disposals = array();
+    while ($row = $result->fetch_assoc()) {
+        $police_station = $row['police_station'];
+        $count = $row['count'];
+        $disposals[$police_station] = $count;
+    }
+
+    return $disposals;
+}
+
+
+/**
+ * Retrieve the count of rows from a specific table where disposal_date matches the given date for a specific district.
+ *
+ * @param string $date The date to match for disposal_date.
+ * @param string $district The district for which to retrieve the count.
+ * @param string $type The type of table to query ('crime' or 'deadbody').
+ * @return int The count of rows matching the criteria.
+ */
+/**
+ * Get the count of disposals up to the same year for every police station in the district.
+ *
+ * @param string $date The disposal date.
+ * @param string $district The district.
+ * @param string $type The type of disposal.
+ * @return array An associative array where the keys are police stations and the values are the count of disposals.
+ */
+function get_old_disposals(string $date, string $district, string $type): array {
+    global $con;
+    $table = '';
+
+    if ($type == 'crime') {
+        $table = 'major_crimes';
+    } elseif ($type == 'deadbody') {
+        $table = 'dead_bodies';
+    }
+
+    $query = "
+        SELECT ps.police_station, COUNT(mc.disposal_date) AS count
+        FROM police_stations ps
+        LEFT JOIN $table mc
+        ON ps.district = mc.district AND ps.police_station = mc.police_station
+        WHERE mc.disposal_date < ? AND YEAR(mc.disposal_date) = YEAR(?)
+        AND ps.district = ?
+        GROUP BY ps.police_station
+    ";
+    $stmt = $con->prepare($query);
+    $stmt->bind_param("sss", $date, $date, $district);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $disposals = array();
+    while ($row = $result->fetch_assoc()) {
+        $police_station = $row['police_station'];
+        $count = $row['count'];
+        $disposals[$police_station] = $count;
+    }
+
+    return $disposals;
+}
 
 
 ?>

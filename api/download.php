@@ -540,8 +540,8 @@ if ($doc_format == "excel") {
     // Downloading specific data
     if ($document == "Summary") {
         $data = array();
-        $data['murder_count'] = count_murder_cases($date,$district);
-        $data['gangrape_count'] = count_gangrape_cases($date,$district);
+        $data['murder_count'] = count_murder_cases($date, $district);
+        $data['gangrape_count'] = count_gangrape_cases($date, $district);
         $data['rape_count'] = count_rape_cases($date, $district);
         $data['dhara363_count'] = count_ipc_363_cases($date, $district);
         // $data['narbali_prakaran'] = count_narbali_prakaran($date, $district);
@@ -554,50 +554,50 @@ if ($doc_format == "excel") {
         foreach ($minor_penal_codes as $penal_code) {
             $data[$penal_code['penal_code']] = count_cases($date, $district, $penal_code['penal_code']);
         }
-        foreach ($restricted_penal_codes as $penal_code){
+        foreach ($restricted_penal_codes as $penal_code) {
             $data[$penal_code['penal_code']] = count_cases($date, $district, $penal_code['penal_code']);
         }
 
         $total = sum_elements($data);
-        $data['total'] = $total; 
+        $data['total'] = $total;
         $pdf = summary_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "MinorCrime") {
-        $data['crime_sum'] = get_minor_crimes($date,$district);
+        $data['crime_sum'] = get_minor_crimes($date, $district);
         $data['penal_codes'] = array_merge(get_penal_codes('Minor-Act'), get_penal_codes('Restricted'));
         $pdf = minor_crime_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "MajorCrime") {
-        $data['major_crimes'] = get_major_crimes($date,$district);
+        $data['major_crimes'] = get_major_crimes($date, $district);
         $pdf = major_crime_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "Crime") {
-        $data['crimes'] = get_crimes($date,$district);
+        $data['crimes'] = get_crimes($date, $district);
         $pdf = crime_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "Deadbody") {
-        $data['deadbodies'] = get_dead_bodies($date,$district);
+        $data['deadbodies'] = get_dead_bodies($date, $district);
         $pdf = deadbody_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "Achievement") {
-        $data['achievements'] = get_important_achievements($date,$district);
+        $data['achievements'] = get_important_achievements($date, $district);
         $pdf = achievements_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "Judgement") {
-        $data['judgements'] = get_court_judgements($date,$district);
+        $data['judgements'] = get_court_judgements($date, $district);
         $pdf = judgements_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "Application") {
 
         $data = array();
-        $data['gangrape_count'] = count_gangrape_cases($date,$district);
+        $data['gangrape_count'] = count_gangrape_cases($date, $district);
         // $data['narbali_prakaran'] = count_narbali_prakaran($date, $district);
         $data['dacoity_count'] = count_dacoity_cases($date, $district);
         $data['robbery_count'] = count_robbery_cases($date, $district);
@@ -605,15 +605,82 @@ if ($doc_format == "excel") {
 
         $restricted_penal_codes = get_penal_codes('Restricted');
         $rdata = array();
-        foreach ($restricted_penal_codes as $penal_code){
+        foreach ($restricted_penal_codes as $penal_code) {
             $rdata[$penal_code['penal_code']] = count_cases($date, $district, $penal_code['penal_code']);
         }
 
-        $data['restricted_cases_count'] = sum_elements($rdata);; 
+        $data['restricted_cases_count'] = sum_elements($rdata);
         $pdf = application_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "Disposal") {
+        $data['disposals_crime_old'] = get_old_disposals($date, $district, 'crime');
+        $data['disposals_crime'] = get_disposals($date, $district, 'crime');
+        $data['disposals_deadbody_old'] = get_old_disposals($date, $district, 'deadbody');
+        $data['disposals_deadbody'] = get_disposals($date, $district, 'deadbody');
+        $data['disposals_complain_old'] = array();
+        $data['disposals_complain'] = array();
+
+        $script = '<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script><script>
+                    function downloadpdf() {
+                        const element = document.getElementById("data");
+                        const opt = {
+                            margin: [0, 0, 0, 0],
+                            filename: "Court Judgements-' . $district . ' (' . $date . ').pdf",
+                            image: { type: "jpeg", quality: 1 },
+                            html2canvas: { scale: 4 },
+                            jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }
+                        }
+                    
+                        html2pdf().set(opt).from(element).save();
+                    }
+                    </script>';
+
+        $style = '<style>
+                    *{
+                        font-size: 17px;
+                    }
+                    body {
+                        background-color: black;
+                    }
+                    .border{
+                        border: 1px solid black !important;
+                        border-collapse: collapse;
+                        vertical-align: middle;
+                        text-align: center; 
+                    }
+                    #data {
+                        margin: 0 auto;
+                        padding: 20mm 20mm 14mm 14mm;
+                        width: 297mm;
+                        height: 210mm;
+                        background-color: white;
+                    }
+                    .center {
+                        text-align: center;
+                        padding: 10px;
+                    }
+                </style>';
+
+        $html = disposals_pdf($date, $district, $data);
+        echo '<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>DSR PDF</title>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+            ' . $style .
+    $script . '
+        </head>
+        <body>
+        <div class="center"><button class="btn btn-lg btn-success" onclick="downloadpdf()">Print</button></div>
+        <div class="main" id="data">' . $html . '</div>
+        </body>
+        </html>';
+
 
     }
     // Condition when All is selected
