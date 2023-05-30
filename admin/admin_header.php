@@ -58,27 +58,37 @@ if (!(isset($_SESSION['user-data']))) {
     </script> -->
 
     <style>
-    /* body {
+        /* body {
             background: linear-gradient(to bottom left, #FFFDDE, #45A9BA);
         } */
 
-    footer {
-        background-color: rgba(0, 0, 0, 0.05);
-        padding: 20px;
-    }
+        /* .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
 
-    .required-star {
-        color: red;
-        margin-left: 5px;
-    }
+        .sidebar.active {
+
+            transform: translateX(0);
+        } */
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 20px;
+        }
+
+        .required-star {
+            color: red;
+            margin-left: 5px;
+        }
 
 
-    .pass_icon {
-        float: right;
-        margin-top: -30px;
-        margin-right: 15px;
+        .pass_icon {
+            float: right;
+            margin-top: -30px;
+            margin-right: 15px;
 
-    }
+        }
     </style>
 </head>
 
