@@ -4,13 +4,132 @@ require "dbcon.php";
 require "functions.php";
 require "download_manager.php";
 
-// $start_date = $_SESSION['start_date'];
-// $end_date = $_SESSION['end_date'];
-// if ($start_date == $end_date) {
-//     $date = $start_date;
-// } else {
-//     $date = $start_date . " - " . $end_date;
-// }
+function data_generator($document, $date, $district)
+{
+    $data = array();
+    if ($document == "Summary") {
+
+        $data['murder_count'] = count_murder_cases($date, $district);
+        $data['gangrape_count'] = count_gangrape_cases($date, $district);
+        $data['rape_count'] = count_rape_cases($date, $district);
+        $data['dhara363_count'] = count_ipc_363_cases($date, $district);
+        // $data['narbali_prakaran'] = count_narbali_prakaran($date, $district);
+        $data['dacoity_count'] = count_dacoity_cases($date, $district);
+        $data['robbery_count'] = count_robbery_cases($date, $district);
+        $data['kidnap_for_ransom_count'] = count_kidnap_for_ransom_cases($date, $district);
+
+        $minor_penal_codes = get_penal_codes('Minor-Act');
+        $restricted_penal_codes = get_penal_codes('Restricted');
+        foreach ($minor_penal_codes as $penal_code) {
+            $data[$penal_code['penal_code']] = count_cases($date, $district, $penal_code['penal_code']);
+        }
+        foreach ($restricted_penal_codes as $penal_code) {
+            $data[$penal_code['penal_code']] = count_cases($date, $district, $penal_code['penal_code']);
+        }
+
+        $total = sum_elements($data);
+        $data['total'] = $total;
+
+
+    } elseif ($document == "MinorCrime") {
+        $data['crime_sum'] = get_minor_crimes($date, $district);
+        if ($district === "All") {
+            $data['crime_sum'] = array();
+            foreach (districts() as $dist) {
+                $district = $dist['district'];
+                $data['crime_sum'] += get_minor_crimes($date, $district);
+            }
+        }
+        $data['penal_codes'] = array_merge(get_penal_codes('Minor-Act'), get_penal_codes('Restricted'));
+
+    } elseif ($document == "MajorCrime") {
+        $data['major_crimes'] = get_major_crimes($date, $district);
+
+    } elseif ($document == "Crime") {
+        $data['crimes'] = get_crimes($date, $district);
+
+    } elseif ($document == "Deadbody") {
+        $data['deadbodies'] = get_dead_bodies($date, $district);
+
+    } elseif ($document == "Achievement") {
+        $data['achievements'] = get_important_achievements($date, $district);
+
+    } elseif ($document == "Judgement") {
+        $data['judgements'] = get_court_judgements($date, $district);
+
+    } elseif ($document == "Application") {
+
+        $data['gangrape_count'] = count_gangrape_cases($date, $district);
+        // $data['narbali_prakaran'] = count_narbali_prakaran($date, $district);
+        $data['dacoity_count'] = count_dacoity_cases($date, $district);
+        $data['robbery_count'] = count_robbery_cases($date, $district);
+        $data['kidnap_for_ransom_count'] = count_kidnap_for_ransom_cases($date, $district);
+
+        $restricted_penal_codes = get_penal_codes('Restricted');
+        $rdata = array();
+        foreach ($restricted_penal_codes as $penal_code) {
+            $rdata[$penal_code['penal_code']] = count_cases($date, $district, $penal_code['penal_code']);
+        }
+
+        $data['restricted_cases_count'] = sum_elements($rdata);
+
+    } elseif ($document == "Disposal") {
+        $data['disposals_crime_old'] = get_old_disposals($date, $district, 'crime');
+        $data['disposals_crime'] = get_disposals($date, $district, 'crime');
+        $data['disposals_deadbody_old'] = get_old_disposals($date, $district, 'deadbody');
+        $data['disposals_deadbody'] = get_disposals($date, $district, 'deadbody');
+        $data['disposals_complain_old'] = array();
+        $data['disposals_complain'] = array();
+
+    }
+    // Condition when All is selected
+    else {
+        $data['murder_count'] = count_murder_cases($date, $district);
+        $data['gangrape_count'] = count_gangrape_cases($date, $district);
+        $data['rape_count'] = count_rape_cases($date, $district);
+        $data['dhara363_count'] = count_ipc_363_cases($date, $district);
+        // $data['narbali_prakaran'] = count_narbali_prakaran($date, $district);
+        $data['dacoity_count'] = count_dacoity_cases($date, $district);
+        $data['robbery_count'] = count_robbery_cases($date, $district);
+        $data['kidnap_for_ransom_count'] = count_kidnap_for_ransom_cases($date, $district);
+        $minor_penal_codes = get_penal_codes('Minor-Act');
+        $restricted_penal_codes = get_penal_codes('Restricted');
+        foreach ($minor_penal_codes as $penal_code) {
+            $data[$penal_code['penal_code']] = count_cases($date, $district, $penal_code['penal_code']);
+        }
+        foreach ($restricted_penal_codes as $penal_code) {
+            $data[$penal_code['penal_code']] = count_cases($date, $district, $penal_code['penal_code']);
+        }
+        $total = sum_elements($data);
+        $data['total'] = $total;
+        $data['crime_sum'] = get_minor_crimes($date, $district);
+        $data['penal_codes'] = array_merge(get_penal_codes('Minor-Act'), get_penal_codes('Restricted'));
+        $data['major_crimes'] = get_major_crimes($date, $district);
+        $data['crimes'] = get_crimes($date, $district);
+        $data['deadbodies'] = get_dead_bodies($date, $district);
+        $data['achievements'] = get_important_achievements($date, $district);
+        $data['judgements'] = get_court_judgements($date, $district);
+        $data['gangrape_count'] = count_gangrape_cases($date, $district);
+        // $data['narbali_prakaran'] = count_narbali_prakaran($date, $district);
+        $data['dacoity_count'] = count_dacoity_cases($date, $district);
+        $data['robbery_count'] = count_robbery_cases($date, $district);
+        $data['kidnap_for_ransom_count'] = count_kidnap_for_ransom_cases($date, $district);
+        $restricted_penal_codes = get_penal_codes('Restricted');
+        $rdata = array();
+        foreach ($restricted_penal_codes as $penal_code) {
+            $rdata[$penal_code['penal_code']] = count_cases($date, $district, $penal_code['penal_code']);
+        }
+        $data['restricted_cases_count'] = sum_elements($rdata);
+        $data['disposals_crime_old'] = get_old_disposals($date, $district, 'crime');
+        $data['disposals_crime'] = get_disposals($date, $district, 'crime');
+        $data['disposals_deadbody_old'] = get_old_disposals($date, $district, 'deadbody');
+        $data['disposals_deadbody'] = get_disposals($date, $district, 'deadbody');
+        $data['disposals_complain_old'] = array();
+        $data['disposals_complain'] = array();
+
+    }
+    return $data;
+}
 
 $doc_format = $_POST['doc_format'];
 $document = $_POST['document_type'];
@@ -537,155 +656,266 @@ if ($doc_format == "excel") {
 
 } elseif ($doc_format == "pdf") {
 
+    // if ($district)
     // Downloading specific data
     if ($document == "Summary") {
-        $data = array();
-        $data['murder_count'] = count_murder_cases($date, $district);
-        $data['gangrape_count'] = count_gangrape_cases($date, $district);
-        $data['rape_count'] = count_rape_cases($date, $district);
-        $data['dhara363_count'] = count_ipc_363_cases($date, $district);
-        // $data['narbali_prakaran'] = count_narbali_prakaran($date, $district);
-        $data['dacoity_count'] = count_dacoity_cases($date, $district);
-        $data['robbery_count'] = count_robbery_cases($date, $district);
-        $data['kidnap_for_ransom_count'] = count_kidnap_for_ransom_cases($date, $district);
-
-        $minor_penal_codes = get_penal_codes('Minor-Act');
-        $restricted_penal_codes = get_penal_codes('Restricted');
-        foreach ($minor_penal_codes as $penal_code) {
-            $data[$penal_code['penal_code']] = count_cases($date, $district, $penal_code['penal_code']);
+        $data = data_generator($document, $date, $district);
+        if ($district === "All") {
+            $district = "समस्त सरगुजा रेंज";
         }
-        foreach ($restricted_penal_codes as $penal_code) {
-            $data[$penal_code['penal_code']] = count_cases($date, $district, $penal_code['penal_code']);
-        }
-
-        $total = sum_elements($data);
-        $data['total'] = $total;
         $pdf = summary_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "MinorCrime") {
-        $data['crime_sum'] = get_minor_crimes($date, $district);
-        $data['penal_codes'] = array_merge(get_penal_codes('Minor-Act'), get_penal_codes('Restricted'));
+        $data = data_generator($document, $date, $district);
         $pdf = minor_crime_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "MajorCrime") {
-        $data['major_crimes'] = get_major_crimes($date, $district);
+        $data = data_generator($document, $date, $district);
+        if ($district === "All") {
+            $district = "समस्त सरगुजा रेंज";
+        }
         $pdf = major_crime_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "Crime") {
-        $data['crimes'] = get_crimes($date, $district);
+        $data = data_generator($document, $date, $district);
+        if ($district === "All") {
+            $district = "समस्त सरगुजा रेंज";
+        }
         $pdf = crime_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "Deadbody") {
-        $data['deadbodies'] = get_dead_bodies($date, $district);
+        $data = data_generator($document, $date, $district);
+        if ($district === "All") {
+            $district = "समस्त सरगुजा रेंज";
+        }
         $pdf = deadbody_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "Achievement") {
-        $data['achievements'] = get_important_achievements($date, $district);
+        $data = data_generator($document, $date, $district);
+        if ($district === "All") {
+            $district = "समस्त सरगुजा रेंज";
+        }
         $pdf = achievements_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "Judgement") {
-        $data['judgements'] = get_court_judgements($date, $district);
+        $data = data_generator($document, $date, $district);
+        if ($district === "All") {
+            $district = "समस्त सरगुजा रेंज";
+        }
         $pdf = judgements_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "Application") {
 
-        $data = array();
-        $data['gangrape_count'] = count_gangrape_cases($date, $district);
-        // $data['narbali_prakaran'] = count_narbali_prakaran($date, $district);
-        $data['dacoity_count'] = count_dacoity_cases($date, $district);
-        $data['robbery_count'] = count_robbery_cases($date, $district);
-        $data['kidnap_for_ransom_count'] = count_kidnap_for_ransom_cases($date, $district);
-
-        $restricted_penal_codes = get_penal_codes('Restricted');
-        $rdata = array();
-        foreach ($restricted_penal_codes as $penal_code) {
-            $rdata[$penal_code['penal_code']] = count_cases($date, $district, $penal_code['penal_code']);
+        $data = data_generator($document, $date, $district);
+        if ($district === "All") {
+            $district = "समस्त सरगुजा रेंज";
         }
-
-        $data['restricted_cases_count'] = sum_elements($rdata);
         $pdf = application_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "Disposal") {
-        $data['disposals_crime_old'] = get_old_disposals($date, $district, 'crime');
-        $data['disposals_crime'] = get_disposals($date, $district, 'crime');
-        $data['disposals_deadbody_old'] = get_old_disposals($date, $district, 'deadbody');
-        $data['disposals_deadbody'] = get_disposals($date, $district, 'deadbody');
-        $data['disposals_complain_old'] = array();
-        $data['disposals_complain'] = array();
-
-        $script = '<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script><script>
-                    function downloadpdf() {
-                        const element = document.getElementById("data");
-                        const opt = {
-                            margin: [0, 0, 0, 0],
-                            filename: "Disposals-' . $district . ' (' . $date . ').pdf",
-                            image: { type: "jpeg", quality: 1 },
-                            html2canvas: { scale: 4 },
-                            jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }
-                        }
-                    
-                        html2pdf().set(opt).from(element).save();
-                    }
-                    </script>';
-
-        $style = '<style>
-                    *{
-                        font-size: 17px;
-                    }
-                    body {
-                        background-color: black;
-                    }
-                    .border{
-                        border: 1px solid black !important;
-                        border-collapse: collapse;
-                        vertical-align: middle;
-                        text-align: center; 
-                    }
-                    #data {
-                        margin: 0 auto;
-                        padding: 20mm 20mm 14mm 14mm;
-                        width: 297mm;
-                        height: 210mm;
-                        background-color: white;
-                    }
-                    .center {
-                        text-align: center;
-                        padding: 10px;
-                    }
-                </style>';
-
-        $html = disposals_pdf($date, $district, $data);
-        echo '<!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>DSR PDF</title>
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-            ' . $style .
-    $script . '
-        </head>
-        <body>
-        <div class="center"><button class="btn btn-lg btn-success" onclick="downloadpdf()">Print</button></div>
-        <div class="main" id="data">' . $html . '</div>
-        </body>
-        </html>';
-
+        $data = data_generator($document, $date, $district);
+        if ($district === "All") {
+            $district = "समस्त सरगुजा रेंज";
+        }
+        $pdf = disposals_pdf($date, $district, $data);
+        echo $pdf;
 
     }
     // Condition when All is selected
     else {
+        $data = data_generator($document, $date, $district);
+        $ppage1 = summary_pdf($date, $district, $data, 0);
+        $ppage2 = application_pdf($date, $district, $data, 0);
+        $page1 = minor_crime_pdf($date, $district, $data, 0);
+        $page2 = major_crime_pdf($date, $district, $data, 0);
+        $page3 = crime_pdf($date, $district, $data, 0);
+        $page4 = deadbody_pdf($date, $district, $data, 0);
+        $page5 = achievements_pdf($date, $district, $data, 0);
+        $page6 = judgements_pdf($date, $district, $data, 0);
+        $page7 = disposals_pdf($date, $district, $data, 0);
+        if ($district === "All") {
+            $district = "समस्त सरगुजा रेंज";
+        }
+        $script = "<script src='https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js'></script>
+    <script>
+        function downloadpdf1() {
+            const data = document.getElementById('pdata');
+            const options1 = {
+                margin: [0, 0, 0, 0],
+                filename: 'Summaries-" . $district . " (" . $date . ").pdf',
+                image: { type: 'jpeg', quality: 1 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
 
+            html2pdf().set(options1).from(data).save();
+        }
+        function downloadpdf2() {
+            const data = document.getElementById('ldata');
+            const options2 = {
+                margin: [0, 0, 0, 0],
+                filename: 'Details-" . $district . " (" . $date . ").pdf',
+                image: { type: 'jpeg', quality: 1 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+            };
+            html2pdf().set(options2).from(data).save();
+        }
+    </script>";
+
+        $style = '<style>
+            /* All */
+            body {
+                background-color: black;
+            }
+
+            .notcenter {
+                text-align: start;
+            }
+
+            .center {
+                text-align: center;
+                padding : 10px;
+            }
+
+            .page {
+                margin: 0 auto;
+                background-color: white;
+                margin-bottom: 10px !important;
+                page-break-after: always; /* Add page break after each page */
+            }
+            .border{
+                border: 1px solid black !important;
+                border-collapse: collapse;
+                vertical-align: middle;
+                text-align: center; 
+            }
+
+            /* summary */
+            #ppage1, #ppage2 {
+                padding: 15mm 18mm 30mm 13mm;
+                width: 210mm;
+                min-height: 297mm;
+            }
+            #ppage1 td, #ppage1 th {
+                border: 1px solid black;
+                text-align: center;
+                
+            }
+            #ppage1 *, #page2 *, #page3 *, #page5 *, #page6 *{
+                font-size: 14px;
+            }
+
+            /* application */
+
+            #ppage2 * , #page7 *{
+                font-size: 17px;
+            }
+        
+            #ppage2 #t1 tr,
+            #ppage2 #t1 th,
+            #ppage2 #t1 td {
+                border: 1px solid black;
+                text-align: center;
+            }
+        
+            #ppage2 .notcenter {
+                text-align: left !important;
+                padding-left: 3px;
+            }
+            #ppage2 .marginright{
+                padding-left: 5px;
+                padding-right: 15px;
+            }
+            
+            /* minor crime */
+            #page1 {
+                padding: 22mm 8mm 22mm 8mm;
+                width: 297mm;
+                min-height: 210mm;
+            }
+            #page1 *{
+                font-size: 12px;
+            }
+            
+            /* crime */
+            #page3 , #page2, #page4, #page5{
+                padding: 13mm 5mm 13mm 5mm;
+                width: 297mm;
+                min-height: 210mm;
+            }
+
+            /* deadbody */
+            #page4 *{
+                font-size: 15px;
+            }
+
+            /* jugdements */
+            
+            #page6 , #page7 {
+                padding: 20mm 20mm 14mm 14mm;
+                width: 297mm;
+                min-height: 210mm;
+            }
+                </style>';
+
+        echo '<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>DSR PDF</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+                integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+                ' . $style .
+            $script . '
+            </head>
+            <body>
+            <div class="center"><button class="btn btn-lg btn-danger" onclick="downloadpdf1()">Print Summary</button></div>
+            <br/>
+            <div class="center"><button class="btn btn-lg btn-primary" onclick="downloadpdf2()">Print Detail</button></div>
+            <div class="main" id="pdata">
+                <div id="ppage1" class="page">
+                    ' . $ppage1 . '
+                </div>
+                <div id="ppage2" class="page">
+                    ' . $ppage2 . '
+                </div>
+            </div>
+            <div class="main" id="ldata">
+                <div id="page1" class="page">
+                    ' . $page1 . '
+                </div>
+                <div id="page2" class="page">
+                    ' . $page2 . '
+                </div>
+                <div id="page3" class="page">
+                    ' . $page3 . '
+                </div>
+                <div id="page4" class="page">
+                    ' . $page4 . '
+                </div>
+                <div id="page5" class="page">
+                    ' . $page5 . '
+                </div>
+                <div id="page6" class="page">
+                    ' . $page6 . '
+                </div>
+                <div id="page7" class="page">
+                    ' . $page7 . '
+                </div>
+            </div>
+            </body>
+            </html>';
     }
 
 }

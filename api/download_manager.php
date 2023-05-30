@@ -1,5 +1,5 @@
 <?php
-function summary_pdf($date, $district, $data)
+function summary_pdf($date, $district, $data, $type = 1)
 {
     $script = "<script src='https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js'></script>
     <script>
@@ -24,7 +24,7 @@ function summary_pdf($date, $district, $data)
                         margin: 0 auto;
                         padding: 15mm 18mm 30mm 13mm;
                         width: 210mm;
-                        height: 297mm;
+                        min-height: 297mm;
                         background-color: white;
                     }
                     td, th {
@@ -330,8 +330,8 @@ function summary_pdf($date, $district, $data)
                                                                   
 
 </pre>';
-
-    return '<!DOCTYPE html>
+    if ($type) {
+        return '<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -341,16 +341,19 @@ function summary_pdf($date, $district, $data)
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     ' . $style .
-        $script . '
+            $script . '
 </head>
 <body>
 <div class="center"><button class="btn btn-lg btn-success" onclick="downloadpdf()">Print</button></div>
 <div class="main" style="' . $inner_style . '" id="data">' . $html . '</div>
 </body>
 </html>';
+    } else {
+        return $html;
+    }
 }
 
-function application_pdf($date, $district, $data)
+function application_pdf($date, $district, $data, $type = 1)
 {
     $style = '<style>
     body {
@@ -361,7 +364,7 @@ function application_pdf($date, $district, $data)
         margin: 0 auto;
         padding: 15mm 18mm 30mm 13mm;
         width: 210mm;
-        height: 297mm;
+        min-height: 297mm;
         background-color: white;
     }
 
@@ -521,8 +524,8 @@ function downloadpdf() {
                                                    कंट्रोल रूम रेंज सरगुजा</pre>';
 
     $inner_style = '';
-
-    return '<!DOCTYPE html>
+    if ($type) {
+        return '<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -532,17 +535,20 @@ function downloadpdf() {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     ' . $style .
-        $script . '
+            $script . '
 </head>
 <body>
 <div class="center"><button class="btn btn-lg btn-success" onclick="downloadpdf()">Print</button></div>
 <div class="main" style="' . $inner_style . '" id="data">' . $html . '</div>
 </body>
 </html>';
+    } else {
+        return $html;
+    }
 
 }
 
-function minor_crime_pdf($date, $district, $data)
+function minor_crime_pdf($date, $district, $data, $type = 1)
 {
     $script = '<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script><script>
     function downloadpdf() {
@@ -575,7 +581,7 @@ function minor_crime_pdf($date, $district, $data)
                     margin: 0 auto;
                     padding: 22mm 8mm 22mm 8mm;
                     width: 297mm;
-                    height: 210mm;
+                    min-height: 210mm;
                     background-color: white;
                 }
                 .center {
@@ -584,40 +590,77 @@ function minor_crime_pdf($date, $district, $data)
                 }
             </style>';
 
-    $html = '<h1 style="font-size: 15px; text-decoration:underline; font-weight: 600; text-align: center;">दैनिक प्रतिवेदन प्रतिबंधात्मकता कार्यवाही/लघु अधिनियम रेंज सरगुजा दिनाक - ' . $date . ' प्रेषित दिनाक ' . get_next_date($date) . '</h1>
-    <table class="border" style="margin:auto; margin-top:10px; min-width:280mm;">
+    $html = '<h1 style="font-size: 15px; text-decoration:underline; font-weight: 600; text-align: center;">दैनिक प्रतिवेदन प्रतिबंधात्मकता कार्यवाही/लघु अधिनियम रेंज सरगुजा दिनाक - ' . $date . ' प्रेषित दिनाक ' . get_next_date($date) . '</h1>';
+    if ($district != "All") {
+        $html .= '<table class="border" style="margin:auto; margin-top:10px; min-width:280mm;">
         <tr>
             <th class="border" colspan=30>जिला - ' . $district . '</th>
         </tr>
         <tr>        
             <th rowspan=2 class="border">क्र.</th>
             <th rowspan=2 class="border">थाना</th>';
-    foreach ($data['penal_codes'] as $penal_code) {
-        $html .= '<th class="border" colspan=2>' . $penal_code['penal_code'] . '</th>';
-    }
+        foreach ($data['penal_codes'] as $penal_code) {
+            $html .= '<th class="border" colspan=2>' . $penal_code['penal_code'] . '</th>';
+        }
 
-    $html .= '</tr><tr>';
-    for ($i = 1; $i <= 14; $i++) {
-        $html .= '<td class="border">प्र.</td>
+        $html .= '</tr><tr>';
+        for ($i = 1; $i <= 14; $i++) {
+            $html .= '<td class="border">प्र.</td>
         <td class="border">व्य.</th>';
-    }
-    $html .= "</tr>";
-    $x = 1;
-    foreach ($data['crime_sum'][$district] as $name => $info) {
-        $html .= "<tr><th class ='border'>" . $x++ . "</th>
-        <th class='border'>" . $name . "</th>";
+        }
+        $html .= "</tr>";
+        $x = 1;
+        foreach ($data['crime_sum'][$district] as $name => $info) {
+            $html .= "<tr><th class ='border'>" . $x++ . "</th>
+            <th class='border'>" . $name . "</th>";
 
-        foreach ($data['penal_codes'] as $penal_codes) {
-            if (!($info[$penal_codes['penal_code']]['case_count'])) {
-                $info[$penal_codes['penal_code']]['case_count'] = "";
+            foreach ($data['penal_codes'] as $penal_codes) {
+                if (!($info[$penal_codes['penal_code']]['case_count'])) {
+                    $info[$penal_codes['penal_code']]['case_count'] = "";
+                }
+                $html .= "<td class='border'>" . $info[$penal_codes['penal_code']]['case_count'] . "</td>
+                <td class='border'>" . $info[$penal_codes['penal_code']]['people_count'] . "</td>";
             }
-            $html .= "<td class='border'>" . $info[$penal_codes['penal_code']]['case_count'] . "</td>
-            <td class='border'>" . $info[$penal_codes['penal_code']]['people_count'] . "</td>";
+        }
+        $html .= '</table>';
+    } else {
+        foreach (districts() as $dist) {
+            $district = $dist['district'];
+            $html .= '<table class="border separate" style="margin:auto; margin-top:10px; min-width:280mm;">
+            <tr>
+                <th class="border" colspan=30>जिला - ' . $district . '</th>
+            </tr>
+            <tr>        
+                <th rowspan=2 class="border">क्र.</th>
+                <th rowspan=2 class="border">थाना</th>';
+            foreach ($data['penal_codes'] as $penal_code) {
+                $html .= '<th class="border" colspan=2>' . $penal_code['penal_code'] . '</th>';
+            }
+
+            $html .= '</tr><tr>';
+            for ($i = 1; $i <= 14; $i++) {
+                $html .= '<td class="border">प्र.</td>
+            <td class="border">व्य.</th>';
+            }
+            $html .= "</tr>";
+            $x = 1;
+            foreach ($data['crime_sum'][$district] as $name => $info) {
+                $html .= "<tr><th class ='border'>" . $x++ . "</th>
+                <th class='border'>" . $name . "</th>";
+
+                foreach ($data['penal_codes'] as $penal_codes) {
+                    if (!($info[$penal_codes['penal_code']]['case_count'])) {
+                        $info[$penal_codes['penal_code']]['case_count'] = "";
+                    }
+                    $html .= "<td class='border'>" . $info[$penal_codes['penal_code']]['case_count'] . "</td>
+                    <td class='border'>" . $info[$penal_codes['penal_code']]['people_count'] . "</td>";
+                }
+            }
+            $html .= '</table>';
         }
     }
-    $html .= '</table>';
-
-    return '<!DOCTYPE html>
+    if ($type) {
+        return '<!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
@@ -627,16 +670,19 @@ function minor_crime_pdf($date, $district, $data)
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
                 integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
                 ' . $style .
-        $script . '
+            $script . '
             </head>
             <body>
             <div class="center"><button class="btn btn-lg btn-success" onclick="downloadpdf()">Print</button></div>
             <div class="main" id="data">' . $html . '</div>
             </body>
             </html>';
+    } else {
+        return $html;
+    }
 }
 
-function major_crime_pdf($date, $district, $data)
+function major_crime_pdf($date, $district, $data, $type = 1)
 {
     $script = '<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script><script>
     function downloadpdf() {
@@ -670,7 +716,7 @@ function major_crime_pdf($date, $district, $data)
         margin: 0 auto;
         padding: 13mm 5mm 13mm 5mm;
         width: 297mm;
-        height: 210mm;
+        min-height: 210mm;
         background-color: white;
     }
     .center {
@@ -749,8 +795,9 @@ function major_crime_pdf($date, $district, $data)
         </td>
     </tr>";
     }
-
-    return '<!DOCTYPE html>
+    $html .= "</table>";
+    if ($type) {
+        return '<!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
@@ -760,16 +807,19 @@ function major_crime_pdf($date, $district, $data)
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
                 integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
                 ' . $style .
-        $script . '
+            $script . '
             </head>
             <body>
             <div class="center"><button class="btn btn-lg btn-success" onclick="downloadpdf()">Print</button></div>
             <div class="main" id="data">' . $html . '</div>
             </body>
             </html>';
+    } else {
+        return $html;
+    }
 }
 
-function crime_pdf($date, $district, $data)
+function crime_pdf($date, $district, $data, $type = 1)
 {
     $script = '<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script><script>
     function downloadpdf() {
@@ -803,7 +853,7 @@ function crime_pdf($date, $district, $data)
         margin: 0 auto;
         padding: 13mm 5mm 13mm 5mm;
         width: 297mm;
-        height: 210mm;
+        min-height: 210mm;
         background-color: white;
     }
     .center {
@@ -883,7 +933,9 @@ function crime_pdf($date, $district, $data)
     </tr>";
     }
 
-    return '<!DOCTYPE html>
+    $html .= "</table>";
+    if ($type) {
+        return '<!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
@@ -893,16 +945,19 @@ function crime_pdf($date, $district, $data)
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
                 integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
                 ' . $style .
-        $script . '
+            $script . '
             </head>
             <body>
             <div class="center"><button class="btn btn-lg btn-success" onclick="downloadpdf()">Print</button></div>
             <div class="main" id="data">' . $html . '</div>
             </body>
             </html>';
+    } else {
+        return $html;
+    }
 }
 
-function deadbody_pdf($date, $district, $data)
+function deadbody_pdf($date, $district, $data, $type = 1)
 {
     $script = '<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script><script>
     function downloadpdf() {
@@ -936,7 +991,7 @@ function deadbody_pdf($date, $district, $data)
         margin: 0 auto;
         padding: 13mm 5mm 13mm 5mm;
         width: 297mm;
-        height: 210mm;
+        min-height: 210mm;
         background-color: white;
     }
     .center {
@@ -1000,8 +1055,9 @@ function deadbody_pdf($date, $district, $data)
         </td>
     </tr>";
     }
-
-    return '<!DOCTYPE html>
+    $html .= "</table>";
+    if ($type) {
+        return '<!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
@@ -1011,16 +1067,19 @@ function deadbody_pdf($date, $district, $data)
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
                 integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
                 ' . $style .
-        $script . '
+            $script . '
             </head>
             <body>
             <div class="center"><button class="btn btn-lg btn-success" onclick="downloadpdf()">Print</button></div>
             <div class="main" id="data">' . $html . '</div>
             </body>
             </html>';
+    } else {
+        return $html;
+    }
 }
 
-function achievements_pdf($date, $district, $data)
+function achievements_pdf($date, $district, $data, $type = 1)
 {
     $script = '<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script><script>
     function downloadpdf() {
@@ -1054,7 +1113,7 @@ function achievements_pdf($date, $district, $data)
         margin: 0 auto;
         padding: 13mm 10mm 13mm 5mm;
         width: 297mm;
-        height: 210mm;
+        min-height: 210mm;
         background-color: white;
     }
     .center {
@@ -1107,8 +1166,9 @@ function achievements_pdf($date, $district, $data)
         </td>
     </tr>";
     }
-
-    return '<!DOCTYPE html>
+    $html .= "</table>";
+    if ($type) {
+        return '<!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
@@ -1118,16 +1178,19 @@ function achievements_pdf($date, $district, $data)
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
                 integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
                 ' . $style .
-        $script . '
+            $script . '
             </head>
             <body>
             <div class="center"><button class="btn btn-lg btn-success" onclick="downloadpdf()">Print</button></div>
             <div class="main" id="data">' . $html . '</div>
             </body>
             </html>';
+    } else {
+        return $html;
+    }
 }
 
-function judgements_pdf($date, $district, $data)
+function judgements_pdf($date, $district, $data, $type = 1)
 {
     $script = '<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script><script>
     function downloadpdf() {
@@ -1161,7 +1224,7 @@ function judgements_pdf($date, $district, $data)
         margin: 0 auto;
         padding: 20mm 20mm 14mm 14mm;
         width: 297mm;
-        height: 210mm;
+        min-height: 210mm;
         background-color: white;
     }
     .center {
@@ -1218,8 +1281,10 @@ function judgements_pdf($date, $district, $data)
         </td>
     </tr>";
     }
+    $html .= "</table>";
+    if ($type) {
 
-    return '<!DOCTYPE html>
+        return '<!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
@@ -1229,17 +1294,61 @@ function judgements_pdf($date, $district, $data)
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
                 integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
                 ' . $style .
-        $script . '
+            $script . '
             </head>
             <body>
             <div class="center"><button class="btn btn-lg btn-success" onclick="downloadpdf()">Print</button></div>
             <div class="main" id="data">' . $html . '</div>
             </body>
             </html>';
+    } else {
+        return $html;
+    }
 }
 
-function disposals_pdf($date, $district, $data)
+function disposals_pdf($date, $district, $data, $type = 1)
 {
+    $script = '<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script><script>
+                    function downloadpdf() {
+                        const element = document.getElementById("data");
+                        const opt = {
+                            margin: [0, 0, 0, 0],
+                            filename: "Disposals-' . $district . ' (' . $date . ').pdf",
+                            image: { type: "jpeg", quality: 1 },
+                            html2canvas: { scale: 4 },
+                            jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }
+                        }
+                    
+                        html2pdf().set(opt).from(element).save();
+                    }
+                    </script>';
+
+    $style = '<style>
+                    *{
+                        font-size: 17px;
+                    }
+                    body {
+                        background-color: black;
+                    }
+                    .border{
+                        border: 1px solid black !important;
+                        border-collapse: collapse;
+                        vertical-align: middle;
+                        text-align: center; 
+                    }
+                    #data {
+                        margin: 0 auto;
+                        padding: 20mm 20mm 14mm 14mm;
+                        width: 297mm;
+                        min-height: 210mm;
+                        background-color: white;
+                    }
+                    .center {
+                        text-align: center;
+                        padding: 10px;
+                    }
+                </style>';
+
     $html = "<h1 style='font-size: 20px; text-decoration:underline; font-weight: 600; text-align: center; margin-bottom: 20px;'>अपराध, मर्ग, शिकायत के प्रतिदिन निकाल की दैनिक रिपोर्ट की जानकारी जिला " . $district . "</h1>
     <h2 style='font-size: 13px; text-decoration:underline; font-weight: 300; text-align: center; margin-bottom: 20px;'> दिनाक - 01.01." . date('Y') . " से प्रेषित दिनाक " . $date . "</h2>
     <table class='border' style='margin:auto; margin-top:10px; min-width:260mm;'>";
@@ -1307,7 +1416,27 @@ function disposals_pdf($date, $district, $data)
                 </th>
             </tr>
             </table>';
-    return $html;
+    if ($type) {
+        return '<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>DSR PDF</title>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+            ' . $style .
+            $script . '
+        </head>
+        <body>
+        <div class="center"><button class="btn btn-lg btn-success" onclick="downloadpdf()">Print</button></div>
+        <div class="main" id="data">' . $html . '</div>
+        </body>
+        </html>';
+    } else {
+        return $html;
+    }
 
 }
 
