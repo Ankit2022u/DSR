@@ -660,9 +660,6 @@ if ($doc_format == "excel") {
     // Downloading specific data
     if ($document == "Summary") {
         $data = data_generator($document, $date, $district);
-        if ($district === "All") {
-            $district = "समस्त सरगुजा रेंज";
-        }
         $pdf = summary_pdf($date, $district, $data);
         echo $pdf;
 
@@ -673,58 +670,37 @@ if ($doc_format == "excel") {
 
     } elseif ($document == "MajorCrime") {
         $data = data_generator($document, $date, $district);
-        if ($district === "All") {
-            $district = "समस्त सरगुजा रेंज";
-        }
         $pdf = major_crime_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "Crime") {
         $data = data_generator($document, $date, $district);
-        if ($district === "All") {
-            $district = "समस्त सरगुजा रेंज";
-        }
         $pdf = crime_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "Deadbody") {
         $data = data_generator($document, $date, $district);
-        if ($district === "All") {
-            $district = "समस्त सरगुजा रेंज";
-        }
         $pdf = deadbody_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "Achievement") {
         $data = data_generator($document, $date, $district);
-        if ($district === "All") {
-            $district = "समस्त सरगुजा रेंज";
-        }
         $pdf = achievements_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "Judgement") {
         $data = data_generator($document, $date, $district);
-        if ($district === "All") {
-            $district = "समस्त सरगुजा रेंज";
-        }
         $pdf = judgements_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "Application") {
 
         $data = data_generator($document, $date, $district);
-        if ($district === "All") {
-            $district = "समस्त सरगुजा रेंज";
-        }
         $pdf = application_pdf($date, $district, $data);
         echo $pdf;
 
     } elseif ($document == "Disposal") {
         $data = data_generator($document, $date, $district);
-        if ($district === "All") {
-            $district = "समस्त सरगुजा रेंज";
-        }
         $pdf = disposals_pdf($date, $district, $data);
         echo $pdf;
 
@@ -741,9 +717,6 @@ if ($doc_format == "excel") {
         $page5 = achievements_pdf($date, $district, $data, 0);
         $page6 = judgements_pdf($date, $district, $data, 0);
         $page7 = disposals_pdf($date, $district, $data, 0);
-        if ($district === "All") {
-            $district = "समस्त सरगुजा रेंज";
-        }
         $script = "<script src='https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js'></script>
     <script>
         function downloadpdf1() {
