@@ -1143,7 +1143,7 @@ function count_rape_cases(string $date, string $district): int|false
         $stmt->bind_param('ss', $date, $district);
     } else {
         $query = "SELECT COUNT(*) AS case_count FROM major_crimes 
-                  WHERE DATE(created_at) = ? AND AND penal_code IN (
+                  WHERE DATE(created_at) = ? AND penal_code IN (
                       SELECT penal_code FROM penal_codes WHERE type = 'IPC-Rape'
                   )";
         $stmt = $con->prepare($query);
@@ -1676,7 +1676,7 @@ function get_disposals(string $date, string $district, string $type): array
         $stmt = $con->prepare($query);
         $stmt->bind_param("ss", $date, $district);
     } else {
-        $query = "SELECT COUNT(*) as count FROM $table WHERE disposal_date = ? AND district = ?";
+        $query = "SELECT COUNT(*) as count FROM $table WHERE disposal_date = ?";
         $stmt = $con->prepare($query);
         $stmt->bind_param("s", $date);
     }
@@ -1752,25 +1752,53 @@ function get_old_disposals(string $date, string $district, string $type): array
     $row = $result->fetch_assoc();
     $count = $row['count'];
 
-    $query = "SELECT police_station FROM police_stations WHERE district = ?";
-    $stmt = $con->prepare($query);
-    $stmt->bind_param("s", $district);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $police_stations = array();
-    while ($row = $result->fetch_assoc()) {
-        $police_stations[] = $row['police_station'];
-    }
+    if ($district === "All") {
+        $disposals = array();
+        foreach (districts() as $dist) {
+            $district = $dist['district'];
 
-    $disposals = array();
-    foreach ($police_stations as $police_station) {
-        $query = "SELECT COUNT(*) as count FROM $table WHERE disposal_date < ? AND district = ? AND police_station = ?  AND YEAR(disposal_date) = YEAR(?)";
+            $query = "SELECT police_station FROM police_stations WHERE district = ?";
+            $stmt = $con->prepare($query);
+            $stmt->bind_param("s", $district);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $police_stations = array();
+            while ($row = $result->fetch_assoc()) {
+                $police_stations[] = $row['police_station'];
+            }
+
+            foreach ($police_stations as $police_station) {
+                $query = "SELECT COUNT(*) as count FROM $table WHERE disposal_date < ? AND district = ? AND police_station = ?  AND YEAR(disposal_date) = YEAR(?)";
+                $stmt = $con->prepare($query);
+                $stmt->bind_param("ssss", $date, $district, $police_station, $date);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                $disposals[$police_station] = $row['count'];
+            }
+        }
+    } else {
+
+        $query = "SELECT police_station FROM police_stations WHERE district = ?";
         $stmt = $con->prepare($query);
-        $stmt->bind_param("ssss", $date, $district, $police_station, $date);
+        $stmt->bind_param("s", $district);
         $stmt->execute();
         $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        $disposals[$police_station] = $row['count'];
+        $police_stations = array();
+        while ($row = $result->fetch_assoc()) {
+            $police_stations[] = $row['police_station'];
+        }
+
+        $disposals = array();
+        foreach ($police_stations as $police_station) {
+            $query = "SELECT COUNT(*) as count FROM $table WHERE disposal_date < ? AND district = ? AND police_station = ?  AND YEAR(disposal_date) = YEAR(?)";
+            $stmt = $con->prepare($query);
+            $stmt->bind_param("ssss", $date, $district, $police_station, $date);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            $disposals[$police_station] = $row['count'];
+        }
     }
 
     return $disposals;
