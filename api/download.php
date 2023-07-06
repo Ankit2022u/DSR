@@ -136,12 +136,29 @@ $document = $_POST['document_type'];
 $date = $_POST['dsr_date'];
 $district = $_POST['district'];
 
-// Checking the format of downloading the file
+// Checking the format and downloading the file
 if ($doc_format == "excel") {
 
-    // Major crime download
-    if (isset($_POST['major_crime_download'])) {
+    // all and disposal are left
+
+    // summary section -- these will be downloaded as pdf
+    if ($document == "Summary") {
+        $data = data_generator($document, $date, $district);
+        $pdf = summary_pdf($date, $district, $data);
+        echo $pdf;
+    }
+
+    // application download -- these will be downloaded as pdf
+    else if ($document == "Application") {
+        $data = data_generator($document, $date, $district);
+        $pdf = application_pdf($date, $district, $data);
+        echo $pdf;
+    }
+
+    // major crime download
+    else if ($document == "MajorCrime") {
         $output_major_crimes = $_SESSION['major_crimes'];
+        echo $output_major_crimes;
         $districts = get_districts();
         $html = "<table style='vertical-align:middle;'>";
         foreach ($districts as $dist) {
@@ -243,8 +260,8 @@ if ($doc_format == "excel") {
         echo $html;
     }
 
-    // Minor crime download
-    if (isset($_POST['minor_crime_download'])) {
+    // Minor crime download - error in these section
+    else if ($document == "MinorCrime") {
         $output_minor_crimes = $_SESSION['minor_crimes'];
         $districts = get_districts();
         $top_row = ["41(1) जा. फौ", "102 जा. फौ", "109 जा. फौ", "110 जा. फौ", "145 जा. फौ", "151 जा. फौ", "107,116 जा. फौ", "सट्टा", "जुआ एक्ट", "आव. एक्ट", "नारको", "आर्म्स. एक्ट", "एम. वी. एक्ट"];
@@ -319,7 +336,7 @@ if ($doc_format == "excel") {
     }
 
     // Ongoing crime download
-    if (isset($_POST['ongoing_case_download'])) {
+    else if ($document == "Crime") {
         $output_ongoing_cases = $_SESSION['ongoing_cases'];
         $html = "<table style='border:1px solid black; border-collapse: collapse; vertical-align:middle;'>
                     <tr>
@@ -390,7 +407,7 @@ if ($doc_format == "excel") {
     }
 
     // Dead body download
-    if (isset($_POST['dead_body_download'])) {
+    else if ($document == "Deadbody") {
         $output_dead_bodies = $_SESSION['dead_bodies'];
         $districts = get_districts();
         $html = "<table style='vertical-align:middle;'>";
@@ -482,7 +499,7 @@ if ($doc_format == "excel") {
     }
 
     // Important achievement download
-    if (isset($_POST['important_achievement_download'])) {
+    else if ($document == "Achievement") {
         $output_important_achievements = $_SESSION['important_achievements'];
         $districts = get_districts();
         $html = "<table style='vertical-align:middle;'>
@@ -564,7 +581,7 @@ if ($doc_format == "excel") {
     }
 
     // Court Judgment download
-    if (isset($_POST['court_judgement_download'])) {
+    else if ($document == "Judgement") {
         $output_court_judgements = $_SESSION['court_judgements'];
         $districts = get_districts();
         $html = "<table style='vertical-align:middle;'>";

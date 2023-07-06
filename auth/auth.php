@@ -4,6 +4,7 @@ require '../api/dbcon.php';
 session_start();
 
 if (isset($_POST['login'])) {
+    // echo ($_POST['login']);
 
     $user_type = mysqli_real_escape_string($con, $_POST['user_type']);
     $user_id = mysqli_real_escape_string($con, $_POST['user_id']);
