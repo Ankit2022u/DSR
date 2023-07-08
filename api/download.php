@@ -29,8 +29,6 @@ function data_generator($document, $date, $district)
 
         $total = sum_elements($data);
         $data['total'] = $total;
-
-
     } elseif ($document == "MinorCrime") {
         $data['crime_sum'] = get_minor_crimes($date, $district);
         if ($district === "All") {
@@ -41,22 +39,16 @@ function data_generator($document, $date, $district)
             }
         }
         $data['penal_codes'] = array_merge(get_penal_codes('Minor-Act'), get_penal_codes('Restricted'));
-
     } elseif ($document == "MajorCrime") {
         $data['major_crimes'] = get_major_crimes($date, $district);
-
     } elseif ($document == "Crime") {
         $data['crimes'] = get_crimes($date, $district);
-
     } elseif ($document == "Deadbody") {
         $data['deadbodies'] = get_dead_bodies($date, $district);
-
     } elseif ($document == "Achievement") {
         $data['achievements'] = get_important_achievements($date, $district);
-
     } elseif ($document == "Judgement") {
         $data['judgements'] = get_court_judgements($date, $district);
-
     } elseif ($document == "Application") {
 
         $data['gangrape_count'] = count_gangrape_cases($date, $district);
@@ -72,7 +64,6 @@ function data_generator($document, $date, $district)
         }
 
         $data['restricted_cases_count'] = sum_elements($rdata);
-
     } elseif ($document == "Disposal") {
         $data['disposals_crime_old'] = get_old_disposals($date, $district, 'crime');
         $data['disposals_crime'] = get_disposals($date, $district, 'crime');
@@ -80,7 +71,6 @@ function data_generator($document, $date, $district)
         $data['disposals_deadbody'] = get_disposals($date, $district, 'deadbody');
         $data['disposals_complain_old'] = array();
         $data['disposals_complain'] = array();
-
     }
     // Condition when All is selected
     else {
@@ -126,7 +116,6 @@ function data_generator($document, $date, $district)
         $data['disposals_deadbody'] = get_disposals($date, $district, 'deadbody');
         $data['disposals_complain_old'] = array();
         $data['disposals_complain'] = array();
-
     }
     return $data;
 }
@@ -140,10 +129,13 @@ $district = $_POST['district'];
 if ($doc_format == "excel") {
 
     // Major crime download
-    if (isset($_POST['major_crime_download'])) {
-        $output_major_crimes = $_SESSION['major_crimes'];
-        $districts = get_districts();
+    if ($document == "MajorCrime") {
+        // $output_major_crimes = $_SESSION['major_crimes'];
+        // $districts = get_districts();
         $html = "<table style='vertical-align:middle;'>";
+        if ($district == "All") {
+        }
+
         foreach ($districts as $dist) {
             $distt = $dist['district'];
             $html .= "<tr>
@@ -662,48 +654,39 @@ if ($doc_format == "excel") {
         $data = data_generator($document, $date, $district);
         $pdf = summary_pdf($date, $district, $data);
         echo $pdf;
-
     } elseif ($document == "MinorCrime") {
         $data = data_generator($document, $date, $district);
         $pdf = minor_crime_pdf($date, $district, $data);
         echo $pdf;
-
     } elseif ($document == "MajorCrime") {
         $data = data_generator($document, $date, $district);
         $pdf = major_crime_pdf($date, $district, $data);
         echo $pdf;
-
     } elseif ($document == "Crime") {
         $data = data_generator($document, $date, $district);
         $pdf = crime_pdf($date, $district, $data);
         echo $pdf;
-
     } elseif ($document == "Deadbody") {
         $data = data_generator($document, $date, $district);
         $pdf = deadbody_pdf($date, $district, $data);
         echo $pdf;
-
     } elseif ($document == "Achievement") {
         $data = data_generator($document, $date, $district);
         $pdf = achievements_pdf($date, $district, $data);
         echo $pdf;
-
     } elseif ($document == "Judgement") {
         $data = data_generator($document, $date, $district);
         $pdf = judgements_pdf($date, $district, $data);
         echo $pdf;
-
     } elseif ($document == "Application") {
 
         $data = data_generator($document, $date, $district);
         $pdf = application_pdf($date, $district, $data);
         echo $pdf;
-
     } elseif ($document == "Disposal") {
         $data = data_generator($document, $date, $district);
         $pdf = disposals_pdf($date, $district, $data);
         echo $pdf;
-
     }
     // Condition when All is selected
     else {
@@ -890,7 +873,6 @@ if ($doc_format == "excel") {
             </body>
             </html>';
     }
-
 }
 ?>
 

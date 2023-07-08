@@ -5,14 +5,26 @@ function summary_pdf($date, $district, $data, $type = 1)
     <script>
         function downloadpdf() {
             const data = document.getElementById('data');
-            const options = {
-                margin: [0, 0, 0, 0],
+            
+
+            const opt = {
+                margin: 0,
                 filename: 'Summary-" . $district . " (" . $date . ").pdf',
                 image: { type: 'jpeg', quality: 1 },
                 html2canvas: { scale: 4 },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-            html2pdf().set(options).from(data).save();
+                pagebreak: { mode: ['avoid-all'] }, // Optional: Avoid page breaks within table rows
+                html2pdf: { 
+                  margin: { top: 10, right: 0, bottom: 10, left: 0 },
+                  filename: 'Summary-" . $district . " (" . $date . ").pdf',
+                  image: { type: 'jpeg', quality: 1 },
+                html2canvas: { scale: 4 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                }
+              };
+            
+            
+            html2pdf().set(opt).from(data).save();
         }
     </script>";
 
@@ -397,12 +409,20 @@ function application_pdf($date, $district, $data, $type = 1)
 function downloadpdf() {
     const element = document.getElementById("data");
     const opt = {
-        margin: [0, 0, 0, 0],
+        margin: 0,
         filename: "Application-' . $district . ' (' . $date . ').pdf",
         image: { type: "jpeg", quality: 1 },
         html2canvas: { scale: 4 },
-        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-    }
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+        pagebreak: { mode: ["avoid-all"] }, // Optional: Avoid page breaks within table rows
+        html2pdf: { 
+          margin: { top: 10, right: 0, bottom: 10, left: 0 },
+          filename: "Application-' . $district . ' (' . $date . ').pdf",
+          image: { type: "jpeg", quality: 1 },
+          html2canvas: { scale: 4 },
+          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+        }
+      };
 
     html2pdf().set(opt).from(element).save();
 }
@@ -545,7 +565,6 @@ function downloadpdf() {
     } else {
         return $html;
     }
-
 }
 
 function minor_crime_pdf($date, $district, $data, $type = 1)
@@ -553,13 +572,22 @@ function minor_crime_pdf($date, $district, $data, $type = 1)
     $script = '<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script><script>
     function downloadpdf() {
         const element = document.getElementById("data");
+
         const opt = {
-            margin: [0, 0, 0, 0],
+            margin: 0,
             filename: "Minor Crime-' . $district . ' (' . $date . ').pdf",
             image: { type: "jpeg", quality: 1 },
             html2canvas: { scale: 4 },
-            jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }
-        }
+            jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
+            pagebreak: { mode: ["avoid-all"] }, // Optional: Avoid page breaks within table rows
+            html2pdf: { 
+              margin: { top: 10, right: 0, bottom: 10, left: 0 },
+              filename: "Minor Crime-' . $district . ' (' . $date . ').pdf",
+              image: { type: "jpeg", quality: 1 },
+              html2canvas: { scale: 4 },
+              jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }
+            }
+          };
     
         html2pdf().set(opt).from(element).save();
     }
@@ -687,13 +715,23 @@ function major_crime_pdf($date, $district, $data, $type = 1)
     $script = '<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script><script>
     function downloadpdf() {
         const element = document.getElementById("data");
+
         const opt = {
-            margin: [0, 0, 0, 0],
+            margin: 0,
             filename: "Major Crime-' . $district . ' (' . $date . ').pdf",
             image: { type: "jpeg", quality: 1 },
             html2canvas: { scale: 4 },
-            jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }
-        }
+            jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
+            pagebreak: { mode: ["avoid-all"] }, // Optional: Avoid page breaks within table rows
+            html2pdf: { 
+              margin: { top: 10, right: 0, bottom: 10, left: 0 },
+              filename: "Major Crime-' . $district . ' (' . $date . ').pdf",
+              image: { type: "jpeg", quality: 1 },
+              html2canvas: { scale: 4 },
+              jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }
+            }
+          };
+
     
         html2pdf().set(opt).from(element).save();
     }
@@ -730,19 +768,19 @@ function major_crime_pdf($date, $district, $data, $type = 1)
     <h2 style="font-size: 21px;">जिला — ' . $district . '</h2>
     <table class="border" style="margin:auto; margin-top:10px; min-width:285mm;">
     <tr>
-        <th class="border">क्र.</th>
-        <th class="border">पुलिस थाना</th>
-        <th class="border">अ.क्र.</th>
-        <th class="border">धारा</th>
-        <th class="border">प्रार्थी का नाम व पता</th>
-        <th class="border">घटना दिनांक व समय</th>
-        <th class="border">घटना स्थल</th>
-        <th class="border">सूचना दिनाक व समय</th>
-        <th class="border">कायमीकर्ता</th>
-        <th class="border">आरोपी / संदिग्ध का नाम व पता</th>
-        <th class="border">गिरफ्तारी दिनाक व समय</th>
-        <th class="border">मृतक - मृतिका / आहत - आहता / पीड़ित - पीड़िता का नाम</th>
-        <th class="border">विवरण</th>
+        <th class="border" style="width: 3%;">क्र.</th>
+        <th class="border" style="width: 4%;">पुलिस <br>थाना</th>
+        <th class="border" style="width: 4%;">अप.क्र.</th>
+        <th class="border" style="width: 4%;">धारा</th>
+        <th class="border" style="width: 8%;">प्रार्थी का नाम व पता</th>
+        <th class="border" style="width: 8%;">घटना दिनांक<br> व समय</th>
+        <th class="border" style="width: 5%;">घटना स्थल</th>
+        <th class="border" style="width: 8%;">सूचना दिनाक<br> व समय</th>
+        <th class="border" style="width: 8%;">कायमीकर्ता</th>
+        <th class="border" style="width: 10%;">आरोपी / संदिग्ध का नाम व पता</th>
+        <th class="border" style="width: 8%;">गिरफ्तारी दिनाक<br> व समय</th>
+        <th class="border" style="width: 10%;">मृतक - मृतिका / आहत - आहता / पीड़ित - पीड़िता का नाम</th>
+        <th class="border" style="width: 40%;">विवरण</th>
     </tr>
     ';
 
@@ -867,19 +905,19 @@ function crime_pdf($date, $district, $data, $type = 1)
     <h2 style="font-size: 21px;">जिला — ' . $district . '</h2>
     <table class="border" style="margin:auto; margin-top:10px; min-width:285mm;">
     <tr>
-        <th class="border">क्र.</th>
-        <th class="border">पुलिस थाना</th>
-        <th class="border">अ.क्र.</th>
-        <th class="border">धारा</th>
-        <th class="border">प्रार्थी का नाम व पता</th>
-        <th class="border">घटना दिनांक व समय</th>
-        <th class="border">घटना स्थल</th>
-        <th class="border">सूचना दिनाक व समय</th>
-        <th class="border">कायमीकर्ता</th>
-        <th class="border">आरोपी / संदिग्ध का नाम व पता</th>
-        <th class="border">गिरफ्तारी दिनाक व समय</th>
-        <th class="border">मृतक - मृतिका / आहत - आहता / पीड़ित - पीड़िता का नाम</th>
-        <th class="border">विवरण</th>
+        <th class="border" style="width: 3%;">क्र.</th>
+        <th class="border" style="width: 4%;">पुलिस <br>थाना</th>
+        <th class="border" style="width: 4%;">अप.क्र.</th>
+        <th class="border" style="width: 4%;">धारा</th>
+        <th class="border" style="width: 8%;">प्रार्थी का नाम व पता</th>
+        <th class="border" style="width: 8%;">घटना दिनांक<br> व समय</th>
+        <th class="border" style="width: 5%;">घटना स्थल</th>
+        <th class="border" style="width: 8%;">सूचना दिनाक<br> व समय</th>
+        <th class="border" style="width: 8%;">कायमीकर्ता</th>
+        <th class="border" style="width: 10%;">आरोपी / संदिग्ध का नाम व पता</th>
+        <th class="border" style="width: 8%;">गिरफ्तारी दिनाक<br> व समय</th>
+        <th class="border" style="width: 10%;">मृतक - मृतिका / आहत - आहता / पीड़ित - पीड़िता का नाम</th>
+        <th class="border" style="width: 40%;">विवरण</th>
     </tr>
     ';
 
@@ -963,18 +1001,27 @@ function deadbody_pdf($date, $district, $data, $type = 1)
     function downloadpdf() {
         const element = document.getElementById("data");
         const opt = {
-            margin: [0, 0, 0, 0],
+          margin: 0,
+          filename: "Deadbody-' . $district . ' (' . $date . ').pdf",
+          image: { type: "jpeg", quality: 1 },
+          html2canvas: { scale: 4 },
+          jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
+          pagebreak: { mode: ["avoid-all"] }, // Optional: Avoid page breaks within table rows
+          html2pdf: { 
+            margin: { top: 10, right: 0, bottom: 10, left: 0 },
             filename: "Deadbody-' . $district . ' (' . $date . ').pdf",
             image: { type: "jpeg", quality: 1 },
             html2canvas: { scale: 4 },
             jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }
-        }
-    
+          }
+        };
+      
         html2pdf().set(opt).from(element).save();
-    }
+      }
     </script>';
 
     $style = '<style>
+    
     *{
         font-size: 15px;
     }
@@ -1003,18 +1050,19 @@ function deadbody_pdf($date, $district, $data, $type = 1)
     $html = "<h1 style='font-size: 21px; text-decoration:underline; font-weight: 600; text-align: center; margin-bottom: 20px;'>जिला " . $district . " मर्ग की जानकारी दिनाक - " . $date . " प्रेषित दिनाक " . get_next_date($date) . "</h1>
     <table class='border' style='margin:auto; margin-top:10px; min-width:285mm;'>
     <tr>
-        <th class='border'>क्र.</th>
-        <th class='border'>पुलिस थाना</th>
-        <th class='border'>मर्ग क्रमांक</th>
-        <th class='border'>धारा</th>
-        <th class='border'>घटना दिनांक व समय</th>
-        <th class='border'>घटना स्थान</th>
-        <th class='border'>सूचना दिनांक व समय</th>
-        <th class='border'>प्रार्थी</th>
-        <th class='border'>मृतक/मृतिका का नाम</th>
-        <th class='border'>कायमीकर्ता का नाम</th>
-        <th class='border'>सबब मौत</th>
+        <th class='border' style='width: 3%;'>क्र.</th>
+        <th class='border' style='width: 4%;'>पुलिस <br>थाना</th>
+        <th class='border' style='width: 4%;'>मर्ग <br> क्रमांक</th>
+        <th class='border' style='width: 4%;'>धारा</th>
+        <th class='border' style='width: 8%;'>घटना दिनांक<br> व समय</th>
+        <th class='border' style='width: 5%;'>घटना स्थान</th>
+        <th class='border' style='width: 8%;'>सूचना दिनांक<br> व समय</th>
+        <th class='border' style='width: 10%;'>प्रार्थी</th>
+        <th class='border' style='width: 10%;'>मृतक/मृतिका<br> का नाम</th>
+        <th class='border' style='width: 10%;'>कायमीकर्ता<br>का नाम</th>
+        <th class='border' style='width: 40%;'>सबब मौत</th>
     </tr>
+
     ";
 
     $i = 1;
@@ -1084,13 +1132,23 @@ function achievements_pdf($date, $district, $data, $type = 1)
     $script = '<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script><script>
     function downloadpdf() {
         const element = document.getElementById("data");
+
         const opt = {
-            margin: [0, 0, 0, 0],
+            margin: 0,
             filename: "Achievements-' . $district . ' (' . $date . ').pdf",
             image: { type: "jpeg", quality: 1 },
             html2canvas: { scale: 4 },
-            jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }
-        }
+            jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
+            pagebreak: { mode: ["avoid-all"] }, // Optional: Avoid page breaks within table rows
+            html2pdf: { 
+              margin: { top: 10, right: 0, bottom: 10, left: 0 },
+              filename: "Achievements-' . $district . ' (' . $date . ').pdf",
+              image: { type: "jpeg", quality: 1 },
+              html2canvas: { scale: 4 },
+              jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }
+            }
+          };
+
     
         html2pdf().set(opt).from(element).save();
     }
@@ -1126,14 +1184,14 @@ function achievements_pdf($date, $district, $data, $type = 1)
     <h2 style='font-size: 17px; text-decoration:underline; font-weight: 600; text-align: center; margin-bottom: 20px;'> दिनाक - " . $date . " प्रेषित दिनाक " . get_next_date($date) . "</h2>
     <table class='border' style='margin:auto; margin-top:10px; min-width:285mm;'>
     <tr>
-        <th class='border'>क्र.</th>
-        <th class='border'>थाना/चौकी</th>
-        <th class='border'>गंभीर अपराधों में गिरफ्तारि / महत्वपूर्ण गिरफ्तारि</th>
-        <th class='border'>कोर्ट द्वारा दिए गये निर्णय (दोषमुक्त / सजा / जमानत /रद्द)</th>
-        <th class='border'>आपरेशन मुस्कान / गुम इंसान दस्तायी</th>
-        <th class='border'>डकैती / लुट / चोरी का खुलासा</th>
-        <th class='border'>विविध जैसे जन जागरुकता अभियान मे विशेष सफलता या प्राण रक्षा,गिरफ्तारी वारंटो की तमिलि आदि</th>
-        <th class='border'>धारा 102 के तहत कि गई कार्यवाही</th>
+        <th class='border' style='width: 3%;'>क्र.</th>
+        <th class='border' style='width: 5%;'>थाना/चौकी</th>
+        <th class='border' style='width: 17%;'>गंभीर अपराधों में गिरफ्तारि/ महत्वपूर्ण गिरफ्तारि</th>
+        <th class='border' style='width: 12%;'>कोर्ट द्वारा दिए गये<br> निर्णय (दोषमुक्त / सजा <br>/ जमानत /रद्द)</th>
+        <th class='border' style='width: 14%;'>आपरेशन मुस्कान / गुम इंसान दस्तायी</th>
+        <th class='border' style='width: 8%;'>डकैती / लुट /<br> चोरी का खुलासा</th>
+        <th class='border' style='width: 20%;'>विविध जैसे जन जागरुकता अभियान मे विशेष सफलता या प्राण रक्षा,गिरफ्तारी वारंटो की तमिलि आदि</th>
+        <th class='border' style='width: 7%'>धारा 102 के<br> तहत कि गई<br> कार्यवाही</th>
     </tr>
     ";
 
@@ -1190,18 +1248,28 @@ function achievements_pdf($date, $district, $data, $type = 1)
     }
 }
 
-function judgements_pdf($date, $district, $data, $type = 1)
+function judgements_pdf($date, $district, $data, $type = 1) //Court judgement() / कोर्ट का निर्णय
 {
     $script = '<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script><script>
     function downloadpdf() {
         const element = document.getElementById("data");
+
         const opt = {
-            margin: [0, 0, 0, 0],
+            margin: 0,
             filename: "Court Judgements-' . $district . ' (' . $date . ').pdf",
             image: { type: "jpeg", quality: 1 },
             html2canvas: { scale: 4 },
-            jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }
-        }
+            jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
+            pagebreak: { mode: ["avoid-all"] }, // Optional: Avoid page breaks within table rows
+            html2pdf: { 
+              margin: { top: 10, right: 0, bottom: 10, left: 0 },
+              filename: "Court Judgements-' . $district . ' (' . $date . ').pdf",
+              image: { type: "jpeg", quality: 1 },
+              html2canvas: { scale: 4 },
+              jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }
+            }
+          };
+
     
         html2pdf().set(opt).from(element).save();
     }
@@ -1237,15 +1305,15 @@ function judgements_pdf($date, $district, $data, $type = 1)
     <h2 style='font-size: 16px; text-decoration:underline; font-weight: 600; text-align: center; margin-bottom: 20px;'> दिनाक - " . $date . " प्रेषित दिनाक " . get_next_date($date) . "</h2>
     <table class='border' style='margin:auto; margin-top:10px; min-width:260mm;'>
     <tr>
-        <th class='border'>क्र.</th>
-        <th class='border'>थाना/चौकी</th>
-        <th class='border'>कोर्ट का नाम</th>
-        <th class='border'>अप. क्र.</th>
-        <th class='border'>धारा</th>
-        <th class='border' style='width:90px;'>कायमी दिनांक</th>
-        <th class='border'>आरोपी का नाम व पता</th>
-        <th class='border' style='width:90px;'>दिनांक</th>
-        <th class='border'>निर्णय</th>
+        <th class='border' style='width: 3%;'>क्र.</th>
+        <th class='border' style='width: 5%;'>थाना/चौकी</th>
+        <th class='border' style='width: 10%;'>कोर्ट का नाम</th>
+        <th class='border' style='width: 6%;'>अप. क्र.</th>
+        <th class='border' style='width: 6%;'>धारा</th>
+        <th class='border' style='width: 8%'>कायमी दिनांक</th>
+        <th class='border' style='width: 10%;'>आरोपी का नाम व पता</th>
+        <th class='border' style='width: 8%;'>दिनांक</th>
+        <th class='border' style='width: 40%;'>निर्णय</th>
     </tr>
     ";
 
@@ -1311,13 +1379,22 @@ function disposals_pdf($date, $district, $data, $type = 1)
     $script = '<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script><script>
                     function downloadpdf() {
                         const element = document.getElementById("data");
+
                         const opt = {
-                            margin: [0, 0, 0, 0],
+                            margin: 0,
                             filename: "Disposals-' . $district . ' (' . $date . ').pdf",
                             image: { type: "jpeg", quality: 1 },
                             html2canvas: { scale: 4 },
-                            jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }
-                        }
+                            jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
+                            pagebreak: { mode: ["avoid-all"] }, // Optional: Avoid page breaks within table rows
+                            html2pdf: { 
+                              margin: { top: 10, right: 0, bottom: 10, left: 0 },
+                              filename: "Disposals-' . $district . ' (' . $date . ').pdf",
+                              image: { type: "jpeg", quality: 1 },
+                              html2canvas: { scale: 4 },
+                              jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }
+                            }
+                          };
                     
                         html2pdf().set(opt).from(element).save();
                     }
@@ -1437,7 +1514,4 @@ function disposals_pdf($date, $district, $data, $type = 1)
     } else {
         return $html;
     }
-
 }
-
-?>
