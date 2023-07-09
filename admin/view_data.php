@@ -24,7 +24,7 @@ include('admin_header.php'); ?>
         <div class="main-content container col-md-9 col-sm-7">
             <?php
             if (isset($_SESSION['message'])) {
-                ?>
+            ?>
             <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
                 <strong>Information: </strong>
                 <?= $_SESSION['message']; ?>
@@ -217,15 +217,13 @@ include('admin_header.php'); ?>
 
                     <div class="col-md-6 col-lg-6 col-sm-12">
 
-                        <label>Select Format / दस्तावेज़ का फॉर्मेट<span class="required-star">*</span></label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="doc_format" id="excel" value="excel">
-                            <label class="form-check-label" for="excel">Excel</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="doc_format" id="pdf" value="pdf">
-                            <label class="form-check-label" for="pdf">PDF</label>
-                        </div>
+                        <label for="doc_format">Select Format / दस्तावेज़ का फॉर्मेट<span
+                                class="required-star">*</span></label>
+                        <select name="doc_format" id="doc_format" class="form-select">
+                            <option value="excel">Excel</option>
+                            <option value="pdf">PDF</option>
+                        </select>
+
 
                     </div>
 
