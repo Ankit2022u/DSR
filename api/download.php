@@ -149,7 +149,14 @@ if ($doc_format == "excel") {
         // $data['major_crimes'] = get_major_crimes($date, $district);
         $html = "<table style='vertical-align:middle;'>";
         $html .= "<tr>
-                        <th colspan=13 center style='font-size: 44px; border:1px solid black; border-collapse: collapse; height:75px; vertical-align:middle; text-align:center;'>$district के समस्त गंभीर अपराधो की जानकारी | $date </th>
+                        <th colspan=13 center style='font-size: 44px; border:1px solid black; border-collapse: collapse; height:75px; vertical-align:middle; text-align:center;'>";
+        if ($district == "All") {
+            $html .= 'समस्त जिला';
+        } else {
+            $html .= $district;
+        }
+
+        $html .= " में घटित गंभीर अपराधों की जानकारी (डी. एस. आर.) $date </th>
                     </tr>
                     <tr>
                         <th style='font-size: 28px;border:1px solid black; border-collapse: collapse; vertical-align:middle; vertical-align:middle; text-align:center; width:45px;'>क्र.</th>
@@ -322,7 +329,13 @@ if ($doc_format == "excel") {
     else if ($document == "Crime") {
         $html = "<table style='vertical-align:middle;'>";
         $html .= "<tr>
-                        <th colspan=13 center style='font-size: 44px; border:1px solid black; border-collapse: collapse; height:75px; vertical-align:middle; text-align:center;'>$district के समस्त अपराधो की जानकारी | $date </th>
+                        <th colspan=13 center style='font-size: 44px; border:1px solid black; border-collapse: collapse; height:75px; vertical-align:middle; text-align:center;'>";
+        if ($district == "All") {
+            $html .= 'समस्त जिला';
+        } else {
+            $html .= $district;
+        }
+        $html .= "में घटित सामान्य अपराधों की जानकारी (डी. एस. आर.)  $date </th>
                     </tr>
                     <tr>
                         <th style='font-size: 28px;border:1px solid black; border-collapse: collapse; vertical-align:middle; vertical-align:middle; text-align:center; width:45px;'>क्र.</th>
@@ -408,7 +421,13 @@ if ($doc_format == "excel") {
     else if ($document == "Deadbody") {
         $html = "<table style='vertical-align:middle;'>";
         $html .= "<tr>
-                        <th colspan=11 center style='font-size: 40px; border:1px solid black; border-collapse: collapse; vertical-align:middle; height:75px;'>$district के समस्त मर्ग की जानकारी | $date </th>
+                        <th colspan=11 center style='font-size: 40px; border:1px solid black; border-collapse: collapse; vertical-align:middle; height:75px;'>";
+        if ($district == "All") {
+            $html .= 'समस्त जिला';
+        } else {
+            $html .= $district;
+        }
+        $html .= "मर्ग की जानकारी | $date </th>
                     </tr>
                     <tr>
                     <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:45;'>क्र.</th>
@@ -636,12 +655,22 @@ if ($doc_format == "excel") {
         header('Content-Disposition: attachment; filename=court_judgements' . $date . '.xls');
         echo $html;
     } else {
-        //This is for all document create xml file 
+
+        // Process the message submission
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            // ... Process the message and any necessary validation ...
+
+            // Redirect to the previous page with a success message
+            $message = urlencode("All file not download at a time!");
+            $redirectUrl = $_SERVER["HTTP_REFERER"];
+            header("Location: " . $redirectUrl);
+            exit;
+        }
     }
 
     // <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle;'>
-    //                             " . $row['sub_division'] . " 
-    //                         </td>
+    // " . $row['sub_division'] . "
+    // </td>
 
 } elseif ($doc_format == "pdf") {
 
@@ -698,177 +727,217 @@ if ($doc_format == "excel") {
         $page6 = judgements_pdf($date, $district, $data, 0);
         $page7 = disposals_pdf($date, $district, $data, 0);
         $script = "<script src='https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js'></script>
-    <script>
-        function downloadpdf1() {
-            const data = document.getElementById('pdata');
-            const options1 = {
-                margin: [0, 0, 0, 0],
-                filename: 'Summaries-" . $district . " (" . $date . ").pdf',
-                image: { type: 'jpeg', quality: 1 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
+<script>
+function downloadpdf1() {
+    const data = document.getElementById('pdata');
+    const options1 = {
+        margin: [0, 0, 0, 0],
+        filename: 'Summaries-" . $district . " (" . $date . ").pdf',
+        image: {
+            type: 'jpeg',
+            quality: 1
+        },
+        html2canvas: {
+            scale: 2
+        },
+        jsPDF: {
+            unit: 'mm',
+            format: 'a4',
+            orientation: 'portrait'
+        }
+    };
 
-            html2pdf().set(options1).from(data).save();
+    html2pdf().set(options1).from(data).save();
+}
+
+function downloadpdf2() {
+    const data = document.getElementById('ldata');
+    const options2 = {
+        margin: [0, 0, 0, 0],
+        filename: 'Details-" . $district . " (" . $date . ").pdf',
+        image: {
+            type: 'jpeg',
+            quality: 1
+        },
+        html2canvas: {
+            scale: 2
+        },
+        jsPDF: {
+            unit: 'mm',
+            format: 'a4',
+            orientation: 'landscape'
         }
-        function downloadpdf2() {
-            const data = document.getElementById('ldata');
-            const options2 = {
-                margin: [0, 0, 0, 0],
-                filename: 'Details-" . $district . " (" . $date . ").pdf',
-                image: { type: 'jpeg', quality: 1 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
-            };
-            html2pdf().set(options2).from(data).save();
-        }
-    </script>";
+    };
+    html2pdf().set(options2).from(data).save();
+}
+</script>";
 
         $style = '<style>
-            /* All */
-            body {
-                background-color: black;
-            }
+/* All */
+body {
+    background-color: black;
+}
 
-            .notcenter {
-                text-align: start;
-            }
+.notcenter {
+    text-align: start;
+}
 
-            .center {
-                text-align: center;
-                padding : 10px;
-            }
+.center {
+    text-align: center;
+    padding: 10px;
+}
 
-            .page {
-                margin: 0 auto;
-                background-color: white;
-                margin-bottom: 10px !important;
-                page-break-after: always; /* Add page break after each page */
-            }
-            .border{
-                border: 1px solid black !important;
-                border-collapse: collapse;
-                vertical-align: middle;
-                text-align: center; 
-            }
+.page {
+    margin: 0 auto;
+    background-color: white;
+    margin-bottom: 10px !important;
+    page-break-after: always;
+    /* Add page break after each page */
+}
 
-            /* summary */
-            #ppage1, #ppage2 {
-                padding: 15mm 18mm 30mm 13mm;
-                width: 210mm;
-                min-height: 297mm;
-            }
-            #ppage1 td, #ppage1 th {
-                border: 1px solid black;
-                text-align: center;
-                
-            }
-            #ppage1 *, #page2 *, #page3 *, #page5 *, #page6 *{
-                font-size: 14px;
-            }
+.border {
+    border: 1px solid black !important;
+    border-collapse: collapse;
+    vertical-align: middle;
+    text-align: center;
+}
 
-            /* application */
+/* summary */
+#ppage1,
+#ppage2 {
+    padding: 15mm 18mm 30mm 13mm;
+    width: 210mm;
+    min-height: 297mm;
+}
 
-            #ppage2 * , #page7 *{
-                font-size: 17px;
-            }
-        
-            #ppage2 #t1 tr,
-            #ppage2 #t1 th,
-            #ppage2 #t1 td {
-                border: 1px solid black;
-                text-align: center;
-            }
-        
-            #ppage2 .notcenter {
-                text-align: left !important;
-                padding-left: 3px;
-            }
-            #ppage2 .marginright{
-                padding-left: 5px;
-                padding-right: 15px;
-            }
-            
-            /* minor crime */
-            #page1 {
-                padding: 22mm 8mm 22mm 8mm;
-                width: 297mm;
-                min-height: 210mm;
-            }
-            #page1 *{
-                font-size: 12px;
-            }
-            
-            /* crime */
-            #page3 , #page2, #page4, #page5{
-                padding: 13mm 5mm 13mm 5mm;
-                width: 297mm;
-                min-height: 210mm;
-            }
+#ppage1 td,
+#ppage1 th {
+    border: 1px solid black;
+    text-align: center;
 
-            /* deadbody */
-            #page4 *{
-                font-size: 15px;
-            }
+}
 
-            /* jugdements */
-            
-            #page6 , #page7 {
-                padding: 20mm 20mm 14mm 14mm;
-                width: 297mm;
-                min-height: 210mm;
-            }
-                </style>';
+#ppage1 *,
+#page2 *,
+#page3 *,
+#page5 *,
+#page6 * {
+    font-size: 14px;
+}
 
-        echo '<!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>DSR PDF</title>
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-                integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-                ' . $style .
+/* application */
+
+#ppage2 *,
+#page7 * {
+    font-size: 17px;
+}
+
+#ppage2 #t1 tr,
+#ppage2 #t1 th,
+#ppage2 #t1 td {
+    border: 1px solid black;
+    text-align: center;
+}
+
+#ppage2 .notcenter {
+    text-align: left !important;
+    padding-left: 3px;
+}
+
+#ppage2 .marginright {
+    padding-left: 5px;
+    padding-right: 15px;
+}
+
+/* minor crime */
+#page1 {
+    padding: 22mm 8mm 22mm 8mm;
+    width: 297mm;
+    min-height: 210mm;
+}
+
+#page1 * {
+    font-size: 12px;
+}
+
+/* crime */
+#page3,
+#page2,
+#page4,
+#page5 {
+    padding: 13mm 5mm 13mm 5mm;
+    width: 297mm;
+    min-height: 210mm;
+}
+
+/* deadbody */
+#page4 * {
+    font-size: 15px;
+}
+
+/* jugdements */
+
+#page6,
+#page7 {
+    padding: 20mm 20mm 14mm 14mm;
+    width: 297mm;
+    min-height: 210mm;
+}
+</style>';
+
+        echo '
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSR PDF</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    ' . $style .
             $script . '
-            </head>
-            <body>
-            <div class="center"><button class="btn btn-lg btn-danger" onclick="downloadpdf1()">Print Summary</button></div>
-            <br/>
-            <div class="center"><button class="btn btn-lg btn-primary" onclick="downloadpdf2()">Print Detail</button></div>
-            <div class="main" id="pdata">
-                <div id="ppage1" class="page">
-                    ' . $ppage1 . '
-                </div>
-                <div id="ppage2" class="page">
-                    ' . $ppage2 . '
-                </div>
-            </div>
-            <div class="main" id="ldata">
-                <div id="page1" class="page">
-                    ' . $page1 . '
-                </div>
-                <div id="page2" class="page">
-                    ' . $page2 . '
-                </div>
-                <div id="page3" class="page">
-                    ' . $page3 . '
-                </div>
-                <div id="page4" class="page">
-                    ' . $page4 . '
-                </div>
-                <div id="page5" class="page">
-                    ' . $page5 . '
-                </div>
-                <div id="page6" class="page">
-                    ' . $page6 . '
-                </div>
-                <div id="page7" class="page">
-                    ' . $page7 . '
-                </div>
-            </div>
-            </body>
-            </html>';
+</head>
+
+<body>
+    <div class="center"><button class="btn btn-lg btn-danger" onclick="downloadpdf1()">Print Summary</button></div>
+    <br />
+    <div class="center"><button class="btn btn-lg btn-primary" onclick="downloadpdf2()">Print Detail</button></div>
+    <div class="main" id="pdata">
+        <div id="ppage1" class="page">
+            ' . $ppage1 . '
+        </div>
+        <div id="ppage2" class="page">
+            ' . $ppage2 . '
+        </div>
+    </div>
+    <div class="main" id="ldata">
+        <div id="page1" class="page">
+            ' . $page1 . '
+        </div>
+        <div id="page2" class="page">
+            ' . $page2 . '
+        </div>
+        <div id="page3" class="page">
+            ' . $page3 . '
+        </div>
+        <div id="page4" class="page">
+            ' . $page4 . '
+        </div>
+        <div id="page5" class="page">
+            ' . $page5 . '
+        </div>
+        <div id="page6" class="page">
+            ' . $page6 . '
+        </div>
+        <div id="page7" class="page">
+            ' . $page7 . '
+        </div>
+    </div>
+</body>
+
+</html>';
     }
 }
 ?>
