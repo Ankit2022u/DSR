@@ -55,7 +55,7 @@ $total_users = count_users();
                     </div>
                 </div>
 
-                <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6">
+                <!-- <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6">
                     <div class="card-header">
                         <a href="ocf.php" class="btn btn-outline-primary add-icon"><i class="fas fa-plus-square"></i></i>
                             <span>Add ongoing case</span></a>
@@ -63,10 +63,10 @@ $total_users = count_users();
                     <div class="card-body bg-primary">
                         <h5 class="card-title">Total Ongoing Cases: </h5>
                         <p class="card-text">
-                            <?= $total_ongoing_cases; ?>
+                            ?= $total_ongoing_cases; ?>
                         </p>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="card text-white mb-3 col-md-4 col-sm-12 col-xs-6">
                     <div class="card-header">

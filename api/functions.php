@@ -748,7 +748,7 @@ function get_acts_count($start_date, $end_date, $act, $police_station)
 function get_court_judgements(string $date, string $district): array
 {
     global $con;
-    if ($district = "All") {
+    if ($district == "All") { // Use '==' for comparison, not '='
         $query = "SELECT * FROM court_judgements WHERE DATE(created_at) = ?";
         $stmt = $con->prepare($query);
         $stmt->bind_param("s", $date);
@@ -771,6 +771,7 @@ function get_court_judgements(string $date, string $district): array
     }
 }
 
+
 /**
  * Get data from the 'important_achievements' table for a specific date and district.
  *
@@ -781,7 +782,7 @@ function get_court_judgements(string $date, string $district): array
 function get_important_achievements(string $date, string $district): array
 {
     global $con;
-    if ($district = "All") {
+    if ($district == "All") { // Use '==' for comparison, not '='
         $query = "SELECT * FROM important_achievements WHERE DATE(created_at) = ?";
         $stmt = $con->prepare($query);
         $stmt->bind_param("s", $date);
@@ -804,6 +805,7 @@ function get_important_achievements(string $date, string $district): array
     }
 }
 
+
 /**
  * Get data from the 'dead_bodies' table for a specific date and district.
  *
@@ -814,7 +816,7 @@ function get_important_achievements(string $date, string $district): array
 function get_dead_bodies(string $date, string $district): array
 {
     global $con;
-    if ($district = "All") {
+    if ($district == "All") { // Use '==' for comparison, not '='
         $query = "SELECT * FROM dead_bodies WHERE DATE(created_at) = ?";
         $stmt = $con->prepare($query);
         $stmt->bind_param("s", $date);
@@ -837,6 +839,7 @@ function get_dead_bodies(string $date, string $district): array
     }
 }
 
+
 /**
  * Get data from the 'major_crimes' table for a specific date and district.
  *
@@ -847,7 +850,7 @@ function get_dead_bodies(string $date, string $district): array
 function get_major_crimes(string $date, string $district): array
 {
     global $con;
-    if ($district = "All") {
+    if ($district == "All") { // Use '==' for comparison, not '='
         $query = "SELECT * FROM major_crimes WHERE DATE(created_at) = ? AND is_major_crime = 1";
         $stmt = $con->prepare($query);
         $stmt->bind_param("s", $date);
@@ -869,6 +872,7 @@ function get_major_crimes(string $date, string $district): array
     }
 }
 
+
 /**
  * Get data from the 'crimes' table for a specific date and district.
  *
@@ -879,7 +883,7 @@ function get_major_crimes(string $date, string $district): array
 function get_crimes(string $date, string $district): array
 {
     global $con;
-    if ($district = "All") {
+    if ($district == "All") { // Use '==' for comparison, not '='
         $query = "SELECT * FROM major_crimes WHERE DATE(created_at) = ? AND is_major_crime = 0";
         $stmt = $con->prepare($query);
         $stmt->bind_param("s", $date);
@@ -902,6 +906,7 @@ function get_crimes(string $date, string $district): array
         return [];
     }
 }
+
 
 function get_act_count_by_police_station($date, $act, $police_station)
 {
@@ -1776,5 +1781,150 @@ function get_old_disposals(string $date, string $district, string $type): array
     return $disposals;
 }
 
+function generateCourtJudgementsExcel($date, $district)
+{
+    $html = "<table style='vertical-align:middle;'>";
+    $html .= "<tr>
+                    <th colspan=9 center style='font-size: 40px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; height:75;'>कोर्ट के निर्णय | $date </th>
+                </tr>
+                <tr style='height:100px'>
+                    <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:45px;'>क्र.</th>
+                    <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:200px;'>थाना/चौकी</th>
+                    <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:250px;'>कोर्ट का नाम</th>
+                    <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:100px'>अप. क्र.</th>
+                    <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:250px;'>धारा</th>
+                    <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:200px;'>कायमी दिनांक</th>
+                    <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:330px;'>आरोपी का नाम व पता</th>
+                    <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:135px;'>दिनांक</th>
+                    <th style='font-size: 28px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:200px;'>निर्णय</th>
+                </tr>";
+    $i = 0;
+    $found_judgements = false;
+    foreach (get_court_judgements($date, $district) as $row) {
+        $found_judgements = true;
+        $html .= "<tr>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                            " . $i++ . "
+                        </td>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                            " . $row['police_station'] . " 
+                        </td>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                            " . $row['court_name'] . " 
+                        </td>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                            " . $row['crime_number'] . " 
+                        </td>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                        " . $row['penal_code'] . " 
+                        </td>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                        " . $row['result_date'] . " 
+                        </td>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                            " . $row['culprit_name'] . " " . $row['culprit_address'] . " 
+                        </td>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                            " . (new DateTime($row['updated_at']))->format('Y-m-d') . " 
+                        </td>
+                        <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                            " . $row['judgement_of_court'] . " 
+                        </td>
+                    </tr>";
+    }
+    if (!($found_judgements)) {
+        $html .= "<tr>
+            <td colspan=9 style=' height:50px; font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                निरंक
+            </td>
+        </tr>
+        ";
+    }
+    $html .= "<tr><td colspan=9></td></tr>";
 
-?>
+    $html .= "</table>";
+
+    $html = '<html xmlns:o="urn:schemas-microsoft-com:office:office"
+    xmlns:x="urn:schemas-microsoft-com:office:excel"
+    xmlns="http://www.w3.org/TR/REC-html40">'
+        . '<head><meta http-equiv="Content-type" content="text/html;charset=UTF-8" /></head>'
+        . '<body>' . $html . '</body></html>';
+
+
+    return $html;
+    // header('Content-Type: application/xls');
+    // header('Content-Disposition: attachment; filename=court_judgements' . $date . '.xls');
+    // echo $html;
+}
+
+function generateImportantAchievementsExcel($date, $district)
+{
+    $html = "<table style='vertical-align:middle;'>
+                <tr>
+                    <th colspan=8 center style='font-size: 42px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; height:75px;'>महत्पूर्ण कार्यवाहिया / उपलब्धियां | $date</th>
+                </tr>
+                <tr style='height:240px;'>
+                    <th style='font-size: 26px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:45px;'>क्र.</th>
+                    <th style='font-size: 26px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:150px;'>थाना/चौकी</th>
+                    <th style='font-size: 26px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:500px;'>गंभीर अपराधों में गिरफ्तारि / महत्वपूर्ण गिरफ्तारि</th>
+                    <th style='font-size: 26px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:170px;'>कोर्ट द्वारा दिए गये निर्णय (दोषमुक्त / सजा / जमानत /रद्द)</th>
+                    <th style='font-size: 26px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:300px;'>आपरेशन मुस्कान / गुम इंसान दस्तायी</th>
+                    <th style='font-size: 26px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:120px'>डकैती / लुट / चोरी का खुलासा</th>
+                    <th style='font-size: 26px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:270px;'>विविध जैसे जन जागरुकता अभियान मे विशेष सफलता या प्राण रक्षा,गिरफ्तारी वारंटो की तमिलि आदि</th>
+                    <th style='font-size: 26px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center; width:200px;'>धारा 102 के तहत कि गई कार्यवाही</th>
+                </tr>";
+    $i = 1;
+    $found_achievements = false;
+    foreach (get_important_achievements($date, $district) as $row) {
+        $found_achievements = true;
+        $html .= "<tr>
+                <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                    " . $i++ . "
+                </td>
+                <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                    " . $row['police_station'] . " 
+                </td>
+                <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                    " . $row['arrest_in_major_crime'] . " 
+                </td>
+                <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                    " . $row['decision_given_by_the_court'] . " 
+                </td>
+                <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                " . $row['missing_man_document'] . " 
+                </td>
+                <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                    " . $row['robbery'] . " 
+                </td>
+                <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                    " . $row['miscellaneous'] . " 
+                </td>
+                <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                    " . $row['action_taken_under'] . " 
+                </td>
+            </tr>";
+    }
+    if (!($found_achievements)) {
+        $html .= "<tr>
+                    <td colspan=8 style=' height:50px; font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle; text-align:center;'>
+                        निरंक
+                    </td>
+                </tr>
+                ";
+    }
+    $html .= "<tr><td colspan=8></td></tr>";
+
+    $html .= "</table>";
+
+    $html = '<html xmlns:o="urn:schemas-microsoft-com:office:office"
+    xmlns:x="urn:schemas-microsoft-com:office:excel"
+    xmlns="http://www.w3.org/TR/REC-html40">'
+        . '<head><meta http-equiv="Content-type" content="text/html;charset=UTF-8" /></head>'
+        . '<body>' . $html . '</body></html>';
+    return $html;
+
+
+    // header('Content-Type: application/xls');
+    // header('Content-Disposition: attachment; filename=important_achievements' . $date . '.xls');
+    // echo $html;
+}

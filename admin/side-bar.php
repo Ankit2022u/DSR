@@ -11,145 +11,149 @@
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
                 <a href="admin.php" <?php if ($active_page === 'admin') {
-                    echo
-                        'class="nav-link active"';
-                } else {
-                    echo 'class="nav-link link-dark"';
-                } ?>>
+                                        echo
+                                        'class="nav-link active"';
+                                    } else {
+                                        echo 'class="nav-link link-dark"';
+                                    } ?>>
                     Dashboard / डैशबोर्ड
                 </a>
             </li>
             <li>
                 <a href="manage_user.php" <?php if ($active_page === 'manage_user' or $active_page === 'create_user') {
-                    echo
-                        'class="nav-link active"';
-                } else {
-                    echo 'class="nav-link link-dark"';
-                } ?>>
+                                                echo
+                                                'class="nav-link active"';
+                                            } else {
+                                                echo 'class="nav-link link-dark"';
+                                            } ?>>
                     Manage Users / उपयोगकर्ताओं का प्रबंधन
                 </a>
             </li>
             <li>
                 <a href="view_logs.php" <?php if ($active_page === 'view_logs') {
-                    echo
-                        'class="nav-link active"';
-                } else {
-                    echo 'class="nav-link link-dark"';
-                } ?>>
+                                            echo
+                                            'class="nav-link active"';
+                                        } else {
+                                            echo 'class="nav-link link-dark"';
+                                        } ?>>
                     View Logs / लॉग्स को देखें
                 </a>
             </li>
             <li>
                 <a href="view_data.php" <?php if ($active_page === 'view_data') {
-                    echo
-                        'class="nav-link active"';
-                } else {
-                    echo 'class="nav-link link-dark"';
-                } ?>>
+                                            echo
+                                            'class="nav-link active"';
+                                        } else {
+                                            echo 'class="nav-link link-dark"';
+                                        } ?>>
                     View Data / डेटा का हिसाब
                 </a>
             </li>
             <li>
                 <a href="change_password.php" <?php if ($active_page === 'change_password') {
-                    echo
-                        'class="nav-link active"';
-                } else {
-                    echo 'class="nav-link link-dark"';
-                } ?>>
+                                                    echo
+                                                    'class="nav-link active"';
+                                                } else {
+                                                    echo 'class="nav-link link-dark"';
+                                                } ?>>
                     Change Password / पासवर्ड को बदले
                 </a>
             </li>
             <li>
                 <a href="police_station.php" <?php if ($active_page === 'police_station') {
-                    echo
-                        'class="nav-link active"';
-                } else {
-                    echo 'class="nav-link link-dark"';
-                } ?>>
+                                                    echo
+                                                    'class="nav-link active"';
+                                                } else {
+                                                    echo 'class="nav-link link-dark"';
+                                                } ?>>
                     Police Station / थाना
                 </a>
             </li>
             <li>
                 <a href="profile.php" <?php if ($active_page === 'profile') {
-                    echo
-                        'class="nav-link active"';
-                } else {
-                    echo 'class="nav-link link-dark"';
-                } ?>>
+                                            echo
+                                            'class="nav-link active"';
+                                        } else {
+                                            echo 'class="nav-link link-dark"';
+                                        } ?>>
                     View Profile / प्रोफाइल
                 </a>
             </li>
             <li>
                 <a href="dbf.php" <?php if ($active_page === 'dbf') {
-                    echo
-                        'class="nav-link active"';
-                } else {
-                    echo 'class="nav-link link-dark"';
-                } ?>>
+                                        echo
+                                        'class="nav-link active"';
+                                    } else {
+                                        echo 'class="nav-link link-dark"';
+                                    } ?>>
 
                     Inquest / मर्ग
                 </a>
             </li>
             <li>
                 <a href="mcf.php" <?php if ($active_page === 'mcf') {
-                    echo
-                        'class="nav-link active"';
-                } else {
-                    echo 'class="nav-link link-dark"';
-                } ?>>
-                    Major Crime / गंभीर अपराध
+                                        echo
+                                        'class="nav-link active"';
+                                    } else {
+                                        echo 'class="nav-link link-dark"';
+                                    } ?>>
+                    Major Crime / अपराध की जानकारी
                 </a>
             </li>
             <li>
                 <a href="micf.php" <?php if ($active_page === 'micf') {
-                    echo
-                        'class="nav-link active"';
-                } else {
-                    echo 'class="nav-link link-dark"';
-                } ?>>
+                                        echo
+                                        'class="nav-link active"';
+                                    } else {
+                                        echo 'class="nav-link link-dark"';
+                                    } ?>>
 
-                    Minor Crime / सामान्य अपराध
+                    Minor Crime / लघु अधिनियम
                 </a>
             </li>
-            <li>
-                <a href="ocf.php" <?php if ($active_page === 'ocf') {
-                    echo
-                        'class="nav-link active"';
-                } else {
-                    echo 'class="nav-link link-dark"';
-                } ?>>
+            <!-- <li>
+                <a href="ocf.php" <?php
+
+                                    // if ($active_page === 'ocf') {
+                                    //                         echo
+                                    //                         'class="nav-link active"';
+                                    //                     } else {
+                                    //                         echo 'class="nav-link link-dark"';
+                                    //                     } 
+
+                                    ?>>
                     Active Case / सक्रिय मामला
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a href="cjf.php" <?php if ($active_page === 'cjf') {
-                    echo
-                        'class="nav-link active"';
-                } else {
-                    echo 'class="nav-link link-dark"';
-                } ?>>
+                                        echo
+                                        'class="nav-link active"';
+                                    } else {
+                                        echo 'class="nav-link link-dark"';
+                                    } ?>>
                     Court judgement / कोर्ट का निर्णय
                 </a>
             </li>
 
             <li>
                 <a href="iaf.php" <?php if ($active_page === 'iaf') {
-                    echo
-                        'class="nav-link active"';
-                } else {
-                    echo 'class="nav-link link-dark"';
-                } ?>>
+                                        echo
+                                        'class="nav-link active"';
+                                    } else {
+                                        echo 'class="nav-link link-dark"';
+                                    } ?>>
                     Important Achievements / मुख्य उपलब्धियां
                 </a>
             </li>
 
             <li>
                 <a href="disposal.php" <?php if ($active_page === 'disposal') {
-                    echo
-                        'class="nav-link active"';
-                } else {
-                    echo 'class="nav-link link-dark"';
-                } ?>>
+                                            echo
+                                            'class="nav-link active"';
+                                        } else {
+                                            echo 'class="nav-link link-dark"';
+                                        } ?>>
                     Disposals / निकाल
                 </a>
             </li>
@@ -158,8 +162,7 @@
     </div>
     <hr>
     <div class="profile">
-        <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>"
-            alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
+        <img src="../uploads/<?= $_SESSION['user-data']['user_type']; ?>/<?= $_SESSION['user-data']['profile_photo_path']; ?>" alt="Profile Pic" width="32" height="32" class="rounded-circle me-2">
         <strong>
             <?= $_SESSION['user-data']['officer_name']; ?>
         </strong>

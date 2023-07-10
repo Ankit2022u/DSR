@@ -763,9 +763,22 @@ function major_crime_pdf($date, $district, $data, $type = 1)
     }
 </style>';
 
-    $html = '<h1 style="font-size: 21px; text-decoration:underline; font-weight: 600; text-align: center;">' . $district . ' में घटित समस्त गंभीर अपराधों की जानकारी (डी. एस. आर.) 
+    $html = '<h1 style="font-size: 21px; text-decoration:underline; font-weight: 600; text-align: center;">';
+    if ($district == "All") {
+        $html .= 'समस्त जिला';
+    } else {
+        $html .= $district;
+    }
+    $html .= ' में घटित गंभीर अपराधों की जानकारी (डी. एस. आर.) 
     <br> दिनाक - ' . $date . ' प्रेषित दिनाक ' . get_next_date($date) . '</h1>
-    <h2 style="font-size: 21px;">जिला — ' . $district . '</h2>
+    <h2 style="font-size: 21px;">जिला — ';
+    if ($district == "All") {
+        $html .= 'समस्त';
+    } else {
+        $html .= $district;
+    }
+
+    $html .= '</h2>
     <table class="border" style="margin:auto; margin-top:10px; min-width:285mm;">
     <tr>
         <th class="border" style="width: 3%;">क्र.</th>
@@ -900,9 +913,22 @@ function crime_pdf($date, $district, $data, $type = 1)
     }
 </style>';
 
-    $html = '<h1 style="font-size: 21px; text-decoration:underline; font-weight: 600; text-align: center;">' . $district . ' में घटित समस्त अपराधों की जानकारी (डी. एस. आर.) 
+    $html = '<h1 style="font-size: 21px; text-decoration:underline; font-weight: 600; text-align: center;">';
+    if ($district == "All") {
+        $html .= 'समस्त जिला';
+    } else {
+        $html .= $district;
+    }
+
+    $html .= ' में घटित सामान्य अपराधों की जानकारी (डी. एस. आर.) 
     <br> दिनाक - ' . $date . ' प्रेषित दिनाक ' . get_next_date($date) . '</h1>
-    <h2 style="font-size: 21px;">जिला — ' . $district . '</h2>
+    <h2 style="font-size: 21px;">जिला — ';
+    if ($district == "All") {
+        $html .= 'समस्त';
+    } else {
+        $html .= $district;
+    }
+    $html .= '</h2>
     <table class="border" style="margin:auto; margin-top:10px; min-width:285mm;">
     <tr>
         <th class="border" style="width: 3%;">क्र.</th>
@@ -1047,7 +1073,13 @@ function deadbody_pdf($date, $district, $data, $type = 1)
     }
 </style>';
 
-    $html = "<h1 style='font-size: 21px; text-decoration:underline; font-weight: 600; text-align: center; margin-bottom: 20px;'>जिला " . $district . " मर्ग की जानकारी दिनाक - " . $date . " प्रेषित दिनाक " . get_next_date($date) . "</h1>
+    $html = "<h1 style='font-size: 21px; text-decoration:underline; font-weight: 600; text-align: center; margin-bottom: 20px;'>";
+    if ($district == "All") {
+        $html .= 'समस्त जिला';
+    } else {
+        $html .= $district;
+    }
+    $html .= " मर्ग की जानकारी दिनाक - " . $date . " प्रेषित दिनाक " . get_next_date($date) . "</h1>
     <table class='border' style='margin:auto; margin-top:10px; min-width:285mm;'>
     <tr>
         <th class='border' style='width: 3%;'>क्र.</th>
@@ -1180,7 +1212,14 @@ function achievements_pdf($date, $district, $data, $type = 1)
     }
 </style>';
 
-    $html = "<h1 style='font-size: 21px; text-decoration:underline; font-weight: 600; text-align: center; margin-bottom: 20px;'>जिला " . $district . " की महत्पूर्ण कार्यवाहिया / उपलब्धियां </h1>
+    $html = "<h1 style='font-size: 21px; text-decoration:underline; font-weight: 600; text-align: center; margin-bottom: 20px;'>";
+    if ($district == "All") {
+        $html .= 'समस्त जिला';
+    } else {
+        $html .= $district;
+    }
+
+    $html .=  " की महत्पूर्ण कार्यवाहिया / उपलब्धियां </h1>
     <h2 style='font-size: 17px; text-decoration:underline; font-weight: 600; text-align: center; margin-bottom: 20px;'> दिनाक - " . $date . " प्रेषित दिनाक " . get_next_date($date) . "</h2>
     <table class='border' style='margin:auto; margin-top:10px; min-width:285mm;'>
     <tr>
@@ -1301,7 +1340,13 @@ function judgements_pdf($date, $district, $data, $type = 1) //Court judgement() 
     }
 </style>';
 
-    $html = "<h1 style='font-size: 20px; text-decoration:underline; font-weight: 600; text-align: center; margin-bottom: 20px;'>कोर्ट द्वारा निर्णय जिला " . $district . " (छ.ग.) </h1>
+    $html = "<h1 style='font-size: 20px; text-decoration:underline; font-weight: 600; text-align: center; margin-bottom: 20px;'>कोर्ट द्वारा निर्णय जिला ";
+    if ($district == "All") {
+        $html .= 'समस्त';
+    } else {
+        $html .= $district;
+    }
+    $html .= " (छ.ग.) </h1>
     <h2 style='font-size: 16px; text-decoration:underline; font-weight: 600; text-align: center; margin-bottom: 20px;'> दिनाक - " . $date . " प्रेषित दिनाक " . get_next_date($date) . "</h2>
     <table class='border' style='margin:auto; margin-top:10px; min-width:260mm;'>
     <tr>

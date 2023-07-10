@@ -3,11 +3,13 @@ session_start();
 require "../api/dbcon.php";
 require "../api/functions.php";
 
+
 $police_stations = police_stations();
 
 if (!(isset($_SESSION['user-data']))) {
     header("Location: ../index.php");
 }
+
 
 ?>
 <?php
@@ -25,11 +27,11 @@ include('admin_header.php'); ?>
             <?php
             if (isset($_SESSION['message'])) {
             ?>
-            <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
-                <strong>Information: </strong>
-                <?= $_SESSION['message']; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+                <div class="alert alert-<?= $_SESSION['type']; ?> alert-dismissible fade show" role="alert">
+                    <strong>Information: </strong>
+                    <?= $_SESSION['message']; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             <?php
                 unset($_SESSION['message']);
             }
@@ -172,8 +174,7 @@ include('admin_header.php'); ?>
                     <!-- DSR Date-->
                     <div class="col-md-6 col-lg-6 col-sm-12">
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="dsrDate" type="date" placeholder="DSR Date" name="dsr_date"
-                                required />
+                            <input class="form-control" id="dsrDate" type="date" placeholder="DSR Date" name="dsr_date" required />
 
                             <label for="dsrDate">Date / तिथि<span class="required-star">*</span></label>
                         </div>
@@ -210,15 +211,13 @@ include('admin_header.php'); ?>
                                 <option value="Judgement">Court Judgements()</option>
                                 <option value="Disposal">Disposals()</option>
                             </select>
-                            <label for="documentType">Document Type / दस्तावेज़ का प्रकार<span
-                                    class="required-star">*</span></label>
+                            <label for="documentType">Document Type / दस्तावेज़ का प्रकार<span class="required-star">*</span></label>
                         </div>
                     </div>
 
                     <div class="col-md-6 col-lg-6 col-sm-12">
 
-                        <label for="doc_format">Select Format / दस्तावेज़ का फॉर्मेट<span
-                                class="required-star">*</span></label>
+                        <label for="doc_format">Select Format / दस्तावेज़ का फॉर्मेट<span class="required-star">*</span></label>
                         <select name="doc_format" id="doc_format" class="form-select">
                             <option value="excel">Excel</option>
                             <option value="pdf">PDF</option>
