@@ -149,7 +149,7 @@ if ($doc_format == "excel") {
         // $data['major_crimes'] = get_major_crimes($date, $district);
         $html = "<table style='vertical-align:middle;'>";
         $html .= "<tr>
-                        <th colspan=13 center style='font-size: 44px; border:1px solid black; border-collapse: collapse; height:75px; vertical-align:middle; text-align:center;'>$district के समस्त अपराधो की जानकारी | $date </th>
+                        <th colspan=13 center style='font-size: 44px; border:1px solid black; border-collapse: collapse; height:75px; vertical-align:middle; text-align:center;'>$district के समस्त गंभीर अपराधो की जानकारी | $date </th>
                     </tr>
                     <tr>
                         <th style='font-size: 28px;border:1px solid black; border-collapse: collapse; vertical-align:middle; vertical-align:middle; text-align:center; width:45px;'>क्र.</th>
@@ -227,7 +227,7 @@ if ($doc_format == "excel") {
             . '<body>' . $html . '</body></html>';
 
         header('Content-Type: application/xls');
-        header('Content-Disposition: attachment; filename=major_crimes.xls');
+        header('Content-Disposition: attachment; filename=major_crimes' . $date . '.xls');
         echo $html;
     }
 
@@ -314,7 +314,7 @@ if ($doc_format == "excel") {
             . '<body>' . $html . '</body></html>';
 
         header('Content-Type: application/xls');
-        header('Content-Disposition: attachment; filename=minor_crimes.xls');
+        header('Content-Disposition: attachment; filename=minor_crimes' . $date . '.xls');
         echo $html;
     }
 
@@ -400,7 +400,7 @@ if ($doc_format == "excel") {
             . '<body>' . $html . '</body></html>';
 
         header('Content-Type: application/xls');
-        header('Content-Disposition: attachment; filename=major_crimes.xls');
+        header('Content-Disposition: attachment; filename=crimes' . $date . '.xls');
         echo $html;
     }
 
@@ -484,7 +484,7 @@ if ($doc_format == "excel") {
             . '<body>' . $html . '</body></html>';
 
         header('Content-Type: application/xls');
-        header('Content-Disposition: attachment; filename=dead_bodies.xls');
+        header('Content-Disposition: attachment; filename=dead_bodies' . $date . '.xls');
         echo $html;
     }
 
@@ -557,7 +557,7 @@ if ($doc_format == "excel") {
             . '<body>' . $html . '</body></html>';
 
         header('Content-Type: application/xls');
-        header('Content-Disposition: attachment; filename=important_achievements.xls');
+        header('Content-Disposition: attachment; filename=important_achievements' . $date . '.xls');
         echo $html;
     }
 
@@ -633,8 +633,10 @@ if ($doc_format == "excel") {
             . '<body>' . $html . '</body></html>';
 
         header('Content-Type: application/xls');
-        header('Content-Disposition: attachment; filename=court_judgements.xls');
+        header('Content-Disposition: attachment; filename=court_judgements' . $date . '.xls');
         echo $html;
+    } else {
+        //This is for all document create xml file 
     }
 
     // <td style=' font-size: 24px; border:1px solid black; border-collapse: collapse; vertical-align:middle;'>

@@ -763,7 +763,7 @@ function major_crime_pdf($date, $district, $data, $type = 1)
     }
 </style>';
 
-    $html = '<h1 style="font-size: 21px; text-decoration:underline; font-weight: 600; text-align: center;">' . $district . ' में घटित समस्त अपराधों की जानकारी (डी. एस. आर.) 
+    $html = '<h1 style="font-size: 21px; text-decoration:underline; font-weight: 600; text-align: center;">' . $district . ' में घटित समस्त गंभीर अपराधों की जानकारी (डी. एस. आर.) 
     <br> दिनाक - ' . $date . ' प्रेषित दिनाक ' . get_next_date($date) . '</h1>
     <h2 style="font-size: 21px;">जिला — ' . $district . '</h2>
     <table class="border" style="margin:auto; margin-top:10px; min-width:285mm;">
