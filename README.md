@@ -31,11 +31,11 @@ This project was developed on the instructions of Sir, the Inspector General of 
 Feel free to customize and enhance the project according to your specific requirements.
 
 ## ScreenShots 
-![Image 2](https://https://github.com/Ankit2022u/DSR/assets/screenshots/Web20%capture_31-1-2024_143728_localhost.jpeg)
-![Image 3](https://https://github.com/Ankit2022u/DSR/assets/screenshots/Web20%capture_31-1-2024_143756_localhost.jpeg)
-![Image 4](https://https://github.com/Ankit2022u/DSR/assets/screenshots/Web20%capture_31-1-2024_143756_localhost.jpeg)
-![Image 5](https://https://github.com/Ankit2022u/DSR/assets/screenshots/Web20%capture_31-1-2024_143815_localhost.jpeg)
-![Image 6](https://https://github.com/Ankit2022u/DSR/assets/screenshots/Web20%capture_31-1-2024_144046_localhost.jpeg)
+![Image 2](https://github.com/Ankit2022u/DSR/blob/main/assets/screenshots/Web%20capture_31-1-2024_143728_localhost.jpeg)
+![Image 3](https://github.com/Ankit2022u/DSR/blob/main/assets/screenshots/Web%20capture_31-1-2024_143756_localhost.jpeg)
+![Image 4](https://github.com/Ankit2022u/DSR/blob/main/assets/screenshots/Web%20capture_31-1-2024_143815_localhost.jpeg)
+![Image 5](https://github.com/Ankit2022u/DSR/blob/main/assets/screenshots/Web%20capture_31-1-2024_144019_localhost.jpeg)
+![Image 6](https://github.com/Ankit2022u/DSR/blob/main/assets/screenshots/Web%20capture_31-1-2024_144046_localhost.jpeg)
 
 ## License
 
