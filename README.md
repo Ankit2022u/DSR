@@ -30,6 +30,9 @@ This project was developed on the instructions of Sir, the Inspector General of 
 
 Feel free to customize and enhance the project according to your specific requirements.
 
+## ScreenShots 
+![Image 2]([https://github.com/ahviky02/Email/raw/main/resources/images/Web%20capture_2-7-2023_15437_localhost.jpeg](https://github.com/Ankit2022u/DSR/commit/e25881fc0d48651fd530f0f60aac32d72db5d5f6#diff-3362b85c41023ae697cc64780081ac06e2e40a93500b6e6372fb013473c0f56c))
+
 ## License
 
 This project is open source and available under the [MIT License](https://opensource.org/licenses/MIT).
