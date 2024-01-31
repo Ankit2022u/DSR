@@ -31,7 +31,11 @@ This project was developed on the instructions of Sir, the Inspector General of 
 Feel free to customize and enhance the project according to your specific requirements.
 
 ## ScreenShots 
-![Image 2]([https://github.com/ahviky02/Email/raw/main/resources/images/Web%20capture_2-7-2023_15437_localhost.jpeg](https://github.com/Ankit2022u/DSR/commit/e25881fc0d48651fd530f0f60aac32d72db5d5f6#diff-3362b85c41023ae697cc64780081ac06e2e40a93500b6e6372fb013473c0f56c))
+![Image 2](https://https://github.com/Ankit2022u/DSR/assets/screenshots/Web20%capture_31-1-2024_143728_localhost.jpeg)
+![Image 3](https://https://github.com/Ankit2022u/DSR/assets/screenshots/Web20%capture_31-1-2024_143756_localhost.jpeg)
+![Image 4](https://https://github.com/Ankit2022u/DSR/assets/screenshots/Web20%capture_31-1-2024_143756_localhost.jpeg)
+![Image 5](https://https://github.com/Ankit2022u/DSR/assets/screenshots/Web20%capture_31-1-2024_143815_localhost.jpeg)
+![Image 6](https://https://github.com/Ankit2022u/DSR/assets/screenshots/Web20%capture_31-1-2024_144046_localhost.jpeg)
 
 ## License
 
