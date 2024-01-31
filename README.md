@@ -30,6 +30,12 @@ This project was developed on the instructions of Sir, the Inspector General of 
 
 Feel free to customize and enhance the project according to your specific requirements.
 
+## Login and Signup
+go to the home page and click "download view"  
+```bash
+user name "Ahvi"
+Password "#123Ahvi"
+```
 ## ScreenShots 
 ![Image 2](https://github.com/Ankit2022u/DSR/blob/main/assets/screenshots/Web%20capture_31-1-2024_143728_localhost.jpeg)
 ![Image 3](https://github.com/Ankit2022u/DSR/blob/main/assets/screenshots/Web%20capture_31-1-2024_143756_localhost.jpeg)
