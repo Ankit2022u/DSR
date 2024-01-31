@@ -1,23 +1,20 @@
 # Daily Station Report (DSR)
 
-This is Project had made on the instruction of Surguja Sambhag Ig Sir.Developed for the Surguja Sambhag police station website, this project facilitates the handling of daily reports, cases, 
-and easy access for the police department. The website is designed to be highly responsive and user-friendly. My senior 
-sir and I collaborated on creating this project, employing PHP and JavaScript technologies, with MySQL as the chosen 
-database. 
+This project was developed on the instructions of Sir, the Inspector General of Surguja Sambhag. It is designed for the Surguja Sambhag police station website, aiming to facilitate the management of daily reports and cases, providing easy access for the police department. The website is designed to be highly responsive and user-friendly. My seniors and I collaborated on this project, utilizing PHP and JavaScript technologies, with MySQL as the chosen database.
 
-## Features 
-- Daily Police Report data will create hare.
-- All record is saved in databases.
-- We can download any report documents in the form of  pdf and excel.
-- This web Projects are Responsive and better user experience.
-- This website is used Hindi Langauges.
+## Features
+- Daily Police Report data is created here.
+- All records are saved in the database.
+- Users can download any report documents in PDF and Excel formats.
+- This web project is responsive, providing a better user experience.
+- The website supports the Hindi language.
 
-## Technologies Are Used  
-  - PHP
-  - JavaScript and Their Some libraries
-  - HTML, CSS
-  - MYSQL
-  - Bootstrap Framework
+## Technologies Used
+- PHP
+- JavaScript and its libraries
+- HTML, CSS
+- MySQL
+- Bootstrap Framework
 
 ## Installation
 1. Clone this repository to your local machine.
@@ -28,7 +25,7 @@ database.
      mysql -u your_username -p your_database_name < assets/SQL/player.sql
      ```
      Replace `your_username` with your MySQL username and `your_database_name` with the name of the database where you want to import the schema.
-4. Update the database connection configuration in the PHP files, if needed.
+4. Update the database connection configuration in the PHP files if needed.
 5. Launch the application and start uploading and playing media files.
 
 Feel free to customize and enhance the project according to your specific requirements.
